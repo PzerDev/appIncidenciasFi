@@ -1,0 +1,79 @@
+#datosContacto {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 0 0;
+}
+
+#datosContacto div, #datosContacto #notaCorreo {
+    display: flex;
+    margin: 20px 0;
+}
+
+#datosContacto div input {
+    margin-left: 20px;
+}
+
+#contenedorNota, #contenedorCorreo {
+    display: block;
+}
+
+#contenedorNota textarea,
+#contenedorCorreo textarea {
+    margin-left: 20px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    height: 300px;
+    resize: none;
+    border: 1px solid transparent;
+    color: #313131;
+    background: #e9e9e9;
+}
+
+#datosContacto #notaCorreo #contenedorNota {
+    width: 60%;
+}
+#datosContacto #notaCorreo #contenedorCorreo {
+    width: 40%;
+}
+
+#datosContacto #notaCorreo #contenedorNota,
+#datosContacto #notaCorreo #contenedorCorreo {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#copiarBtnNota, #copiarBtnCorreo {
+    position: absolute;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+
+.hora-seleccionada {
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 48px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.tecnologia-router {
+    width: 70%;
+    padding: 10px 20px 10px 30px;
+    border: 1px solid #ccc;
+    border-radius: 48px;
+    height: 48px;
+    background-color: #e9e9e9;
+    color: #313131;
+    margin-left: 20px;
+}
+
+.tecnologia-router:first-of-type {
+    width: 30%;
+}

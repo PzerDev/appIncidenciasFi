@@ -1,0 +1,13 @@
+#datosTickets {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 0 0;
+}
+
+#datosTickets div {
+    display: flex;
+}
+
+#datosTickets div input {
+    margin-left: 20px;
+}
