@@ -21,6 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://pzerdev.github.io/appIncidenciasFi/build",
   "eslintConfig": {
     "extends": [
       "react-app",
