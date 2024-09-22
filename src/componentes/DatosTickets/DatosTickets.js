@@ -36,9 +36,22 @@ function DatosTickets({motivoSeleccionado}) {
     <div id='datosTickets'>
       
       <div>
-        <input type="text" value={ticketSeleccionado.categoria || ""} placeholder="Categoría" disabled/>
-        <input type="text" value={ticketSeleccionado.subcategoria || ""} placeholder="Subcategoria" disabled/>
-        <input type="text" value={ticketSeleccionado.estadoTicket || ""} placeholder="Estado del Ticket" disabled/>
+        <div className='contenedorCatTicket'>
+          <label for="categoría">Categoría:</label>
+          <input type="text" id="categoría" value={ticketSeleccionado.categoria || ""} placeholder="Categoría" disabled/>
+        </div>
+        <div className='contenedorCatTicket'>
+        <label for="subcategoria">Subcategoria:</label>
+        <input type="text" id="subcategoria" value={ticketSeleccionado.subcategoria || ""} placeholder="Subcategoria" disabled/>
+        </div>
+        <div className='contenedorCatTicket'>
+        <label for="pipeline">Pipeline:</label>
+        <input type="text" id="pipeline" value={ticketSeleccionado.pipeline || ""} placeholder="Pipeline" disabled/>
+        </div>
+        <div className='contenedorCatTicket'>
+        <label for="estadoTicket">Estado del Ticket:</label>
+        <input type="text" id="estadoTicket" value={ticketSeleccionado.estadoTicket || ""} placeholder="Estado del Ticket" disabled/>
+        </div>
       </div>
 
       {/* <div>

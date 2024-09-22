@@ -1,0 +1,83 @@
+.contenedorOpcionesApn {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.contenedorMensajeApn {
+    margin: 0 20px;
+}
+
+.contenedorMensajeApn label {
+    margin-left: 30px;
+}
+
+.contenedorMensajeApn input {
+    margin-top: 10px;
+}
+
+.marca-seleccionada {
+    /* margin-left: 20px; */
+    padding: 10px 20px;
+    border-radius: 48px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#contenedorSMS {
+    display: flex;
+    margin: 0 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+textarea {
+    width: 100%;
+    padding: 20px 45px 20px 30px;
+    border-radius: 20px;
+    resize: none;
+}
+
+#copiarBtnSMS {
+    cursor: pointer;
+    position: absolute;
+    margin-right: 15px;
+    border: none;
+    background: none;
+}
+
+#contenedorCorreoApn {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#contenedorCorreoApn textarea {
+    /* margin-left: 20px; */
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    height: 450px;
+    resize: none;
+    border: 1px solid transparent;
+    color: #313131;
+    background: #e9e9e9;
+}
+
+#copiarBtnConfigApn {
+    position: absolute;
+    margin-right: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.contenedor-marca-apn {
+    margin: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

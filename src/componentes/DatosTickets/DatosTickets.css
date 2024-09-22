@@ -8,6 +8,17 @@
     display: flex;
 }
 
-#datosTickets div input {
+#datosTickets div .contenedorCatTicket {
     margin-left: 20px;
+    display: inline-block;
+}
+
+#datosTickets div .contenedorCatTicket label {
+    margin-left: 30px;
+    /* display: inline-block; */
+}
+
+#datosTickets div input {
+    margin-top: 10px;
+    font-weight: bold;
 }

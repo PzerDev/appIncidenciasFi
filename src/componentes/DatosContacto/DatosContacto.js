@@ -94,6 +94,7 @@ function DatosContacto({ticket}) {
       setAveria(event.target.value);
       setAveriaSeleccionada(ticket.averia[event.target.value][0]);
       setCorreo(ticket.averia[event.target.value][1]);
+      correoEdit = ticket.averia[event.target.value][1];
       // actualizarNota(averiaSeleccionada);
       // console.log(averiaSeleccionada)
       // console.log(acometidaFuncion())
@@ -162,7 +163,8 @@ function DatosContacto({ticket}) {
                       .replace("{averia}", averiaSeleccionada)
                       .replace("{horario}", horario)
 
-      correoEdit = correo;
+      ticket.motivo === 'Avería / Incidencia Fibra - General' ? correoEdit = correo : correoEdit = ticket.correoPlantilla;
+      
     }
 
 
@@ -207,7 +209,7 @@ function DatosContacto({ticket}) {
 
       datosAdicionales = (
         <>
-        <div>
+        <div className='contenedor-input-datos-cliente'>
           <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
           <input type="text" value={acometidaSelecionada} placeholder="Acometida" />
           {/* <input type="text" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} placeholder="horaInicio" /> */}
@@ -233,7 +235,7 @@ function DatosContacto({ticket}) {
           </select>
         </div>
 
-        <div>
+        <div className='contenedor-datos-router'>
           <select className='tecnologia-router' value={tecnologia} onChange={handleSelectTecnologiaChange}>
             <option key='Tecnología' value='Tecnología'>  
                 Tecnología
@@ -284,10 +286,15 @@ function DatosContacto({ticket}) {
   return (
     <div id='datosContacto'>
       
-      <div>
-        <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre" />
-        <input type="text" value={documento} onChange={(e) => setDocumento(e.target.value)} placeholder="Documento de Identidad" />
-        <input type="text" value={contacto} onChange={(e) => setContacto(e.target.value)} placeholder="Número de contacto" />
+      <div className='contenedor-label-input-datos-cliente'>
+        <div className='contenedor-label-datos-cliente'>
+          <label>Datos de Cliente:</label>
+        </div>
+        <div className='contenedor-input-datos-cliente'>
+          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre" />
+          <input type="text" value={documento} onChange={(e) => setDocumento(e.target.value)} placeholder="Documento de Identidad" />
+          <input type="text" value={contacto} onChange={(e) => setContacto(e.target.value)} placeholder="Número de contacto" />
+        </div>
       </div>
 
       {datosAdicionales}

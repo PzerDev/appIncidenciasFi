@@ -1,20 +1,31 @@
 #datosContacto {
     width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 0 20px 0 0;
 }
 
-#datosContacto div, #datosContacto #notaCorreo {
-    display: flex;
-    margin: 20px 0;
+.contenedor-label-datos-cliente label {
+    margin-left: 50px;
 }
 
-#datosContacto div input {
+.contenedor-input-datos-cliente, .contenedor-datos-router {
+    display: flex;
+    /* width: 100%; */
+    margin-top: 10px;
+}
+
+.contenedor-input-datos-cliente input {
+    /* margin-top: 10px; */
     margin-left: 20px;
 }
 
-#contenedorNota, #contenedorCorreo {
-    display: block;
+/* #datosContacto div input {
+    margin-left: 20px;
+} */
+
+#notaCorreo, #contenedorNota, #contenedorCorreo {
+    display: flex;
+    margin-top: 10px;
 }
 
 #contenedorNota textarea,
