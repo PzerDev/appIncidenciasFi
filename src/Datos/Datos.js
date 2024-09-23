@@ -9,7 +9,7 @@ let datosTickets = [
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Cambio de IBAN de distinto titular
 NUEVO IBAN: {actualizarDoc}
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nombre de otra persona. Se ha abierto un caso para gestionar su requerimiento.`,
         src: ""
     },
@@ -23,7 +23,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nomb
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Actualización de documento de identidad
 NUEVO DOCUMENTO: {actualizarDoc}
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, cliente solicita la actualización de su documento de identidad. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
@@ -35,7 +35,12 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la actualización de su document
         pipeline: "Envíos",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Plantilla: Envíos - Cambio dirección terminal",
-        nota: `Genérica modificada`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Cambiar dirección de envío
+NUEVA DIRECCIÓN: {nuevaDireccion}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario},`,
         src: ""
     },
     {
@@ -46,9 +51,9 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la actualización de su document
         estadoTicket: "Abierto",
         correoPlantilla: "respecto a su solicitud de cambio de dirección para la tarjeta SIM.",
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de dirección de envío
-NUEVA DIRECCIÓN: {actualizarDoc}
-TELÉFONO CONTACTO: {contacto}
+SOLICITUD: Cambiar dirección de envío
+NUEVA DIRECCIÓN: {nuevaDireccion}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de envío de su tarjeta SIM. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
@@ -62,7 +67,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de en
         correoPlantilla: "Plantilla: Cliente - Cambio de impuesto (Cliente debe responder enviando su certificado de empadronamientoi)",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Cambio de impuesto
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
@@ -76,7 +81,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado
         correoPlantilla: "en relación a su solicitud de modificar el impuesto en las facturas.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Cambio de impuesto
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
@@ -90,7 +95,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado
         correoPlantilla: "A fin de atender su solicitud de cambio de titular, es necesario que responda este correo adjuntando una copia de su documento de identidad (vigente) por ambas caras.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Cambio de titular
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, cliente ha experimentado dificultades al intentar firmar el documento de cambio de titular por medio del enlace proporcionado. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
@@ -150,7 +155,7 @@ Te mantendremos al tanto de cualquier novedad.`
         correoPlantilla: "Para que podamos hacer efectiva la portabilidad de la línea, es necesario que responda este correo adjuntando la última factura de su operador actual y una copia de su documento de identidad.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Portabilidad
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
@@ -164,7 +169,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         correoPlantilla: "Para que podamos hacer efectiva la portabilidad de la línea, es necesario que responda este correo adjuntando una foto de su tarjeta SIM actual y una copia de su documento de identidad.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Portabilidad
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
@@ -178,7 +183,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         correoPlantilla: "respecto a la portabilidad de la línea {portabilidadLinea}.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Portabilidad
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades durante su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
@@ -190,7 +195,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente - Solicitando la documentación necesaria",
         correoPlantilla: "Genérico modificado solicitando documentación",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Validación de pedido
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario},`,
         src: ""
     },
     {
@@ -203,7 +212,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Aporte de certificado de defunción.
 TITULAR FALLECIDO: {otroCliente} - {otroDni}
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para comunicar el fallecimiento del titular del servicio y adjuntar el certificado de defunción. Se apertura caso para realizar los cambios necesarios.`,
         src: ""
@@ -215,7 +224,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte",
         estadoTicket: "Resuelto",
         correoPlantilla: "Adjunto encontrará el contrato con los términos y condiciones de su servicio.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
@@ -225,7 +234,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte",
         estadoTicket: "Resuelto",
         correoPlantilla: "Adjunto encontrará la factura correspondiente a los servicios contratados.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
@@ -237,7 +246,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         correoPlantilla: "con respecto al envío de la factura a su dirección.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Envío de factura en papel
-TELÉFONO CONTACTO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para modificar el método de envío de la factura a formato papel. Se ha iniciado el proceso correspondiente para realizar los cambios necesarios.`,
         src: ""
@@ -249,7 +258,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte",
         estadoTicket: "Resuelto",
         correoPlantilla: "Genérico modificado con la información solicitada",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
@@ -259,7 +268,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte/ Empresas/ Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Plantilla: 'Revisión escucha de llamada'",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Reclamación información comercial
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente reporta discrepancia entre la información comercial proporcionada al contratar el servicio y la realidad actual. Se ha abierto un caso para verificar y resolver esta situación.`,
         src: ""
     },
     {
@@ -269,7 +282,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo adjuntando una copia de la denuncia realizada. Por favor, asegúrese de que el documento sea legible.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Suplantación de identidad
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que alguien está utilizando su identidad para contratar servicios a su nombre. Afirma no reconocer los servicios contratados. Se ha iniciado una investigación para verificar la situación y tomar las medidas correspondientes.`,
         src: ""
     },
     {
@@ -279,7 +296,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de dar trámite a su reclamación, solicitamos que responda este correo adjuntando una copia del recibo domiciliado realizado sin su consentimiento.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Uso fraudulento de cuenta bancaria
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que se están realizando cargos no autorizados en su cuenta bancaria. Se ha iniciado el caso para verificar la situación y tomar las medidas necesarias.`,
         src: ""
     },
     {
@@ -289,7 +310,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Genérico sin modificar",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Contrato a nombre de un menor de edad
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha detectado que un servicio ha sido contratado a nombre de un menor de edad, lo cual es una irregularidad. Se apertura caso para tomar las medidas necesarias y corregir esta situación.`,
         src: ""
     },
     {
@@ -299,7 +324,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte Inglés",
         estadoTicket: "Abierto",
         correoPlantilla: "Plantilla: Genérico Inglés",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Inglés
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en inglés a la que no se ha podido dar respuesta debido a la falta de personal disponible que hable inglés. Se requiere la asignación de un agente bilingüe para atender esta solicitud.`,
         src: ""
     },
     {
@@ -309,17 +338,21 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Resuelto",
         correoPlantilla: "Tu solicitud de cancelación de fibra ha sido procesada satisfactoriamente.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
-        motivo: "Solicita cancelación de la instalación del servicio y no figura en el sistema la opción para cancelarlo",
+        motivo: "Solicita cancelación de la instalación del servicio de fibra y no figura en el sistema la opción para cancelarlo o da error",
         categoria: "Fibra",
         subcategoria: "Cancelación de instalación",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Estamos trabajando en tu solicitud de cancelación del servicio de fibra.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Cancelación de instalación
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha recibido una solicitud de cancelación de instalación de fibra que no ha podido ser procesada en línea. Se requiere su intervención para proceder con esta petición.`,
         src: ""
     },
     {
@@ -329,7 +362,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Resuelto",
         correoPlantilla: "Plantillas: Fibra - Abrir puertos en router / Fibra - Conectar VPN / Fibra - Pasos cambio de canales",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
@@ -339,7 +372,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo indicando la referencia catastral de su domicilio.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Referencia catastral
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha detectado una inconsistencia en la dirección del cliente. Se solicita la referencia catastral para verificar y actualizar los datos correctamente.`,
         src: ""
     },
     {
@@ -349,7 +386,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Reprogramación de instalación
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibra. Indica que no ha recibido ninguna comunicación para coordinar la cita. Se abre caso para gestionar la reprogramación.`,
         src: ""
     },
     {
@@ -359,7 +400,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Reprogramación de instalación
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibra que no se pudo realizar en la fecha prevista. Se requiere encontrar una nueva fecha que se ajuste a su disponibilidad.`,
         src: ""
     },
     {
@@ -368,8 +413,12 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         subcategoria: "Reactivación",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: "Genérico indicando que se creado su petición X sobre la reactivación inmediata del servicio de fibra, con preaviso en llamada de que supondrá la tarificación del mes completo",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: "Recibimos su solicitud para reactivar el servicio de fibra. Estamos trabajando para procesar la reactivación lo antes posible.",
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Reactivación de servicio
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente solicita reactivación inmediata de servicio de fibra suspendido temporalmente.`,
         src: ""
     },
     {
@@ -378,8 +427,12 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         subcategoria: "Teléfono para el instalador",
         pipeline: "Fibra / Fibra Onivia / Fibra propia",
         estadoTicket: "Abierto",
-        correoPlantilla: "Estamos atendiendo tu solicitud sobre la fibra.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: "Estamos atendiendo tu solicitud sobre la instalación de fibra.",
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Teléfono para el instalador
+TELÉFONO PARA TÉCNICO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se comprueba tras actualizar los datos de contacto del cliente que la fecha asignada previamente para la instalación de la fibra ya no está disponible. Se apertura el caso para su gestión.`,
         src: ""
     },
     {
@@ -389,7 +442,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Instalación de fibra
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha producido un error al asignar la cita al cliente. Se apertura caso para que puedan gestionarlo.`,
         src: ""
     },
     {
@@ -399,27 +456,39 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente ha enviado un equipo distinto al router. Se requiere verificar el equipo recibido y coordinar la devolución o el cambio correspondiente.`,
         src: ""
     },
     {
-        motivo: "'Información dispositivos fibra' está vacío el código y no aparece como entregado",
+        motivo: "'Información dispositivos fibra' está vacío el código de devolución del router y no aparece como entregado",
         categoria: "Fibra",
         subcategoria: "Error código Devolución Router",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, en la información de dispositivos de fibra del cliente, el campo del código de devolución del router está vacío y el estado de entrega no aparece registrado. Se requiere investigar y actualizar la información.`,
         src: ""
     },
     {
-        motivo: "Correos le indica que el Código da error o ya está utilizado",
+        motivo: "Correos le indica que el código de devolución del router da error o ya está utilizado",
         categoria: "Fibra",
         subcategoria: "Error código Devolución Router",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Código de devolución router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente presenta inconvenientes con el código de devolución. Se solicita verificar y corregir la información.`,
         src: ""
     },
     {
@@ -431,7 +500,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del certificado que acredite la imposibilidad de entrega debido a fuerza mayor.
 
 En caso contrario, responda este correo indicando que no le es posible facilitar dicho documento.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente informa que no puede entregar el router debido a un incidente de fuerza mayor. Se solicita evaluar esta situación y determinar los pasos a seguir, considerando la imposibilidad del cliente de cumplir con la devolución.`,
         src: ""
     },
     {
@@ -441,7 +514,11 @@ En caso contrario, responda este correo indicando que no le es posible facilitar
         pipeline: "",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución router desde el extranjero
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente actualmente ubicado en {país} solicita la devolución del router. Se abre caso para evaluar opciones de devolución internacional.`,
         src: ""
     },
     {
@@ -451,7 +528,11 @@ En caso contrario, responda este correo indicando que no le es posible facilitar
         pipeline: "Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del justificante de entrega emitido por Correos.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de haber entregado el router en Correos. Se ha solicitado justificante de entrega emitido por Correos.`,
         src: ""
     },
     {
@@ -461,7 +542,11 @@ En caso contrario, responda este correo indicando que no le es posible facilitar
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Técnico falta a cita
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -501,7 +586,7 @@ En caso contrario, responda este correo indicando que no le es posible facilitar
         pipeline: "Soporte",
         estadoTicket: "Resuelto",
         correoPlantilla: `Seleccionar dispositivo móvil a configurar`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     {
@@ -741,7 +826,7 @@ En caso contrario, responda este correo indicando que no le es posible facilitar
         pipeline: "Soporte",
         estadoTicket: "Resuelto - Si es para mandar por email la plantilla de métodos de pago o el número de cuenta para pagar por transferencia o ingreso",
         correoPlantilla: `Cobros - Métodos de pago`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `No aplica para este caso`,
         src: ""
     },
     // {
