@@ -546,17 +546,21 @@ BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de
 SOLICITUD: Técnico falta a cita
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario}, `,
+BREVE DESCRIPCIÓN: {horario}, se ha reportado que el técnico asignado no se presentó a la instalación de fibra programada, el cliente asegura que no recibió ninguna llamada del técnico. Se solicita reprogramar la instalación a la brevedad posible.`,
         src: ""
     },
     {
-        motivo: "Instalación TESA creada hace más de 15 días y no se han puesto en contacto para la instalación",
+        motivo: "Contratación TESA creada hace más de 15 días y no se han puesto en contacto para la instalación de la fibra",
         categoria: "Fibra",
         subcategoria: "TESA + de 15 días",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Programación de instalación de fibra
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha detectado que la contratación de fibra del cliente, aún no ha sido programada para su instalación. El cliente no ha recibido ninguna comunicación por parte del equipo para coordinar la visita. Se solicita programar la instalación a la brevedad posible.`,
         src: ""
     },
     {
@@ -566,7 +570,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Devolución del router
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente ha solicitado la devolución del router, indica que no ha recibido las instrucciones necesarias para realizar el proceso. Se abre caso para proporcionar las indicaciones correspondientes.`,
         src: ""
     },
     {
@@ -576,7 +584,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de asignación de una dirección IP fija para el servicio de fibra se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: IP fija
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de una IP fija en su servicio contratado. Se requiere evaluar la solicitud y realizar los trámites correspondientes para cumplir con su petición.`,
         src: ""
     },
     {
@@ -595,8 +607,20 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil -Incidencia datos",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia datos
+TELÉFONO AFECTADO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -605,8 +629,20 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil - Incidencia SMS",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia SMS
+TELÉFONO AFECTADO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -615,8 +651,20 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil - Incidencia sin servicio",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia sin servicio
+TELÉFONO AFECTADO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -625,8 +673,20 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil - Calidad de red defectuosa",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Calidad de red defectuosa
+TELÉFONO AFECTADO: {contacto}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -646,7 +706,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: Móvil - Serv. Premium`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Activación de servicios premium
+TELÉFONO SOLICITADO PARA ACTIVACIÓN: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de los servicios premium, indicando que no puede realizar este proceso a través de la app o la página web. Se abre caso para atender esta solicitud.`,
         src: ""
     },
     {
@@ -656,7 +720,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: Móvil - Aumento de riesgo`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Aumento de límite de riesgo
+TELÉFONO SOLICITADO PARA AUMENTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado un incremento en su límite de riesgo. Se abre caso para atender esta solicitud.`,
         src: ""
     },
     {
@@ -666,7 +734,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: 
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -676,7 +748,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: 
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -686,7 +762,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: 
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -696,7 +776,12 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de emisión de credenciales para el servicio de Elige TV se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Credenciales de acceso Elige TV
+CORREO PARA ACCESO: {correo}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, el cliente no ha recibido las credenciales de acceso a Elige TV. Se comprueba que el correo electrónico utilizado para la contratación del servicio es distinto.`,
         src: ""
     },
     {
@@ -706,7 +791,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud respecto a la facturación de su servicio se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia factura
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
         src: ""
     },
     {
@@ -716,17 +805,25 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud respecto al inconveniente en la realización de pedidos se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia pedidos
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
         src: ""
     },
     {
-        motivo: "Si en acometida Tesa aparece el reloj para dar cita.",
+        motivo: "Si en acometida Tesa aparece el reloj para dar cita de fibra.",
         categoria: "Servicios",
         subcategoria: "Incidencia Fiboard",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia reprogramación
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se observa que el botón para asignar citas está disponible en instalación con acometida TESA. Se ha abierto un caso para su revisión.`,
         src: ""
     },
     {
@@ -736,7 +833,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto/ Pendiente de cliente",
         correoPlantilla: `Confirmamos que hemos recibido su solicitud y estamos procediendo con la resolución del inconveniente que ha reportado al intentar acceder a su cuenta.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia acceso área cliente
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente reporta dificultades al registrarse en la página web oficial y al acceder al área de cliente. Las pruebas realizadas en la app y la web no han solucionado el problema. Se ha abierto caso para su revisión.`,
         src: ""
     },
     {
@@ -746,7 +847,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: `Estamos gestionando la cancelación del servicio que ha indicado.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Cancelación de servicio
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha detectado inconveniente en el momento de cancelar los servicios {especificarServicios} durante la llamada con el cliente. Se abre caso para concretar la solicitud.`,
         src: ""
     },
     {
@@ -756,7 +861,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: "Garantía"`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Incidencia Hardware
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -790,13 +899,19 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede redirigir a tienda)",
+        motivo: "Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)",
         categoria: "Tarjeta",
         subcategoria: "Duplicado SIM",
         pipeline: "Envíos",
         estadoTicket: "Abierto",
         correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma cuando al confirmar los datos coinciden con los de su ficha o Reemplazo SIM`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+TELÉFONO AFECTADO: {telefono}
+MOTIVO DE REEMPLAZO: {motivoReemplazo}
+DIRECCIÓN DE ENVÍO: {direccion}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -806,7 +921,13 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: Dirección/E-mail distinto cuando, al confirmar los datos, no coinciden con los que nos constan en su ficha.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+TELÉFONO AFECTADO: {telefono}
+MOTIVO DE REEMPLAZO: {motivoReemplazo}
+DIRECCIÓN DE ENVÍO: {direccion}
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
@@ -816,7 +937,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `A fin de dar trámite a su reclamación, solicitamos que responda este correo adjuntando la captura o el recibo de ambos cobros.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Pago duplicado
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, cliente ha informado sobre la aparición de cargos duplicados en sus extractos bancarios correspondientes a nuestros servicios. Se solicitan recibos al cliente para que puedan gestionar.`,
         src: ""
     },
     {
@@ -826,7 +951,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Resuelto - Si es para mandar por email la plantilla de métodos de pago o el número de cuenta para pagar por transferencia o ingreso",
         correoPlantilla: `Cobros - Métodos de pago`,
-        nota: `No aplica para este caso`,
+        nota: `⁠INFO: Tienes XX,XX€ pendientes de pago. Haz tu ingreso o transferencia a La Caixa ES2921002291720200220442 y justificante de pago a cobrosypagos@finetwork.com`,
         src: ""
     },
     // {
