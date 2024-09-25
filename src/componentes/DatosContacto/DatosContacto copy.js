@@ -191,7 +191,7 @@ function DatosContacto({ticket}) {
       return listaRouters
     }
 
-    if (ticket.motivo === 'Avería / Incidencia Fibra - General'){
+    if (ticket.motivo === 'Móvil - Incidencia datos'){
 
       acometidaFuncion();
       let listaAveria = Object.keys(ticket.averia);
@@ -199,6 +199,16 @@ function DatosContacto({ticket}) {
       datosAdicionales = (
         <>
         <div className='contenedor-input-datos-cliente'>
+          <select className='hora-seleccionada' value={horaInicio} onChange={handleSelectHoraInicioChange}>
+              <option key='Desde' value='Desde'>
+                ¿Está la línea activa?
+              </option>
+            {horasSeleccionar.map((horaSel) => (
+              <option key={horaSel} value={horaSel}>
+                {horaSel}
+              </option>
+            ))}
+          </select>
           <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
           <input type="text" value={acometidaSelecionada} placeholder="Acometida" />
           {/* <input type="text" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} placeholder="horaInicio" /> */}
@@ -261,7 +271,19 @@ function DatosContacto({ticket}) {
         
       )
     }
+    // const handleClick = () => {
+    //   let copiarBtnNota = document.querySelector('#copiarBtnNota');
+    //   copiarBtnNota.addEventListener('click', () => {
 
+    //     const texto = document.getElementById('miTexto');
+    //     texto.select();
+    //     document.execCommand('copy');
+          
+    //   });
+    // }
+
+
+    
 
   return (
     <div id='datosContacto'>

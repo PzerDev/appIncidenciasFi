@@ -602,9 +602,9 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de una IP
         src: ""
     },
     {
-        motivo: "Móvil - Incidencia datos (Cuando tras realizar las comprobaciones y, al menos, una prueba sobre el servicio y no se soluciona, abrir ticket para gestión)",
+        motivo: "Móvil - Incidencia datos (Lentitud en los datos)",
         categoria: "Servicios",
-        subcategoria: "Móvil -Incidencia datos",
+        subcategoria: "Móvil - Incidencia datos",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
@@ -616,15 +616,185 @@ Tras la realización de la prueba, te agradeceremos puedas responder este correo
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia datos
-TELÉFONO AFECTADO: {contacto}
+SOLICITUD: Lentitud en datos
+SERVICIO AFECTADO: {afectado}
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario}, `,
+COMPROBACIONES:
+- Línea activa
+- Dispone de GB
+- Velocidad de últimas conéxiones
+  {velocidadConexionesCDR}
+- Itinerancia activa
+
+PRUEBAS REALIZADAS (SIN ÉXITO)
+- Configiración APN (A las - horas)
+- Búsqueda manual de redes (A las - horas)
+- Tipo de red preferida (A las - horas)
+
+Se solicita prueba cruzada de tarjeta SIM al cliente.
+`,
         src: ""
     },
     {
-        motivo: "Móvil - Incidencia SMS (Cuando tras realizar las comprobaciones y, al menos, una prueba sobre el servicio y no se soluciona, abrir ticket para gestión)",
+        motivo: "Móvil - Incidencia datos (Sin conexión)",
+        categoria: "Servicios",
+        subcategoria: "Móvil - Incidencia datos",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Lentitud en datos
+SERVICIO AFECTADO: {afectado}
+TELÉFONO DE CONTACTO: {contacto}
+
+COMPROBACIONES:
+- Línea activa
+- Datos activos en sistema y en dispositivo móvil
+- Itinerancia activa
+- Comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
+- Cobertura
+  5G:
+  4G:
+  3g:
+
+PRUEBAS REALIZADAS (SIN ÉXITO)
+- Configiración APN (A las - horas)
+- Búsqueda manual de redes (A las - horas)
+- Tipo de red preferida (A las - horas)
+
+Se solicita prueba cruzada de tarjeta SIM al cliente.
+`,
+        src: ""
+    },
+    {
+        motivo: "Móvil - Incidencia voz (No emite a determinados números)",
+        categoria: "Servicios",
+        subcategoria: "Móvil - Incidencia voz",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Lentitud en datos
+SERVICIO AFECTADO: {afectado}
+TELÉFONO DE CONTACTO: {contacto}
+
+COMPROBACIONES:
+- Línea activa
+- Los números a los que intenta emitir no cumplen lo siguiente:
+  - Numeración extranjera
+  - Numeración de tarificación especial
+  - Numeración 118xx
+  - Numeración premium  
+- Limite de riesgo
+- No ha superado los minutos de su tarifa
+- Al itentar llamar no muestra al receptor ocupado
+- El número al que intenta llamar existe
+
+
+PRUEBAS REALIZADAS (SIN ÉXITO)
+- Se reportan 3 pruebas de llamada fallida a los siguientes números
+  - {numero1}
+  - {numero2}
+  - {numero3}
+
+
+Se solicita prueba cruzada de tarjeta SIM al cliente.
+`,
+        src: ""
+    },
+    {
+        motivo: "Móvil - Incidencia voz (No emite a ningún número en España)",
+        categoria: "Servicios",
+        subcategoria: "Móvil - Incidencia voz",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Lentitud en datos
+SERVICIO AFECTADO: {afectado}
+TELÉFONO DE CONTACTO: {contacto}
+
+COMPROBACIONES:
+- Línea activa
+- No puede emitir a todos los números || No puede emitir a determinados números
+- Problema presentado desde, {especificarFecha}
+- Consumos no pertenecientes al buzón
+  - {llamada1}
+  - {llamada2}
+- Comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
+- Cobertura
+  5G:
+  4G:
+  3g:
+        
+
+PRUEBAS REALIZADAS (SIN ÉXITO)
+- Búsqueda manual de redes (A las - horas)
+
+
+Se solicita prueba cruzada de tarjeta SIM al cliente.
+`,
+        src: ""
+    },
+    {
+        motivo: "Móvil - Incidencia voz (No recibe de ningún número)",
+        categoria: "Servicios",
+        subcategoria: "Móvil - Incidencia voz",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Lentitud en datos
+SERVICIO AFECTADO: {afectado}
+TELÉFONO DE CONTACTO: {contacto}
+
+COMPROBACIONES:
+- Línea activa
+- Problema presentado desde, {especificarFecha}
+- Zona reportada: {especificarZona}
+- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos
+- (Si la locución es "el número no se encuentra disponible" se debería solucionar con Busqueda Manual de redes) || Se comprueba que no arroja locución "el número no se encuentra disponible"
+- Cobertura presente en dispositivo || en caso contrario comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
+- Puede realizar llamadas // Si esta opción es afirmativa se realizarán las pruebas
+
+PRUEBAS REALIZADAS (SIN ÉXITO)
+- Búsqueda manual de redes (A las - horas)
+
+Se solicita prueba cruzada de tarjeta SIM al cliente.
+`,
+        src: ""
+    },
+    {
+        motivo: "Móvil - Incidencia SMS",
         categoria: "Servicios",
         subcategoria: "Móvil - Incidencia SMS",
         pipeline: "Soporte",
@@ -646,7 +816,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Móvil - Incidencia sin servicio (Cuando tras realizar las comprobaciones y, al menos, una prueba sobre el servicio y no se soluciona, abrir ticket para gestión)",
+        motivo: "Móvil - Incidencia sin servicio",
         categoria: "Servicios",
         subcategoria: "Móvil - Incidencia sin servicio",
         pipeline: "Soporte",
@@ -754,6 +924,31 @@ TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
+    },
+    {
+        motivo: "Incidencia Promociones - Amazon Prime (código no recibido)",
+        categoria: "Servicios",
+        subcategoria: "Incidencia Promociones",
+        pipeline: "Coordinación SAC",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Lamentamos mucho que aún no hayas recibido el código promocional de Amazon Prime. Estamos trabajando para resolver este inconveniente lo antes posible.`,
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Código no recibido
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se reporta incidencia en la promoción de Amazon Prime, cliente comunica que no ha recibido el código promocional. Se apertura caso para que lo puedan revisar.`,
+        src: "",
+        // amazon: {
+        //     'Código no recibido': ['', 
+        //                      ``
+        //     ],
+        //     'Código utilizado': ['', 
+        //                   ``
+        //     ],
+        //     'Código inválido': ['',
+        //                ``
+        //     ]
+        // }
     },
     {
         motivo: "Incidencia Promociones - Para relanzar promociones u otras incidencias que no se pueden gestionar desde el Call promociones.",
