@@ -76,7 +76,7 @@ function DataList() {
         )}
       </div>
 
-      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : <DatosTickets motivoSeleccionado={searchQuery} />)}
+      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : <DatosTickets motivoSeleccionado={searchQuery}/>)}
 
     </>
   );

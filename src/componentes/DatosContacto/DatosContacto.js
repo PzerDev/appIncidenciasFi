@@ -13,7 +13,7 @@ let tecnologiaSeleccionar = [];
 var horario;
 var horaActual = new Date();
 var hora = horaActual.getHours();
-var minutos = horaActual.getMinutes();
+// var minutos = horaActual.getMinutes();
 function mostrarDiaSegunHora() {
   // Obtenemos la hora actual
 
@@ -43,7 +43,8 @@ function DatosContacto({ticket}) {
     const [nombre, setNombre] = useState('');
     const [documento, setDocumento] = useState('');
     const [contacto, setContacto] = useState('');
-
+    const [correo, setCorreo] = useState('');
+    
     const [idExternal, setExternalId] = useState('');
     // const [acometida, setAcometida] = useState('');
     // const [horaInicio, setHoraInicio] = useState('');
@@ -63,10 +64,14 @@ function DatosContacto({ticket}) {
     //Estados y eventos para tecnologia y modelo router
     const [tecnologia, setTecnologia] = useState('Tecnología');
     const [routerFiltrado, setRouterFiltrado] = useState('Seleccionar router');
-    const [averia, setAveria] = useState('Seleccionar avería');
-    const [correo, setCorreo] = useState('');
-    const [averiaSeleccionada, setAveriaSeleccionada] = useState('Especificar avería')
+    // const [averia, setAveria] = useState('Seleccionar avería');
+    // const [averiaSeleccionada, setAveriaSeleccionada] = useState('Especificar avería')
     const [luces, setLuces] = useState('');
+    
+    //Estados y eventos incidencias voz
+    const [incidencia, setIncidencia] = useState('Seleccionar incidencia');
+    const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
+    const [afectado, setAfectado] = useState('');
 
     const handleSelectTecnologiaChange = (event) => {
       setTecnologia(event.target.value);
@@ -91,13 +96,27 @@ function DatosContacto({ticket}) {
     };
 
     const handleSelectAveriaChange = (event) => {
-      setAveria(event.target.value);
-      setAveriaSeleccionada(ticket.averia[event.target.value][0]);
+      setIncidencia(event.target.value);
+      setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
       setCorreo(ticket.averia[event.target.value][1]);
       correoEdit = ticket.averia[event.target.value][1];
       // actualizarNota(averiaSeleccionada);
       // console.log(averiaSeleccionada)
       // console.log(acometidaFuncion())
+    };
+
+    const handleSelectVozChange = (event) => {
+      setIncidencia(event.target.value);
+      setIncidenciaSeleccionada(ticket.voz[event.target.value][0]);
+      setCorreo(ticket.voz[event.target.value][1]);
+      correoEdit = ticket.voz[event.target.value][1];
+    };
+
+    const handleSelectAmazonChange = (event) => {
+      setIncidencia(event.target.value);
+      setIncidenciaSeleccionada(ticket.amazon[event.target.value][0]);
+      setCorreo(ticket.amazon[event.target.value][1]);
+      correoEdit = ticket.amazon[event.target.value][1];
     };
 
 
@@ -160,10 +179,19 @@ function DatosContacto({ticket}) {
                       .replace("{fin}", horaFin)
                       .replace("{router}", routerFiltrado)
                       .replace("{luces}", luces)
-                      .replace("{averia}", averiaSeleccionada)
+                      .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
+                      .replace("{afectado}", afectado)
+                      .replace("{incidencia}", incidencia)
                       .replace("{horario}", horario)
-
-      ticket.motivo === 'Avería / Incidencia Fibra - General' ? correoEdit = correo : correoEdit = ticket.correoPlantilla;
+      
+      if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
+          ticket.motivo === 'Móvil - Incidencia voz' ||
+          ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
+          correoEdit = correo;
+      } else {
+          correoEdit = ticket.correoPlantilla;
+      }
+      // ticket.motivo === 'Avería / Incidencia Fibra - General' ? correoEdit = correo : correoEdit = ticket.correoPlantilla;
       
     }
 
@@ -245,10 +273,10 @@ function DatosContacto({ticket}) {
               </option>
             ))}
           </select>
-          <select className='tecnologia-router' value={averia} onChange={handleSelectAveriaChange}>
-            <option key='Seleccionar avería' value='Seleccionar avería'>  
+          <select className='tecnologia-router' value={incidencia} onChange={handleSelectAveriaChange}>
+            {/* <option key='Seleccionar avería' value='Seleccionar avería'>  
                 Seleccionar avería
-            </option>
+            </option> */}
             {listaAveria.map((aver) => (
               <option key={aver} value={aver}>
                 {aver}
@@ -259,6 +287,48 @@ function DatosContacto({ticket}) {
 
         </>
         
+      )
+    } else if (ticket.motivo === 'Móvil - Incidencia voz') {
+      // acometidaFuncion();
+      let listaIncidenciaVoz = Object.keys(ticket.voz);
+
+      datosAdicionales = (
+        <>
+        <div className='contenedor-input-datos-cliente'>    
+          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectVozChange}>
+            {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
+                Seleccionar incidencia
+            </option> */}
+            {listaIncidenciaVoz.map((incid) => (
+              <option key={incid} value={incid}>
+                {incid}
+              </option>
+            ))}
+          </select>
+          <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
+        </div>
+        </>
+      )
+    } else if (ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
+      // acometidaFuncion();
+      let listaIncidenciaAmazon = Object.keys(ticket.amazon);
+
+      datosAdicionales = (
+        <>
+        <div className='contenedor-input-datos-cliente'>    
+          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectAmazonChange}>
+            {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
+                Seleccionar incidencia
+            </option> */}
+            {listaIncidenciaAmazon.map((amaz) => (
+              <option key={amaz} value={amaz}>
+                {amaz}
+              </option>
+            ))}
+          </select>
+          <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
+        </div>
+        </>
       )
     }
 

@@ -88,3 +88,7 @@
 .tecnologia-router:first-of-type {
     width: 30%;
 }
+
+.tecnologia-router.incidencia-voz {
+    width: 100%;
+}

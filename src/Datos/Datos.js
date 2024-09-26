@@ -117,9 +117,10 @@ LUCES ENCENDIDAS:
 TELÉFONO DE CONTACTO: {contacto}
 HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
 
-BREVE DESCRIPCIÓN: {averia}`,
+BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         src: "",
         averia: {
+            'Seleccionar avería': ['', ''],
             'Sin servicio': ['{horario}, cliente reporta interrupción en el servicio de fibra. Se ha abierto un caso para su gestión.', 
                              `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.
         
@@ -675,25 +676,24 @@ Se solicita prueba cruzada de tarjeta SIM al cliente.
         src: ""
     },
     {
-        motivo: "Móvil - Incidencia voz (No emite a determinados números)",
+        motivo: "Móvil - Incidencia voz",
         categoria: "Servicios",
         subcategoria: "Móvil - Incidencia voz",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
-- Fecha y hora en que se realizó la prueba
-- Marca y modelo del dispositivo utilizado
-- Resultado de la prueba (si el problema persiste o no)
-
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        correoPlantilla: ``,
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lentitud en datos
+SOLICITUD: {incidencia}
 SERVICIO AFECTADO: {afectado}
 TELÉFONO DE CONTACTO: {contacto}
 
-COMPROBACIONES:
+{incidenciaSeleccionada}
+`,
+        src: "",
+        voz: {
+            "Seleccionar incidencia": ['', ''],
+            "No emite a determinados números": [
+`COMPROBACIONES:
 - Línea activa
 - Los números a los que intenta emitir no cumplen lo siguiente:
   - Numeración extranjera
@@ -713,30 +713,22 @@ PRUEBAS REALIZADAS (SIN ÉXITO)
   - {numero3}
 
 
-Se solicita prueba cruzada de tarjeta SIM al cliente.
-`,
-        src: ""
-    },
-    {
-        motivo: "Móvil - Incidencia voz (No emite a ningún número en España)",
-        categoria: "Servicios",
-        subcategoria: "Móvil - Incidencia voz",
-        pipeline: "Soporte",
-        estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+Se solicita prueba cruzada de tarjeta SIM al cliente.`,
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
 
 Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lentitud en datos
-SERVICIO AFECTADO: {afectado}
-TELÉFONO DE CONTACTO: {contacto}
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`],
 
-COMPROBACIONES:
+
+            "No emite a ningún número en España": [
+
+`COMPROBACIONES:
 - Línea activa
 - No puede emitir a todos los números || No puede emitir a determinados números
 - Problema presentado desde, {especificarFecha}
@@ -754,30 +746,21 @@ PRUEBAS REALIZADAS (SIN ÉXITO)
 - Búsqueda manual de redes (A las - horas)
 
 
-Se solicita prueba cruzada de tarjeta SIM al cliente.
-`,
-        src: ""
-    },
-    {
-        motivo: "Móvil - Incidencia voz (No recibe de ningún número)",
-        categoria: "Servicios",
-        subcategoria: "Móvil - Incidencia voz",
-        pipeline: "Soporte",
-        estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+Se solicita prueba cruzada de tarjeta SIM al cliente.`, 
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
 
 Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lentitud en datos
-SERVICIO AFECTADO: {afectado}
-TELÉFONO DE CONTACTO: {contacto}
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`],
 
-COMPROBACIONES:
+
+            "No recibe de ningún número": [
+`COMPROBACIONES:
 - Línea activa
 - Problema presentado desde, {especificarFecha}
 - Zona reportada: {especificarZona}
@@ -789,9 +772,19 @@ COMPROBACIONES:
 PRUEBAS REALIZADAS (SIN ÉXITO)
 - Búsqueda manual de redes (A las - horas)
 
-Se solicita prueba cruzada de tarjeta SIM al cliente.
-`,
-        src: ""
+Se solicita prueba cruzada de tarjeta SIM al cliente.`,
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
+
+Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`
+            ]
+        }
     },
     {
         motivo: "Móvil - Incidencia SMS",
@@ -912,7 +905,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Incidencia Promociones - Para desistimiento de promociones de cupones tipo PROMOCIÓN AMAZON PRIME. No terminales. *Si va unido a terminal, emplear Servicios - Desistimiento Hardware - Envíos",
+        motivo: "Incidencia Promociones - Desistimiento de promoción Amazon Prime (que no incluya terminal). *Nota: Si va unido a terminal, emplear Servicios - Desistimiento Hardware - Envíos",
         categoria: "Servicios",
         subcategoria: "Incidencia Promociones",
         pipeline: "Soporte",
@@ -926,29 +919,30 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Incidencia Promociones - Amazon Prime (código no recibido)",
+        motivo: "Incidencia Promociones - Amazon Prime",
         categoria: "Servicios",
         subcategoria: "Incidencia Promociones",
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
-        correoPlantilla: `Lamentamos mucho que aún no hayas recibido el código promocional de Amazon Prime. Estamos trabajando para resolver este inconveniente lo antes posible.`,
+        correoPlantilla: ``,
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Código no recibido
+SOLICITUD: {incidencia}
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario}, se reporta incidencia en la promoción de Amazon Prime, cliente comunica que no ha recibido el código promocional. Se apertura caso para que lo puedan revisar.`,
+BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         src: "",
-        // amazon: {
-        //     'Código no recibido': ['', 
-        //                      ``
-        //     ],
-        //     'Código utilizado': ['', 
-        //                   ``
-        //     ],
-        //     'Código inválido': ['',
-        //                ``
-        //     ]
-        // }
+        amazon: {
+            'Seleccionar incidencia': ['', ''],
+            'Código no recibido': ['{horario}, cliente no ha recibido código promocional de Amazon Prime. Verificar sistema de envío y contactar al cliente.', 
+                             `Lamentamos que no hayas recibido tu código promocional de Amazon Prime. Estamos revisando el caso y te daremos una respuesta pronto.`
+            ],
+            'Código utilizado': ['{horario}, cliente indica que el código promocional de Amazon Prime ya ha sido utilizado. Se solicita verificar el sistema de envío de códigos y contactar al cliente para brindarle una solución.', 
+                          `Lamentamos mucho que el código introducido en Amazon Prime te genere un error. Estamos revisando el caso y te daremos una respuesta pronto.`
+            ],
+            'Código inválido': ['{horario}, cliente indica que el código promocional de Amazon Prime es inválido. Se solicita verificar el sistema de envío de códigos y contactar al cliente para brindarle una solución.',
+                          `Lamentamos mucho que el código introducido en Amazon Prime te genere un error. Estamos revisando el caso y te daremos una respuesta pronto.`
+            ]
+        }
     },
     {
         motivo: "Incidencia Promociones - Para relanzar promociones u otras incidencias que no se pueden gestionar desde el Call promociones.",
