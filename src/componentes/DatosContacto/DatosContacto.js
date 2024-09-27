@@ -73,6 +73,9 @@ function DatosContacto({ticket}) {
     const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
     const [afectado, setAfectado] = useState('');
 
+    //Estados y eventos para nuevas direcciones
+    const [nuevaDireccion, setNuevaDireccion] = useState('');
+
     const handleSelectTecnologiaChange = (event) => {
       setTecnologia(event.target.value);
       console.log(acometidaFuncion())
@@ -117,6 +120,13 @@ function DatosContacto({ticket}) {
       setIncidenciaSeleccionada(ticket.amazon[event.target.value][0]);
       setCorreo(ticket.amazon[event.target.value][1]);
       correoEdit = ticket.amazon[event.target.value][1];
+    };
+    
+    const handleSelectSIMChange = (event) => {
+      setIncidencia(event.target.value);
+      setIncidenciaSeleccionada(ticket.sim[event.target.value]);
+      // setCorreo(ticket.amazon[event.target.value][1]);
+      // correoEdit = ticket.amazon[event.target.value][1];
     };
 
 
@@ -183,6 +193,7 @@ function DatosContacto({ticket}) {
                       .replace("{afectado}", afectado)
                       .replace("{incidencia}", incidencia)
                       .replace("{horario}", horario)
+                      .replace("{nuevaDireccion}", nuevaDireccion)
       
       if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
           ticket.motivo === 'Móvil - Incidencia voz' ||
@@ -328,6 +339,40 @@ function DatosContacto({ticket}) {
           </select>
           <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
         </div>
+        </>
+      )
+    } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
+               ticket.motivo === 'Cambiar dirección de envío del regalo/terminal' ||
+               ticket.motivo === 'Error dirección - Referencia Catastral'
+    ) {
+      // acometidaFuncion();
+      datosAdicionales = (
+        <>
+        <div className='contenedor-input-datos-cliente'>    
+          <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Nueva dirección" />
+        </div>
+        </>
+      )
+    } else if (ticket.motivo === 'Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA O BLOQUEO DE PUK (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)' ||
+               ticket.motivo === 'Duplicado, reemplazo SIM - ROBO, AVERÍA, PÉRDIDA (TPV)') {
+      let listaReemplazoSIM = Object.keys(ticket.sim);
+      datosAdicionales = (
+        <>
+        <div className='contenedor-afectado-sim'>
+          <div className='contenedor-input-datos-cliente'>    
+            <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Servicio afectado" />
+          </div>
+          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectSIMChange}>
+            {listaReemplazoSIM.map((reempl) => (
+              <option key={reempl} value={reempl}>
+                {reempl}
+              </option>
+            ))}
+          </select>
+        </div>
+          <div className='contenedor-input-datos-cliente'>    
+            <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Dirección de envío" />
+          </div>
         </>
       )
     }

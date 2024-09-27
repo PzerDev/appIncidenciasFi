@@ -92,3 +92,14 @@
 .tecnologia-router.incidencia-voz {
     width: 100%;
 }
+
+.contenedor-afectado-sim {
+    display: flex;
+}
+
+.contenedor-afectado-sim div {
+    width: 55%;
+}
+.contenedor-afectado-sim  select {
+    margin-top: 10px;
+}

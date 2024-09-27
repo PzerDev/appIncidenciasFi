@@ -7,7 +7,7 @@ let datosTickets = [
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Plantilla: Cliente - Cambio de IBAN a distinto titular",
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de IBAN de distinto titular
+SOLICITUD: Cambio de IBAN (distinto titular)
 NUEVO IBAN: {actualizarDoc}
 TELÉFONO DE CONTACTO: {contacto}
 BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nombre de otra persona. Se ha abierto un caso para gestionar su requerimiento.`,
@@ -110,7 +110,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente ha experimentado dificultades al intentar
         
 Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`,
         nota: `CLIENTE: {cliente} - {dni}
-ID ORDEN: {idorden}
+EXTERNAL ID: {idorden}
 MODELO ROUTER: {router}
 LUCES ENCENDIDAS:
 {luces}
@@ -367,15 +367,16 @@ BREVE DESCRIPCIÓN: {horario}, se ha recibido una solicitud de cancelación de i
         src: ""
     },
     {
-        motivo: "Error dirección - Indicar la dirección correcta incluyendo bloques, escaleras, ciudades, provincias y pedir al cliente REFERENCIA CATASTRAL",
+        motivo: "Error dirección - Referencia Catastral",
         categoria: "Fibra",
         subcategoria: "Error dirección",
         pipeline: "Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo indicando la referencia catastral de su domicilio.",
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Referencia catastral
+SOLICITUD: Error dirección
 TELÉFONO DE CONTACTO: {contacto}
+DIRECCIÓN: {nuevaDireccion} 
 
 BREVE DESCRIPCIÓN: {horario}, se ha detectado una inconsistencia en la dirección del cliente. Se solicita la referencia catastral para verificar y actualizar los datos correctamente.`,
         src: ""
@@ -926,7 +927,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         estadoTicket: "Abierto",
         correoPlantilla: ``,
         nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: {incidencia}
+SOLICITUD: Código promocional
 TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
@@ -1088,20 +1089,29 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)",
+        motivo: "Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA O BLOQUEO DE PUK (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)",
         categoria: "Tarjeta",
         subcategoria: "Duplicado SIM",
         pipeline: "Envíos",
         estadoTicket: "Abierto",
-        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma cuando al confirmar los datos coinciden con los de su ficha o Reemplazo SIM`,
+        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)
+        
+Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
         nota: `CLIENTE: {cliente} - {dni}
-TELÉFONO AFECTADO: {telefono}
-MOTIVO DE REEMPLAZO: {motivoReemplazo}
-DIRECCIÓN DE ENVÍO: {direccion}
+SERVICIO AFECTADO: {afectado}
+MOTIVO DE REEMPLAZO: {incidencia}
+DIRECCIÓN DE ENVÍO: {nuevaDireccion}
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario}, `,
-        src: ""
+BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        src: "",
+        sim: {
+            "Motivo de reemplazo": '',
+            "No pide PIN": '{horario}, cliente reportó un incidente con su tarjeta SIM. Indicó que el dispositivo no solicita el código PIN al encenderse, se abre caso para que puedan enviar un reemplazo.',
+            "Pérdida (Contra reembolso)": '{horario}, cliente reportó la pérdida de su tarjeta SIM. Se ha solicitado un reemplazo bajo la modalidad de contra reembolso.',
+            "Bloqueo de PUK (Contra reembolso)": '{horario}, cliente informa que su tarjeta SIM se encuentra bloqueada por PUK. Se ha solicitado un reemplazo bajo la modalidad de contra reembolso.',
+            "No ha recibido la SIM": '{horario}, cliente reportó no haber recibido su tarjeta SIM solicitada. Se abre caso para que lo puedan revisar.'
+        }
     },
     {
         motivo: "Duplicado, reemplazo SIM - ROBO, AVERÍA, PÉRDIDA (TPV)",
@@ -1109,15 +1119,23 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Duplicado SIM",
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
-        correoPlantilla: `Plantilla: Dirección/E-mail distinto cuando, al confirmar los datos, no coinciden con los que nos constan en su ficha.`,
+        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)
+        
+Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
         nota: `CLIENTE: {cliente} - {dni}
-TELÉFONO AFECTADO: {telefono}
-MOTIVO DE REEMPLAZO: {motivoReemplazo}
-DIRECCIÓN DE ENVÍO: {direccion}
+SERVICIO AFECTADO: {afectado}
+MOTIVO DE REEMPLAZO: {incidencia}
+DIRECCIÓN DE ENVÍO: {nuevaDireccion}
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario}, `,
-        src: ""
+BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        src: "",
+        sim: {
+            "Motivo de reemplazo": '',
+            "Avería": '{horario}, cliente reporta que la tarjeta SIM está dañada o no funciona correctamente. Se abre caso para que lo puedan gestionar.',
+            "Robo": '{horario}, cliente solicita reemplazo de su tarjeta SIM por robo. Se abre caso para que puedan dar solución.',
+            "Pérdida": '{horario}, cliente reportó la pérdida de su tarjeta SIM, solicita reemplazo de la misma. Se abre caso para que puedan dar solución.'
+        }
     },
     {
         motivo: "Para problemas con pagos duplicados, recibos devueltos",
