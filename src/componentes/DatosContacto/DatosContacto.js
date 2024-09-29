@@ -46,9 +46,11 @@ function DatosContacto({ticket}) {
     const [correo, setCorreo] = useState('');
     
     const [idExternal, setExternalId] = useState('');
+
     // const [acometida, setAcometida] = useState('');
     // const [horaInicio, setHoraInicio] = useState('');
-
+    //observaciones de notas
+    const [observaciones, setObservaciones] = useState('Observaciones:');
 
     //Estados y eventos para Horas
     const [horaInicio, setHoraInicio] = useState('');
@@ -113,6 +115,20 @@ function DatosContacto({ticket}) {
       setIncidenciaSeleccionada(ticket.voz[event.target.value][0]);
       setCorreo(ticket.voz[event.target.value][1]);
       correoEdit = ticket.voz[event.target.value][1];
+
+      //textarea de observaciones
+      const textarea = document.getElementById('observaciones');
+      function ajustarTamano() {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
+      
+      // Simular un pegado de texto
+      setObservaciones(ticket.voz[event.target.value][2]);
+      textarea.value = ticket.voz[event.target.value][2];
+      
+      // Esperar un breve retraso antes de ajustar el tamaño
+      ajustarTamano();
     };
 
     const handleSelectAmazonChange = (event) => {
@@ -230,10 +246,35 @@ function DatosContacto({ticket}) {
       return listaRouters
     }
 
+    let observacionesContenedor = <textarea id='observaciones' value={observaciones} type="text" placeholder="Observaciones..." disabled/>;
+    const notaCorreoContenedores = (
+
+      <div id='notaCorreo'>   
+        <div id='contenedorNota'>
+          <textarea type="text" value={notaEdit} placeholder="Nota para apertura de caso..." disabled/>
+          <CopyToClipboard text={notaEdit}>
+            <button id="copiarBtnNota"><i className="material-icons">content_copy</i></button>
+          </CopyToClipboard>
+        </div>        
+
+        <div id='contenedorCorreo'>
+          <textarea type="text" value={correoEdit} placeholder="Correo/Plantilla para envío..." disabled/>
+          <CopyToClipboard text={correoEdit}>
+            <button id="copiarBtnCorreo"><i className="material-icons">content_copy</i></button>
+          </CopyToClipboard>
+        </div>
+      </div>
+
+    )
+
     if (ticket.motivo === 'Avería / Incidencia Fibra - General'){
 
       acometidaFuncion();
       let listaAveria = Object.keys(ticket.averia);
+
+      let observa = `Observaciones:
+- En este caso se debe cambiar el estado a Pendiente de cliente`
+      observacionesContenedor = <textarea id='observaciones' value={observa} type="text" placeholder="Observaciones..." disabled/>;
 
       datosAdicionales = (
         <>
@@ -296,12 +337,17 @@ function DatosContacto({ticket}) {
           </select>
         </div>
 
+        {notaCorreoContenedores}
+
+        {incidencia === 'Router / Cable roto' && observacionesContenedor}
+
         </>
         
       )
     } else if (ticket.motivo === 'Móvil - Incidencia voz') {
       // acometidaFuncion();
       let listaIncidenciaVoz = Object.keys(ticket.voz);
+      // document.querySelector('#observaciones').style.display = 'block';
 
       datosAdicionales = (
         <>
@@ -318,6 +364,10 @@ function DatosContacto({ticket}) {
           </select>
           <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
         </div>
+
+        {notaCorreoContenedores}
+
+        {observacionesContenedor}
         </>
       )
     } else if (ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
@@ -339,6 +389,9 @@ function DatosContacto({ticket}) {
           </select>
           <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
         </div>
+
+        {notaCorreoContenedores}
+
         </>
       )
     } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
@@ -351,9 +404,12 @@ function DatosContacto({ticket}) {
         <div className='contenedor-input-datos-cliente'>    
           <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Nueva dirección" />
         </div>
+
+        {notaCorreoContenedores}
+
         </>
       )
-    } else if (ticket.motivo === 'Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA O BLOQUEO DE PUK (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)' ||
+    } else if (ticket.motivo === 'Duplicado, reemplazo SIM - No pide PIN, Contra reembolso, No ha recibido la SIM' ||
                ticket.motivo === 'Duplicado, reemplazo SIM - ROBO, AVERÍA, PÉRDIDA (TPV)') {
       let listaReemplazoSIM = Object.keys(ticket.sim);
       datosAdicionales = (
@@ -373,8 +429,34 @@ function DatosContacto({ticket}) {
           <div className='contenedor-input-datos-cliente'>    
             <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Dirección de envío" />
           </div>
+
+          {notaCorreoContenedores}
+
         </>
       )
+    } else if (ticket.motivo === 'Técnico falta a cita') {
+
+      let observa = `Consideraciones:
+- Considerar que esté fuera de la franja horaria
+- Estado de excepción (EE)
+- Llamada en Hubspot del mismo día con tipificación Mobility y comentario de nuestros compañeros
+- Asegurar con el cliente que el técnico NO le ha llamado`
+
+      observacionesContenedor = <textarea id='observaciones' style={{height: 140 + 'px'}} value={observa} type="text" placeholder="Observaciones..." disabled/>;
+
+      datosAdicionales = (
+        <>
+        {notaCorreoContenedores}
+        {observacionesContenedor}
+        </>
+      )
+
+    }
+    
+    else {
+
+      datosAdicionales = notaCorreoContenedores;
+
     }
 
 
@@ -394,21 +476,6 @@ function DatosContacto({ticket}) {
 
       {datosAdicionales}
 
-      <div id='notaCorreo'>
-        <div id='contenedorNota'>
-          <textarea type="text" value={notaEdit} placeholder="Nota para apertura de caso..." disabled/>
-          <CopyToClipboard text={notaEdit}>
-            <button id="copiarBtnNota"><i className="material-icons">content_copy</i></button>
-          </CopyToClipboard>
-        </div>
-
-        <div id='contenedorCorreo'>
-          <textarea type="text" value={correoEdit} placeholder="Correo/Plantilla para envío..." disabled/>
-          <CopyToClipboard text={correoEdit}>
-            <button id="copiarBtnCorreo"><i className="material-icons">content_copy</i></button>
-          </CopyToClipboard>
-        </div>
-      </div>
     </div>
   );
 }

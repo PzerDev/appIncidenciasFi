@@ -30,6 +30,8 @@ function DataList() {
     } else {
       setShowList(true);
     }
+
+    // document.querySelector('#observaciones').style.display = 'none';
   };
 
   const handleOptionSelect = (event) => {

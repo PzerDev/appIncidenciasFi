@@ -103,3 +103,15 @@
 .contenedor-afectado-sim  select {
     margin-top: 10px;
 }
+
+#observaciones {
+    margin-top: 15px;
+    padding: 20px 30px;
+    background-color: #2d2d2d;
+    border-radius: 20px;
+    margin-left: 20px;
+    color: #fff;
+    overflow: hidden;
+    width: 98%;
+    /* display: none; */
+}

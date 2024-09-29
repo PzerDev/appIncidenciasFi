@@ -8,7 +8,7 @@ let datosTickets = [
         correoPlantilla: "Plantilla: Cliente - Cambio de IBAN a distinto titular",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Cambio de IBAN (distinto titular)
-NUEVO IBAN: {actualizarDoc}
+NUEVO IBAN: {nuevoIBAN}
 TELÉFONO DE CONTACTO: {contacto}
 BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nombre de otra persona. Se ha abierto un caso para gestionar su requerimiento.`,
         src: ""
@@ -19,7 +19,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nomb
         subcategoria: "Cambio de datos",
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto / Pendiente de cliente",
-        correoPlantilla: "A fin de atender su solicitud de cambio de documento, es necesario que responda este correo adjuntando una copia de su identificación oficial vigente.",
+        correoPlantilla: "A fin de atender tu solicitud de cambio de documento, es necesario que responda este correo adjuntando una copia de su identificación oficial vigente. En caso de estar cambiando NIE por DNI, también necesitamos que nos envíes el certificado de concordancia.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Actualización de documento de identidad
 NUEVO DOCUMENTO: {actualizarDoc}
@@ -40,7 +40,7 @@ SOLICITUD: Cambiar dirección de envío
 NUEVA DIRECCIÓN: {nuevaDireccion}
 TELÉFONO DE CONTACTO: {contacto}
 
-BREVE DESCRIPCIÓN: {horario},`,
+BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de envío de su regalo/terminal. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -105,7 +105,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente ha experimentado dificultades al intentar
         categoria: "Fibra",
         subcategoria: "Averías / Incidencia",
         pipeline: "Fibra / Fibra Onivia / Fibra propia",
-        estadoTicket: "Abierto. *Si se trata de un desperfecto se abrirá Pendiente de cliente.",
+        estadoTicket: "Abierto",
         correoPlantilla: `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.
         
 Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`,
@@ -291,7 +291,7 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que alguien está utiliz
         src: ""
     },
     {
-        motivo: "Uso fraudulento de cuenta bancaria - Se están haciendo cargos en la cuenta bancaria que él no ha autorizado",
+        motivo: "Uso fraudulento de cuenta bancaria - Se están haciendo cargos no autorizados en la cuenta bancaria",
         categoria: "Cliente",
         subcategoria: "Uso fraudulento de cuenta bancaria",
         pipeline: "Soporte/ Fibra",
@@ -333,6 +333,20 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en ing
         src: ""
     },
     {
+        motivo: "Cualquier referencia a la Lista Robinson",
+        categoria: "Cliente",
+        subcategoria: "Lista Robinson",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: "A fin de dar trámite a tu solicitud es necesario que nos puedas indicar las numeraciones desde las que recibes publicidades.",
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: Lista Robinson
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para inhabilitar llamadas con propósito comercial. Se ha abierto caso para su atención.`,
+        src: ""
+    },
+    {
         motivo: "Solicita acuse de recibo sobre la cancelación",
         categoria: "Fibra",
         subcategoria: "Cancelación de instalación",
@@ -343,7 +357,7 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en ing
         src: ""
     },
     {
-        motivo: "Solicita cancelación de la instalación del servicio de fibra y no figura en el sistema la opción para cancelarlo o da error",
+        motivo: "Cancelación de instalación del servicio de fibra y no figura en el sistema la opción para cancelarlo o da error",
         categoria: "Fibra",
         subcategoria: "Cancelación de instalación",
         pipeline: "Fibra",
@@ -410,7 +424,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibr
         src: ""
     },
     {
-        motivo: "Solicitud de reactivación INMEDIATA de fibra suspendida temportalmente.",
+        motivo: "Reactivación INMEDIATA de fibra suspendida temportalmente.",
         categoria: "Fibra",
         subcategoria: "Reactivación",
         pipeline: "Soporte",
@@ -538,7 +552,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de
         src: ""
     },
     {
-        motivo: "Técnico falta a cita (considerar que esté fuera de la franja horaria, EE, Llamada en Hubspot del mismo día con tipificación Mobility y comentario de nuestros compañeros, asegurar con el cliente que el técnico NO le ha llamado)",
+        motivo: "Técnico falta a cita",
         categoria: "Fibra",
         subcategoria: "Técnico falta a cita",
         pipeline: "Fibra",
@@ -706,13 +720,11 @@ TELÉFONO DE CONTACTO: {contacto}
 - Al itentar llamar no muestra al receptor ocupado
 - El número al que intenta llamar existe
 
-
 PRUEBAS REALIZADAS (SIN ÉXITO)
 - Se reportan 3 pruebas de llamada fallida a los siguientes números
   - {numero1}
   - {numero2}
   - {numero3}
-
 
 Se solicita prueba cruzada de tarjeta SIM al cliente.`,
 
@@ -724,7 +736,11 @@ Tras la realización de la prueba, te agradeceremos puedas responder este correo
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`],
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+
+`Observaciones:
+- En caso de que salga "ocupado" al intentar llamar es posible que el receptor haya bloqueado las llamadas entrantes de la línea del cliente. Se puede verificar haciendo una llamada en oculto marcando #31# + número.`],
 
 
             "No emite a ningún número en España": [
@@ -736,7 +752,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - Consumos no pertenecientes al buzón
   - {llamada1}
   - {llamada2}
-- Comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
+- Se comprueba que no hay incidencias
 - Cobertura
   5G:
   4G:
@@ -745,7 +761,6 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
 PRUEBAS REALIZADAS (SIN ÉXITO)
 - Búsqueda manual de redes (A las - horas)
-
 
 Se solicita prueba cruzada de tarjeta SIM al cliente.`, 
 
@@ -757,7 +772,12 @@ Tras la realización de la prueba, te agradeceremos puedas responder este correo
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`],
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+
+`Observaciones:
+- Si al revisar los consumos la numeración es 698902242 hace referencia al buzón
+- Comprobar las incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)`],
 
 
             "No recibe de ningún número": [
@@ -766,9 +786,9 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - Problema presentado desde, {especificarFecha}
 - Zona reportada: {especificarZona}
 - Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos
-- (Si la locución es "el número no se encuentra disponible" se debería solucionar con Busqueda Manual de redes) || Se comprueba que no arroja locución "el número no se encuentra disponible"
-- Cobertura presente en dispositivo || en caso contrario comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
-- Puede realizar llamadas // Si esta opción es afirmativa se realizarán las pruebas
+- Se comprueba que no arroja locución "el número no se encuentra disponible"
+- Cobertura presente en dispositivo
+- Puede realizar llamadas
 
 PRUEBAS REALIZADAS (SIN ÉXITO)
 - Búsqueda manual de redes (A las - horas)
@@ -783,8 +803,13 @@ Tras la realización de la prueba, te agradeceremos puedas responder este correo
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
-Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`
-            ]
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+
+`Observaciones:
+- Si la locución es "el número no se encuentra disponible" se debería solucionar con busqueda manual de red
+- Si el dispositivo no tiene cobertura comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
+- Si puede realizar llamadas se procede con las pruebas`]
         }
     },
     {
@@ -1089,7 +1114,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         src: ""
     },
     {
-        motivo: "Duplicado, reemplazo SIM - AVERÍA (no pide PIN), PÉRDIDA O BLOQUEO DE PUK (Contra reembolso), NO HA RECIBIDO LA SIM (Servicios activos y no se puede dirigir a tienda)",
+        motivo: "Duplicado, reemplazo SIM - No pide PIN, Contra reembolso, No ha recibido la SIM",
         categoria: "Tarjeta",
         subcategoria: "Duplicado SIM",
         pipeline: "Envíos",
