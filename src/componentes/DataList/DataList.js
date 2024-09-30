@@ -17,7 +17,7 @@ function DataList() {
 
     // Filter options
     const filtered = datosTickets.filter(ticket =>
-      ticket.motivo.toLowerCase().includes(query)
+      ticket.motivo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(query)
     );
     // setFilteredOptions(filtered); // Not needed if you only use searchResults
 

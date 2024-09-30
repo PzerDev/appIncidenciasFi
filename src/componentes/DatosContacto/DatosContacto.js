@@ -141,6 +141,7 @@ function DatosContacto({ticket}) {
     const handleSelectSIMChange = (event) => {
       setIncidencia(event.target.value);
       setIncidenciaSeleccionada(ticket.sim[event.target.value]);
+      setObservaciones(ticket.observaciones);
       // setCorreo(ticket.amazon[event.target.value][1]);
       // correoEdit = ticket.amazon[event.target.value][1];
     };
@@ -409,9 +410,10 @@ function DatosContacto({ticket}) {
 
         </>
       )
-    } else if (ticket.motivo === 'Duplicado, reemplazo SIM - No pide PIN, Contra reembolso, No ha recibido la SIM' ||
-               ticket.motivo === 'Duplicado, reemplazo SIM - ROBO, AVERÍA, PÉRDIDA (TPV)') {
+    } else if (ticket.subcategoria === 'Duplicado SIM') {
       let listaReemplazoSIM = Object.keys(ticket.sim);
+      const regexRoboPerdida = /pérdida|robo/i;
+
       datosAdicionales = (
         <>
         <div className='contenedor-afectado-sim'>
@@ -431,6 +433,7 @@ function DatosContacto({ticket}) {
           </div>
 
           {notaCorreoContenedores}
+          {regexRoboPerdida.test(incidencia) && observacionesContenedor}
 
         </>
       )

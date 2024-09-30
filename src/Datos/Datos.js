@@ -338,12 +338,26 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en ing
         subcategoria: "Lista Robinson",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: "A fin de dar trámite a tu solicitud es necesario que nos puedas indicar las numeraciones desde las que recibes publicidades.",
+        correoPlantilla: "A fin de dar trámite a tu solicitud es necesario que nos puedas indicar las numeraciones desde las que recibe llamadas con propósito comercial.",
         nota: `CLIENTE: {cliente} - {dni}
 SOLICITUD: Lista Robinson
 TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para inhabilitar llamadas con propósito comercial. Se ha abierto caso para su atención.`,
+        src: ""
+    },
+    {
+        motivo: "SIM swapping (duplicados fraudulentos)",
+        categoria: "Cliente",
+        subcategoria: "SIM swapping",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: "Estamos trabajando para revisar la situación.",
+        nota: `CLIENTE: {cliente} - {dni}
+SOLICITUD: SIM swapping
+TELÉFONO DE CONTACTO: {contacto}
+
+BREVE DESCRIPCIÓN: {horario}, se ha registrado un reporte por parte del cliente de suplantación de identidad para la adquisición de una tarjeta SIM. Se ha abierto caso para su atención.`,
         src: ""
     },
     {
@@ -424,7 +438,7 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibr
         src: ""
     },
     {
-        motivo: "Reactivación INMEDIATA de fibra suspendida temportalmente.",
+        motivo: "Reactivación INMEDIATA de fibra suspendida temporalmente.",
         categoria: "Fibra",
         subcategoria: "Reactivación",
         pipeline: "Soporte",
@@ -1130,6 +1144,8 @@ TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         src: "",
+        observaciones: `Observación:
+- En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
         sim: {
             "Motivo de reemplazo": '',
             "No pide PIN": '{horario}, cliente reportó un incidente con su tarjeta SIM. Indicó que el dispositivo no solicita el código PIN al encenderse, se abre caso para que puedan enviar un reemplazo.',
@@ -1155,6 +1171,8 @@ TELÉFONO DE CONTACTO: {contacto}
 
 BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         src: "",
+        observaciones: `Observación:
+- En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
         sim: {
             "Motivo de reemplazo": '',
             "Avería": '{horario}, cliente reporta que la tarjeta SIM está dañada o no funciona correctamente. Se abre caso para que lo puedan gestionar.',
