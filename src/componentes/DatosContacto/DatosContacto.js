@@ -6,13 +6,16 @@ import Routers from '../../Datos/Routers.js';
 // import DatosAdicionales from '../DatosAdicionales/DatosAdicionales.js';
 
 let horasSeleccionar = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
-                        '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
 let tecnologiaSeleccionar = [];
 
 var horario;
 var horaActual = new Date();
 var hora = horaActual.getHours();
+// var dia = horaActual.getDate();
+// var mes = horaActual.getMonth() + 1;
+
 // var minutos = horaActual.getMinutes();
 function mostrarDiaSegunHora() {
   // Obtenemos la hora actual
@@ -39,254 +42,276 @@ let acometidaObj = {
 
 
 
-function DatosContacto({ticket}) {
-    const [nombre, setNombre] = useState('');
-    const [documento, setDocumento] = useState('');
-    const [contacto, setContacto] = useState('');
-    const [correo, setCorreo] = useState('');
-    
-    const [idExternal, setExternalId] = useState('');
+function DatosContacto({ ticket }) {
+  const [nombre, setNombre] = useState('');
+  const [documento, setDocumento] = useState('');
+  const [contacto, setContacto] = useState('');
+  const [correo, setCorreo] = useState('');
 
-    // const [acometida, setAcometida] = useState('');
-    // const [horaInicio, setHoraInicio] = useState('');
-    //observaciones de notas
-    const [observaciones, setObservaciones] = useState('Observaciones:');
+  const [idExternal, setExternalId] = useState('');
 
-    //Estados y eventos para Horas
-    const [horaInicio, setHoraInicio] = useState('');
-    const [horaFin, setHoraFin] = useState('');
+  // const [acometida, setAcometida] = useState('');
+  // const [horaInicio, setHoraInicio] = useState('');
+  //observaciones de notas
+  const [observaciones, setObservaciones] = useState('Observaciones:');
 
-    const handleSelectHoraInicioChange = (event) => {
-      setHoraInicio(event.target.value);
-    };
-    const handleSelectHoraFinChange = (event) => {
-      setHoraFin(event.target.value);
-    };
+  //Estados y eventos para Horas
+  const [horaInicio, setHoraInicio] = useState('');
+  const [horaFin, setHoraFin] = useState('');
 
-    //Estados y eventos para tecnologia y modelo router
-    const [tecnologia, setTecnologia] = useState('Tecnología');
-    const [routerFiltrado, setRouterFiltrado] = useState('Seleccionar router');
-    // const [averia, setAveria] = useState('Seleccionar avería');
-    // const [averiaSeleccionada, setAveriaSeleccionada] = useState('Especificar avería')
-    const [luces, setLuces] = useState('');
-    
-    //Estados y eventos incidencias voz
-    const [incidencia, setIncidencia] = useState('Seleccionar incidencia');
-    const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
-    const [afectado, setAfectado] = useState('');
+  const handleSelectHoraInicioChange = (event) => {
+    setHoraInicio(event.target.value);
+  };
+  const handleSelectHoraFinChange = (event) => {
+    setHoraFin(event.target.value);
+  };
 
-    //Estados y eventos para nuevas direcciones
-    const [nuevaDireccion, setNuevaDireccion] = useState('');
+  //Estados y eventos para tecnologia y modelo router
+  const [tecnologia, setTecnologia] = useState('Tecnología');
+  const [routerFiltrado, setRouterFiltrado] = useState('Seleccionar router');
+  // const [averia, setAveria] = useState('Seleccionar avería');
+  // const [averiaSeleccionada, setAveriaSeleccionada] = useState('Especificar avería')
+  const [luces, setLuces] = useState('');
 
-    const handleSelectTecnologiaChange = (event) => {
-      setTecnologia(event.target.value);
-      console.log(acometidaFuncion())
-    };
+  //Estados y eventos incidencias voz
+  const [incidencia, setIncidencia] = useState('Seleccionar incidencia');
+  const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
+  const [afectado, setAfectado] = useState('');
 
-    const handleSelectRouterChange = (event) => {
-      setRouterFiltrado(event.target.value);
+  //Estados y eventos para nuevas direcciones
+  const [nuevaDireccion, setNuevaDireccion] = useState('');
 
-      const foundRouter = Routers.find(router => router.router === event.target.value);
+  const handleSelectTecnologiaChange = (event) => {
+    setTecnologia(event.target.value);
+    // console.log(acometidaFuncion())
+  };
 
-       if (foundRouter) {
-        setLuces(foundRouter.luces);
-        } else {
-        setLuces("Router model not found.");
-        }   
-    };
+  const handleSelectRouterChange = (event) => {
+    setRouterFiltrado(event.target.value);
 
-    const handleExternalIdChange = (event) => {
-      setExternalId(event.target.value);
-      console.log(acometidaFuncion())
-    };
+    const foundRouter = Routers.find(router => router.router === event.target.value);
 
-    const handleSelectAveriaChange = (event) => {
-      setIncidencia(event.target.value);
-      setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
-      setCorreo(ticket.averia[event.target.value][1]);
-      correoEdit = ticket.averia[event.target.value][1];
-      // actualizarNota(averiaSeleccionada);
-      // console.log(averiaSeleccionada)
-      // console.log(acometidaFuncion())
-    };
-
-    const handleSelectVozChange = (event) => {
-      setIncidencia(event.target.value);
-      setIncidenciaSeleccionada(ticket.voz[event.target.value][0]);
-      setCorreo(ticket.voz[event.target.value][1]);
-      correoEdit = ticket.voz[event.target.value][1];
-
-      //textarea de observaciones
-      const textarea = document.getElementById('observaciones');
-      function ajustarTamano() {
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-      }
-      
-      // Simular un pegado de texto
-      setObservaciones(ticket.voz[event.target.value][2]);
-      textarea.value = ticket.voz[event.target.value][2];
-      
-      // Esperar un breve retraso antes de ajustar el tamaño
-      ajustarTamano();
-    };
-
-    const handleSelectAmazonChange = (event) => {
-      setIncidencia(event.target.value);
-      setIncidenciaSeleccionada(ticket.amazon[event.target.value][0]);
-      setCorreo(ticket.amazon[event.target.value][1]);
-      correoEdit = ticket.amazon[event.target.value][1];
-    };
-    
-    const handleSelectSIMChange = (event) => {
-      setIncidencia(event.target.value);
-      setIncidenciaSeleccionada(ticket.sim[event.target.value]);
-      setObservaciones(ticket.observaciones);
-      // setCorreo(ticket.amazon[event.target.value][1]);
-      // correoEdit = ticket.amazon[event.target.value][1];
-    };
-
-
-    //Lista de varibales a actualizar<
-    let datosAdicionales = "";
-    let acometidaSelecionada = "";
-    let listaRouters = "";
-
-
-    //Codigo para filtrar router por acometida y tecnologia
-    function routersFiltradosFunc(valorAcometida, valorTecnologia) {
-      return Routers.filter(dato => {
-        return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
-      });
+    if (foundRouter) {
+      setLuces(foundRouter.luces);
+    } else {
+      setLuces("Router model not found.");
     }
+  };
 
-    //Código para filtrar la tecnología disponible segun acometida
-    const tecnologiaUnica = () => {
-      const tecnologiasUnicas = new Set();
-      Routers.forEach(router => {
-          if (acometidaSelecionada === router.acometida) {
-              tecnologiasUnicas.add(router.tecnologia);
-          }
-      });
-  
-      // Convertir el Set en un arreglo si es necesario
-      tecnologiaSeleccionar = [...tecnologiasUnicas];
-    };
+  const handleExternalIdChange = (event) => {
+    setExternalId(event.target.value);
+    // console.log(acometidaFuncion());
 
-    //Codigo para filtrar averia
+  };
 
-    // function averiaFiltradaFunc(valorAveria) {
-    //   return ticket.averia.filter(dato => {
-    //     return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
-    //   });
-    // }
+  const handleSelectAveriaChange = (event) => {
+    setIncidencia(event.target.value);
+    setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
+    setCorreo(ticket.averia[event.target.value][1]);
+    correoEdit = ticket.averia[event.target.value][1];
 
-    // function lucesRouterFunc(valorRouter, valorTecnologia) {
-    //   return Routers.filter(dato => {
-    //     return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
-    //   });
-    // }
+  };
+
+  const handleSelectVozChange = (event) => {
+    setIncidencia(event.target.value);
+    setIncidenciaSeleccionada(ticket.voz[event.target.value][0]);
+    setCorreo(ticket.voz[event.target.value][1]);
+    correoEdit = ticket.voz[event.target.value][1];
+
+    // Texto para observaciones
+    observacionesContenedor(ticket.voz[event.target.value][2]);
+    setObservaciones(ticket.voz[event.target.value][2]);
+
+  };
+
+  const handleSelectAmazonChange = (event) => {
+    setIncidencia(event.target.value);
+    setIncidenciaSeleccionada(ticket.amazon[event.target.value][0]);
+    setCorreo(ticket.amazon[event.target.value][1]);
+    correoEdit = ticket.amazon[event.target.value][1];
+  };
+
+  const handleSelectSIMChange = (event) => {
+    setIncidencia(event.target.value);
+    setIncidenciaSeleccionada(ticket.sim[event.target.value]);
+    setObservaciones(ticket.observaciones);
+    // setCorreo(ticket.amazon[event.target.value][1]);
+    // correoEdit = ticket.amazon[event.target.value][1];
+  };
+
+
+  //Lista de varibales a actualizar<
+  let datosAdicionales = "";
+  let acometidaSelecionada = "";
+  let listaRouters = "";
+
+
+  //Codigo para filtrar router por acometida y tecnologia
+  function routersFiltradosFunc(valorAcometida, valorTecnologia) {
+    return Routers.filter(dato => {
+      return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
+    });
+  }
+
+  //Código para filtrar la tecnología disponible segun acometida
+  const tecnologiaUnica = () => {
+    const tecnologiasUnicas = new Set();
+    Routers.forEach(router => {
+      if (acometidaSelecionada === router.acometida) {
+        tecnologiasUnicas.add(router.tecnologia);
+      }
+    });
+
+    // Convertir el Set en un arreglo si es necesario
+    tecnologiaSeleccionar = [...tecnologiasUnicas];
+  };
+
+  //Codigo para filtrar averia
+
+  // function averiaFiltradaFunc(valorAveria) {
+  //   return ticket.averia.filter(dato => {
+  //     return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
+  //   });
+  // }
+
+  // function lucesRouterFunc(valorRouter, valorTecnologia) {
+  //   return Routers.filter(dato => {
+  //     return dato.acometida === valorAcometida && dato.tecnologia === valorTecnologia;
+  //   });
+  // }
 
 
 
 
-    mostrarDiaSegunHora();
+  mostrarDiaSegunHora();
 
-    // console.log(DatosAdicionales)
+  // console.log(DatosAdicionales)
 
-    let notaEdit = "";
-    let correoEdit = "";
+  let notaEdit = "";
+  let correoEdit = "";
 
-    if (ticket.nota) {
-      notaEdit = ticket.nota.replace("{cliente}", nombre)
-                      .replace("{dni}", documento)
-                      .replace("{contacto}", contacto)
-                      .replace("{idorden}", idExternal)
-                      .replace("{inicio}", horaInicio)
-                      .replace("{fin}", horaFin)
-                      .replace("{router}", routerFiltrado)
-                      .replace("{luces}", luces)
-                      .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
-                      .replace("{afectado}", afectado)
-                      .replace("{incidencia}", incidencia)
-                      .replace("{horario}", horario)
-                      .replace("{nuevaDireccion}", nuevaDireccion)
-      
-      if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
-          ticket.motivo === 'Móvil - Incidencia voz' ||
-          ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
-          correoEdit = correo;
+
+
+  if (ticket.nota) {
+
+    notaEdit = ticket.nota.replace("{cliente}", nombre)
+      .replace("{dni}", documento)
+      .replace("{contacto}", contacto)
+      .replace("{idorden}", idExternal)
+      .replace("{inicio}", horaInicio)
+      .replace("{fin}", horaFin)
+      .replace("{router}", routerFiltrado)
+      .replace("{luces}", luces)
+      .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
+      .replace("{afectado}", afectado)
+      .replace("{incidencia}", incidencia)
+      .replace("{horario}", horario)
+      .replace("{nuevaDireccion}", nuevaDireccion)
+
+    if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
+      ticket.motivo === 'Móvil - Incidencia voz' ||
+      ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
+
+      if (incidencia === 'ONT Alarmada') {
+
+        let notaAmpliadaEdit = ticket.averia["ONT Alarmada"][1];
+        correoEdit = notaAmpliadaEdit.replace("{contacto}", contacto)
+          .replace("{idorden}", idExternal)
+          .replace("{inicio}", horaInicio)
+          .replace("{fin}", horaFin)
       } else {
-          correoEdit = ticket.correoPlantilla;
+        correoEdit = correo;
       }
-      // ticket.motivo === 'Avería / Incidencia Fibra - General' ? correoEdit = correo : correoEdit = ticket.correoPlantilla;
-      
+
+    } else {
+      correoEdit = ticket.correoPlantilla;
     }
 
 
-    function acometidaFuncion() {
-      let primeraLetra = idExternal.substring(0, 1);
-      if (primeraLetra === "M" || primeraLetra === "X" || primeraLetra === "J") {
-        acometidaSelecionada = "Onivia";
-      } 
-      else if (primeraLetra === "A") {
-        acometidaSelecionada = "Adamo";
-      } 
-      else if (acometidaObj.vodafoneTesa.test(idExternal)) {
-        acometidaSelecionada = "Vodafone / Tesa";
-        // masivo = Routers.getRange("N2").getValue();
-      }
-      else if (acometidaObj.finetwork.test(idExternal)) {
-        acometidaSelecionada = "Finetwork";
-      } else {
-        acometidaSelecionada =  "";
-      }
-      
-      tecnologiaUnica();
-      listaRouters = routersFiltradosFunc(acometidaSelecionada, tecnologia);
-      return listaRouters
+    // ticket.motivo === 'Avería / Incidencia Fibra - General' ? correoEdit = correo : correoEdit = ticket.correoPlantilla;
+
+  }
+
+
+  function acometidaFuncion() {
+    let primeraLetra = idExternal.substring(0, 1);
+    if (primeraLetra === "M" || primeraLetra === "X" || primeraLetra === "J") {
+      acometidaSelecionada = "Onivia";
+    }
+    else if (primeraLetra === "A") {
+      acometidaSelecionada = "Adamo";
+    }
+    else if (acometidaObj.vodafoneTesa.test(idExternal)) {
+      acometidaSelecionada = "Vodafone / Tesa";
+      // masivo = Routers.getRange("N2").getValue();
+    }
+    else if (acometidaObj.finetwork.test(idExternal)) {
+      acometidaSelecionada = "Finetwork";
+    } else {
+      acometidaSelecionada = "";
     }
 
-    let observacionesContenedor = <textarea id='observaciones' value={observaciones} type="text" placeholder="Observaciones..." disabled/>;
-    const notaCorreoContenedores = (
+    tecnologiaUnica();
+    listaRouters = routersFiltradosFunc(acometidaSelecionada, tecnologia);
+    return listaRouters
+  }
 
-      <div id='notaCorreo'>   
-        <div id='contenedorNota'>
-          <textarea type="text" value={notaEdit} placeholder="Nota para apertura de caso..." disabled/>
-          <CopyToClipboard text={notaEdit}>
-            <button id="copiarBtnNota"><i className="material-icons">content_copy</i></button>
-          </CopyToClipboard>
-        </div>        
+  function observacionesContenedor(observaciones) {
+    return <prev id='observaciones'>{observaciones}</prev>;
+  }
 
-        <div id='contenedorCorreo'>
-          <textarea type="text" value={correoEdit} placeholder="Correo/Plantilla para envío..." disabled/>
-          <CopyToClipboard text={correoEdit}>
-            <button id="copiarBtnCorreo"><i className="material-icons">content_copy</i></button>
-          </CopyToClipboard>
-        </div>
+  const notaCorreoContenedores = (
+
+    <div id='notaCorreo'>
+      <div id='contenedorNota'>
+        <textarea type="text" value={notaEdit} placeholder="Nota para apertura de caso..." disabled />
+        <CopyToClipboard text={notaEdit}>
+          <button id="copiarBtnNota"><i className="material-icons">content_copy</i></button>
+        </CopyToClipboard>
       </div>
 
-    )
+      <div id='contenedorCorreo'>
+        <textarea type="text" value={correoEdit} placeholder="Correo/Plantilla para envío..." disabled />
+        <CopyToClipboard text={correoEdit}>
+          <button id="copiarBtnCorreo"><i className="material-icons">content_copy</i></button>
+        </CopyToClipboard>
+      </div>
+    </div>
 
-    if (ticket.motivo === 'Avería / Incidencia Fibra - General'){
+  )
 
-      acometidaFuncion();
-      let listaAveria = Object.keys(ticket.averia);
+  if (ticket.motivo === 'Avería / Incidencia Fibra - General') {
 
-      let observa = `Observaciones:
-- En este caso se debe cambiar el estado a Pendiente de cliente`
-      observacionesContenedor = <textarea id='observaciones' value={observa} type="text" placeholder="Observaciones..." disabled/>;
+    acometidaFuncion();
+    let listaAveria = Object.keys(ticket.averia);
 
-      datosAdicionales = (
-        <>
+    if (acometidaSelecionada !== 'Vodafone / Tesa') {
+      let indice = [listaAveria.indexOf('ONT Alarmada'), listaAveria.indexOf('Masivo')];
+      
+      if (indice[0] !== -1 && indice[1] !== -1) {
+        listaAveria.splice(indice[0], 1);
+        listaAveria.splice(indice[1], 1);
+        // console.log(lista); 
+      }
+    }
+
+    //       let observa = {
+    //         cableRoto: `Observaciones:
+    // - En este caso se debe cambiar el estado a Pendiente de cliente`,
+    //         ontAlarmada: `
+    //         `
+    //       }
+
+    datosAdicionales = (
+      <>
         <div className='contenedor-input-datos-cliente'>
           <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
           <input type="text" value={acometidaSelecionada} placeholder="Acometida" />
           {/* <input type="text" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} placeholder="horaInicio" /> */}
           <select className='hora-seleccionada' value={horaInicio} onChange={handleSelectHoraInicioChange}>
-              <option key='Desde' value='Desde'>
-                Desde
-              </option>
+            <option key='Desde' value='Desde'>
+              Desde
+            </option>
             {horasSeleccionar.map((horaSel) => (
               <option key={horaSel} value={horaSel}>
                 {horaSel}
@@ -294,9 +319,9 @@ function DatosContacto({ticket}) {
             ))}
           </select>
           <select className='hora-seleccionada' value={horaFin} onChange={handleSelectHoraFinChange}>
-              <option key='Hasta' value='Hasta'>
-                Hasta
-              </option>
+            <option key='Hasta' value='Hasta'>
+              Hasta
+            </option>
             {horasSeleccionar.map((horaSel) => (
               <option key={horaSel} value={horaSel}>
                 {horaSel}
@@ -307,18 +332,18 @@ function DatosContacto({ticket}) {
 
         <div className='contenedor-datos-router'>
           <select className='tecnologia-router' value={tecnologia} onChange={handleSelectTecnologiaChange}>
-            <option key='Tecnología' value='Tecnología'>  
-                Tecnología
+            <option key='Tecnología' value='Tecnología'>
+              Tecnología
             </option>
             {tecnologiaSeleccionar.map((tecno) => (
-              <option key={tecno} value={tecno}>  
+              <option key={tecno} value={tecno}>
                 {tecno}
               </option>
             ))}
           </select>
           <select className='tecnologia-router' value={routerFiltrado} onChange={handleSelectRouterChange}>
-            <option key='Seleccionar router' value='Seleccionar router'>  
-                Seleccionar router
+            <option key='Seleccionar router' value='Seleccionar router'>
+              Seleccionar router
             </option>
             {listaRouters.map((rout) => (
               <option key={rout.router} value={rout.router}>
@@ -340,19 +365,20 @@ function DatosContacto({ticket}) {
 
         {notaCorreoContenedores}
 
-        {incidencia === 'Router / Cable roto' && observacionesContenedor}
+        {incidencia === 'Router / Cable roto' && observacionesContenedor(ticket.observaciones.cableRoto)}
+        {incidencia === 'ONT Alarmada' && observacionesContenedor(ticket.observaciones.ontAlarmada)}
 
-        </>
-        
-      )
-    } else if (ticket.motivo === 'Móvil - Incidencia voz') {
-      // acometidaFuncion();
-      let listaIncidenciaVoz = Object.keys(ticket.voz);
-      // document.querySelector('#observaciones').style.display = 'block';
+      </>
 
-      datosAdicionales = (
-        <>
-        <div className='contenedor-input-datos-cliente'>    
+    )
+  } else if (ticket.motivo === 'Móvil - Incidencia voz') {
+    // acometidaFuncion();
+    let listaIncidenciaVoz = Object.keys(ticket.voz);
+    // document.querySelector('#observaciones').style.display = 'block';
+
+    datosAdicionales = (
+      <>
+        <div className='contenedor-input-datos-cliente'>
           <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectVozChange}>
             {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
                 Seleccionar incidencia
@@ -368,16 +394,16 @@ function DatosContacto({ticket}) {
 
         {notaCorreoContenedores}
 
-        {observacionesContenedor}
-        </>
-      )
-    } else if (ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
-      // acometidaFuncion();
-      let listaIncidenciaAmazon = Object.keys(ticket.amazon);
+        {observacionesContenedor(observaciones)}
+      </>
+    )
+  } else if (ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
+    // acometidaFuncion();
+    let listaIncidenciaAmazon = Object.keys(ticket.amazon);
 
-      datosAdicionales = (
-        <>
-        <div className='contenedor-input-datos-cliente'>    
+    datosAdicionales = (
+      <>
+        <div className='contenedor-input-datos-cliente'>
           <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectAmazonChange}>
             {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
                 Seleccionar incidencia
@@ -393,31 +419,31 @@ function DatosContacto({ticket}) {
 
         {notaCorreoContenedores}
 
-        </>
-      )
-    } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
-               ticket.motivo === 'Cambiar dirección de envío del regalo/terminal' ||
-               ticket.motivo === 'Error dirección - Referencia Catastral'
-    ) {
-      // acometidaFuncion();
-      datosAdicionales = (
-        <>
-        <div className='contenedor-input-datos-cliente'>    
+      </>
+    )
+  } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
+    ticket.motivo === 'Cambiar dirección de envío del regalo/terminal' ||
+    ticket.motivo === 'Error dirección - Referencia Catastral'
+  ) {
+    // acometidaFuncion();
+    datosAdicionales = (
+      <>
+        <div className='contenedor-input-datos-cliente'>
           <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Nueva dirección" />
         </div>
 
         {notaCorreoContenedores}
 
-        </>
-      )
-    } else if (ticket.subcategoria === 'Duplicado SIM') {
-      let listaReemplazoSIM = Object.keys(ticket.sim);
-      const regexRoboPerdida = /pérdida|robo/i;
+      </>
+    )
+  } else if (ticket.subcategoria === 'Duplicado SIM') {
+    let listaReemplazoSIM = Object.keys(ticket.sim);
+    const regexRoboPerdida = /pérdida|robo/i;
 
-      datosAdicionales = (
-        <>
+    datosAdicionales = (
+      <>
         <div className='contenedor-afectado-sim'>
-          <div className='contenedor-input-datos-cliente'>    
+          <div className='contenedor-input-datos-cliente'>
             <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Servicio afectado" />
           </div>
           <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectSIMChange}>
@@ -428,44 +454,42 @@ function DatosContacto({ticket}) {
             ))}
           </select>
         </div>
-          <div className='contenedor-input-datos-cliente'>    
-            <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Dirección de envío" />
-          </div>
+        <div className='contenedor-input-datos-cliente'>
+          <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Dirección de envío" />
+        </div>
 
-          {notaCorreoContenedores}
-          {regexRoboPerdida.test(incidencia) && observacionesContenedor}
+        {notaCorreoContenedores}
+        {regexRoboPerdida.test(incidencia) && observacionesContenedor(observaciones)}
 
-        </>
-      )
-    } else if (ticket.motivo === 'Técnico falta a cita') {
+      </>
+    )
+  } else if (ticket.motivo === 'Técnico falta a cita') {
 
-      let observa = `Consideraciones:
+    let observa = `Consideraciones:
 - Considerar que esté fuera de la franja horaria
 - Estado de excepción (EE)
 - Llamada en Hubspot del mismo día con tipificación Mobility y comentario de nuestros compañeros
 - Asegurar con el cliente que el técnico NO le ha llamado`
 
-      observacionesContenedor = <textarea id='observaciones' style={{height: 140 + 'px'}} value={observa} type="text" placeholder="Observaciones..." disabled/>;
-
-      datosAdicionales = (
-        <>
+    datosAdicionales = (
+      <>
         {notaCorreoContenedores}
-        {observacionesContenedor}
-        </>
-      )
+        <prev id='observaciones'>{observa}</prev>
+      </>
+    )
 
-    }
-    
-    else {
+  }
 
-      datosAdicionales = notaCorreoContenedores;
+  else {
 
-    }
+    datosAdicionales = notaCorreoContenedores;
+
+  }
 
 
   return (
     <div id='datosContacto'>
-      
+
       <div className='contenedor-label-input-datos-cliente'>
         <div className='contenedor-label-datos-cliente'>
           <label>Datos de Cliente:</label>

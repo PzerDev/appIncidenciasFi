@@ -86,7 +86,7 @@
 }
 
 .tecnologia-router:first-of-type {
-    width: 30%;
+    width: 35%;
 }
 
 .tecnologia-router.incidencia-voz {
@@ -113,5 +113,6 @@
     color: #fff;
     overflow: hidden;
     width: 98%;
-    /* display: none; */
+    display: block;
+    white-space: pre-wrap;
 }

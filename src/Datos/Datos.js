@@ -1,3 +1,8 @@
+var horaActual = new Date();
+// var hora = horaActual.getHours();
+var dia = horaActual.getDate();
+var mes = horaActual.getMonth() + 1;
+
 let datosTickets = [
     {
         motivo: "Cambio de IBAN con distinto titular al del servicio",
@@ -119,6 +124,32 @@ HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
 
 BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         src: "",
+        observaciones: {
+            cableRoto: `Observaciones:
+- En este caso se debe cambiar el estado a Pendiente de cliente`,
+            ontAlarmada: `Observaciones:
+- En NEBA (antes de escalar) se deben refrescar los parametros e indicar al cliente que reinicie el router
+- En caso que se pueda reportar por API:
+    * Comprobar estado "Pendiente Majorel"
+    * Aplicar "Plantilla: Escalado"
+- Error al intentar escalar por API:
+    * Cambiar estado a Abierto
+    * Enviar correo Sin servicio.
+
+Reporte para API:
+TIPO DE SERVICIO: FIBRA GENERAL
+TIPO DE TIQUET: INDIVIDUAL
+CATEGORÍA DE TIQUET: Avería banda ancha
+SUBCATEGORÍA DE TIQUET: NET Incomunicado: no conecta
+PRIORIDAD: Critical
+CLIENTE: {dni}
+SERVICIO: {idorden}
+DISPONIBILIDAD CLIENTE INICIO: Fecha actual
+DISPONIBILIDAD CLIENTE FIN: Fecha lejana aleatoria
+FECHA DETECCIÓN: Fecha actual
+PRUEBAS REALIZADAS: Si
+DESCRIPCIÓN PRUEBAS: .`
+        },
         averia: {
             'Seleccionar avería': ['', ''],
             'Sin servicio': ['{horario}, cliente reporta interrupción en el servicio de fibra. Se ha abierto un caso para su gestión.', 
@@ -144,6 +175,16 @@ Te mantendremos al tanto de cualquier novedad.`
             ],
             'Masivo': ['{horario}, se ha detectado una incidencia masiva en el servicio de fibra en la zona. Se ha abierto un caso para su gestión.',
                        'Plantilla: Masivo'
+            ],
+            'ONT Alarmada': [`{horario}, se ha detectado que el cliente está sin servicio de fibra y que la ONT está alarmada. Se ha abierto un caso para identificar y solucionar la falla.`,
+
+`${dia}/${mes} - Se ha escalado avería por API
+
+MOTIVO DE LA INCIDENCIA: ONT ALARMADA (sin servicio ambos)
+EXTERNAL ID: {idorden}
+COMPROBACIONES REALIZADAS: Ont alarmada (luz en rojo)
+HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
+TELÉFONO DE CONTACTO: {contacto}`
             ]
         }
     },
