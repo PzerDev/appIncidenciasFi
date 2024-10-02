@@ -10,14 +10,14 @@ let horasSeleccionar = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15
 
 let tecnologiaSeleccionar = [];
 
-var horario;
-var horaActual = new Date();
-var hora = horaActual.getHours();
-// var dia = horaActual.getDate();
-// var mes = horaActual.getMonth() + 1;
 
-// var minutos = horaActual.getMinutes();
+var horario;
 function mostrarDiaSegunHora() {
+  var horaActual = new Date();
+  var hora = horaActual.getHours();
+  // var dia = horaActual.getDate();
+  // var mes = horaActual.getMonth() + 1;
+  // var minutos = horaActual.getMinutes();
   // Obtenemos la hora actual
 
   // Establecemos el día a mostrar según la hora
@@ -35,7 +35,7 @@ function mostrarDiaSegunHora() {
 let acometidaObj = {
   onivia: ["M", "J", "X"],
   adamo: ["A"],
-  finetwork: /^\d{5}$/,
+  finetwork: /^\d{4,5}$/,
   vodafoneTesa: /^\d{9}$/
 }
 
@@ -284,16 +284,27 @@ function DatosContacto({ ticket }) {
 
     acometidaFuncion();
     let listaAveria = Object.keys(ticket.averia);
-
-    if (acometidaSelecionada !== 'Vodafone / Tesa') {
-      let indice = [listaAveria.indexOf('ONT Alarmada'), listaAveria.indexOf('Masivo')];
-      
-      if (indice[0] !== -1 && indice[1] !== -1) {
-        listaAveria.splice(indice[0], 1);
-        listaAveria.splice(indice[1], 1);
-        // console.log(lista); 
+    if (acometidaSelecionada === 'Vodafone / Tesa') {
+      // Si es Vodafone/Tesa, conservamos los elementos específicos
+      listaAveria = listaAveria.filter(averia => averia !== 'ONT Alarmada' || averia !== 'Masivo');
+  
+      // Si además la tecnología es Router HFC, solo conservamos "Masivo"
+      if (tecnologia === 'Router HFC') {
+          listaAveria = listaAveria.filter(averia => averia !== 'ONT Alarmada');
       }
-    }
+  } else {
+      // Si no es Vodafone/Tesa, eliminamos "ONT Alarmada" y "Masivo"
+      listaAveria = listaAveria.filter(averia => averia !== 'ONT Alarmada' && averia !== 'Masivo');
+  }
+    // if (acometidaSelecionada !== 'Vodafone / Tesa') {
+    //   let indice = [listaAveria.indexOf('ONT Alarmada'), listaAveria.indexOf('Masivo')];
+      
+    //   if (indice[0] !== -1 && indice[1] !== -1) {
+    //     listaAveria.splice(indice[0], 1);
+    //     listaAveria.splice(indice[1], 1);
+    //     // console.log(lista); 
+    //   }
+    // }
 
     //       let observa = {
     //         cableRoto: `Observaciones:
