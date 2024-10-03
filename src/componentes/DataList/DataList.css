@@ -1,8 +1,12 @@
+#root {
+  margin: 50px 0;
+}
+
 .search-container {
   /* text-align: center; */
   max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 70px auto 10px;
+  padding: 30px 20px;
 }
 
 .search-container label {
@@ -51,6 +55,13 @@ input[type="text"] {
   background-color: #e9e9e9;
   color: #313131;
 }
+
+input:focus {
+  outline: none; /* Elimina el borde por defecto */
+  border: 2px solid #000; /* Agrega un borde azul de 2px */
+}
+
+
 /* 
 #suggestions {
   position: absolute;

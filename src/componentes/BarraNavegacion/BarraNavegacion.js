@@ -9,36 +9,46 @@ const BarraNavegacion = () => {
   };
 
   return (
-    <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="logo">
-        <i className="bx bx-menu menu-icon" onClick={toggleSidebar} />
-        <span className="logo-name">CodingLab</span>
-      </div>
-      <div className="sidebar-content">
-        <ul className="lists">
-          <li className="list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-home-alt icon"></i>
-              <span className="link">Dashboard</span>
-            </a>
-          </li>
-          {/* ... Add more list items here ... */}
-          <li className="list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-cog icon"></i>
-              <span className="link">Settings</span>
-            </a>
-          </li>
-          <li className="list">
-            <a href="#" className="nav-link">
-              <i className="bx bx-log-out icon"></i>
-              <span className="link">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="overlay" onClick={toggleSidebar} />
-    </nav>
+    <div className="container">
+      <nav className={`nav ${isOpen ? 'open' : ''}`}>
+        <div className="logo">
+          <i className="bx bx-menu menu-icon" onClick={toggleSidebar}></i>
+          <span className="logo-name">appFi</span>
+        </div>
+        <div className="sidebar">
+          <div className="logo">
+            <i className="bx bx-menu menu-icon" onClick={toggleSidebar}></i>
+            <span className="logo-name">appFi</span>
+          </div>
+          <div className="sidebar-content">
+            <ul className="lists">
+              <li className="list">
+                <a href="#" className="nav-link">
+                  <i className="bx bx-home-alt icon"></i>
+                  <span className="link">Inicio</span>
+                </a>
+              </li>
+              {/* ... Add remaining list items here ... */}
+            </ul>
+            <div className="bottom-cotent">
+              <li className="list">
+                <a href="#" className="nav-link">
+                  <i className="bx bx-cog icon"></i>
+                  <span className="link">Ajustes</span>
+                </a>
+              </li>
+              <li className="list">
+                <a href="#" className="nav-link">
+                  <i className="bx bx-log-out icon"></i>
+                  <span className="link">Cerrar Sesión</span>
+                </a>
+              </li>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section className="overlay" onClick={toggleSidebar}></section>
+    </div>
   );
 };
 

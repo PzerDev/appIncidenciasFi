@@ -7,7 +7,7 @@ import DatosContacto from './componentes/DatosContacto/DatosContacto.js';
 function App() {
   return (
     <>
-      {/* <BarraNavegacion /> */}
+      <BarraNavegacion />
       <DataList />
       {/* <DatosContacto /> */}
     </>
