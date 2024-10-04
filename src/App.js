@@ -1,15 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import DataList from './componentes/DataList/DataList.js';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BarraNavegacion from './componentes/BarraNavegacion/BarraNavegacion.js';
-import DatosContacto from './componentes/DatosContacto/DatosContacto.js';
+// import DatosContacto from './componentes/DatosContacto/DatosContacto.js';
 
 function App() {
   return (
-    <>
-      <BarraNavegacion />
-      <DataList />
-      {/* <DatosContacto /> */}
+    <>  
+      <Router>
+        <BarraNavegacion />
+        <Routes>
+          {/* <Route path="/" element={<Inicio />} /> */}
+          {/* <Route path="/calculadora" element={<Calculadora />} /> */}
+        </Routes>
+      </Router>
     </>
 
   );

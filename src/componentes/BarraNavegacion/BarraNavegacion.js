@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import './BarraNavegacion.css'; // Assuming you have a CSS file named Sidebar.css
+import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
+import Inicio from '../Inicio/Inicio';
+import Calculadora from '../Calculadora/Calculadora';
 
 const BarraNavegacion = () => {
+  const [items, setItems] = useState([
+    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/' },
+    { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
+    // ... Agrega más elementos aquí si quieres un valor inicial
+  ]);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -22,31 +30,37 @@ const BarraNavegacion = () => {
           </div>
           <div className="sidebar-content">
             <ul className="lists">
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className="bx bx-home-alt icon"></i>
-                  <span className="link">Inicio</span>
-                </a>
-              </li>
-              {/* ... Add remaining list items here ... */}
+              {items.map((item, index) => (
+                <li className="list" key={index}>
+                  <Link to={item.pagina} className="nav-link">
+                    <i className={item.icon} />
+                    <span className="link">{item.text}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
-            <div className="bottom-cotent">
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className="bx bx-cog icon"></i>
-                  <span className="link">Ajustes</span>
-                </a>
-              </li>
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className="bx bx-log-out icon"></i>
-                  <span className="link">Cerrar Sesión</span>
-                </a>
-              </li>
-            </div>
+          </div>
+          <div className="bottom-cotent">
+            <li className="list">
+              <a href="#" className="nav-link">
+                <i className="bx bx-cog icon"></i>
+                <span className="link">Ajustes</span>
+              </a>
+            </li>
+            <li className="list">
+              <a href="#" className="nav-link">
+                <i className="bx bx-log-out icon"></i>
+                <span className="link">Cerrar Sesión</span>
+              </a>
+            </li>
           </div>
         </div>
       </nav>
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/calculadora" element={<Calculadora />} />
+        {/* ... otras rutas ... */}
+      </Routes>
       <section className="overlay" onClick={toggleSidebar}></section>
     </div>
   );

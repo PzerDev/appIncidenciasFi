@@ -48,7 +48,7 @@ function DataList() {
     }
     setShowList(false); // Ocultar la lista al seleccionar una opciÃ³n
     setShowLabels(true); // Show labels on selection
-    
+
   };
 
   return (
@@ -78,7 +78,7 @@ function DataList() {
         )}
       </div>
 
-      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : <DatosTickets motivoSeleccionado={searchQuery}/>)}
+      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : <DatosTickets motivoSeleccionado={searchQuery} />)}
 
     </>
   );
