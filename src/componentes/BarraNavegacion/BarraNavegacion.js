@@ -6,8 +6,8 @@ import Calculadora from '../Calculadora/Calculadora';
 
 const BarraNavegacion = () => {
   const [items, setItems] = useState([
-    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/' },
-    { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
+    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/appIncidenciasFi/build/' },
+    { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/appIncidenciasFi/build/calculadora' },
     // ... Agrega más elementos aquí si quieres un valor inicial
   ]);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,8 +57,8 @@ const BarraNavegacion = () => {
         </div>
       </nav>
       <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/calculadora" element={<Calculadora />} />
+        <Route path="/appIncidenciasFi/build/" element={<Inicio />} />
+        <Route path="/appIncidenciasFi/build/calculadora" element={<Calculadora />} />
         {/* ... otras rutas ... */}
       </Routes>
       <section className="overlay" onClick={toggleSidebar}></section>
