@@ -180,9 +180,9 @@ Te mantendremos al tanto de cualquier novedad.`
 
 `${dia}/${mes} - Se ha escalado avería por API
 
-MOTIVO DE LA INCIDENCIA: ONT ALARMADA (sin servicio ambos)
+MOTIVO DE LA INCIDENCIA: ONT ALARMADA
 EXTERNAL ID: {idorden}
-COMPROBACIONES REALIZADAS: Ont alarmada (luz en rojo)
+COMPROBACIONES REALIZADAS: Ont alarmada
 HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
 TELÉFONO DE CONTACTO: {contacto}`
             ]
