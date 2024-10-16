@@ -1,14 +1,15 @@
 .contenedor-calculadora {
-    background-color: #ccc;
+    background-color: #333;
     margin: 100px auto;
     max-width: 800px;
     height: auto;
     border-radius: 30px;
-    padding: 40px;
+    padding: 50px;
+    color: #fff;
 }
-.contenedor-calculadora label {
+/* .contenedor-calculadora label {
     margin-left: 30px;
-}
+} */
 .contenedor-calculadora label input {
     margin-right: 10px;
 }
@@ -17,26 +18,45 @@
     /* padding: 40px; */
 }
 
-.contenedor-calculadora .contenedorCatTicket label {
+.contenedor-calculadora .contenedorCatTicket label,
+.contenedor-calculadora label {
     margin-left: 30px;
+    /* font-weight: bold; */
+}
+.margin-bot {
+    margin-bottom: 30px;
+    display: block;
 }
 .monto-impuesto {
     display: flex;
 }
-.monto-impuesto input {
+.monto-impuesto div {
+    padding: 20px 10px 15px;
+    width: 33%;
+}
+.monto-impuesto div input {
     width: 100%;
     padding: 20px 30px;
     border-radius: 32px;
-    margin: 20px 0; 
+    margin-top: 10px;
+    /* margin: 10px 15px 20px 20px;  */
     border: none;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .monto-impuesto select {
     padding: 20px 30px;
-    margin: 20px;
+    /* margin: 20px 0; */
     border-radius: 40px;
+    margin-top: 10px;
+    border: none;
+    width: 100%;
 }
 .monto-impuesto input:focus {
-    border: 2px solid #333;
+    /* border: 2px solid #333; */
 }
 
 .contenedor-impuesto-principal {
@@ -45,6 +65,7 @@
     border-radius: 30px;
     border: 1px solid #333;
     margin-top: 30px;
+    background: #ddd;
 }
 .contenedor-impuesto {
     display: flex;
@@ -79,12 +100,12 @@
     flex-shrink: 0
 }
 .contenedor-impuesto-seleccion button:hover {
-    background-color: #333;
+    background-color: #808080;
     color: #fff
 }
 .contenedor-impuesto-seleccion button.selected {
-    background-color: #333;
-    color: white;
+    background-color: #000;
+    color: #fff;
   }
 .impuesto-total {
     font-weight: normal;
@@ -94,6 +115,7 @@
 .contenedor-base-imponible {
     padding: 20px;
     width: 70%;
+    color: #333;
 }
 
 .contenedor-base-imponible div {

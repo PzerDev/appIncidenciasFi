@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
 import './Calculadora.css';
 
-function MontoInput({ setMonto }) {
+function MontoInput({ monto, setMonto }) {
   const [mes, setMes] = useState(new Date().getMonth() + 1); 
-  // const [mes, setMonth] = useState(1);
+  const [montoTarifa, setMontoTarifa] = useState();
   const [diasProporcional, setDiasProporcional] = useState();
   const [ano, setAno] = useState(new Date().getFullYear());
 
   const handleMontoChange = (event) => {
-    setMonto(parseFloat(event.target.value));
+    const nuevoValor = event.target.value;
+
+    // Eliminar todo lo que no sean números o puntos
+    const valorLimpio = nuevoValor.replace(/[^0-9.]/g, '');
+  
+    // Limitar a un solo punto decimal y convertir a número
+    const valorConUnPunto = parseFloat(valorLimpio.replace(/\./g, '.').slice(0, valorLimpio.indexOf('.') + 4));
+  
+    // Asegurar que el valor esté entre 0 y 999.99
+    const valorFinal = Math.min(Math.max(valorConUnPunto, 0), 999.99);
+  
+    setMonto(valorFinal);
+    setMontoTarifa(valorFinal);
   };
 
   const handleProporcionalChange = (event) => {
-    setDiasProporcional(parseFloat(event.target.value));
-    const proporcional = ((getDaysInMonth(ano, mes) + 1 - parseFloat(event.target.value)) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value; 
-    setMonto(proporcional);
+    const nuevoValor = event.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un número
+    if (nuevoValor <= getDaysInMonth(ano, mes)) {
+      setDiasProporcional(parseFloat(nuevoValor));
+      // setValor(nuevoValor);
+      const proporcional = ((getDaysInMonth(ano, mes) + 1 - parseFloat(nuevoValor)) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value; 
+      setMonto(proporcional);
+    }
   }
 
   const handleMesChange = (event) => {
@@ -31,15 +47,35 @@ function MontoInput({ setMonto }) {
 
   return (
     <div className='monto-impuesto'>
-      <input type="number" placeholder="Ingrese el monto" onChange={handleMontoChange} />
-      <select value={mes} onChange={handleMesChange}>
-        {Array.from({ length: 12 }, (_, index) => index + 1).map(mes => (
-          <option key={mes} value={mes}>
-            {new Date(2024, mes - 1, 1).toLocaleString('default', { month: 'long' })}
-          </option>
-        ))}
-      </select>
-      <input type="number" placeholder="Servicio activo desde" onChange={handleProporcionalChange} />
+      <div>
+        <label>Monto tarifa</label>
+        <input type="number" placeholder="ingresar" 
+        onChange={handleMontoChange} 
+        value={montoTarifa} />
+      </div>
+      <div>
+        <label>Activo desde</label>
+        <input type="number" placeholder="día"
+        onChange={handleProporcionalChange} 
+        max={getDaysInMonth(ano, mes)} 
+        min={1} 
+        value={diasProporcional} 
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+          }
+        }}/>
+      </div>
+      <div>
+        <label>Mes</label>
+        <select value={mes} onChange={handleMesChange}>
+          {Array.from({ length: 12 }, (_, index) => index + 1).map(mes => (
+            <option key={mes} value={mes}>
+              {new Date(2024, mes - 1, 1).toLocaleString('default', { month: 'long' })}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
@@ -50,20 +86,23 @@ function TipoImpuesto({ tipoImpuesto, setTipoImpuesto }) {
   };
 
   return (
-    <div className='contenedor-impuesto-seleccion'>
-      <button 
-        className={tipoImpuesto === 'IVA (21%)' ? 'selected' : ''}
-        onClick={() => setTipoImpuesto('IVA (21%)')}>IVA (21%)</button>
-      <button 
-        className={tipoImpuesto === 'IGIC (7%)' ? 'selected' : ''}
-        onClick={() => setTipoImpuesto('IGIC (7%)')}>IGIC (7%)</button>
-      <button 
-        className={tipoImpuesto === 'IPSI (8%)' ? 'selected' : ''}
-        onClick={() => setTipoImpuesto('IPSI (8%)')}>IPSI (8%)</button>
-      <button 
-        className={tipoImpuesto === 'IPSI (10%)' ? 'selected' : ''}
-        onClick={() => setTipoImpuesto('IPSI (10%)')}>IPSI (10%)</button>
-    </div>
+    <>
+      <label>Tipo de Impuesto</label>
+      <div className='contenedor-impuesto-seleccion'>
+        <button 
+          className={tipoImpuesto === 'IVA (21%)' ? 'selected' : ''}
+          onClick={() => setTipoImpuesto('IVA (21%)')}>IVA (21%)</button>
+        <button 
+          className={tipoImpuesto === 'IGIC (7%)' ? 'selected' : ''}
+          onClick={() => setTipoImpuesto('IGIC (7%)')}>IGIC (7%)</button>
+        <button 
+          className={tipoImpuesto === 'IPSI (8%)' ? 'selected' : ''}
+          onClick={() => setTipoImpuesto('IPSI (8%)')}>IPSI (8%)</button>
+        <button 
+          className={tipoImpuesto === 'IPSI (10%)' ? 'selected' : ''}
+          onClick={() => setTipoImpuesto('IPSI (10%)')}>IPSI (10%)</button>
+      </div>
+    </>
   );
 }
 
@@ -100,9 +139,9 @@ function Calculadora() {
   return (
     <div className='contenedor-calculadora'>
       <MontoInput setMonto={setMonto} />
-      <label>
+      <label className='margin-bot'>
         <input type="checkbox" checked={incluyeImpuesto} onChange={() => setIncluyeImpuesto(!incluyeImpuesto)} />
-        El monto incluye impuesto (IVA)
+        Incluye IVA
       </label>
       <TipoImpuesto tipoImpuesto={tipoImpuesto} setTipoImpuesto={setTipoImpuesto} />
       <div className='contenedor-impuesto-principal'>
