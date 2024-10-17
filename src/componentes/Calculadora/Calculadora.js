@@ -18,7 +18,8 @@ function MontoInput({ monto, setMonto }) {
   
     // Asegurar que el valor esté entre 0 y 999.99
     const valorFinal = Math.min(Math.max(valorConUnPunto, 0), 999.99);
-  
+    
+    setDiasProporcional('');
     setMonto(valorFinal);
     setMontoTarifa(valorFinal);
   };
@@ -134,7 +135,12 @@ function Calculadora() {
     return { baseImponible, impuesto, total };
   };
 
-  const { baseImponible, impuesto, total } = calcularTotal();
+  let { baseImponible, impuesto, total } = calcularTotal();
+  if (isNaN(total)) {
+    total = 0;
+  }
+  let enteraTotal = Math.floor(total); // parteEntera será 10
+  let decimalTotal = total - enteraTotal;
 
   return (
     <div className='contenedor-calculadora'>
@@ -146,13 +152,21 @@ function Calculadora() {
       <TipoImpuesto tipoImpuesto={tipoImpuesto} setTipoImpuesto={setTipoImpuesto} />
       <div className='contenedor-impuesto-principal'>
         <div className='contenedor-impuesto'>
-          <div>TOTAL</div>
-          <div className='impuesto-total'>{total.toFixed(2)} €</div>
+          {/* <div>TOTAL</div> */}
+          <div className='impuesto-total entera'>{enteraTotal}'</div>
+          <div>
+            <div className='impuesto-total decimal'>{decimalTotal.toFixed(2).slice(2)}</div>
+            <div className='impuesto-total'>€/mes</div>
+          </div>
         </div>
 
         <div className='contenedor-base-imponible'>
           <div>Base Imponible: {baseImponible.toFixed(2)} €</div>
           <div>{tipoImpuesto}: {impuesto.toFixed(2)} €</div>
+            <a target="_blank"
+            rel="noopener noreferrer"
+            href='http://151.237.207.216/index.php/todos-los-articulos/445-base-imponible-servicios-con-etiqueta-convergente?highlight=WyJiYXNlIiwiaW1wb25pYmxlIiwiYmFzZSBpbXBvbmlibGUiXQ=='>
+            Ver listado</a>
         </div>
       </div>
     </div>

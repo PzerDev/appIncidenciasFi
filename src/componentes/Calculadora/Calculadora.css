@@ -1,11 +1,12 @@
 .contenedor-calculadora {
-    background-color: #333;
+    /* background-color: #ccc; */
     margin: 100px auto;
     max-width: 800px;
     height: auto;
     border-radius: 30px;
     padding: 50px;
-    color: #fff;
+    color: #333;
+    /* box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px; */
 }
 /* .contenedor-calculadora label {
     margin-left: 30px;
@@ -36,11 +37,13 @@
 }
 .monto-impuesto div input {
     width: 100%;
-    padding: 20px 30px;
+    padding: 10px 30px;
     border-radius: 32px;
     margin-top: 10px;
     /* margin: 10px 15px 20px 20px;  */
     border: none;
+    background: #e9e9e9;
+    height: 55px;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -48,12 +51,13 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 .monto-impuesto select {
-    padding: 20px 30px;
+    padding: 10px 30px;
     /* margin: 20px 0; */
     border-radius: 40px;
     margin-top: 10px;
     border: none;
     width: 100%;
+    height: 55px;
 }
 .monto-impuesto input:focus {
     /* border: 2px solid #333; */
@@ -63,26 +67,30 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     padding: 40px;
     border-radius: 30px;
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
     margin-top: 30px;
-    background: #ddd;
+    background: #000;
+    box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px;
 }
 .contenedor-impuesto {
     display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
+    /* flex-wrap: wrap; */
+    padding: 20px 40px;
     border-radius: 20px;
-    background: #333333;
+    /* background: #000; */
     color: #fff;
     text-align: center;
-    width: 30%;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
 }
 .contenedor-impuesto div {
     display: block;
     width: 100%;
     font-size: 1.4rem;
     font-weight: bold;
-    padding: 10px;
+    /* padding: 10px; */
 }
 .contenedor-impuesto-seleccion {
     display: flex;
@@ -90,17 +98,18 @@ input[type=number]::-webkit-outer-spin-button {
     scrollbar-width: none;
 }
 .contenedor-impuesto-seleccion button {
-    padding: 20px 30px;
+    padding: 18px 20px;
     border-radius: 40px;
-    margin-left: 10px;
+    margin-left: 18px;
     margin-top: 15px;
     cursor: pointer;
     border: none;
-    min-width: 140px;
-    flex-shrink: 0
+    min-width: 120px;
+    background: #e9e9e9;
+    flex-shrink: 0;
 }
 .contenedor-impuesto-seleccion button:hover {
-    background-color: #808080;
+    background-color: #8d8d8d;
     color: #fff
 }
 .contenedor-impuesto-seleccion button.selected {
@@ -110,15 +119,42 @@ input[type=number]::-webkit-outer-spin-button {
 .impuesto-total {
     font-weight: normal;
     /* padding: 0; */
+    /* font-size: 5rem; */
 }
-
+.impuesto-total.entera {
+    font-size: 6rem;
+    text-align: end;
+}
+.impuesto-total.decimal {
+    font-size: 2rem;
+}
 .contenedor-base-imponible {
-    padding: 20px;
+    padding: 0px 40px;
     width: 70%;
-    color: #333;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
 }
+.contenedor-base-imponible  a {
+    display: block;
+    /* width: 100%; */
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #5f0aff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.contenedor-base-imponible  a:hover {
+    background-color: #5309db;
+} 
 
 .contenedor-base-imponible div {
     font-size: 1.4rem;
-    padding: 10px;
+    /* padding: 10px; */
+    margin-top: 10px;
 }
