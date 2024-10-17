@@ -165,7 +165,7 @@ function Calculadora() {
           <div>{tipoImpuesto}: {impuesto.toFixed(2)} €</div>
             <a target="_blank"
             rel="noopener noreferrer"
-            href='http://151.237.207.216/index.php/todos-los-articulos/445-base-imponible-servicios-con-etiqueta-convergente?highlight=WyJiYXNlIiwiaW1wb25pYmxlIiwiYmFzZSBpbXBvbmlibGUiXQ=='>
+            href='#'>
             Ver listado</a>
         </div>
       </div>
