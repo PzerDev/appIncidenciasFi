@@ -1043,7 +1043,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         motivo: "Incidencia Promociones - No recibió credenciales de acceso a Elige TV (posible error en correo)",
         categoria: "Servicios",
         subcategoria: "Incidencia Promociones",
-        pipeline: "Coordinación SAC",
+        pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de emisión de credenciales para el servicio de Elige TV se encuentra en proceso de evaluación.`,
         nota: `CLIENTE: {cliente} - {dni}
@@ -1218,6 +1218,7 @@ BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
             "Motivo de reemplazo": '',
             "Avería": '{horario}, cliente reporta que la tarjeta SIM está dañada o no funciona correctamente. Se abre caso para que lo puedan gestionar.',
             "Robo": '{horario}, cliente solicita reemplazo de su tarjeta SIM por robo. Se abre caso para que puedan dar solución.',
+            "Rotura": '{horario}, cliente solicita reemplazo de tarjeta SIM por rotura. Se abre caso para que puedan dar solución.',
             "Pérdida": '{horario}, cliente reportó la pérdida de su tarjeta SIM, solicita reemplazo de la misma. Se abre caso para que puedan dar solución.'
         }
     },
