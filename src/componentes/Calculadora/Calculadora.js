@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import './Calculadora.css';
 
+
+const descuentoS = {
+  'No': 1,
+  '10%': 0.9,
+  '20%': 0.8,
+  '30%': 0.7,
+  '40%': 0.6,
+};
+
 function MontoInput({ monto, setMonto }) {
   const [mes, setMes] = useState(new Date().getMonth() + 1); 
+  const [descuento, setDescuento] = useState(); 
   const [montoTarifa, setMontoTarifa] = useState();
   const [diasProporcional, setDiasProporcional] = useState();
   const [ano, setAno] = useState(new Date().getFullYear());
@@ -19,25 +29,53 @@ function MontoInput({ monto, setMonto }) {
     // Asegurar que el valor esté entre 0 y 999.99
     const valorFinal = Math.min(Math.max(valorConUnPunto, 0), 999.99);
     
-    setDiasProporcional('');
-    setMonto(valorFinal);
+    if (document.querySelector('#diaInicio').value < 1) {
+      // setDiasProporcional(1);
+      setMonto(valorFinal * document.querySelector('#descuento').value)
+    } else {
+      // setMonto(valorFinal * document.querySelector('#descuento').value);
+      setMonto((((getDaysInMonth(ano, mes) + 1 - document.querySelector('#diaInicio').value) / getDaysInMonth(ano, mes)) * valorFinal) * descuento);
+    }
     setMontoTarifa(valorFinal);
+    setDescuento(document.querySelector('#descuento').value);
   };
+  
 
   const handleProporcionalChange = (event) => {
     const nuevoValor = event.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea un número
+    // setDiasProporcional(1);
+    console.log(nuevoValor)
     if (nuevoValor <= getDaysInMonth(ano, mes)) {
-      setDiasProporcional(parseFloat(nuevoValor));
+      setDiasProporcional(nuevoValor);
       // setValor(nuevoValor);
-      const proporcional = ((getDaysInMonth(ano, mes) + 1 - parseFloat(nuevoValor)) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value; 
-      setMonto(proporcional);
+      setMonto((((getDaysInMonth(ano, mes) + 1 - nuevoValor) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value) * descuento); 
+    } 
+    if (nuevoValor === '') {
+      setMonto((document.querySelectorAll('.monto-impuesto input')[0].value) * descuento); 
     }
+    
   }
 
   const handleMesChange = (event) => {
     setMes(parseInt(event.target.value));
     // setMonto(parseFloat(event.target.value));
-    const proporcional = ((getDaysInMonth(ano, parseInt(event.target.value)) + 1 - diasProporcional) / getDaysInMonth(ano, parseInt(event.target.value))) * document.querySelectorAll('.monto-impuesto input')[0].value; 
+    const proporcional = (((getDaysInMonth(ano, parseInt(event.target.value)) + 1 - diasProporcional) / getDaysInMonth(ano, parseInt(event.target.value))) * document.querySelectorAll('.monto-impuesto input')[0].value) * descuento; 
+    setMonto(proporcional);
+  }
+
+  const handleDescuentoChange = (event) => {
+    // setMonto(parseFloat(event.target.value));
+    const diaInicio = document.querySelector('#diaInicio').value;
+    // if (diaInicio <= 0 || diaInicio === '' || diaInicio === NaN) {
+    //   setDiasProporcional(1);
+    // }
+    setDescuento(event.target.value);
+    let proporcional;
+    if (diaInicio < 1) {
+      proporcional = (((getDaysInMonth(ano, mes)) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value) * event.target.value; 
+    } else {
+      proporcional = (((getDaysInMonth(ano, mes) + 1 - diasProporcional) / getDaysInMonth(ano, mes)) * document.querySelectorAll('.monto-impuesto input')[0].value) * event.target.value; 
+    }
     setMonto(proporcional);
   }
 
@@ -56,8 +94,8 @@ function MontoInput({ monto, setMonto }) {
       </div>
       <div>
         <label>Activo desde</label>
-        <input type="number" placeholder="día"
-        onChange={handleProporcionalChange} 
+        <input id="diaInicio" type="number" placeholder="día"
+        onInput={handleProporcionalChange} 
         max={getDaysInMonth(ano, mes)} 
         min={1} 
         value={diasProporcional} 
@@ -73,6 +111,16 @@ function MontoInput({ monto, setMonto }) {
           {Array.from({ length: 12 }, (_, index) => index + 1).map(mes => (
             <option key={mes} value={mes}>
               {new Date(2024, mes - 1, 1).toLocaleString('default', { month: 'long' })}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>Descuento</label>
+        <select id='descuento' value={descuento} onChange={handleDescuentoChange}>
+          {Object.entries(descuentoS).map(([descuento, valor]) => (          
+            <option key={descuento} value={valor}>
+              {descuento}
             </option>
           ))}
         </select>
@@ -163,10 +211,12 @@ function Calculadora() {
         <div className='contenedor-base-imponible'>
           <div>Base Imponible: {baseImponible.toFixed(2)} €</div>
           <div>{tipoImpuesto}: {impuesto.toFixed(2)} €</div>
+          <div className='margin-top'>
             <a target="_blank"
             rel="noopener noreferrer"
             href='#'>
             Ver listado</a>
+          </div>  
         </div>
       </div>
     </div>
