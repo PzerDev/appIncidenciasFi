@@ -7,7 +7,7 @@ import BarraNavegacion from './componentes/BarraNavegacion/BarraNavegacion.js';
 function App() {
   return (
     <>  
-      <Router>
+      <Router basename="/appIncidenciasFi/build/">
         <BarraNavegacion />
         <Routes>
           {/* <Route path="/" element={<Inicio />} /> */}

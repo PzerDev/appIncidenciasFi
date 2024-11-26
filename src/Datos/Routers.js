@@ -39,6 +39,13 @@ ONT Nokia
         src: ""
     },
     {
+        acometida: "Onivia",
+        tecnologia: "Router FTTH",
+        router: "ZTE ZXHN F6600P",
+        luces: `- Power - PON - LOS - Internet - Phone - LAN1 - LAN2 - LAN3 - LAN4 - 2.4G - 5G - WPS - USB`,
+        src: ""
+    },
+    {
         acometida: "Finetwork",
         tecnologia: "Router FTTH",
         router: "Huawei EG8145V5",

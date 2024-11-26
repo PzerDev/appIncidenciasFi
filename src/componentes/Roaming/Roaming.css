@@ -1,41 +1,45 @@
-.contenedor-calculadora {
+.contenedor-roaming-global {
     /* background-color: #ccc; */
-    margin: 100px auto;
+    margin: 0px auto;
     max-width: 800px;
     height: auto;
     border-radius: 30px;
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
     color: #333;
     /* box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px; */
 }
 /* .contenedor-calculadora label {
     margin-left: 30px;
 } */
-.contenedor-calculadora label input {
+.contenedor-roaming label input {
     margin-right: 10px;
 }
 
-.contenedor-calculadora .contenedorCatTicket {
+.contenedor-roaming .contenedorCatTicket {
     /* padding: 40px; */
 }
-
-.contenedor-calculadora .contenedorCatTicket label,
-.contenedor-calculadora label {
+.contenedor-roaming-global label {
     margin-left: 30px;
-    /* font-weight: bold; */
+}
+.contenedor-roaming-global #observaciones {
+    background-color: #000;
+    margin-left: 0px;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px;
 }
 .margin-bot {
     margin-bottom: 30px;
     display: block;
 }
-.monto-impuesto {
+.contenedor-roaming-general {
     display: flex;
 }
-.monto-impuesto div {
-    padding: 20px 10px 15px;
-    width: 33%;
+.contenedor-roaming-general div {
+    padding: 0px 10px 10px;
+    /* width: 33%; */
 }
-.monto-impuesto div input {
+.contenedor-roaming-general div input {
     width: 100%;
     padding: 10px 30px;
     border-radius: 32px;
@@ -50,7 +54,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.monto-impuesto select {
+.contenedor-roaming-general select {
     padding: 10px 30px;
     /* margin: 20px 0; */
     border-radius: 40px;
@@ -59,11 +63,11 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     height: 55px;
 }
-.monto-impuesto input:focus {
+.contenedor-roaming-general input:focus {
     /* border: 2px solid #333; */
 }
 
-.contenedor-impuesto-principal {
+.contenedor-roaming-principal {
     display: flex;
     padding: 40px;
     border-radius: 30px;
@@ -71,8 +75,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 30px;
     background: #000;
     box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px;
+    justify-content: space-evenly;
+    /* justify-content: center; */
 }
-.contenedor-impuesto {
+
+.contenedor-roaming {
     display: flex;
     /* flex-wrap: wrap; */
     padding: 20px 40px;
@@ -80,17 +87,24 @@ input[type=number]::-webkit-outer-spin-button {
     /* background: #000; */
     color: #fff;
     text-align: center;
-    width: 50%;
+    width: auto;
     justify-content: center;
     align-items: center;
     border: 2px solid #fff;
 }
-.contenedor-impuesto div {
+.contenedor-roaming:last-child {
+    /* Aquí aplicas el estilo que deseas, por ejemplo: */
+    /* margin-left: 20px; */
+  }
+.contenedor-roaming div {
     display: block;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     /* padding: 10px; */
+}
+.contenedor-roaming div:first-child {
+    padding-right: 5px;
 }
 .contenedor-impuesto-seleccion {
     display: flex;
@@ -98,6 +112,9 @@ input[type=number]::-webkit-outer-spin-button {
     scrollbar-width: none;
 }
 .contenedor-impuesto-seleccion button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 18px 20px;
     border-radius: 40px;
     margin-left: 18px;
@@ -115,21 +132,24 @@ input[type=number]::-webkit-outer-spin-button {
 .contenedor-impuesto-seleccion button.selected {
     background-color: #000;
     color: #fff;
-  }
+}
+.contenedor-impuesto-seleccion button i {
+    font-size: 1.2rem;
+}
+.contenedor-impuesto-seleccion button span {
+    padding-left: 6px;
+}
 .impuesto-total {
     font-weight: normal;
     /* padding: 0; */
     /* font-size: 5rem; */
 }
-.contenedor-impuesto div .impuesto-total {
-    font-size: 2rem;
-}
-.contenedor-impuesto .impuesto-total.entera {
-    font-size: 6rem;
+.impuesto-total.entera {
+    font-size: 4rem;
     text-align: end;
 }
-.contenedor-impuesto .impuesto-total.decimal {
-    font-size: 2.2rem;
+.contenedor-roaming .impuesto-total.decimal {
+    font-size: 1.6rem;
 }
 .contenedor-base-imponible {
     padding-left: 40px;
@@ -166,3 +186,52 @@ input[type=number]::-webkit-outer-spin-button {
 .contenedor-base-imponible .margin-top {
     margin-top: 30px;
 }
+
+
+
+
+/* estilos de busqueda de pais */
+.search-container-roaming {
+    /* text-align: center; */
+    max-width: 800px;
+    margin: 70px auto 10px;
+    padding: 30px 20px;
+    display: flex;
+  }
+  
+  .search-container-roaming label {
+    /* text-align: center; */
+    margin-left: 30px;
+  }
+  
+  .search-container-roaming input {
+    /* text-align: center; */
+    margin-top: 10px;
+  }
+  
+  .search-container-roaming ul {
+    position: absolute;
+    margin-top: 12px;
+    background: #e9e9e9;
+    border-radius: 16px;
+    padding: 20px;
+    list-style: none;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-width: 760px;
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+  
+  .search-container-roaming ul li {
+    /* margin-left: 10px; */
+    padding: 12px 15px;
+    cursor: pointer;
+  }
+  
+  .search-container-roaming ul li:hover {
+    background: #d1d1d1;
+    border-radius: 10px;
+    /* padding: 10px; */
+  }

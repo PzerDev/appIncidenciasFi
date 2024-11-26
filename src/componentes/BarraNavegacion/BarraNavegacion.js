@@ -3,11 +3,13 @@ import './BarraNavegacion.css'; // Assuming you have a CSS file named Sidebar.cs
 import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
 import Inicio from '../Inicio/Inicio';
 import Calculadora from '../Calculadora/Calculadora';
+import Roaming from '../Roaming/Roaming';
 
 const BarraNavegacion = () => {
   const [items, setItems] = useState([
-    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/appIncidenciasFi/build/' },
-    { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/appIncidenciasFi/build/calculadora' },
+    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/' },
+    { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
+    { icon: 'bx bx-signal-5 icon', text: 'Roaming', pagina: '/roaming' },
     // ... Agrega más elementos aquí si quieres un valor inicial
   ]);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,8 +59,9 @@ const BarraNavegacion = () => {
         </div>
       </nav>
       <Routes>
-        <Route path="/appIncidenciasFi/build/" element={<Inicio />} />
-        <Route path="/appIncidenciasFi/build/calculadora" element={<Calculadora />} />
+        <Route path="/" element={<Inicio />} />
+        <Route path="/calculadora" element={<Calculadora />} />
+        <Route path="/roaming" element={<Roaming />} />
         {/* ... otras rutas ... */}
       </Routes>
       <section className="overlay" onClick={toggleSidebar}></section>
