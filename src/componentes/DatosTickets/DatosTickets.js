@@ -22,7 +22,7 @@ function DatosTickets({motivoSeleccionado}) {
     } 
   }
 
-  console.log(ticketSeleccionado)
+  // console.log(ticketSeleccionado)
   
   // setCategoria(ticketSeleccionado.categoria);
   // setSubcategoria(ticketSeleccionado.subcategoria);

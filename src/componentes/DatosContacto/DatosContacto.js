@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './DatosContacto.css'; // Importamos el archivo CSS
+import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Routers from '../../Datos/Routers.js';
+import ReactMarkdown from 'react-markdown';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
 // import DatosAdicionales from '../DatosAdicionales/DatosAdicionales.js';
 
@@ -38,6 +42,11 @@ let acometidaObj = {
   finetwork: /^\d{4,5}$/,
   vodafoneTesa: /^\d{9}$/
 }
+
+const MiMarkDown = ({ markdownText, id }) => {
+  const htmlContent = DOMPurify.sanitize(marked(markdownText));
+  return <div id={id} dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+};
 
 
 
@@ -264,18 +273,22 @@ function DatosContacto({ ticket }) {
 
     <div id='notaCorreo'>
       <div id='contenedorNota'>
-        <textarea type="text" value={notaEdit} placeholder="Nota para apertura de caso..." disabled />
-        <CopyToClipboard text={notaEdit}>
-          <button id="copiarBtnNota"><i className="material-icons">content_copy</i></button>
-        </CopyToClipboard>
+        <div className='pre'>
+          <MiMarkDown markdownText={notaEdit} id="markdownNota"/>
+        </div>
+        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
+        <CopyToClipboardHTML targetId="markdownNota" />
       </div>
 
       <div id='contenedorCorreo'>
-        <textarea type="text" value={correoEdit} placeholder="Correo/Plantilla para envío..." disabled />
-        <CopyToClipboard text={correoEdit}>
-          <button id="copiarBtnCorreo"><i className="material-icons">content_copy</i></button>
-        </CopyToClipboard>
+        <div className='pre'>
+            <MiMarkDown markdownText={correoEdit} id="markdownCorreo"/>
+        </div>
+        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
+        <CopyToClipboardHTML targetId="markdownCorreo" />
       </div>
+        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: correoEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
+      
     </div>
 
   )

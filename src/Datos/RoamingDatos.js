@@ -6,7 +6,7 @@ let RoamingDatos = {
                 establecimiento: "0",
                 precio: "0,00719*",
                 unidad: "€/min",
-                observaciones: `(*) Esta tarifa en Zona 1 es aplicable cuando se ha realizado el exceso de la tarifa actual en roaming.`
+                observaciones: `(*) <strong>Esta tarifa en Zona 1</strong> es aplicable cuando se ha realizado el exceso de la tarifa actual en roaming.`
             },
             smsOut: {
                 precio: "0,003967*",

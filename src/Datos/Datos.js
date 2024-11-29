@@ -11,11 +11,11 @@ let datosTickets = [
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Plantilla: Cliente - Cambio de IBAN a distinto titular",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de IBAN (distinto titular)
-NUEVO IBAN: {nuevoIBAN}
-TELÉFONO DE CONTACTO: {contacto}
-BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nombre de otra persona. Se ha abierto un caso para gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambio de IBAN (distinto titular)  
+**NUEVO IBAN:** {nuevoIBAN}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita la modificación del IBAN a nombre de otra persona. Se ha abierto un caso para gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -25,12 +25,11 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la modificación del IBAN a nomb
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto / Pendiente de cliente",
         correoPlantilla: "A fin de atender tu solicitud de cambio de documento, es necesario que responda este correo adjuntando una copia de su identificación oficial vigente. En caso de estar cambiando NIE por DNI, también necesitamos que nos envíes el certificado de concordancia.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Actualización de documento de identidad
-NUEVO DOCUMENTO: {actualizarDoc}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita la actualización de su documento de identidad. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Actualización de documento de identidad  
+**NUEVO DOCUMENTO:** {actualizarDoc}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita la actualización de su documento de identidad. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -40,12 +39,11 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita la actualización de su document
         pipeline: "Envíos",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Plantilla: Envíos - Cambio dirección terminal",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambiar dirección de envío
-NUEVA DIRECCIÓN: {nuevaDireccion}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de envío de su regalo/terminal. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambiar dirección de envío  
+**NUEVA DIRECCIÓN:** {nuevaDireccion}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita el cambio en la dirección de envío de su regalo/terminal. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -55,12 +53,11 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de en
         pipeline: "Envíos",
         estadoTicket: "Abierto",
         correoPlantilla: "respecto a su solicitud de cambio de dirección para la tarjeta SIM.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambiar dirección de envío
-NUEVA DIRECCIÓN: {nuevaDireccion}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de envío de su tarjeta SIM. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambiar dirección de envío  
+**NUEVA DIRECCIÓN:** {nuevaDireccion}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita el cambio en la dirección de envío de su tarjeta SIM. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -70,11 +67,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio en la dirección de en
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Plantilla: Cliente - Cambio de impuesto (Cliente debe responder enviando su certificado de empadronamientoi)",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de impuesto
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambio de impuesto  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -84,11 +80,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: "en relación a su solicitud de modificar el impuesto en las facturas.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de impuesto
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambio de impuesto  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita el cambio del impuesto reflejado en su factura. Se procede a abrir un caso para que puedan gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -98,11 +93,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita el cambio del impuesto reflejado
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud de cambio de titular, es necesario que responda este correo adjuntando una copia de su documento de identidad (vigente) por ambas caras.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cambio de titular
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente ha experimentado dificultades al intentar firmar el documento de cambio de titular por medio del enlace proporcionado. Se procede a abrir un caso para gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cambio de titular  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente ha experimentado dificultades al intentar firmar el documento de cambio de titular por medio del enlace proporcionado. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -111,18 +105,16 @@ BREVE DESCRIPCIÓN: {horario}, cliente ha experimentado dificultades al intentar
         subcategoria: "Averías / Incidencia",
         pipeline: "Fibra / Fibra Onivia / Fibra propia",
         estadoTicket: "Abierto",
-        correoPlantilla: `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.
-        
-Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`,
-        nota: `CLIENTE: {cliente} - {dni}
-EXTERNAL ID: {idorden}
-MODELO ROUTER: {router}
-LUCES ENCENDIDAS:
-{luces}
-TELÉFONO DE CONTACTO: {contacto}
-HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
-
-BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        correoPlantilla: `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.  
+<br>Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**EXTERNAL ID:** {idorden}  
+**MODELO ROUTER:** {router}  
+**LUCES ENCENDIDAS:**  
+{luces}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+**HORARIO DISPONIBILIDAD:** {inicio} - {fin} horas  
+<br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
         src: "",
         observaciones: {
             cableRoto: `Observaciones:
@@ -153,19 +145,16 @@ DESCRIPCIÓN PRUEBAS: .`
         averia: {
             'Seleccionar avería': ['', ''],
             'Sin servicio': ['{horario}, cliente reporta interrupción en el servicio de fibra. Se ha abierto un caso para su gestión.', 
-                             `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.
-        
-Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`
+                             `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.  
+<br>Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`
             ],
             'Velocidad': ['{horario}, cliente reporta lentitud en la conexión de fibra. Se ha abierto un caso para evaluar la causa y optimizar el servicio.', 
-                          `Gracias por informarnos sobre la incidencia con su servicio de fibra. Estamos investigando las causas de la lentitud en tu conexión. 
-        
-Te mantendremos informado sobre el progreso y las posibles soluciones.`
+                          `Gracias por informarnos sobre la incidencia con su servicio de fibra. Estamos investigando las causas de la lentitud en tu conexión.  
+<br>Te mantendremos informado sobre el progreso y las posibles soluciones.`
             ],
             'Cortes': ['{horario}, cliente reporta cortes intermitentes en el servicio de fibra. Se ha abierto un caso para identificar y solucionar la falla.',
-                       `Gracias por informarnos sobre los cortes en tu servicio de fibra. Estamos trabajando para estabilizar tu conexión y evitar futuras interrupciones.
-        
-Te mantendremos al tanto de cualquier novedad.`
+                       `Gracias por informarnos sobre los cortes en tu servicio de fibra. Estamos trabajando para estabilizar tu conexión y evitar futuras interrupciones.  
+<br>Te mantendremos al tanto de cualquier novedad.`
             ],
             'Unir / Separar redes': ['{horario}, cliente solicita la unión/separación de redes WIFI. Se ha abierto un caso para realizar el cambio solicitado.',
                                      'Gracias por tu solicitud para modificar la configuración de tu red. Hemos registrado tu petición y nuestro equipo técnico se pondrá en contacto contigo para coordinar los detalles y realizar el cambio lo antes posible.'
@@ -178,13 +167,12 @@ Te mantendremos al tanto de cualquier novedad.`
             ],
             'ONT Alarmada': [`{horario}, se ha detectado que el cliente está sin servicio de fibra y que la ONT está alarmada. Se ha abierto un caso para identificar y solucionar la falla.`,
 
-`${dia}/${mes} - Se ha escalado avería por API
-
-MOTIVO DE LA INCIDENCIA: ONT ALARMADA
-EXTERNAL ID: {idorden}
-COMPROBACIONES REALIZADAS: Ont alarmada
-HORARIO DISPONIBILIDAD: {inicio} - {fin} horas
-TELÉFONO DE CONTACTO: {contacto}`
+`***${dia}/${mes} - Se ha escalado avería por API***  
+<br>**MOTIVO DE LA INCIDENCIA:** ONT ALARMADA  
+**EXTERNAL ID:** {idorden}  
+**COMPROBACIONES REALIZADAS:** Ont alarmada  
+**HORARIO DISPONIBILIDAD:** {inicio} - {fin} horas  
+**TELÉFONO DE CONTACTO:** {contacto}  `
             ]
         }
     },
@@ -195,11 +183,10 @@ TELÉFONO DE CONTACTO: {contacto}`
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Para que podamos hacer efectiva la portabilidad de la línea, es necesario que responda este correo adjuntando la última factura de su operador actual y una copia de su documento de identidad.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Portabilidad
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Portabilidad  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -209,11 +196,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "Para que podamos hacer efectiva la portabilidad de la línea, es necesario que responda este correo adjuntando una foto de su tarjeta SIM actual y una copia de su documento de identidad.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Portabilidad
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Portabilidad  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado que el cliente ha tenido dificultades al relanzar su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -223,11 +209,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: "respecto a la portabilidad de la línea {portabilidadLinea}.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Portabilidad
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificultades durante su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Portabilidad  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado que el cliente ha tenido dificultades durante su proceso de portabilidad. Se procede a abrir un caso para gestionar su requerimiento.`,
         src: ""
     },
     {
@@ -237,11 +222,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que el cliente ha tenido dificult
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente - Solicitando la documentación necesaria",
         correoPlantilla: "Genérico modificado solicitando documentación",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Validación de pedido
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario},`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Validación de pedido  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario},`,
         src: ""
     },
     {
@@ -251,12 +235,11 @@ BREVE DESCRIPCIÓN: {horario},`,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo adjuntando una copia del certificado de defunción del titular del servicio.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Aporte de certificado de defunción.
-TITULAR FALLECIDO: {otroCliente} - {otroDni}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para comunicar el fallecimiento del titular del servicio y adjuntar el certificado de defunción. Se apertura caso para realizar los cambios necesarios.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Aporte de certificado de defunción.  
+**TITULAR FALLECIDO:** {otroCliente} - {otroDni}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha registrado una solicitud por parte del cliente para comunicar el fallecimiento del titular del servicio y adjuntar el certificado de defunción. Se apertura caso para realizar los cambios necesarios.`,
         src: ""
     },
     {
@@ -286,11 +269,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Envíos",
         estadoTicket: "Abierto",
         correoPlantilla: "con respecto al envío de la factura a su dirección.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Envío de factura en papel
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para modificar el método de envío de la factura a formato papel. Se ha iniciado el proceso correspondiente para realizar los cambios necesarios.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Envío de factura en papel  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha registrado una solicitud por parte del cliente para modificar el método de envío de la factura a formato papel. Se ha iniciado el proceso correspondiente para realizar los cambios necesarios.`,
         src: ""
     },
     {
@@ -310,11 +292,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte/ Empresas/ Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Plantilla: 'Revisión escucha de llamada'",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Reclamación información comercial
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente reporta discrepancia entre la información comercial proporcionada al contratar el servicio y la realidad actual. Se ha abierto un caso para verificar y resolver esta situación.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Reclamación información comercial  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente reporta discrepancia entre la información comercial proporcionada al contratar el servicio y la realidad actual. Se ha abierto un caso para verificar y resolver esta situación.`,
         src: ""
     },
     {
@@ -324,11 +305,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente reporta discrepancia entre la informació
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo adjuntando una copia de la denuncia realizada. Por favor, asegúrese de que el documento sea legible.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Suplantación de identidad
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que alguien está utilizando su identidad para contratar servicios a su nombre. Afirma no reconocer los servicios contratados. Se ha iniciado una investigación para verificar la situación y tomar las medidas correspondientes.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Suplantación de identidad  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente ha denunciado que alguien está utilizando su identidad para contratar servicios a su nombre. Afirma no reconocer los servicios contratados. Se ha iniciado una investigación para verificar la situación y tomar las medidas correspondientes.`,
         src: ""
     },
     {
@@ -338,11 +318,10 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que alguien está utiliz
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de dar trámite a su reclamación, solicitamos que responda este correo adjuntando una copia del recibo domiciliado realizado sin su consentimiento.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Uso fraudulento de cuenta bancaria
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que se están realizando cargos no autorizados en su cuenta bancaria. Se ha iniciado el caso para verificar la situación y tomar las medidas necesarias.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Uso fraudulento de cuenta bancaria  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente ha denunciado que se están realizando cargos no autorizados en su cuenta bancaria. Se ha iniciado el caso para verificar la situación y tomar las medidas necesarias.`,
         src: ""
     },
     {
@@ -352,11 +331,10 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha denunciado que se están realizando
         pipeline: "Soporte/ Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Genérico sin modificar",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Contrato a nombre de un menor de edad
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado que un servicio ha sido contratado a nombre de un menor de edad, lo cual es una irregularidad. Se apertura caso para tomar las medidas necesarias y corregir esta situación.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Contrato a nombre de un menor de edad  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado que un servicio ha sido contratado a nombre de un menor de edad, lo cual es una irregularidad. Se apertura caso para tomar las medidas necesarias y corregir esta situación.`,
         src: ""
     },
     {
@@ -366,11 +344,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que un servicio ha sido contratad
         pipeline: "Soporte Inglés",
         estadoTicket: "Abierto",
         correoPlantilla: "Plantilla: Genérico Inglés",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Inglés
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en inglés a la que no se ha podido dar respuesta debido a la falta de personal disponible que hable inglés. Se requiere la asignación de un agente bilingüe para atender esta solicitud.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Inglés  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha registrado una solicitud de servicio en inglés a la que no se ha podido dar respuesta debido a la falta de personal disponible que hable inglés. Se requiere la asignación de un agente bilingüe para atender esta solicitud.`,
         src: ""
     },
     {
@@ -380,11 +357,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud de servicio en ing
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: "A fin de dar trámite a tu solicitud es necesario que nos puedas indicar las numeraciones desde las que recibe llamadas con propósito comercial.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lista Robinson
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del cliente para inhabilitar llamadas con propósito comercial. Se ha abierto caso para su atención.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Lista Robinson  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha registrado una solicitud por parte del cliente para inhabilitar llamadas con propósito comercial. Se ha abierto caso para su atención.`,
         src: ""
     },
     {
@@ -394,11 +370,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado una solicitud por parte del clie
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: "Estamos trabajando para revisar la situación.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: SIM swapping
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha registrado un reporte por parte del cliente de suplantación de identidad para la adquisición de una tarjeta SIM. Se ha abierto caso para su atención.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** SIM swapping  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha registrado un reporte por parte del cliente de suplantación de identidad para la adquisición de una tarjeta SIM. Se ha abierto caso para su atención.`,
         src: ""
     },
     {
@@ -418,11 +393,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha registrado un reporte por parte del cliente
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Estamos trabajando en tu solicitud de cancelación del servicio de fibra.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cancelación de instalación
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha recibido una solicitud de cancelación de instalación de fibra que no ha podido ser procesada en línea. Se requiere su intervención para proceder con esta petición.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cancelación de instalación  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha recibido una solicitud de cancelación de instalación de fibra que no ha podido ser procesada en línea. Se requiere su intervención para proceder con esta petición.`,
         src: ""
     },
     {
@@ -442,12 +416,11 @@ BREVE DESCRIPCIÓN: {horario}, se ha recibido una solicitud de cancelación de i
         pipeline: "Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: "A fin de atender su solicitud, es necesario que responda este correo indicando la referencia catastral de su domicilio.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Error dirección
-TELÉFONO DE CONTACTO: {contacto}
-DIRECCIÓN: {nuevaDireccion} 
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado una inconsistencia en la dirección del cliente. Se solicita la referencia catastral para verificar y actualizar los datos correctamente.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Error dirección  
+**TELÉFONO DE CONTACTO:** {contacto}  
+**DIRECCIÓN:** {nuevaDireccion}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado una inconsistencia en la dirección del cliente. Se solicita la referencia catastral para verificar y actualizar los datos correctamente.`,
         src: ""
     },
     {
@@ -457,11 +430,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado una inconsistencia en la direcci�
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Reprogramación de instalación
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibra. Indica que no ha recibido ninguna comunicación para coordinar la cita. Se abre caso para gestionar la reprogramación.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Reprogramación de instalación  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita reprogramar instalación de fibra. Indica que no ha recibido ninguna comunicación para coordinar la cita. Se abre caso para gestionar la reprogramación.`,
         src: ""
     },
     {
@@ -471,11 +443,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibr
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Reprogramación de instalación
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibra que no se pudo realizar en la fecha prevista. Se requiere encontrar una nueva fecha que se ajuste a su disponibilidad.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Reprogramación de instalación  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita reprogramar instalación de fibra que no se pudo realizar en la fecha prevista. Se requiere encontrar una nueva fecha que se ajuste a su disponibilidad.`,
         src: ""
     },
     {
@@ -485,11 +456,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita reprogramar instalación de fibr
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: "Recibimos su solicitud para reactivar el servicio de fibra. Estamos trabajando para procesar la reactivación lo antes posible.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Reactivación de servicio
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente solicita reactivación inmediata de servicio de fibra suspendido temporalmente.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Reactivación de servicio  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente solicita reactivación inmediata de servicio de fibra suspendido temporalmente.`,
         src: ""
     },
     {
@@ -499,11 +469,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente solicita reactivación inmediata de servi
         pipeline: "Fibra / Fibra Onivia / Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: "Estamos atendiendo tu solicitud sobre la instalación de fibra.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Teléfono para el instalador
-TELÉFONO PARA TÉCNICO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se comprueba tras actualizar los datos de contacto del cliente que la fecha asignada previamente para la instalación de la fibra ya no está disponible. Se apertura el caso para su gestión.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Teléfono para el instalador  
+**TELÉFONO PARA TÉCNICO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se comprueba tras actualizar los datos de contacto del cliente que la fecha asignada previamente para la instalación de la fibra ya no está disponible. Se apertura el caso para su gestión.`,
         src: ""
     },
     {
@@ -513,11 +482,10 @@ BREVE DESCRIPCIÓN: {horario}, se comprueba tras actualizar los datos de contact
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Instalación de fibra
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha producido un error al asignar la cita al cliente. Se apertura caso para que puedan gestionarlo.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Instalación de fibra  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha producido un error al asignar la cita al cliente. Se apertura caso para que puedan gestionarlo.`,
         src: ""
     },
     {
@@ -527,11 +495,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha producido un error al asignar la cita al cl
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente ha enviado un equipo distinto al router. Se requiere verificar el equipo recibido y coordinar la devolución o el cambio correspondiente.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente ha enviado un equipo distinto al router. Se requiere verificar el equipo recibido y coordinar la devolución o el cambio correspondiente.`,
         src: ""
     },
     {
@@ -541,11 +508,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente ha enviado un equipo distinto al router. 
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, en la información de dispositivos de fibra del cliente, el campo del código de devolución del router está vacío y el estado de entrega no aparece registrado. Se requiere investigar y actualizar la información.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, en la información de dispositivos de fibra del cliente, el campo del código de devolución del router está vacío y el estado de entrega no aparece registrado. Se requiere investigar y actualizar la información.`,
         src: ""
     },
     {
@@ -555,11 +521,10 @@ BREVE DESCRIPCIÓN: {horario}, en la información de dispositivos de fibra del c
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Código de devolución router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente presenta inconvenientes con el código de devolución. Se solicita verificar y corregir la información.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Código de devolución router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente presenta inconvenientes con el código de devolución. Se solicita verificar y corregir la información.`,
         src: ""
     },
     {
@@ -568,14 +533,12 @@ BREVE DESCRIPCIÓN: {horario}, cliente presenta inconvenientes con el código de
         subcategoria: "Error código Devolución Router",
         pipeline: "Fibra",
         estadoTicket: "Abierto/ Pendiente de cliente",
-        correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del certificado que acredite la imposibilidad de entrega debido a fuerza mayor.
-
-En caso contrario, responda este correo indicando que no le es posible facilitar dicho documento.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente informa que no puede entregar el router debido a un incidente de fuerza mayor. Se solicita evaluar esta situación y determinar los pasos a seguir, considerando la imposibilidad del cliente de cumplir con la devolución.`,
+        correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del certificado que acredite la imposibilidad de entrega debido a fuerza mayor.  
+<br>En caso contrario, responda este correo indicando que no le es posible facilitar dicho documento.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente informa que no puede entregar el router debido a un incidente de fuerza mayor. Se solicita evaluar esta situación y determinar los pasos a seguir, considerando la imposibilidad del cliente de cumplir con la devolución.`,
         src: ""
     },
     {
@@ -585,11 +548,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente informa que no puede entregar el router d
         pipeline: "",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución router desde el extranjero
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente actualmente ubicado en {país} solicita la devolución del router. Se abre caso para evaluar opciones de devolución internacional.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución router desde el extranjero  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente actualmente ubicado en {país} solicita la devolución del router. Se abre caso para evaluar opciones de devolución internacional.`,
         src: ""
     },
     {
@@ -599,11 +561,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente actualmente ubicado en {país} solicita l
         pipeline: "Fibra",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del justificante de entrega emitido por Correos.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de haber entregado el router en Correos. Se ha solicitado justificante de entrega emitido por Correos.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente reporta seguir recibiendo SMS, a pesar de haber entregado el router en Correos. Se ha solicitado justificante de entrega emitido por Correos.`,
         src: ""
     },
     {
@@ -613,11 +574,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Técnico falta a cita
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha reportado que el técnico asignado no se presentó a la instalación de fibra programada, el cliente asegura que no recibió ninguna llamada del técnico. Se solicita reprogramar la instalación a la brevedad posible.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Técnico falta a cita  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha reportado que el técnico asignado no se presentó a la instalación de fibra programada, el cliente asegura que no recibió ninguna llamada del técnico. Se solicita reprogramar la instalación a la brevedad posible.`,
         src: ""
     },
     {
@@ -627,11 +587,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha reportado que el técnico asignado no se pr
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Programación de instalación de fibra
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado que la contratación de fibra del cliente, aún no ha sido programada para su instalación. El cliente no ha recibido ninguna comunicación por parte del equipo para coordinar la visita. Se solicita programar la instalación a la brevedad posible.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Programación de instalación de fibra  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado que la contratación de fibra del cliente, aún no ha sido programada para su instalación. El cliente no ha recibido ninguna comunicación por parte del equipo para coordinar la visita. Se solicita programar la instalación a la brevedad posible.`,
         src: ""
     },
     {
@@ -641,11 +600,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado que la contratación de fibra del
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Devolución del router
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente ha solicitado la devolución del router, indica que no ha recibido las instrucciones necesarias para realizar el proceso. Se abre caso para proporcionar las indicaciones correspondientes.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Devolución del router  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente ha solicitado la devolución del router, indica que no ha recibido las instrucciones necesarias para realizar el proceso. Se abre caso para proporcionar las indicaciones correspondientes.`,
         src: ""
     },
     {
@@ -655,11 +613,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente ha solicitado la devolución del router, 
         pipeline: "Fibra Onivia/ Fibra propia",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de asignación de una dirección IP fija para el servicio de fibra se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: IP fija
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de una IP fija en su servicio contratado. Se requiere evaluar la solicitud y realizar los trámites correspondientes para cumplir con su petición.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** IP fija  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente ha solicitado la activación de una IP fija en su servicio contratado. Se requiere evaluar la solicitud y realizar los trámites correspondientes para cumplir con su petición.`,
         src: ""
     },
     {
@@ -678,32 +635,29 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de una IP
         subcategoria: "Móvil - Incidencia datos",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lentitud en datos
-SERVICIO AFECTADO: {afectado}
-TELÉFONO DE CONTACTO: {contacto}
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Lentitud en datos  
+**SERVICIO AFECTADO:** {afectado}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**COMPROBACIONES:**  
+-- Línea activa  
+-- Dispone de GB  
+-- Velocidad de últimas conéxiones  
+    {velocidadConexionesCDR}  
+-- Itinerancia activa  
+<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
+-- Configiración APN (A las - horas)  
+-- Búsqueda manual de redes (A las - horas)  
+-- Tipo de red preferida (A las - horas)  
 
-COMPROBACIONES:
-- Línea activa
-- Dispone de GB
-- Velocidad de últimas conéxiones
-  {velocidadConexionesCDR}
-- Itinerancia activa
-
-PRUEBAS REALIZADAS (SIN ÉXITO)
-- Configiración APN (A las - horas)
-- Búsqueda manual de redes (A las - horas)
-- Tipo de red preferida (A las - horas)
-
-Se solicita prueba cruzada de tarjeta SIM al cliente.
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
 `,
         src: ""
     },
@@ -713,35 +667,32 @@ Se solicita prueba cruzada de tarjeta SIM al cliente.
         subcategoria: "Móvil - Incidencia datos",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Lentitud en datos
-SERVICIO AFECTADO: {afectado}
-TELÉFONO DE CONTACTO: {contacto}
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia datos (Sin conexión)  
+**SERVICIO AFECTADO:** {afectado}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**COMPROBACIONES:**  
+-- Línea activa  
+-- Datos activos en sistema y en dispositivo móvil  
+-- Itinerancia activa  
+-- Comprobar incidencias en https://app.hubspot.com/contacts/7545391/record/0-1/30366051  
+-- Cobertura  
+    5G:  
+    4G:  
+    3g:  
+<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
+-- Configiración APN (A las - horas)  
+-- Búsqueda manual de redes (A las - horas)  
+-- Tipo de red preferida (A las - horas)  
 
-COMPROBACIONES:
-- Línea activa
-- Datos activos en sistema y en dispositivo móvil
-- Itinerancia activa
-- Comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
-- Cobertura
-  5G:
-  4G:
-  3g:
-
-PRUEBAS REALIZADAS (SIN ÉXITO)
-- Configiración APN (A las - horas)
-- Búsqueda manual de redes (A las - horas)
-- Tipo de red preferida (A las - horas)
-
-Se solicita prueba cruzada de tarjeta SIM al cliente.
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
 `,
         src: ""
     },
@@ -752,41 +703,38 @@ Se solicita prueba cruzada de tarjeta SIM al cliente.
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: ``,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: {incidencia}
-SERVICIO AFECTADO: {afectado}
-TELÉFONO DE CONTACTO: {contacto}
-
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** {incidencia}  
+**SERVICIO AFECTADO:** {afectado}  
+**TELÉFONO DE CONTACTO:** {contacto}  
 {incidenciaSeleccionada}
 `,
         src: "",
         voz: {
             "Seleccionar incidencia": ['', ''],
             "No emite a determinados números": [
-`COMPROBACIONES:
-- Línea activa
-- Los números a los que intenta emitir no cumplen lo siguiente:
-  - Numeración extranjera
-  - Numeración de tarificación especial
-  - Numeración 118xx
-  - Numeración premium  
-- Limite de riesgo
-- No ha superado los minutos de su tarifa
-- Al itentar llamar no muestra al receptor ocupado
-- El número al que intenta llamar existe
+`<br>**COMPROBACIONES:**  
+-- Línea activa  
+-- Los números a los que intenta emitir no cumplen lo siguiente:  
+  &nbsp;&nbsp;&nbsp;- Numeración extranjera  
+  &nbsp;&nbsp;&nbsp;- Numeración de tarificación especial  
+  &nbsp;&nbsp;&nbsp;- Numeración 118xx  
+  &nbsp;&nbsp;&nbsp;- Numeración premium  
+-- Limite de riesgo  
+-- No ha superado los minutos de su tarifa  
+-- Al itentar llamar no muestra al receptor ocupado  
+-- El número al que intenta llamar existe  
+<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
+-- Se reportan 3 pruebas de llamada fallida a los siguientes números:  
+  &nbsp;&nbsp;&nbsp;- {numero1}  
+  &nbsp;&nbsp;&nbsp;- {numero2}  
+  &nbsp;&nbsp;&nbsp;- {numero3}  
 
-PRUEBAS REALIZADAS (SIN ÉXITO)
-- Se reportan 3 pruebas de llamada fallida a los siguientes números
-  - {numero1}
-  - {numero2}
-  - {numero3}
-
-Se solicita prueba cruzada de tarjeta SIM al cliente.`,
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
 
 
-`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
@@ -800,29 +748,26 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
             "No emite a ningún número en España": [
 
-`COMPROBACIONES:
-- Línea activa
-- No puede emitir a todos los números || No puede emitir a determinados números
-- Problema presentado desde, {especificarFecha}
-- Consumos no pertenecientes al buzón
-  - {llamada1}
-  - {llamada2}
-- Se comprueba que no hay incidencias
-- Cobertura
-  5G:
-  4G:
-  3g:
-        
+`<br>**COMPROBACIONES:**  
+-- Línea activa  
+-- No puede emitir a todos los números || No puede emitir a determinados números  
+-- Problema presentado desde, {especificarFecha}  
+-- Consumos no pertenecientes al buzón  
+  &nbsp;&nbsp;&nbsp;- {llamada1}  
+  &nbsp;&nbsp;&nbsp;- {llamada2}  
+-- Se comprueba que no hay incidencias  
+-- Cobertura  
+  &nbsp;&nbsp;&nbsp;5G:  
+  &nbsp;&nbsp;&nbsp;4G:  
+  &nbsp;&nbsp;&nbsp;3g:  
+<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
+-- Búsqueda manual de redes (A las - horas)  
 
-PRUEBAS REALIZADAS (SIN ÉXITO)
-- Búsqueda manual de redes (A las - horas)
-
-Se solicita prueba cruzada de tarjeta SIM al cliente.`, 
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
 
 
-`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
@@ -836,24 +781,22 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
 
             "No recibe de ningún número": [
-`COMPROBACIONES:
-- Línea activa
-- Problema presentado desde, {especificarFecha}
-- Zona reportada: {especificarZona}
-- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos
-- Se comprueba que no arroja locución "el número no se encuentra disponible"
-- Cobertura presente en dispositivo
-- Puede realizar llamadas
+`<br>**COMPROBACIONES:**  
+-- Línea activa  
+-- Problema presentado desde, {especificarFecha}  
+-- Zona reportada: {especificarZona}  
+-- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos  
+-- Se comprueba que no arroja locución "el número no se encuentra disponible"  
+-- Cobertura presente en dispositivo  
+-- Puede realizar llamadas  
+<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
+-- Búsqueda manual de redes (A las - horas)  
 
-PRUEBAS REALIZADAS (SIN ÉXITO)
-- Búsqueda manual de redes (A las - horas)
-
-Se solicita prueba cruzada de tarjeta SIM al cliente.`,
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
 
 
-`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
@@ -873,20 +816,18 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
         subcategoria: "Móvil - Incidencia SMS",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia SMS
-TELÉFONO AFECTADO: {contacto}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia SMS  
+**TELÉFONO AFECTADO:** {contacto}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -895,20 +836,18 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil - Incidencia sin servicio",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia sin servicio
-TELÉFONO AFECTADO: {contacto}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia sin servicio  
+**TELÉFONO AFECTADO:** {contacto}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -917,20 +856,18 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Móvil - Calidad de red defectuosa",
         pipeline: "Soporte",
         estadoTicket: "Abierto",
-        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.
-
-Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
 - Fecha y hora en que se realizó la prueba
 - Marca y modelo del dispositivo utilizado
 - Resultado de la prueba (si el problema persiste o no)
 
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Calidad de red defectuosa
-TELÉFONO AFECTADO: {contacto}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Calidad de red defectuosa  
+**TELÉFONO AFECTADO:** {contacto}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -940,7 +877,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `**CLIENTE:** {cliente} - {dni}`,
         src: ""
     },
     {
@@ -950,11 +887,10 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: Móvil - Serv. Premium`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Activación de servicios premium
-TELÉFONO SOLICITADO PARA ACTIVACIÓN: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de los servicios premium, indicando que no puede realizar este proceso a través de la app o la página web. Se abre caso para atender esta solicitud.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Activación de servicios premium  
+**TELÉFONO SOLICITADO PARA ACTIVACIÓN:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente ha solicitado la activación de los servicios premium, indicando que no puede realizar este proceso a través de la app o la página web. Se abre caso para atender esta solicitud.`,
         src: ""
     },
     {
@@ -964,11 +900,10 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado la activación de los se
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: Móvil - Aumento de riesgo`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Aumento de límite de riesgo
-TELÉFONO SOLICITADO PARA AUMENTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado un incremento en su límite de riesgo. Se abre caso para atender esta solicitud.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Aumento de límite de riesgo  
+**TELÉFONO SOLICITADO PARA AUMENTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente ha solicitado un incremento en su límite de riesgo. Se abre caso para atender esta solicitud.`,
         src: ""
     },
     {
@@ -978,11 +913,10 @@ BREVE DESCRIPCIÓN: {horario}, el cliente ha solicitado un incremento en su lím
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: 
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:**  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -992,11 +926,10 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: 
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:**  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -1006,11 +939,10 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: ``,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Código promocional
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Código promocional  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
         src: "",
         amazon: {
             'Seleccionar incidencia': ['', ''],
@@ -1032,11 +964,10 @@ BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: 
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:**  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -1046,12 +977,11 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de emisión de credenciales para el servicio de Elige TV se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Credenciales de acceso Elige TV
-CORREO PARA ACCESO: {correo}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, el cliente no ha recibido las credenciales de acceso a Elige TV. Se comprueba que el correo electrónico utilizado para la contratación del servicio es distinto.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Credenciales de acceso Elige TV  
+**CORREO PARA ACCESO:** {correo}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, el cliente no ha recibido las credenciales de acceso a Elige TV. Se comprueba que el correo electrónico utilizado para la contratación del servicio es distinto.`,
         src: ""
     },
     {
@@ -1061,11 +991,10 @@ BREVE DESCRIPCIÓN: {horario}, el cliente no ha recibido las credenciales de acc
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud respecto a la facturación de su servicio se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia factura
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia factura  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, {detallarError}`,
         src: ""
     },
     {
@@ -1075,11 +1004,10 @@ BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud respecto al inconveniente en la realización de pedidos se encuentra en proceso de evaluación.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia pedidos
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia pedidos  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, {detallarError}`,
         src: ""
     },
     {
@@ -1089,11 +1017,10 @@ BREVE DESCRIPCIÓN: {horario}, {detallarError}`,
         pipeline: "Fibra",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que estamos gestionando la reprogramación con la instalación de su fibra.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia reprogramación
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se observa que el botón para asignar citas está disponible en instalación con acometida TESA. Se ha abierto un caso para su revisión.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia reprogramación  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se observa que el botón para asignar citas está disponible en instalación con acometida TESA. Se ha abierto un caso para su revisión.`,
         src: ""
     },
     {
@@ -1103,11 +1030,10 @@ BREVE DESCRIPCIÓN: {horario}, se observa que el botón para asignar citas está
         pipeline: "Soporte",
         estadoTicket: "Abierto/ Pendiente de cliente",
         correoPlantilla: `Confirmamos que hemos recibido su solicitud y estamos procediendo con la resolución del inconveniente que ha reportado al intentar acceder a su cuenta.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia acceso área cliente
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente reporta dificultades al registrarse en la página web oficial y al acceder al área de cliente. Las pruebas realizadas en la app y la web no han solucionado el problema. Se ha abierto caso para su revisión.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia acceso área cliente  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente reporta dificultades al registrarse en la página web oficial y al acceder al área de cliente. Las pruebas realizadas en la app y la web no han solucionado el problema. Se ha abierto caso para su revisión.`,
         src: ""
     },
     {
@@ -1117,11 +1043,10 @@ BREVE DESCRIPCIÓN: {horario}, cliente reporta dificultades al registrarse en la
         pipeline: "Coordinación SAC",
         estadoTicket: "Abierto",
         correoPlantilla: `Estamos gestionando la cancelación del servicio que ha indicado.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Cancelación de servicio
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, se ha detectado inconveniente en el momento de cancelar los servicios {especificarServicios} durante la llamada con el cliente. Se abre caso para concretar la solicitud.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Cancelación de servicio  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, se ha detectado inconveniente en el momento de cancelar los servicios {especificarServicios} durante la llamada con el cliente. Se abre caso para concretar la solicitud.`,
         src: ""
     },
     {
@@ -1131,11 +1056,10 @@ BREVE DESCRIPCIÓN: {horario}, se ha detectado inconveniente en el momento de ca
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `Plantilla: "Garantía"`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Incidencia Hardware
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, `,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia Hardware  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, `,
         src: ""
     },
     {
@@ -1145,7 +1069,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Envíos",
         estadoTicket: "Abierto",
         correoPlantilla: `Plantilla: "Garantía". En este caso, no son necesarias pruebas gráficas. Finetwork hace la recogida y actúa de intermediario`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  `,
         src: ""
     },
     {
@@ -1155,7 +1079,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Envíos",
         estadoTicket: "Abierto",
         correoPlantilla: `Genérico modificado`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  `,
         src: ""
     },
     {
@@ -1165,7 +1089,7 @@ BREVE DESCRIPCIÓN: {horario}, `,
         pipeline: "Soporte",
         estadoTicket: "Abierto",
         correoPlantilla: `Le informamos que su solicitud de recuperación de la línea móvil se encuentra en proceso.`,
-        nota: `CLIENTE: {cliente} - {dni}`,
+        nota: `**CLIENTE:** {cliente} - {dni}  `,
         src: ""
     },
     {
@@ -1174,16 +1098,14 @@ BREVE DESCRIPCIÓN: {horario}, `,
         subcategoria: "Duplicado SIM",
         pipeline: "Envíos",
         estadoTicket: "Abierto",
-        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)
-        
-Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
-        nota: `CLIENTE: {cliente} - {dni}
-SERVICIO AFECTADO: {afectado}
-MOTIVO DE REEMPLAZO: {incidencia}
-DIRECCIÓN DE ENVÍO: {nuevaDireccion}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)  
+<br>Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SERVICIO AFECTADO:** {afectado}  
+**MOTIVO DE REEMPLAZO:** {incidencia}  
+**DIRECCIÓN DE ENVÍO:** {nuevaDireccion}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
         src: "",
         observaciones: `Observación:
 - En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
@@ -1201,16 +1123,14 @@ BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         subcategoria: "Duplicado SIM",
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
-        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)
-        
-Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
-        nota: `CLIENTE: {cliente} - {dni}
-SERVICIO AFECTADO: {afectado}
-MOTIVO DE REEMPLAZO: {incidencia}
-DIRECCIÓN DE ENVÍO: {nuevaDireccion}
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
+        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)  
+<br>Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SERVICIO AFECTADO:** {afectado}  
+**MOTIVO DE REEMPLAZO:** {incidencia}  
+**DIRECCIÓN DE ENVÍO:** {nuevaDireccion}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
         src: "",
         observaciones: `Observación:
 - En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
@@ -1229,11 +1149,10 @@ BREVE DESCRIPCIÓN: {incidenciaSeleccionada}`,
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
         correoPlantilla: `A fin de dar trámite a su reclamación, solicitamos que responda este correo adjuntando la captura o el recibo de ambos cobros.`,
-        nota: `CLIENTE: {cliente} - {dni}
-SOLICITUD: Pago duplicado
-TELÉFONO DE CONTACTO: {contacto}
-
-BREVE DESCRIPCIÓN: {horario}, cliente ha informado sobre la aparición de cargos duplicados en sus extractos bancarios correspondientes a nuestros servicios. Se solicitan recibos al cliente para que puedan gestionar.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Pago duplicado  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br>**BREVE DESCRIPCIÓN:** {horario}, cliente ha informado sobre la aparición de cargos duplicados en sus extractos bancarios correspondientes a nuestros servicios. Se solicitan recibos al cliente para que puedan gestionar.`,
         src: ""
     },
     {

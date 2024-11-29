@@ -7,12 +7,9 @@ import BarraNavegacion from './componentes/BarraNavegacion/BarraNavegacion.js';
 function App() {
   return (
     <>  
-      <Router basename="/appIncidenciasFi/build/">
+      <Router basename="/appIncidenciasFi/build">
         <BarraNavegacion />
-        <Routes>
-          {/* <Route path="/" element={<Inicio />} /> */}
-          {/* <Route path="/calculadora" element={<Calculadora />} /> */}
-        </Routes>
+
       </Router>
     </>
 

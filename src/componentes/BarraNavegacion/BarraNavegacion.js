@@ -62,6 +62,7 @@ const BarraNavegacion = () => {
         <Route path="/" element={<Inicio />} />
         <Route path="/calculadora" element={<Calculadora />} />
         <Route path="/roaming" element={<Roaming />} />
+        <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
         {/* ... otras rutas ... */}
       </Routes>
       <section className="overlay" onClick={toggleSidebar}></section>

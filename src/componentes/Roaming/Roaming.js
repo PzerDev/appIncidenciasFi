@@ -3,7 +3,7 @@ import './Roaming.css';
 import RoamingDatos from '../../Datos/RoamingDatos';
 
 
-function MontoInput() {
+function Roaming() {
   const [searchState, setSearchState] = useState({
     paisGlobal: '',
     paisGlobalDestino: '',
@@ -23,6 +23,7 @@ function MontoInput() {
   const [unidadConsumo, setUnidadConsumo] = useState('€/mb');
   const [zonaPais, setZonaPais] = useState({ nZona: null, nPais: null });
   const [zonaPaisDestino, setZonaPaisDestino] = useState({ nZona: null, nPais: null });
+  // const [etiquetaZona, setEtiquetaZona] = useState('');
   const [tipoConsumo, setTipoConsumo] = useState('Datos');
   const [observaciones, setObservaciones] = useState('No');
 
@@ -189,7 +190,7 @@ function MontoInput() {
       [`showList${type === 'searchQuery' ? '' : '2'}`]: false,
     }));
     
-  
+    
     if (type === 'searchQuery2') {
       const llamadasOut = RoamingDatos["Llamadas, SMS"]?.[zonaPais.nZona]?.llamadasOut?.[zonaPaisDestino.nZona];
       
@@ -202,12 +203,15 @@ function MontoInput() {
         setUnidadConsumo(unidad);
         setMontoConsumo(precio);
         setEstablecimientoConsumo(establecimiento);
+        // setEtiquetaZona(zonaPaisDestino.nZona)
       };
       
       llamadasOut 
-        ? updateConsumptionData(llamadasOut)
-        : resetConsumptionData();
-      }
+      ? updateConsumptionData(llamadasOut)
+      : resetConsumptionData();
+    } else {
+      // setEtiquetaZona(zonaPais.nZona)
+    }
     
     
     
@@ -220,13 +224,16 @@ function MontoInput() {
         <div className="search-container-roaming">
           <div className='contenedor-pais'>
             {searchState.showLabels && <label htmlFor="incidenciaBusqueda">País seleccionado:</label>}
-            <input
-              type="text"
-              placeholder="Buscar pais..."
-              id="contenedorPaisRoaming"
-              value={searchState.searchQuery}
-              onChange={(e) => handleInputChange(e, 'searchQuery')}
-            />
+            <div className='contenedor-pais-etiqueta-zona'>
+              <input
+                type="text"
+                placeholder="Buscar pais..."
+                id="contenedorPaisRoaming"
+                value={searchState.searchQuery}
+                onChange={(e) => handleInputChange(e, 'searchQuery')}
+              />
+              {zonaPais.nZona && <div className='zona-pais-etiqueta'>{zonaPais.nZona}</div>}
+            </div>
             {searchState.showList && (
               <ul>
                 {searchState.searchResults.map(result => (
@@ -241,13 +248,16 @@ function MontoInput() {
           {searchState.inputPaisDestino === 1 && (
             <div className='contenedor-pais'>
               {searchState.showLabels && <label htmlFor="incidenciaBusqueda">Llamando a:</label>}
-              <input
-                type="text"
-                placeholder="Pais destino..."
-                id="contenedorPaisDestinoRoaming"
-                value={searchState.searchQuery2}
-                onChange={(e) => handleInputChange(e, 'searchQuery2')}
-              />
+              <div className='contenedor-pais-etiqueta-zona'>
+                <input
+                  type="text"
+                  placeholder="Pais destino..."
+                  id="contenedorPaisDestinoRoaming"
+                  value={searchState.searchQuery2}
+                  onChange={(e) => handleInputChange(e, 'searchQuery2')}
+                />
+                {zonaPaisDestino.nZona && <div className='zona-pais-etiqueta'>{zonaPaisDestino.nZona}</div>}
+              </div>
               {searchState.showList2 && (
                 <ul>
                   {searchState.searchResults2.map(result => (
@@ -262,7 +272,7 @@ function MontoInput() {
         </div>
       </div>
 
-      <Roaming
+      <RoamingCapa
         paisSeleccionado={searchState.paisGlobal}
         paisSeleccionadoDestino={searchState.paisGlobalDestino}
         inputPaisDestino={searchState}
@@ -369,7 +379,7 @@ const tipoConsumoGlobal = {
 };
 
 
-function Roaming({paisSeleccionado, paisSeleccionadoDestino, setInputPaisDestino,
+function RoamingCapa({paisSeleccionado, paisSeleccionadoDestino, setInputPaisDestino,
   setTipoConsumo, montoConsumo, tipoConsumo, setUnidadConsumo, establecimientoConsumo,
   unidadConsumo, setEstablecimientoConsumo, setMontoConsumo,
   observaciones, setObservaciones, inputPaisDestino}) {
@@ -381,7 +391,7 @@ function Roaming({paisSeleccionado, paisSeleccionadoDestino, setInputPaisDestino
 
 
   function observacionesContenedor(observaciones) {
-    return <prev id='observaciones'>{observaciones}</prev>;
+    return <prev id='observaciones' dangerouslySetInnerHTML={{ __html: observaciones }}></prev>;
   }
 
 
@@ -421,4 +431,4 @@ function Roaming({paisSeleccionado, paisSeleccionadoDestino, setInputPaisDestino
   );
 }
 
-export default MontoInput;
+export default Roaming;
