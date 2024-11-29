@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom'
 import Inicio from '../Inicio/Inicio';
 import Calculadora from '../Calculadora/Calculadora';
 import Roaming from '../Roaming/Roaming';
+import { useNavigate } from 'react-router-dom';
 
-const BarraNavegacion = () => {
+const BarraNavegacion = ({ onLogout }) => {
   const [items, setItems] = useState([
-    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '/' },
+    { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '' },
     { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
     { icon: 'bx bx-signal-5 icon', text: 'Roaming', pagina: '/roaming' },
     // ... Agrega más elementos aquí si quieres un valor inicial
@@ -16,6 +17,20 @@ const BarraNavegacion = () => {
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // 1. Limpiar cualquier dato de sesión (por ejemplo, authToken)
+    localStorage.removeItem('authToken'); // Si usas localStorage
+    // 2. Ejecutar el callback onLogout si es necesario
+    if (onLogout) {
+      onLogout();
+    }
+    // 3. Redirigir a la página de login o inicio
+    navigate('/', { replace: true });
   };
 
   return (
@@ -41,25 +56,25 @@ const BarraNavegacion = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="bottom-cotent">
-            <li className="list">
-              <a href="#" className="nav-link">
-                <i className="bx bx-cog icon"></i>
-                <span className="link">Ajustes</span>
-              </a>
-            </li>
-            <li className="list">
-              <a href="#" className="nav-link">
-                <i className="bx bx-log-out icon"></i>
-                <span className="link">Cerrar Sesión</span>
-              </a>
-            </li>
+            <div className="bottom-cotent">
+              {/* <li className="list">
+                <a href="#" className="nav-link">
+                  <i className="bx bx-cog icon"></i>
+                  <span className="link">Ajustes</span>
+                </a>
+              </li> */}
+              <li className="list">
+                <button className="nav-link" onClick={handleLogout}>
+                  <i className="bx bx-log-out icon"></i>
+                  <span className="link">Cerrar sesión</span>
+                </button>
+              </li>
+            </div>
           </div>
         </div>
       </nav>
       <Routes>
-        <Route path="/" element={<Inicio />} />
+        <Route path="" element={<Inicio />} />
         <Route path="/calculadora" element={<Calculadora />} />
         <Route path="/roaming" element={<Roaming />} />
         <Route path="*" element={<h1>404 - Página no encontrada</h1>} />

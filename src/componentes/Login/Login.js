@@ -20,6 +20,7 @@ const Login = ({ onLogin, setUsername, setPassword }) => {
           <input
             type="text"
             id="username"
+            placeholder='nombre de usuario'
             // value={usernameinput}
             onChange={(e) => setUsername(e.target.value)} // Actualiza el estado del username
           
@@ -30,12 +31,13 @@ const Login = ({ onLogin, setUsername, setPassword }) => {
           <input
             type="password"
             id="password"
+            placeholder='*******'
             // value={passwordinput}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit">
-          Iniciar Sesión
+          Iniciar sesión
         </button>
       </form>
     </div>

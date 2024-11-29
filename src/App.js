@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BarraNavegacion from './componentes/BarraNavegacion/BarraNavegacion.js';
 // import DatosContacto from './componentes/DatosContacto/DatosContacto.js';
 
-function App() {
+function App({ onLogout }) {
+
   return (
     <>  
       <Router basename="/appIncidenciasFi/build">
-        <BarraNavegacion />
+        <BarraNavegacion onLogout={onLogout} />
 
       </Router>
     </>

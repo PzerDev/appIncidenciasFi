@@ -106,3 +106,9 @@ nav.open ~ .overlay {
   pointer-events: auto;
 }
 
+.bottom-cotent button.nav-link {
+  background: none;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}

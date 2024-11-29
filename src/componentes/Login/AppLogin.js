@@ -31,11 +31,18 @@ const AppLogin = () => {
       }, 2000); // Retraso de 2 segundos
     };
 
+    const handleLogout = () => {
+      // Aquí actualizas el estado de autenticación a 'false' cuando el usuario cierre sesión
+      setIsAuthenticated(false);
+      // También puedes limpiar cualquier dato de sesión aquí si es necesario, por ejemplo:
+      localStorage.removeItem('authToken');
+    };
+
   // Si está autenticado, muestra el contenido principal; si no, muestra el inicio de sesión.
   return (
     <div>
       {isAuthenticated ? (
-        <App />
+        <App onLogout={handleLogout}/>
       ) : isLoading ? (
         <div className="loader-container">
           <div className="loader"></div>
