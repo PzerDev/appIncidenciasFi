@@ -4,7 +4,7 @@
     max-width: 800px;
     height: auto;
     border-radius: 30px;
-    padding: 0px 20px;
+    padding: 0px 10px;
     color: #333;
     /* box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px; */
 }
@@ -65,12 +65,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .contenedor-impuesto-principal {
     display: flex;
-    padding: 40px;
+    padding: 30px;
     border-radius: 30px;
     /* border: 1px solid #333; */
     margin-top: 30px;
     background: #000;
     box-shadow: rgba(16, 7, 44, 0.3) 0px 13px 15px 0px;
+    gap: 30px;
+    justify-content: center;
 }
 .contenedor-impuesto {
     display: flex;
@@ -80,7 +82,7 @@ input[type=number]::-webkit-outer-spin-button {
     /* background: #000; */
     color: #fff;
     text-align: center;
-    width: 50%;
+    width: auto;
     justify-content: center;
     align-items: center;
     border: 2px solid #fff;
@@ -132,13 +134,16 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2.2rem;
 }
 .contenedor-base-imponible {
-    padding-left: 40px;
-    width: 70%;
+    /* padding-left: 40px; */
+    width: 100%;
     color: #fff;
     /* display: flex;
     flex-wrap: wrap; */
     align-content: center;
     /* align-items: center; */
+}
+.contenedor-base-imponible div:first-child {
+    margin-top: 0px;
 }
 .contenedor-base-imponible  a {
     /* display: block; */
@@ -164,5 +169,60 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .contenedor-base-imponible .margin-top {
-    margin-top: 30px;
+    margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 800px) {
+
+    .monto-impuesto {
+        flex-wrap: wrap;
+    }
+    .monto-impuesto div {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 680px) {
+
+    .contenedor-impuesto-principal {
+        flex-wrap: wrap;
+    }
+    .contenedor-base-imponible {
+        text-align: center;
+    }
+    .contenedor-base-imponible .margin-top:last-child {
+        margin-bottom: 20px;
+    }
+    
+
+}
+
+@media only screen and (max-width: 500px) {
+
+    .contenedor-impuesto .impuesto-total.entera {
+        font-size: 4rem;
+    }
+    .contenedor-impuesto .impuesto-total.decimal {
+        font-size: 1.4rem;
+    }
+    .contenedor-impuesto div .impuesto-total {
+        font-size: 1.6rem;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .contenedor-impuesto .impuesto-total.entera {
+        font-size: 3rem;
+    }
+    .contenedor-impuesto .impuesto-total.decimal {
+        font-size: 1.2rem;
+    }
+    .contenedor-impuesto div .impuesto-total {
+        font-size: 1.4rem;
+    }
+
 }

@@ -86,13 +86,13 @@ function MontoInput({ monto, setMonto }) {
 
   return (
     <div className='monto-impuesto'>
-      <div>
+      <div className='contenedor-label-input-calculadora'>
         <label>Monto tarifa</label>
         <input type="number" placeholder="ingresar" 
         onChange={handleMontoChange} 
         value={montoTarifa} />
       </div>
-      <div>
+      <div className='contenedor-label-input-calculadora'>
         <label>Activo desde</label>
         <input id="diaInicio" type="number" placeholder="día"
         onInput={handleProporcionalChange} 
@@ -105,7 +105,7 @@ function MontoInput({ monto, setMonto }) {
           }
         }}/>
       </div>
-      <div>
+      <div className='contenedor-label-input-calculadora'>
         <label>Mes</label>
         <select value={mes} onChange={handleMesChange}>
           {Array.from({ length: 12 }, (_, index) => index + 1).map(mes => (
@@ -115,7 +115,7 @@ function MontoInput({ monto, setMonto }) {
           ))}
         </select>
       </div>
-      <div>
+      <div className='contenedor-label-input-calculadora'>
         <label>Descuento</label>
         <select id='descuento' value={descuento} onChange={handleDescuentoChange}>
           {Object.entries(descuentoS).map(([descuento, valor]) => (          
