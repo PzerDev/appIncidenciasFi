@@ -42,7 +42,7 @@ const AppLogin = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <App onLogout={handleLogout}/>
+        <App onLogout={handleLogout} estiloApp={"estilo-app"}/>
       ) : isLoading ? (
         <div className="loader-container">
           <div className="loader"></div>
@@ -53,6 +53,7 @@ const AppLogin = () => {
           onLogin={handleLogin} 
           setUsername={setUsername} 
           setPassword={setPassword} 
+          estiloLogin={"estilo-login"}
         />
       )}
     </div>

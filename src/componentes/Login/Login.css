@@ -26,7 +26,7 @@
     font-size: 1.2rem;
     border-radius: 30px;
     height: 60px;
-    width: 400px;
+    /* width: 400px; */
     margin-bottom: 30px;
     margin-top: 10px;
     border: none;
@@ -63,4 +63,65 @@
 
 .contenedor-login form button:hover {
     background-color: #5309db;
+}
+
+
+@media only screen and (max-width: 620px) {
+    .estilo-login {
+        height: 100vh;
+        background-color: #000000;
+        border-radius: 0px
+    }
+    .contenedor-login {
+        max-width: 620px;
+        margin: 0;
+        margin-top: -50px;
+        margin-bottom: -50px;
+        padding-top: 120px;
+    }
+    .contenedor-input-login, #username, #password  {
+        max-width: 400px;
+    }
+
+
+}
+
+@media only screen and (max-width: 560px) {
+    .contenedor-roaming .impuesto-total.entera {
+        font-size: 3rem;
+    }
+    .contenedor-roaming .impuesto-total {
+        font-size: 1rem;
+    }
+    .contenedor-roaming div .impuesto-total.decimal {
+        font-size: 1.4rem;
+    }
+
+
+}
+
+@media only screen and (max-width: 480px) {
+    .contenedor-roaming-principal .contenedor-roaming {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .contenedor-roaming .impuesto-total.entera {
+        text-align: center;
+    }
+
+
+}
+
+@media only screen and (max-width: 420px) {
+    .contenedor-login h1 {
+        font-size: 4rem;
+    }
+    .contenedor-login h2 {
+        font-size: 1.2rem;
+    }
+    .contenedor-login form button {
+        font-size: 1rem;
+    }
+
+
 }

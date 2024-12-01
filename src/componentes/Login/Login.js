@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'
 
-const Login = ({ onLogin, setUsername, setPassword }) => {
+const Login = ({ onLogin, setUsername, setPassword, estiloLogin }) => {
 //   const [usernameinput, setUsernameInput] = useState('');
 //   const [passwordinput, setPasswordInput] = useState('');
 
@@ -11,7 +11,7 @@ const Login = ({ onLogin, setUsername, setPassword }) => {
 //   };
 
   return (
-    <div className="contenedor-login">
+    <div className={`contenedor-login ${estiloLogin}`}>
       <h1>appFi</h1>
       <h2>Inicio de Sesión</h2>
       <form onSubmit={onLogin}>

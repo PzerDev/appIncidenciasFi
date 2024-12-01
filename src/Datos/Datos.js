@@ -112,6 +112,7 @@ let datosTickets = [
 **MODELO ROUTER:** {router}  
 **LUCES ENCENDIDAS:**  
 {luces}  
+*(&ast;) Luces intermitentes*  
 **TELÉFONO DE CONTACTO:** {contacto}  
 **HORARIO DISPONIBILIDAD:** {inicio} - {fin} horas  
 <br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
@@ -646,16 +647,16 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 **SOLICITUD:** Lentitud en datos  
 **SERVICIO AFECTADO:** {afectado}  
 **TELÉFONO DE CONTACTO:** {contacto}  
-<br>**COMPROBACIONES:**  
--- Línea activa  
--- Dispone de GB  
--- Velocidad de últimas conéxiones  
+<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Dispone de GB  
+- Velocidad de últimas conéxiones  
     {velocidadConexionesCDR}  
--- Itinerancia activa  
-<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
--- Configiración APN (A las - horas)  
--- Búsqueda manual de redes (A las - horas)  
--- Tipo de red preferida (A las - horas)  
+- Itinerancia activa  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+- Configiración APN (A las - horas)  
+- Búsqueda manual de redes (A las - horas)  
+- Tipo de red preferida (A las - horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
 `,
@@ -678,19 +679,19 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 **SOLICITUD:** Incidencia datos (Sin conexión)  
 **SERVICIO AFECTADO:** {afectado}  
 **TELÉFONO DE CONTACTO:** {contacto}  
-<br>**COMPROBACIONES:**  
--- Línea activa  
--- Datos activos en sistema y en dispositivo móvil  
--- Itinerancia activa  
--- Comprobar incidencias en https://app.hubspot.com/contacts/7545391/record/0-1/30366051  
--- Cobertura  
+<br><u>**COMPROBACIONES:**</u>  
+- Línea activa desde  
+- Datos activos en sistema y en dispositivo móvil  
+- Itinerancia activa  
+- Se comprueban incidencias en https://app.hubspot.com/contacts/7545391/record/0-1/30366051  
+- Cobertura  
     5G:  
     4G:  
     3g:  
-<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
--- Configiración APN (A las - horas)  
--- Búsqueda manual de redes (A las - horas)  
--- Tipo de red preferida (A las - horas)  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+- Configiración APN (A las - horas)  
+- Búsqueda manual de redes (A las - horas)  
+- Tipo de red preferida (A las - horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
 `,
@@ -713,19 +714,19 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
         voz: {
             "Seleccionar incidencia": ['', ''],
             "No emite a determinados números": [
-`<br>**COMPROBACIONES:**  
--- Línea activa  
--- Los números a los que intenta emitir no cumplen lo siguiente:  
-  &nbsp;&nbsp;&nbsp;- Numeración extranjera  
-  &nbsp;&nbsp;&nbsp;- Numeración de tarificación especial  
-  &nbsp;&nbsp;&nbsp;- Numeración 118xx  
-  &nbsp;&nbsp;&nbsp;- Numeración premium  
--- Limite de riesgo  
--- No ha superado los minutos de su tarifa  
--- Al itentar llamar no muestra al receptor ocupado  
--- El número al que intenta llamar existe  
-<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
--- Se reportan 3 pruebas de llamada fallida a los siguientes números:  
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Los números a los que intenta emitir no cumplen lo siguiente:  
+  &nbsp;&nbsp;- Numeración extranjera  
+  &nbsp;&nbsp;- Numeración de tarificación especial  
+  &nbsp;&nbsp;- Numeración 118xx  
+  &nbsp;&nbsp;- Numeración premium  
+- Limite de riesgo  
+- No ha superado los minutos de su tarifa  
+- Al itentar llamar no muestra al receptor ocupado  
+- El número al que intenta llamar existe  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+Se reportan 3 pruebas de llamada fallida a los siguientes números:  
   &nbsp;&nbsp;&nbsp;- {numero1}  
   &nbsp;&nbsp;&nbsp;- {numero2}  
   &nbsp;&nbsp;&nbsp;- {numero3}  
@@ -748,20 +749,20 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
             "No emite a ningún número en España": [
 
-`<br>**COMPROBACIONES:**  
--- Línea activa  
--- No puede emitir a todos los números || No puede emitir a determinados números  
--- Problema presentado desde, {especificarFecha}  
--- Consumos no pertenecientes al buzón  
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- No puede emitir a todos los números || No puede emitir a determinados números  
+- Problema presentado desde, {especificarFecha}  
+- Consumos no pertenecientes al buzón  
   &nbsp;&nbsp;&nbsp;- {llamada1}  
   &nbsp;&nbsp;&nbsp;- {llamada2}  
--- Se comprueba que no hay incidencias  
--- Cobertura  
+- Se comprueba que no hay incidencias  
+- Cobertura  
   &nbsp;&nbsp;&nbsp;5G:  
   &nbsp;&nbsp;&nbsp;4G:  
   &nbsp;&nbsp;&nbsp;3g:  
-<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
--- Búsqueda manual de redes (A las - horas)  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+&nbsp;- Búsqueda manual de redes (A las - horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
 
@@ -781,16 +782,16 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
 
             "No recibe de ningún número": [
-`<br>**COMPROBACIONES:**  
--- Línea activa  
--- Problema presentado desde, {especificarFecha}  
--- Zona reportada: {especificarZona}  
--- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos  
--- Se comprueba que no arroja locución "el número no se encuentra disponible"  
--- Cobertura presente en dispositivo  
--- Puede realizar llamadas  
-<br>**PRUEBAS REALIZADAS (SIN ÉXITO):**  
--- Búsqueda manual de redes (A las - horas)  
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Problema presentado desde, {especificarFecha}  
+- Zona reportada: {especificarZona}  
+- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos  
+- Se comprueba que no arroja locución "el número no se encuentra disponible"  
+- Cobertura presente en dispositivo  
+- Puede realizar llamadas  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+&nbsp;- Búsqueda manual de redes (A las - horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
 
