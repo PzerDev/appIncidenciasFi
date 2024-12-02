@@ -1,5 +1,5 @@
 #datosContacto {
-    width: 800px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 0 20px 0 0;
 }
@@ -122,4 +122,118 @@
     width: 98%;
     display: block;
     white-space: pre-wrap;
+}
+
+@media only screen and (max-width: 800px) {
+
+    .monto-impuesto {
+        flex-wrap: wrap;
+    }
+    .monto-impuesto div {
+        width: 50%;
+        padding-top: 0px;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+
+    .contenedor-input-datos-cliente input {
+        width: 49%;
+        margin-left: 0px;
+    }
+    .contenedor-input-datos-cliente {
+        margin-left: 20px;
+        justify-content: space-evenly;
+    }
+    .contenedor-input-datos-cliente input[placeholder="Acometida"]{
+        display: none;
+    }
+    .contenedor-input-datos-cliente input[placeholder="Nueva dirección"] {
+        width: 100%;
+    }
+    .contenedor-input-datos-cliente select.hora-seleccionada {
+        width: 23%;
+        height: 55px;
+        margin-left: 0;
+    }
+    .tecnologia-router:first-child, .tecnologia-router {
+        width: 49%;
+        margin-left: 0px;
+    }
+    .contenedor-datos-router {
+        margin-left: 20px;
+    }
+    #contenedorCorreo .pre {
+        width: 320px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #notaCorreo {
+        overflow-x: auto;
+        scrollbar-width: none;
+        /* width: 100%; */
+    }
+    #notaCorreo {
+        overflow-x: auto;
+        scrollbar-width: none;
+        /* width: 100%; */
+    }
+    #contenedorNota, #contenedorCorreo {
+        min-width: 350px;
+        flex-shrink: 0;
+    }
+
+    #contenedorNota button, #contenedorCorreo button {
+        position: sticky;
+        margin-left: -60px;
+    }
+
+}
+
+
+@media only screen and (max-width: 540px) {
+
+    .contenedor-input-datos-cliente input {
+        width: 48%;
+        margin-left: 0px;
+    }
+    .contenedor-input-datos-cliente {
+        margin-left: 20px;
+    }
+    .tecnologia-router:first-child, .tecnologia-router {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+
+}
+
+@media only screen and (max-width: 460px) {
+
+    .contenedor-input-datos-cliente input {
+        width: 100%;
+    }
+
+    .contenedor-input-datos-cliente select.hora-seleccionada {
+        width: 48%;
+        /* height: 55px;
+        margin-left: 0; */
+    }
+
+}
+
+@media only screen and (max-width: 420px) {
+
+    div#markdownNota p, #markdownCorreo p,
+    div#markdownNota li, #markdownCorreo li,
+    div#markdownNota strong, #markdownCorreo strong {
+        font-size: 12px;
+    }
+    
+    #contenedorNota, #contenedorCorreo {
+        min-width: 300px;
+        flex-shrink: 0;
+    }
 }

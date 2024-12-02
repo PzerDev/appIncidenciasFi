@@ -22,3 +22,63 @@
     margin-top: 10px;
     font-weight: bold;
 }
+
+
+@media only screen and (max-width: 800px) {
+
+    #datosTickets {
+        width: auto;
+    }
+
+    #datosTickets div {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    #datosTickets div .contenedorCatTicket {
+        display: flex;
+        flex-wrap: wrap;
+        /* min-width: 100px; */
+        width: 26%;
+        flex-shrink: 0;
+    }
+
+    #datosTickets div .contenedorCatTicket label {
+        display: none;
+    }
+    #datosTickets div .contenedorCatTicket input {
+        margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+
+    #datosTickets div .contenedorCatTicket {
+        width: 32%;
+    }
+    .contenedor-input-datos-cliente, .contenedor-datos-router {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .contenedor-label-input-datos-cliente:first-child .contenedor-input-datos-cliente input:first-child {
+        width: 100%;
+        /* margin-left: 0px; */
+    }
+     
+}
+
+@media only screen and (max-width: 540px) {
+
+    #datosTickets div .contenedorCatTicket {
+        width: 40%;
+    }
+    .contenedor-input-datos-cliente, .contenedor-datos-router {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .contenedor-label-input-datos-cliente:first-child .contenedor-input-datos-cliente input:first-child {
+        width: 100%;
+        /* margin-left: 0px; */
+    }
+     
+}
