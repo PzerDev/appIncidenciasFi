@@ -6,6 +6,10 @@ let InfoAcceso = [
     {
         username: "rodsibethmontilla",
         password: "rodsibethmontilla@appFi.com"
+    },
+    {
+        username: "appFi",
+        password: "appFi.com"
     }
 ]
 
