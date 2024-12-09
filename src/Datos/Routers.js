@@ -4,8 +4,8 @@ let Routers = [
         tecnologia: "Router FTTH",
         router: "ONT Nokia G010G-P y Router Sercomm W1-H500s",
         luces: `Router  
-1 - 2 - 3 - 4 - 5 -  
-<br>ONT Nokia
+&nbsp;- POWER - INTERNET - WIFI  
+<br>ONT Nokia  
 &nbsp;- Power - Alarm - PON - LAN`,
         src: ""
     },

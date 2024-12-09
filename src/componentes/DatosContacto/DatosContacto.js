@@ -519,9 +519,78 @@ function DatosContacto({ ticket }) {
           <label>Datos de Cliente:</label>
         </div>
         <div className='contenedor-input-datos-cliente'>
-          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre" />
-          <input type="text" value={documento} onChange={(e) => setDocumento(e.target.value)} placeholder="Documento de Identidad" />
-          <input type="text" value={contacto} onChange={(e) => setContacto(e.target.value)} placeholder="Número de contacto" />
+          <input type="text" value={nombre} 
+                 onChange={(e) => {setNombre(e.target.value)
+                  const valor = e.target.value;
+
+                  // Eliminar caracteres no permitidos (números y caracteres especiales)
+                  const textoLimpio = valor
+                    .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '') // Permitir solo letras y espacios
+                    .replace(/\s+/g, ' '); // Reemplazar múltiples espacios por uno solo
+              
+                  // No permitir espacio como primer carácter
+                  if (textoLimpio.startsWith(' ')) {
+                    setNombre('');
+                    return;
+                  }
+              
+                  setNombre(textoLimpio); // Actualizar el estado con el texto limpio
+                }}
+                onBlur={() => {
+                  // Eliminar espacios al inicio y al final al perder el foco
+                  setNombre((prevNombre) => prevNombre.trim());
+                }}
+                onPaste={(e) => {
+                  e.preventDefault(); // Prevenir el pegado directo
+                  const textoPegado = e.clipboardData.getData('text').trim(); // Limpiar espacios al inicio y al final
+                  const textoFiltrado = textoPegado
+                    .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '') // Permitir solo letras y espacios
+                    .replace(/\s+/g, ' '); // Reemplazar múltiples espacios por uno solo
+              
+                  setNombre((prevNombre) => `${prevNombre} ${textoFiltrado}`.trim().replace(/\s+/g, ' ')); // Limpiar y actualizar
+                }}
+                placeholder="Nombre" />
+
+
+          <input type="text" value={documento} 
+                onChange={(e) => {
+                  // Eliminar espacios al inicio, al final y entre caracteres
+                  const valorLimpio = e.target.value.replace(/\s+/g, '').trim();
+              
+                  setDocumento(valorLimpio); // Actualizar el estado con el valor limpio
+                }}
+                onBlur={() => {
+                  // Asegurar eliminación de espacios residuales al perder el foco
+                  setDocumento((prevDocumento) => prevDocumento.trim());
+                }}
+                onPaste={(e) => {
+                  e.preventDefault(); // Prevenir el pegado directo
+                  const textoPegado = e.clipboardData.getData('text').trim(); // Limpiar espacios al inicio y al final
+                  const textoFiltrado = textoPegado.replace(/\s+/g, ''); // Quitar espacios entre caracteres
+                  setDocumento((prevDocumento) => `${prevDocumento}${textoFiltrado}`); // Actualizar con el texto limpio
+                }}
+          placeholder="Documento de Identidad" />
+          
+          
+          
+          <input type="text" value={contacto} 
+                 onChange={(e) => {
+                  let valor = e.target.value;
+                  // Eliminar espacios
+                  valor = valor.replace(/\s/g, '');
+              
+                  // Si el número comienza con +34 o 34, eliminarlo
+                  if (valor.startsWith('+34')) {
+                    valor = valor.slice(3); // Eliminar los primeros 3 caracteres
+                  } else if (valor.startsWith('34')) {
+                    valor = valor.slice(2); // Eliminar los primeros 2 caracteres
+                  }
+              
+                  // Permitir solo números y limitar a 9 caracteres
+                  if (/^\d*$/.test(valor) && valor.length <= 9) {
+                    setContacto(valor); // Actualizar el estado solo con el número nacional
+                  }}
+                 } placeholder="Número de contacto" />
         </div>
       </div>
 

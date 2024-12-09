@@ -88,3 +88,11 @@ input:focus {
 #incidenciaBusqueda {
   margin-top: 10px;
 }
+
+
+@media only screen and (max-width: 800px) {
+
+  .search-container ul {
+    margin-right: 20px;
+  }
+}
