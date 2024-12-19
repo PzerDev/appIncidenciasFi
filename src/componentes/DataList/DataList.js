@@ -3,6 +3,7 @@ import './DataList.css'; // Importamos el archivo CSS
 import datosTickets from '../../Datos/Datos.js'; // Importamos los datos de tickets
 import DatosTickets from '../DatosTickets/DatosTickets.js';
 import DatosApn from '../DatosApn/DatosApn.js';
+import AppFibra from '../AppFibra/AppFibra.js';
 
 function DataList() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,7 +79,10 @@ function DataList() {
         )}
       </div>
 
-      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : <DatosTickets motivoSeleccionado={searchQuery} />)}
+      {((searchQuery === 'Móvil - Configuración (APN, Búsqueda manual de redes, etc.), que no se pueda hacer en llamada') ? <DatosApn /> : 
+      (
+        searchQuery === 'Avería / Incidencia Fibra - Departamento Fibra' ? <AppFibra />  :  <DatosTickets motivoSeleccionado={searchQuery} />)
+      )}
 
     </>
   );

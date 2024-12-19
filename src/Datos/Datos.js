@@ -108,14 +108,15 @@ let datosTickets = [
         correoPlantilla: `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.  
 <br>Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`,
         nota: `**CLIENTE:** {cliente} - {dni}  
-**EXTERNAL ID:** {idorden}  
+**ID ORDEN:** {idorden}
+**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}
 **MODELO ROUTER:** {router}  
 **LUCES ENCENDIDAS:**  
 {luces}  
 *(&ast;) Luces intermitentes*  
 **TELÉFONO DE CONTACTO:** {contacto}  
 **HORARIO DISPONIBILIDAD:** {inicio} - {fin} horas  
-<br>**BREVE DESCRIPCIÓN:** {incidenciaSeleccionada}`,
+`,
         src: "",
         observaciones: {
             cableRoto: `Observaciones:
@@ -145,33 +146,33 @@ DESCRIPCIÓN PRUEBAS: .`
         },
         averia: {
             'Seleccionar avería': ['', ''],
-            'Sin servicio': ['{horario}, cliente reporta interrupción en el servicio de fibra. Se ha abierto un caso para su gestión.', 
+            'Sin servicio': ['{horario}, cliente reporta interrupción en el servicio de fibra. Se ha abierto un caso para su gestión.  ', 
                              `Gracias por informarnos sobre la incidencia con su servicio de fibra. Entendemos la importancia de contar con una conexión estable y estamos trabajando para resolver este inconveniente lo antes posible.  
 <br>Nuestro equipo técnico se pondrá en contacto contigo a la mayor brevedad.`
             ],
-            'Velocidad': ['{horario}, cliente reporta lentitud en la conexión de fibra. Se ha abierto un caso para evaluar la causa y optimizar el servicio.', 
+            'Velocidad': ['{horario}, cliente reporta lentitud en la conexión de fibra. Se ha abierto un caso para evaluar la causa y optimizar el servicio.  ', 
                           `Gracias por informarnos sobre la incidencia con su servicio de fibra. Estamos investigando las causas de la lentitud en tu conexión.  
 <br>Te mantendremos informado sobre el progreso y las posibles soluciones.`
             ],
-            'Cortes': ['{horario}, cliente reporta cortes intermitentes en el servicio de fibra. Se ha abierto un caso para identificar y solucionar la falla.',
+            'Cortes': ['{horario}, cliente reporta cortes intermitentes en el servicio de fibra. Se ha abierto un caso para identificar y solucionar la falla.  ',
                        `Gracias por informarnos sobre los cortes en tu servicio de fibra. Estamos trabajando para estabilizar tu conexión y evitar futuras interrupciones.  
 <br>Te mantendremos al tanto de cualquier novedad.`
             ],
-            'Unir / Separar redes': ['{horario}, cliente solicita la unión/separación de redes WIFI. Se ha abierto un caso para realizar el cambio solicitado.',
+            'Unir / Separar redes': ['{horario}, cliente solicita la unión/separación de redes WIFI. Se ha abierto un caso para realizar el cambio solicitado.  ',
                                      'Gracias por tu solicitud para modificar la configuración de tu red. Hemos registrado tu petición y nuestro equipo técnico se pondrá en contacto contigo para coordinar los detalles y realizar el cambio lo antes posible.'
             ],
-            'Router / Cable roto': ['{horario}, cliente reporta un posible daño en el router o cable de fibra. Se ha abierto un caso para verificar y reemplazar el equipo si es necesario.',
+            'Router / Cable roto': ['{horario}, cliente reporta un posible daño en el router o cable de fibra. Se ha abierto un caso para verificar y reemplazar el equipo si es necesario.  ',
                                     'Para poder atender tu solicitud de manera eficiente, es necesario que respondas este correo enviando una foto del dispositivo donde se evidencie el daño. Esto nos ayudará a diagnosticar la falla y programar una visita técnica si es necesario.'
             ],
-            'Masivo': ['{horario}, se ha detectado una incidencia masiva en el servicio de fibra en la zona. Se ha abierto un caso para su gestión.',
+            'Masivo': ['{horario}, se ha detectado una incidencia masiva en el servicio de fibra en la zona. Se ha abierto un caso para su gestión.  ',
                        'Plantilla: Masivo'
             ],
-            'ONT Alarmada': [`{horario}, se ha detectado que el cliente está sin servicio de fibra y que la ONT está alarmada. Se ha abierto un caso para identificar y solucionar la falla.`,
+            'ONT Alarmada': [`{horario}, se ha detectado que el cliente está sin servicio de fibra y que la ONT está alarmada. Se ha abierto un caso para identificar y solucionar la falla.  `,
 
-`***${dia}/${mes} - Se ha escalado avería por API***  
-<br>**MOTIVO DE LA INCIDENCIA:** ONT ALARMADA  
-**EXTERNAL ID:** {idorden}  
-**COMPROBACIONES REALIZADAS:** Ont alarmada  
+`**${dia}/${mes} - Escalado por API**  
+<br>**MOTIVO DE LA INCIDENCIA:** ONT Alarmada  
+**ID:** {idorden}  
+**COMPROBACIONES REALIZADAS:** ONT Alarmada  
 **HORARIO DISPONIBILIDAD:** {inicio} - {fin} horas  
 **TELÉFONO DE CONTACTO:** {contacto}  `
             ]
@@ -1175,6 +1176,20 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
     //     nota: ``,
     //     src: ""
     // },
+
+
+
+
+    {
+        motivo: "Avería / Incidencia Fibra - Departamento Fibra",
+        categoria: "Fibra",
+        subcategoria: "Avería / Incidencia",
+        pipeline: "Fibra",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Seleccionar`,
+        nota: `No aplica para este caso`,
+        src: ""
+    }
 
 ]
 

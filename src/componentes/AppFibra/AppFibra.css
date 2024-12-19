@@ -1,0 +1,77 @@
+#notasContenedor {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.contenedorNotasFibra {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+#datosNotasFibra .contenedorNotasFibra .contenedorTarifaFibra,
+#datosNotasFibra .contenedorNotasFibra .contenedorRouterMotivo,
+#datosNotasFibra .contenedorNotasFibra .contenedorContactoHoras {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#datosNotasFibra .contenedorNotasFibra .contenedorTarifaFibra select {
+    width: 80%;
+}
+#datosNotasFibra .contenedorNotasFibra .contenedorRouterMotivo select {
+    width: 50%;
+}
+
+.contenedorNotaEscalado {
+    width: 380px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.contenedorNotaEscalado .pre #markdownNotaHistorica ul,
+.contenedorNotaEscalado .pre #markdownNotaEscalado ul {
+    white-space: normal;
+    padding-left: 20px;
+}
+.contenedorNotaEscalado label {
+    display: block;
+    padding: 10px 20px;
+}
+.contenedorNotaEscalado button {
+    margin-left: -60px;
+    position: sticky;
+
+
+    background: none;
+    border: 1px solid #0000;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+}
+.contenedorNotaEscalado .pre.notaHistorica,
+.contenedorNotaEscalado .pre.notaEscalado,
+.contenedorNotaEscalado .pre.notaReclamoApi,
+.contenedorNotaEscalado .pre.notaReclamoOutlook,
+.contenedorNotaEscalado .pre.notaReclamoCoord  {
+    /* margin-left: 20px; */
+    overflow-y: auto;
+    white-space: pre-wrap;
+    width: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    height: 300px;
+    resize: none;
+    border: 1px solid transparent;
+    color: #313131;
+    background: #e9e9e9;
+    scrollbar-width: none;
+    user-select: text;
+    -webkit-user-select: text;
+}

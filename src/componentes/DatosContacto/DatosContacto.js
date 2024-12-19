@@ -49,6 +49,32 @@ const MiMarkDown = ({ markdownText, id }) => {
 };
 
 
+const HoraInicioFin = ({ horaInicio, horaFin, handleSelectHoraInicioChange, handleSelectHoraFinChange }) => (
+  <>
+      <select className='hora-seleccionada' value={horaInicio} onChange={handleSelectHoraInicioChange}>
+        <option key='Desde' value='Desde'>
+          Desde
+        </option>
+        {horasSeleccionar.map((horaSel) => (
+          <option key={horaSel} value={horaSel}>
+            {horaSel}
+          </option>
+        ))}
+      </select>
+      <select className='hora-seleccionada' value={horaFin} onChange={handleSelectHoraFinChange}>
+        <option key='Hasta' value='Hasta'>
+          Hasta
+        </option>
+        {horasSeleccionar.map((horaSel) => (
+          <option key={horaSel} value={horaSel}>
+            {horaSel}
+          </option>
+        ))}
+      </select>
+  </>
+)
+
+
 
 
 function DatosContacto({ ticket }) {
@@ -57,6 +83,7 @@ function DatosContacto({ ticket }) {
   const [contacto, setContacto] = useState('');
   const [correo, setCorreo] = useState('');
 
+  const [idFibra, setIdFibra] = useState('');
   const [idExternal, setExternalId] = useState('');
 
   // const [acometida, setAcometida] = useState('');
@@ -112,6 +139,14 @@ function DatosContacto({ ticket }) {
     // console.log(acometidaFuncion());
 
   };
+
+  const handleIdFibraChange = (event) => {
+    setIdFibra(event.target.value);
+    // console.log(acometidaFuncion());
+
+  };
+
+  
 
   const handleSelectAveriaChange = (event) => {
     setIncidencia(event.target.value);
@@ -203,10 +238,14 @@ function DatosContacto({ ticket }) {
 
   if (ticket.nota) {
 
+    const idEnlace = idFibra
+                          ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
+                          : idExternal;
+
     notaEdit = ticket.nota.replace("{cliente}", nombre)
       .replace("{dni}", documento)
       .replace("{contacto}", contacto)
-      .replace("{idorden}", idExternal)
+      .replace("{idorden}", idEnlace)
       .replace("{inicio}", horaInicio)
       .replace("{fin}", horaFin)
       .replace("{router}", routerFiltrado)
@@ -276,16 +315,16 @@ function DatosContacto({ ticket }) {
         <div className='pre'>
           <MiMarkDown markdownText={notaEdit} id="markdownNota"/>
         </div>
-        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
         <CopyToClipboardHTML targetId="markdownNota" />
+        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
       </div>
 
       <div id='contenedorCorreo'>
         <div className='pre'>
             <MiMarkDown markdownText={correoEdit} id="markdownCorreo"/>
         </div>
-        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
         <CopyToClipboardHTML targetId="markdownCorreo" />
+        {/* <pre type="text" dangerouslySetInnerHTML={{ __html: notaEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
       </div>
         {/* <pre type="text" dangerouslySetInnerHTML={{ __html: correoEdit}} placeholder="Nota para apertura de caso..." disabled ></pre> */}
       
@@ -326,32 +365,15 @@ function DatosContacto({ ticket }) {
     //         `
     //       }
 
+
     datosAdicionales = (
       <>
         <div className='contenedor-input-datos-cliente'>
+          <input type="text" value={idFibra} onChange={handleIdFibraChange} placeholder="ID Fibra" />
           <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
           <input type="text" value={acometidaSelecionada} placeholder="Acometida" />
           {/* <input type="text" value={horaInicio} onChange={(e) => setHoraInicio(e.target.value)} placeholder="horaInicio" /> */}
-          <select className='hora-seleccionada' value={horaInicio} onChange={handleSelectHoraInicioChange}>
-            <option key='Desde' value='Desde'>
-              Desde
-            </option>
-            {horasSeleccionar.map((horaSel) => (
-              <option key={horaSel} value={horaSel}>
-                {horaSel}
-              </option>
-            ))}
-          </select>
-          <select className='hora-seleccionada' value={horaFin} onChange={handleSelectHoraFinChange}>
-            <option key='Hasta' value='Hasta'>
-              Hasta
-            </option>
-            {horasSeleccionar.map((horaSel) => (
-              <option key={horaSel} value={horaSel}>
-                {horaSel}
-              </option>
-            ))}
-          </select>
+          <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
         <div className='contenedor-datos-router'>
@@ -600,5 +622,6 @@ function DatosContacto({ ticket }) {
   );
 }
 
+export { MiMarkDown, horario, HoraInicioFin };
 export default DatosContacto;
 

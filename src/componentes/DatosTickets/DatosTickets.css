@@ -6,11 +6,14 @@
 
 #datosTickets div {
     display: flex;
+    gap: 15px;
 }
 
 #datosTickets div .contenedorCatTicket {
-    margin-left: 20px;
     display: inline-block;
+}
+#datosTickets div .contenedorCatTicket:first-child {
+    margin-left: 20px;
 }
 
 #datosTickets div .contenedorCatTicket label {

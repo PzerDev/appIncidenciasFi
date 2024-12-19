@@ -5,7 +5,7 @@ let Routers = [
         router: "ONT Nokia G010G-P y Router Sercomm W1-H500s",
         luces: `Router  
 &nbsp;- POWER - INTERNET - WIFI  
-<br>ONT Nokia  
+ONT Nokia  
 &nbsp;- Power - Alarm - PON - LAN`,
         src: ""
     },
@@ -64,7 +64,14 @@ let Routers = [
         router: "Sagemcom F@st3686",
         luces: `&nbsp;- WPS - WiFi - PhoneMsg - Phone2 - Phone1 - ETH - @ - S - Power`,
         src: ""
-    }
+    },
+    {
+        acometida: "Vodafone / Tesa",
+        tecnologia: "Router HFC",
+        router: "Technicolor CGA6444",
+        luces: `&nbsp;- PHONE - INTERNET - WPS - WIFI - POWER`,
+        src: ""
+    },
 
 ]
 
