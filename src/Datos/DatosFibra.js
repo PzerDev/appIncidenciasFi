@@ -1,3 +1,5 @@
+import { horario } from "../componentes/DatosContacto/DatosContacto";
+
 var horaActual = new Date();
 // var hora = horaActual.getHours();
 var dia = horaActual.getDate();
@@ -7,7 +9,7 @@ let datosFibra = {
         estadoTicket: "Abierto",
         notaHistorica: `**Nota Histórica:**  
 ID: {idExternal}  
-Motivo: {motivoAveriaFibra} - {velocidadContratada} {tecnologiaRouter}  
+Motivo: {motivoAveriaFibra} {medioAveria}- {velocidadContratada} {tecnologiaRouter}  
 Tipo de router: {router}  
 **Comprobaciones realizadas en llamada:**  
 - Luces: {luces}  
@@ -31,21 +33,23 @@ Tipo de router: {router}
 `,
 
         notaReclamoApi: `
-RECLAMACIÓN TICKET:  
+RECLAMACIÓN TICKET: {idAveriaApi}  
 MOTIVO: {motivoAveriaFibra}  
-ID AMDOCS:  
+ID AMDOCS: {idExternal}  
 DISPONIBILIDAD: {inicio} - {fin} horas   
 `,
 
         notaReclamoOutlook: {
             asunto: `ASUNTO CORREO: AVERÍA FINETWORK + ID`,
             cuerpo: `
-{horario}
+${horario}, equipo  
 
-RECLAMACIÓN TICKET:  
-MOTIVO:  
-ID AMDOCS:  
-DISPONIBILIDAD:  
+Estamos escalando este caso por esta vía debido a que han transcurrido más de 48 horas sin recibir actualizaciones desde central.  
+
+RECLAMACIÓN TICKET: {idAveriaApi}  
+MOTIVO: {motivoAveriaFibra}  
+ID AMDOCS: {idExternal}  
+DISPONIBILIDAD: {inicio} - {fin} horas  
 
 Muchas gracias,  
 Saludos.     

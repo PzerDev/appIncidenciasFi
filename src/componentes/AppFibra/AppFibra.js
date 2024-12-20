@@ -11,14 +11,15 @@ let motivoAveria = [
   'ONT Alarmada',
   'Cortes',
   'Velocidad',
+  'Cobertura',
   'Unir / Separar redes',
   'Router / Cable roto'
 ]
 
 let lugarAveria = [
-  'WIFI',
-  'cable',
-  'ambos'
+  'WIFI ',
+  'cable ',
+  'ambos '
 ]
 
 let velocidadContratada = [
@@ -37,11 +38,13 @@ function AppFibra() {
 
   // const marcas = ['Xiaomi', 'Samsung', 'iPhone'];
   const [idExternal, setExternalId] = useState('');
-  const [motivoAveriaFibra, setMotivoAveria] = useState('Seleccionar incidencia');
   const [velocidad, setVelocidad] = useState('Velocidad contratada');
   const [tecnologiaRouter, setTecnologiaRouter] = useState('');
   const [routerFiltrado, setRouterFiltrado] = useState('Seleccionar router');
-  const [routersLista, setRoutersLista] = useState([]);
+  const [routersLista, setRoutersLista] = useState([]); 
+  const [motivoAveriaFibra, setMotivoAveria] = useState('Seleccionar motivo');
+  const [lugarAveriaInternet, setLugarAveriaInternet] = useState('Seleccionar medio');
+  const [medioAveria, setMedioAveria] = useState(false);
   const [luces, setLuces] = useState('');
   const [contacto, setContacto] = useState('');
   const sms = 'INFO: Para configurar internet y navegar sin problemas, consulta los pasos a seguir, conectado a wifi, en cliente.fi/apn - Si tienes dudas, llama al 1777.'
@@ -73,6 +76,14 @@ function AppFibra() {
 
   const handleSelectAveriaChange = (event) => {
     setMotivoAveria(event.target.value);
+
+    if (event.target.value === 'Sin servicio' || event.target.value === 'Cortes' || event.target.value === 'Velocidad') {
+      setMedioAveria(true);
+      setLugarAveriaInternet('Seleccionar lugar')
+    } else {
+      setMedioAveria(false);
+      setLugarAveriaInternet('')
+    }
     // setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
     // setCorreo(ticket.averia[event.target.value][1]);
     // correoEdit = ticket.averia[event.target.value][1];
@@ -94,11 +105,11 @@ function AppFibra() {
   
   // let routersLista = "";
   const handleSelectTecnologiaChange = (event) => {
-    const nuevaTecnologia = event.target.value;
+    let nuevaTecnologia = event.target.value;
     setTecnologiaRouter(nuevaTecnologia);
   
     // Actualizar la lista filtrada
-    const listaFiltrada = routersFiltradosFunc('Vodafone / Tesa', nuevaTecnologia);
+    const listaFiltrada = routersFiltradosFunc('Vodafone / Tesa', nuevaTecnologia === 'NEBA' ? nuevaTecnologia = 'FTTH' : nuevaTecnologia);
     setRoutersLista(listaFiltrada);
   };
   
@@ -117,12 +128,16 @@ function AppFibra() {
     }
   };
 
+  const handleSelectLugarAveriaChange = (event) => {
+    setLugarAveriaInternet(event.target.value);
+  }
+
 
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idExternal)
        .replace("{motivoAveriaFibra}", motivoAveriaFibra)
        .replace("{velocidadContratada}", velocidad)
        .replace("{tecnologiaRouter}", tecnologiaRouter)
-    // .replace("{inicio}", horaInicio)
+       .replace("{medioAveria}", lugarAveriaInternet)
     // .replace("{fin}", horaFin)
        .replace("{router}", routerFiltrado)
     // .replace("{luces}", luces)
@@ -137,6 +152,24 @@ function AppFibra() {
   .replace("{contacto}", contacto)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
+
+  let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", idExternal)
+  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{inicio}", horaInicio)
+  .replace("{fin}", horaFin)
+
+  let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
+  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{inicio}", horaInicio)
+  .replace("{fin}", horaFin)
+
+  // let notaReclamoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", idExternal)
+  // .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  // .replace("{idAveriaApi}", 'idAveriaApi')
+  // .replace("{inicio}", horaInicio)
+  // .replace("{fin}", horaFin)
 
   const notasFibra = (
 
@@ -160,7 +193,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>24h - Reclamo API</label>
         <div className='pre notaReclamoApi'>
-            <MiMarkDown markdownText={datosFibra.notaReclamoApi} id="markdownNotaReclamoApi"/>
+            <MiMarkDown markdownText={notaReclamoApi} id="markdownNotaReclamoApi"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoApi" />
       </div>
@@ -168,7 +201,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>48h - Reclamo Outlook</label>
         <div className='pre notaReclamoOutlook'>
-            <MiMarkDown markdownText={datosFibra.notaReclamoOutlook.cuerpo} id="markdownNotaReclamoOutlook"/>
+            <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoOutlook" />
       </div>
@@ -184,6 +217,22 @@ function AppFibra() {
     </div>
 
   )
+
+  const LugarAveriaInternet = () => {
+
+    return (
+      <select className='tecnologia-router' value={lugarAveriaInternet} onChange={handleSelectLugarAveriaChange}>
+        <option key='Seleccionar lugar' value='Seleccionar lugar'>  
+            Seleccionar lugar
+        </option>
+        {lugarAveria.map((lugarAver) => (
+          <option key={lugarAver} value={lugarAver}>
+            {lugarAver}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
 
   return (
@@ -241,6 +290,10 @@ function AppFibra() {
                 </option>
               ))}
             </select>
+
+            {medioAveria === true && <LugarAveriaInternet />}
+ 
+            
         </div>
 
 
