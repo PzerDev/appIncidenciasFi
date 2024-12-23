@@ -1,0 +1,63 @@
+ 
+  .app-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .toggle-button-sidebar-derecho {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  /* Sidebar derecho */
+  .sidebar-derecho {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto inicialmente */
+    width: 500px;
+    height: 100vh;
+    background-color: #2f2f2f;
+    color: #d7d7d7;
+    padding: 36px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .sidebar-derecho.visible {
+    right: 0; /* Se desplaza desde la derecha */
+  }
+  
+  .sidebar-derecho h2 {
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-derecho ol {
+    padding-left: 20px;
+  }
+  
+  .sidebar-derecho ol li {
+    margin-bottom: 15px;
+  }
+  
+  /* Fondo oscuro (overlay) */
+  .overlay-derecho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  

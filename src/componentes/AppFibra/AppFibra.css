@@ -25,6 +25,71 @@
     width: 50%;
 }
 
+
+
+.contenedor-estado-luces-router.mostrar-contenedor {
+    display: flex;
+}
+
+/* Estilos de contenedor de estado luces router */
+.contenedor-estado-luces-router {
+    background: #e9e9e9;
+    padding: 30px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+
+    display: none;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.contenedor-estado-luces-router .contenedor-estado-luces {
+    display: flex;
+    /* flex-wrap: wrap; */
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 10px;
+    /* padding: 10px; */
+}
+.contenedor-estado-luces-router .categoria:first-child {
+    margin-bottom: 20px;
+}
+.contenedor-estado-luces-router .categoria h2 {
+    display: block;
+    width: 100%;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.contenedor-estado-luces-router .categoria .luz {
+    width: 200px;
+    height: 200px;
+    padding: 10px 15px;
+    border: 2px solid #d7d7d7;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+.contenedor-estado-luces-router .categoria .luz h3 {
+    text-align: center;
+    padding: 5px;
+}
+.contenedor-estado-luces-router .categoria .luz select {
+    padding: 5px 15px;
+    border-radius: 20px;
+    width: 100%;
+    /* text-align: center; */
+    /* margin-bottom: 10px; */
+}
+.contenedor-estado-luces-router .categoria .luz p {
+    font-size: 12px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
 .contenedorNotaEscalado {
     width: 380px;
     flex-shrink: 0;
@@ -75,3 +140,177 @@
     user-select: text;
     -webkit-user-select: text;
 }
+
+
+
+/* Animacion */
+/* Animación de deslizamiento hacia abajo (entrar) */
+@keyframes slideOut {
+    0% {
+      transform: translateY(-100%); /* Empuja el contenedor fuera de la pantalla */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* Mueve el contenedor a su posición original */
+      opacity: 1;
+    }
+  }
+  
+  /* Animación de deslizamiento hacia arriba (salir) */
+  @keyframes slideIn {
+    0% {
+      transform: translateY(0); /* Empieza en su posición original */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%); /* Empuja el contenedor fuera de la pantalla */
+      opacity: 0;
+    }
+  }
+  
+  /* Clases de transición de entrada y salida */
+  .contenedor-estado-luces-router-enter {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  .contenedor-estado-luces-router-exit {
+    animation: slideOut 0.5s ease-in forwards;
+  }
+  
+  /* Las siguientes clases aseguran que el contenedor permanezca en el DOM durante la animación */
+  .contenedor-estado-luces-router-enter-active,
+  .contenedor-estado-luces-router-exit-active {
+    display: block;
+  }
+  
+  .contenedor-estado-luces-router-wrapper {
+    overflow: hidden; /* Ocultar cualquier cosa fuera del contenedor durante la animación */
+    height: auto; /* Ajustar la altura según el contenido */
+    position: relative; /* Necesario para que funcione z-index */
+    z-index: -1;
+}
+  
+.contenedor-estado-luces-router {
+    transition: transform 0.5s ease-out; /* Animación para mover el contenedor */
+    transform: translateY(-100%); /* Empuja el contenedor fuera de la vista inicialmente */
+  }
+  
+  /* El contenedor visible */
+  .contenedor-estado-luces-router.contenedor-estado-luces-router.mostrar-contenedor {
+    transform: translateY(0); /* Mueve el contenedor hacia abajo cuando está visible */
+  }
+  
+
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Código CSS de botones de procedimiento y modal de procedimiento*/
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* Contenedor de botones */
+.contenedor-botones {
+  display: flex;
+  gap: 10px;
+  /* background: #e9e9e9; */
+  border-radius: 30px;
+  height: 55px;
+  margin: 20px 0px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.contenedor-botones button {
+  padding: 18px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #5f0aff;
+  font-weight: bold;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.contenedor-botones button:hover {
+  background: #5309db;
+} 
+
+.boton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: absolute;
+  background: white;
+  padding: 30px;
+  border-radius: 30px;
+  width: 500px;
+  /* text-align: center; */
+  cursor: grab; /* Indica que se puede arrastrar */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.modal h2 {
+  font-size: 1.2rem;
+}
+#markdownProcedimiento {
+  padding: 20px;
+}
+
+#markdownProcedimiento li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+#markdownProcedimiento strong {
+  /* margin-bottom: 10px; */
+  font-size: 16px;
+  line-height: 1.6;
+}
+#markdownProcedimiento hr {
+  margin: 30px 0px;
+}
+#markdownProcedimiento ul {
+  padding-left: 20px;
+}
+#markdownProcedimiento h4 {
+  margin-bottom: 20px;
+}
+
+.modal:active {
+  cursor: grabbing; /* Cambia el cursor al arrastrar */
+}
+
+.boton-cerrar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #5f0aff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-cerrar:hover {
+  background: #5309db;
+}
+
+
+

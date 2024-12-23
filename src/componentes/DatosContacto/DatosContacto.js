@@ -43,8 +43,13 @@ let acometidaObj = {
   vodafoneTesa: /^\d{9}$/
 }
 
-const MiMarkDown = ({ markdownText, id }) => {
-  const htmlContent = DOMPurify.sanitize(marked(markdownText));
+const MiMarkDown = ({ markdownText, id, markdownText2 }) => {
+  // Combina markdownText y markdownText2 si markdownText2 está definido
+  const combinedMarkdown = markdownText2
+    ? `${markdownText}\n---\n${markdownText2}`
+    : markdownText;
+
+  const htmlContent = DOMPurify.sanitize(marked(combinedMarkdown));
   return <div id={id} dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 };
 

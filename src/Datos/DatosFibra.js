@@ -30,7 +30,9 @@ Tipo de router: {router}
   - Reinicio/reset: {reset}  
 - Teléfono de contacto: {contacto}  
 - Disponibilidad horaria: {inicio} - {fin} horas  
-`,
+
+**Contestaciones de central:**  
+**${dia}/${mes}**  `,
 
         notaReclamoApi: `
 RECLAMACIÓN TICKET: {idAveriaApi}  
