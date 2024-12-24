@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom'
 import Inicio from '../Inicio/Inicio';
 import Calculadora from '../Calculadora/Calculadora';
 import Roaming from '../Roaming/Roaming';
+import AppFibra from '../AppFibra/AppFibra';
 import { useNavigate } from 'react-router-dom';
 
 const BarraNavegacion = ({ onLogout }) => {
@@ -11,6 +12,7 @@ const BarraNavegacion = ({ onLogout }) => {
     { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '' },
     { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
     { icon: 'bx bx-signal-5 icon', text: 'Roaming', pagina: '/roaming' },
+    { icon: 'bx bx-cube-alt icon', text: 'Pruebas Fi', pagina: '/pruebasFi' },
     // ... Agrega más elementos aquí si quieres un valor inicial
   ]);
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +79,7 @@ const BarraNavegacion = ({ onLogout }) => {
         <Route path="" element={<Inicio />} />
         <Route path="/calculadora" element={<Calculadora />} />
         <Route path="/roaming" element={<Roaming />} />
+        <Route path="/pruebasFi" element={<AppFibra />} />
         <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
         {/* ... otras rutas ... */}
       </Routes>

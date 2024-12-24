@@ -10,6 +10,16 @@
     max-width: 800px;
 }
 
+#datosNotasFibra {
+  margin-top: 120px;
+}
+/* Estilo para la animacion del sidebar a la derecha */
+.main-content-fibra-completa {
+  flex: 1;
+  transition: margin-right 0.3s ease;
+  padding: 20px;
+}
+
 #datosNotasFibra .contenedorNotasFibra .contenedorTarifaFibra,
 #datosNotasFibra .contenedorNotasFibra .contenedorRouterMotivo,
 #datosNotasFibra .contenedorNotasFibra .contenedorContactoHoras {
@@ -83,6 +93,16 @@
     font-size: 12px;
     padding: 10px;
 }
+.contenedor-luces-cable-reset {
+  /* margin-top: 20px; */
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.contenedor-luces-cable-reset select.tecnologia-router {
+  width: 25%;
+}
 
 
 
@@ -122,6 +142,7 @@
 }
 .contenedorNotaEscalado .pre.notaHistorica,
 .contenedorNotaEscalado .pre.notaEscalado,
+.contenedorNotaEscalado .pre.contenedorNotaEscaladoAdjunto,
 .contenedorNotaEscalado .pre.notaReclamoApi,
 .contenedorNotaEscalado .pre.notaReclamoOutlook,
 .contenedorNotaEscalado .pre.notaReclamoCoord  {

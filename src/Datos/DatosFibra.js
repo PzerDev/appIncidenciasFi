@@ -1,4 +1,20 @@
-import { horario } from "../componentes/DatosContacto/DatosContacto";
+
+// function mostrarDiaSegunHora() {
+//         var horaActual = new Date();
+//         var hora = horaActual.getHours();
+//         var mes = horaActual.getMonth() + 1;
+        
+//   var horario;
+//   // Establecemos el día a mostrar según la hora
+//   if (hora >= 9 && hora < 13) {
+//     horario = "Buenos días";
+//   } else if (hora >= 13 && hora < 20) {
+//     horario = "Buenas tardes";
+//   } else {
+//     horario = "Buenas noches";
+//   }
+
+// }
 
 var horaActual = new Date();
 // var hora = horaActual.getHours();
@@ -41,10 +57,24 @@ ID AMDOCS: {idExternal}
 DISPONIBILIDAD: {inicio} - {fin} horas   
 `,
 
+        notaEscaladoAdjunto: {
+                asunto: `AVERÍA FINETWORK - {idExternal}`,
+                cuerpo: `
+{horario},  
+
+Se adjunta {adjuntoCliente} realizado por el cliente.   
+
+ID CLIENTE: {idExternal}  
+N° TICKET AVERÍA: {idAveriaApi}
+
+Saludos.     
+    `
+},
+
         notaReclamoOutlook: {
-            asunto: `ASUNTO CORREO: AVERÍA FINETWORK + ID`,
+            asunto: `AVERÍA FINETWORK - {idExternal}`,
             cuerpo: `
-${horario}, equipo  
+{horario}, equipo  
 
 Estamos escalando este caso por esta vía debido a que han transcurrido más de 48 horas sin recibir actualizaciones desde central.  
 

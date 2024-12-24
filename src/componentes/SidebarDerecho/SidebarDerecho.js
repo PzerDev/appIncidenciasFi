@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
-import './SidebarDerecho.css'; // Agrega estilos para la animación y el diseño
-import { MiMarkDown } from '../DatosContacto/DatosContacto';
-import AppFibra from '../AppFibra/AppFibra';
+import React from "react";
+import "./SidebarDerecho.css";
 
-const SidebarDerecho = () => {
-  const [isSidebarVisible, setSidebarVisible] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarVisible(!isSidebarVisible);
-  };
-
+function SidebarDerecho({ isOpen, setIsOpen }) {
   return (
-    <div className="app-sidebar">
-      <button className="toggle-button-sidebar-derecho" onClick={toggleSidebar}>
-        Ver Procedimiento
+    <div className={`sidebar-derecho ${isOpen ? "active" : ""}`}>
+      <button className="close-btn" onClick={() => setIsOpen(false)}>
+        ×
       </button>
-      <div className={`sidebar-derecho ${isSidebarVisible ? 'visible' : ''}`}>
-                <AppFibra />
-      </div>
-      {isSidebarVisible && (
-        <div className="overlay-derecho" onClick={toggleSidebar}></div>
-      )}
+      <h2>Contenido del Sidebar</h2>
+      <p>Aquí puedes colocar cualquier contenido adicional.</p>
     </div>
   );
-};
+}
 
 export default SidebarDerecho;

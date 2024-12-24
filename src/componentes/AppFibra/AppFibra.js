@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './AppFibra.css'; // Importamos el archivo CSS}
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
-import { HoraInicioFin, MiMarkDown, horario } from '../DatosContacto/DatosContacto.js';
+import { HoraInicioFin, horario, MiMarkDown } from '../DatosContacto/DatosContacto.js';
 import datosFibra from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
@@ -16,7 +16,8 @@ let motivoAveria = [
   'Velocidad',
   'Cobertura',
   'Unir / Separar redes',
-  'Router / Cable roto'
+  'Router / Cable roto',
+  'Error contraseña'
 ]
 
 let lugarAveria = [
@@ -37,6 +38,31 @@ let routerTec = [
   'NEBA'
 ]
 
+let estadoLucesCablesReset = {
+  Luces: ``,
+  Cables: ``,
+  Reset: ``,
+  "N/C": ``
+}
+
+
+function mostrarDiaSegunHora() {
+  let horario;
+  let horaActual = new Date();
+  let hora = horaActual.getHours();
+  // var mes = horaActual.getMonth() + 1;
+  
+  // Establecemos el día a mostrar según la hora
+  if (hora >= 9 && hora < 13) {
+  horario = "Buenos días";
+  } else if (hora >= 13 && hora < 20) {
+  horario = "Buenas tardes";
+  } else {
+  horario = "Buenas noches";
+  }
+  return horario;
+}
+
 
 function AppFibra() {
 
@@ -56,6 +82,13 @@ function AppFibra() {
   const [isDisabledRouter, setIsDisabledRouter] = useState(true);
   const [isDisabledMotivo, setIsDisabledMotivo] = useState(true);
 
+  // Estado de cambio del select luces cables reset
+  const [estadoLucesCablesResetFiltrado, setEstadoLucesCablesResetFiltrado] = useState('Comprobar');
+
+  // Estado de compLuces, compCables, compReset
+  const [compLuces, setCompLuces] = useState('');
+  const [compCables, setCompCables] = useState('');
+  const [compReset, setCompReset] = useState('');
 
   const [contacto, setContacto] = useState('');
   const sms = 'INFO: Para configurar internet y navegar sin problemas, consulta los pasos a seguir, conectado a wifi, en cliente.fi/apn - Si tienes dudas, llama al 1777.'
@@ -86,6 +119,31 @@ function AppFibra() {
         ...prev,
         [`${categoria}-${luz}`]: descripcion || "Sin descripción.",
       }));
+   
+      // setCompLuces(`${luz}: ${estado}`)
+      // let estadoPrevio = document.querySelector('#resultadoEstado').value;
+      // document.querySelector('#resultadoEstado').value = estadoPrevio + `${luz}: ${estado}`;
+      // setCompLuces(estadoPrevio ? estadoPrevio + ", " + `${luz}: ${estado}`: estadoPrevio)
+      
+      mostrarDiaSegunHora();
+      
+      // Actualiza el estado correspondiente
+      switch (estadoLucesCablesResetFiltrado) {
+        case 'Luces':
+          const nuevoEstadoLuces = compLuces ? `${compLuces}, ${luz} ${estado}` : `${luz}: ${estado}`;
+          setCompLuces(nuevoEstadoLuces);
+          break;
+        case 'Cables':
+          const nuevoEstadoCables = compCables;
+          setCompCables(nuevoEstadoCables);
+          break;
+        case 'Reset':
+          const nuevoEstadoReset = compReset ? `${compReset}, ${luz} ${estado}` : `Tras reset ${luz} ${estado}`;
+          setCompReset(nuevoEstadoReset);
+          break;
+        default:
+          console.warn('Estado no reconocido:', estadoLucesCablesResetFiltrado);
+      }
     };
 
   const handleExternalIdChange = (event) => {
@@ -107,7 +165,16 @@ function AppFibra() {
       ) {
         setMedioAveria(false);
         setMostrarContenedor(true);
+        if (event.target.value === 'Cobertura') {
+          setMostrarContenedor(false);
+        }
       }
+
+      // if (event.target.value === 'Cortes' ||
+      //     event.target.value === 'Velocidad' ||
+      //     event.target.value === 'Cobertura') {
+      //       setMostrarContenedor(false);
+      //     }
 
     } else {
       setMedioAveria(false);
@@ -226,6 +293,25 @@ function AppFibra() {
   }
 
 
+
+  const handleEstadoLucesCablesResetChange = (event) => {
+      setEstadoLucesCablesResetFiltrado(event.target.value);
+      // console.log(estadoLucesCablesResetFiltrado)
+
+      // Si comprobar está en comprobar
+      if (event.target.value === 'N/C') {
+        setCompCables('N/C');
+        setCompLuces('N/C');
+        setCompReset('N/C');
+      } else if (event.target.value === 'Comprobar') {
+        setCompCables('');
+        setCompLuces('');
+        setCompReset('');
+      }
+  }
+
+
+
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idExternal)
        .replace("{motivoAveriaFibra}", motivoAveriaFibra)
        .replace("{velocidadContratada}", velocidad)
@@ -233,7 +319,9 @@ function AppFibra() {
        .replace("{medioAveria}", lugarAveriaInternet+' ')
     // .replace("{fin}", horaFin)
        .replace("{router}", routerFiltrado)
-    // .replace("{luces}", luces)
+       .replace("{luces}", compLuces)
+       .replace("{cables}", compCables)
+       .replace("{reset}", compReset)
     // .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
     // .replace("{afectado}", afectado)
     // .replace("{incidencia}", incidencia)
@@ -245,6 +333,9 @@ function AppFibra() {
   .replace("{contacto}", contacto)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
+  .replace("{luces}", compLuces)
+  .replace("{cables}", compCables)
+  .replace("{reset}", compReset)
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
@@ -252,11 +343,18 @@ function AppFibra() {
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
 
+  let notaEscaladoAdjuntoAsunto = datosFibra.notaEscaladoAdjunto.asunto.replace("{idExternal}", idExternal)
+  let notaEscaladoAdjunto = datosFibra.notaEscaladoAdjunto.cuerpo.replace("{idExternal}", idExternal)
+  .replace("{adjuntoCliente}", 'adjuntoCliente')
+  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{horario}", mostrarDiaSegunHora)
+
   let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{idAveriaApi}", 'idAveriaApi')
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
+  .replace("{horario}", mostrarDiaSegunHora)
 
   // let notaReclamoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", idExternal)
   // .replace("{motivoAveriaFibra}", motivoAveriaFibra)
@@ -281,6 +379,20 @@ function AppFibra() {
             <MiMarkDown markdownText={notaEscaladoApi} id="markdownNotaEscalado"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaEscalado" />
+      </div>
+
+      <div className='contenedorNotaEscalado'>
+        <label>Nota Escalado Adjunto</label>
+        <div className='pre notaEscalado'>
+            <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
+        </div>
+        <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" />
+        {/* <button onClick = {(e) => {
+              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
+              // Usa una URL específica para Outlook
+              const outlookURL = `outlook://compose?subject=${notaEscaladoAdjuntoAsunto}&body=${notaEscaladoAdjunto}`;
+              window.location.href = outlookURL;
+        }}>Correo</button> */}
       </div>
 
       <div className='contenedorNotaEscalado'>
@@ -404,6 +516,20 @@ function AppFibra() {
 
 
 
+
+  // Determina el estado y setter dinámico
+  const estados = {
+    Luces: { valor: compLuces, setValor: setCompLuces },
+    Cables: { valor: compCables, setValor: setCompCables },
+    Reset: { valor: compReset, setValor: setCompReset },
+  };
+
+  const { valor, setValor } = estados[estadoLucesCablesResetFiltrado] || {
+    valor: "",
+    setValor: () => {},
+  };
+
+
   return (
     <>
     <div id='datosNotasFibra'>
@@ -524,9 +650,42 @@ function AppFibra() {
                           </div>
                         ))}
                       </div>
+
+
                     </div>
                   );
                 })}
+
+                        <div className='contenedor-luces-cable-reset'>
+                          {/* <input type="text" id='resultadoEstado'
+                                  value={compLuces}
+                                  onChange={(e) => {
+                                      setCompLuces(e.target.value);
+                                    }
+                          } placeholder="Resultado de estado" /> */}
+
+                          <input
+                            type="text"
+                            id="resultadoEstado"
+                            value={valor}
+                            onChange={(e) => setValor(e.target.value)}
+                            placeholder={`Resultado de estado (${estadoLucesCablesResetFiltrado})`}
+                          />
+
+                          {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
+
+                          <select className='tecnologia-router' value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
+                            <option key='Comprobar' value='Comprobar'>  
+                                Comprobar
+                            </option>
+                            {console.log("routersLista:", estadoLucesCablesReset)}
+                            {Object.keys(estadoLucesCablesReset).map((estado, index) => (
+                              <option key={index} value={estado}>
+                                {estado}
+                              </option>
+                            ))}
+                          </select>
+                      </div>
         </div>
 
 
