@@ -3,6 +3,7 @@
     gap: 20px;
     overflow-x: auto;
     scrollbar-width: none;
+    margin-top: 20px;
 }
 
 .contenedorNotasFibra {
@@ -26,6 +27,12 @@
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
+}
+.contenedorNotasFibra .contenedorContactoHoras input {
+  width: auto;
+}
+.contenedorNotasFibra .contenedorContactoHoras select {
+  height: 55px;
 }
 
 #datosNotasFibra .contenedorNotasFibra .contenedorTarifaFibra select {
@@ -162,6 +169,10 @@
     -webkit-user-select: text;
 }
 
+.bx.bx-mail-send {
+  font-size: 28px;
+}
+
 
 
 /* Animacion */
@@ -235,13 +246,14 @@
   /* background: #e9e9e9; */
   border-radius: 30px;
   height: 55px;
-  margin: 20px 0px;
+  /* margin: 20px 0px; */
   align-items: center;
   justify-content: flex-end;
 }
 
 .contenedor-botones button {
-  padding: 18px 40px;
+  padding: 10px 40px;
+  height: 55px;
   border-radius: 30px;
   cursor: pointer;
   color: #fff;

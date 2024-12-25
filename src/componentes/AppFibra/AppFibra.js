@@ -349,6 +349,7 @@ function AppFibra() {
   .replace("{idAveriaApi}", 'idAveriaApi')
   .replace("{horario}", mostrarDiaSegunHora)
 
+  let notaReclamoOutlookAsunto = datosFibra.notaReclamoOutlook.asunto.replace("{idExternal}", idExternal)
   let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{idAveriaApi}", 'idAveriaApi')
@@ -386,13 +387,25 @@ function AppFibra() {
         <div className='pre notaEscalado'>
             <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
         </div>
-        <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" />
+        {/* <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" /> */}
         {/* <button onClick = {(e) => {
               // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
               // Usa una URL específica para Outlook
               const outlookURL = `outlook://compose?subject=${notaEscaladoAdjuntoAsunto}&body=${notaEscaladoAdjunto}`;
               window.location.href = outlookURL;
         }}>Correo</button> */}
+          <button
+            id={`copiarBtn_NotaEscaladoAdjunto`}
+              onClick = {(e) => {
+              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
+              // Usa una URL específica para Outlook
+              const outlookURL = `outlook://compose?subject=${notaEscaladoAdjuntoAsunto}&body=${notaEscaladoAdjunto}`;
+              window.location.href = outlookURL;
+        }}
+            onMouseDown={(e) => e.preventDefault()} // Evita comportamiento inesperado en botones
+          >
+            <i className='bx bx-mail-send'></i>
+          </button>
       </div>
 
       <div className='contenedorNotaEscalado'>
@@ -408,7 +421,25 @@ function AppFibra() {
         <div className='pre notaReclamoOutlook'>
             <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook"/>
         </div>
-        <CopyToClipboardHTML targetId="markdownNotaReclamoOutlook" />
+        {/* <CopyToClipboardHTML targetId="markdownNotaReclamoOutlook" /> */}
+        {/* <button
+            id={`copiarBtn_NotaReclamoOutlook`}
+              onClick = {(e) => {
+              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
+              // Usa una URL específica para Outlook
+              const outlookURL = `outlook://compose?subject=${notaReclamoOutlookAsunto}&body=${notaReclamoOutlook}`;
+              window.location.href = outlookURL;
+        }}
+            onMouseDown={(e) => e.preventDefault()} // Evita comportamiento inesperado en botones
+          >
+            <i className='bx bx-mail-send'></i>
+          </button> */}
+           <button onClick = {(e) => {
+              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
+              // Usa una URL específica para Outlook
+              const mailto = `mailto:?subject=${encodeURIComponent(notaReclamoOutlookAsunto)}&body=${encodeURIComponent(notaReclamoOutlook)}`;
+              window.location.href = mailto;
+            }}><i className='bx bx-mail-send'></i></button>
       </div>
 
       <div className='contenedorNotaEscalado'>
@@ -614,6 +645,35 @@ function AppFibra() {
 
 
         
+
+
+        <div className='contenedorContactoHoras'>
+            <input type="text" value={contacto} 
+                      onChange={(e) => {
+                        let valor = e.target.value;
+                        // Eliminar espacios
+                        valor = valor.replace(/\s/g, '');
+                    
+                        // Si el número comienza con +34 o 34, eliminarlo
+                        if (valor.startsWith('+34')) {
+                          valor = valor.slice(3); // Eliminar los primeros 3 caracteres
+                        } else if (valor.startsWith('34')) {
+                          valor = valor.slice(2); // Eliminar los primeros 2 caracteres
+                        }
+                    
+                        // Permitir solo números y limitar a 9 caracteres
+                        if (/^\d*$/.test(valor) && valor.length <= 9) {
+                          setContacto(valor); // Actualizar el estado solo con el número nacional
+                        }}
+                      } placeholder="Número de contacto" />
+
+            <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
+            {<BotonesProcedimiento />}
+        </div>
+
+
+
+
         <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}>
 
               {objetoRouterSeleccionado?.estadoLuces &&
@@ -686,37 +746,8 @@ function AppFibra() {
                             ))}
                           </select>
                       </div>
-        </div>
+              </div>
 
-
-
-        
-
-
-        <div className='contenedorContactoHoras'>
-            <input type="text" value={contacto} 
-                      onChange={(e) => {
-                        let valor = e.target.value;
-                        // Eliminar espacios
-                        valor = valor.replace(/\s/g, '');
-                    
-                        // Si el número comienza con +34 o 34, eliminarlo
-                        if (valor.startsWith('+34')) {
-                          valor = valor.slice(3); // Eliminar los primeros 3 caracteres
-                        } else if (valor.startsWith('34')) {
-                          valor = valor.slice(2); // Eliminar los primeros 2 caracteres
-                        }
-                    
-                        // Permitir solo números y limitar a 9 caracteres
-                        if (/^\d*$/.test(valor) && valor.length <= 9) {
-                          setContacto(valor); // Actualizar el estado solo con el número nacional
-                        }}
-                      } placeholder="Número de contacto" />
-
-            <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
-        </div>
-
-        {<BotonesProcedimiento />}
         {notasFibra}
 
       </div>
