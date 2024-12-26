@@ -220,6 +220,24 @@ let Procedimientos = {
 - **Explicar los motivos de la pérdida de cobertura:** Si no se procede a escalar la avería, explicar al cliente los factores que pueden afectar la cobertura Wi-Fi, como obstáculos físicos, interferencias de otros dispositivos o la distancia al router.  
 - **Recomendar un amplificador de señal:** Sugerir al cliente la instalación de un amplificador de señal si los problemas persisten. Enviar plantilla **Consejos ubicación router**.  
 `
+    },
+
+    "Error contraseña": {
+        router: `
+1. **Verificación de la contraseña:** Asegúrate de estar utilizando la contraseña correcta para acceder a la interfaz de administración del router. Esta contraseña es diferente a la contraseña de la red Wi-Fi.
+2. **Restablecimiento a valores de fábrica:** Si has modificado la contraseña del router y la has olvidado, deberás restablecer el router a su configuración de fábrica. Esto borrará todas las configuraciones personalizadas, incluyendo la contraseña. La contraseña predeterminada (de fábrica) se encuentra en una etiqueta adherida al router.
+3. **Procedimiento de reseteo:** Localiza el botón de reinicio (Reset) en el router (generalmente un pequeño orificio). Con el router encendido, introduce un objeto puntiagudo (como un clip) en el orificio y mantenlo presionado durante 10-15 segundos. Las luces del router parpadearán, indicando que se está reiniciando.
+4. **Obtención de la contraseña predeterminada:** Si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
+5. **Usuario en routers Sercomm Vox:** En los routers de la marca Sercomm Vox, el usuario para acceder a la configuración es "sercomm", no "admin".
+6. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia a través de los canales correspondientes (API), adjuntando la fotografía de la etiqueta del router.
+`,
+        WIFI: `
+1. **Verificación de la contraseña:** Asegúrate de estar utilizando la contraseña correcta de la red Wi-Fi. Esta es diferente a la contraseña de acceso a la configuración del router.
+2. **Prueba en otros dispositivos:** Intenta conectar otros dispositivos a la red Wi-Fi. Si el problema solo ocurre en un dispositivo, es probable que el problema esté en ese dispositivo y no en el router.
+3. **Restablecimiento a valores de fábrica del router (como último recurso):** Si has cambiado la contraseña de la red Wi-Fi y la has olvidado, o si sospechas que hay un problema con la configuración del router, puedes restablecerlo a su configuración de fábrica). Recuerda que esto borrará todas las configuraciones, incluyendo el nombre y la contraseña de la red Wi-Fi, que volverán a ser los valores predeterminados de fábrica que se encuentran en la etiqueta.
+4. **Obtención de la contraseña predeterminada (Wi-Fi):** Al igual que con la contraseña del router, si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
+5. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia a través de los canales correspondientes (API), adjuntando la fotografía de la etiqueta del router.
+`
     }
 }
 

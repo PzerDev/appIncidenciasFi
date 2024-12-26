@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Login from './Login';
 import App from '../../App';
 import InfoAcceso from '../../Datos/InfoAcceso';
-import './AppLogin.css';
+// import './AppLogin.css';
+import Loader from './Loader';
 
 const AppLogin = () => {
   const [username, setUsername] = useState('');
@@ -44,10 +45,7 @@ const AppLogin = () => {
       {isAuthenticated ? (
         <App onLogout={handleLogout} estiloApp={"estilo-app"}/>
       ) : isLoading ? (
-        <div className="loader-container">
-          <div className="loader"></div>
-          <p>Validando credenciales...</p>
-        </div>
+        <Loader text={`Validando credenciales...`}/>
       ) : (
         <Login 
           onLogin={handleLogin} 

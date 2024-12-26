@@ -5,7 +5,8 @@ import { HoraInicioFin, horario, MiMarkDown } from '../DatosContacto/DatosContac
 import datosFibra from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
-import '../SidebarDerecho/SidebarDerecho.css'
+import '../SidebarDerecho/SidebarDerecho.css';
+import Loader from '../Login/Loader.js';
 
 let motivoAveria = [
   // 'Seleccionar motivo',
@@ -20,11 +21,10 @@ let motivoAveria = [
   'Error contraseña'
 ]
 
-let lugarAveria = [
-  'WIFI',
-  'cable',
-  'ambos'
-]
+let lugarAveria = {
+  general: ['WIFI', 'cable', 'ambos'],
+  errorContraseña: ['router', 'WIFI']
+}
 
 let velocidadContratada = [
   // 'Velocidad contratada',
@@ -65,16 +65,23 @@ function mostrarDiaSegunHora() {
 
 
 function AppFibra() {
-
-  // const marcas = ['Xiaomi', 'Samsung', 'iPhone'];
+  
+  const [loaderCargando, setLoaderCargando] = useState(false); // Loader
+  const [estadoLuces, setEstadoLuces] = useState([]); // Lista de estados
+  const [resultado, setResultado] = useState(""); // Resultado concatenado
+  // const marcas = ['Xiaomi', 'Samsung', 'iPhone']
+  const [idAveria, setIdAveria] = useState('');
   const [idExternal, setExternalId] = useState('');
-  const [velocidad, setVelocidad] = useState('Velocidad contratada');
+  const [velocidad, setVelocidad] = useState('');
+  const [adjuntoCliente, setAdjuntoCliente] = useState('');
   const [tecnologiaRouter, setTecnologiaRouter] = useState('');
-  const [routerFiltrado, setRouterFiltrado] = useState('Seleccionar router');
+  const [refreshParams, setRefreshParams] = useState('');
+  const [refreshOk, setRefreshOk] = useState('');
+  const [routerFiltrado, setRouterFiltrado] = useState('Especificar router');
   const [routersLista, setRoutersLista] = useState([]);
   const [objetoRouterSeleccionado, setObjetoRouterSeleccionado] = useState({}); 
-  const [motivoAveriaFibra, setMotivoAveria] = useState('Seleccionar motivo');
-  const [lugarAveriaInternet, setLugarAveriaInternet] = useState('Seleccionar medio');
+  const [motivoAveriaFibra, setMotivoAveria] = useState('');
+  const [lugarAveriaInternet, setLugarAveriaInternet] = useState('');
   const [medioAveria, setMedioAveria] = useState(false);
   const [luces, setLuces] = useState('');
   const [lucesPermitidas, setLucesPermitidas] = useState([]);
@@ -119,33 +126,42 @@ function AppFibra() {
         ...prev,
         [`${categoria}-${luz}`]: descripcion || "Sin descripción.",
       }));
-   
+      
       // setCompLuces(`${luz}: ${estado}`)
       // let estadoPrevio = document.querySelector('#resultadoEstado').value;
       // document.querySelector('#resultadoEstado').value = estadoPrevio + `${luz}: ${estado}`;
       // setCompLuces(estadoPrevio ? estadoPrevio + ", " + `${luz}: ${estado}`: estadoPrevio)
-      
+      actualizarEstado(luz, estado)
       mostrarDiaSegunHora();
-      
-      // Actualiza el estado correspondiente
-      switch (estadoLucesCablesResetFiltrado) {
-        case 'Luces':
-          const nuevoEstadoLuces = compLuces ? `${compLuces}, ${luz} ${estado}` : `${luz}: ${estado}`;
-          setCompLuces(nuevoEstadoLuces);
-          break;
-        case 'Cables':
-          const nuevoEstadoCables = compCables;
-          setCompCables(nuevoEstadoCables);
-          break;
-        case 'Reset':
-          const nuevoEstadoReset = compReset ? `${compReset}, ${luz} ${estado}` : `Tras reset ${luz} ${estado}`;
-          setCompReset(nuevoEstadoReset);
-          break;
-        default:
-          console.warn('Estado no reconocido:', estadoLucesCablesResetFiltrado);
+
+      if (estado === '') {
+        
+      } else {
+        // Actualiza el estado correspondiente
+        // switch (estadoLucesCablesResetFiltrado) {
+        //   case 'Luces':
+        //     const nuevoEstadoLuces = compLuces ? `${compLuces}, ${luz} - ${estado}` : `${luz} - ${estado}`;
+        //     setCompLuces(nuevoEstadoLuces);
+        //     break;
+        //   case 'Cables':
+        //     const nuevoEstadoCables = compCables;
+        //     setCompCables(nuevoEstadoCables);
+        //     break;
+        //   case 'Reset':
+        //     const nuevoEstadoReset = compReset ? `${compReset}, ${luz} - ${estado}` : `Tras reset ${luz} - ${estado}`;
+        //     setCompReset(nuevoEstadoReset);
+        //     break;
+        //   default:
+        //     console.warn('Estado no reconocido:', estadoLucesCablesResetFiltrado);
+        // }
+
       }
+      
     };
 
+  const handleIdAveriaChange = (event) => {
+    setIdAveria(event.target.value);
+  };
   const handleExternalIdChange = (event) => {
     setExternalId(event.target.value);
   };
@@ -154,9 +170,13 @@ function AppFibra() {
     setMotivoAveria(event.target.value);
     // setMostrarContenedor(event.target.value === 'Seleccionar motivo');
 
+    event.target.value === 'Error contraseña' ?
+      setAdjuntoCliente('fotografía de etiqueta del router realizada') :
+      setAdjuntoCliente('')
+
     if (event.target.value === 'Sin servicio' || event.target.value === 'Cortes' ||
         event.target.value === 'Velocidad' || event.target.value === 'Seleccionar motivo' ||
-        event.target.value === 'Cobertura') {
+        event.target.value === 'Cobertura' || event.target.value === 'Error contraseña') {
       setMedioAveria(true);
       setLugarAveriaInternet('Seleccionar lugar');
       setMostrarContenedor(true);
@@ -170,11 +190,10 @@ function AppFibra() {
         }
       }
 
-      // if (event.target.value === 'Cortes' ||
-      //     event.target.value === 'Velocidad' ||
-      //     event.target.value === 'Cobertura') {
-      //       setMostrarContenedor(false);
-      //     }
+      if (event.target.value === 'Cortes' ||
+          event.target.value === 'Velocidad') {
+            setMostrarContenedor(true);
+          }
 
     } else {
       setMedioAveria(false);
@@ -195,9 +214,6 @@ function AppFibra() {
       setLucesPermitidas(lucesPer);
       setMostrarContenedor(false);
     }
-    // setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
-    // setCorreo(ticket.averia[event.target.value][1]);
-    // correoEdit = ticket.averia[event.target.value][1];
 
   };
 
@@ -218,18 +234,19 @@ function AppFibra() {
   const handleSelectTecnologiaChange = (event) => {
     let nuevaTecnologia = event.target.value;
     setTecnologiaRouter(nuevaTecnologia);
+
     setRouterFiltrado('Seleccionar router');
 
       if (event.target.value !== 'Tecnología router') {
         setIsDisabledRouter(false);
+        setIsDisabledMotivo(false);
       } else {
-        setIsDisabledMotivo(true);
         setIsDisabledRouter(true);
         setMotivoAveria('Seleccionar motivo');
         setMedioAveria(false);
       }
     
-  
+    nuevaTecnologia === 'NEBA' ? setRefreshParams(`- Refresh Params:  `) : setRefreshParams('');
     // Actualizar la lista filtrada
     const listaFiltrada = routersFiltradosFunc('Vodafone / Tesa', nuevaTecnologia === 'NEBA' ? nuevaTecnologia = 'FTTH' : nuevaTecnologia);
     setRoutersLista(listaFiltrada);
@@ -270,7 +287,20 @@ function AppFibra() {
   const handleSelectLugarAveriaChange = (event) => {
     setLugarAveriaInternet(event.target.value);
 
-    if (motivoAveriaFibra === 'Sin servicio' && event.target.value !== 'Seleccionar lugar') {
+    (motivoAveriaFibra === 'Velocidad' && event.target.value === 'cable') 
+      ? setAdjuntoCliente('test de velocidad realizado') 
+      : setAdjuntoCliente('');
+    
+    (motivoAveriaFibra === 'Error contraseña' && event.target.value === 'router')  ?
+    setAdjuntoCliente('fotografía de etiqueta del router realizada') :
+    setAdjuntoCliente('')
+
+    if (
+      (motivoAveriaFibra === 'Sin servicio' || 
+       motivoAveriaFibra === 'Velocidad' ||
+       motivoAveriaFibra === 'Cortes'
+      ) && event.target.value !== 'Seleccionar lugar'
+    ) {
       setMostrarContenedor(false);
     } else {
       setMostrarContenedor(true);
@@ -298,15 +328,25 @@ function AppFibra() {
       setEstadoLucesCablesResetFiltrado(event.target.value);
       // console.log(estadoLucesCablesResetFiltrado)
 
-      // Si comprobar está en comprobar
+      // Si comprobar está en comprobar o está en N/C
       if (event.target.value === 'N/C') {
         setCompCables('N/C');
         setCompLuces('N/C');
         setCompReset('N/C');
+        // setRefreshOk('N/C');
+        if (tecnologiaRouter === 'NEBA') {
+          setRefreshParams(`- Refresh Params: N/C  `)
+        };
       } else if (event.target.value === 'Comprobar') {
         setCompCables('');
         setCompLuces('');
         setCompReset('');
+        // setRefreshOk('');
+        if (tecnologiaRouter === 'NEBA') {
+          setRefreshParams(`- Refresh Params:  `);
+        }
+      } else if (event.target.value === 'Reset' && tecnologiaRouter === 'NEBA') {
+        setRefreshParams(`- Refresh Params: Ok  `)
       }
   }
 
@@ -321,13 +361,14 @@ function AppFibra() {
        .replace("{router}", routerFiltrado)
        .replace("{luces}", compLuces)
        .replace("{cables}", compCables)
+       .replace("{refresh}", refreshParams)
        .replace("{reset}", compReset)
     // .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
     // .replace("{afectado}", afectado)
     // .replace("{incidencia}", incidencia)
     // .replace("{horario}", horario)
     // .replace("{nuevaDireccion}", nuevaDireccion)
-
+    
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{contacto}", contacto)
@@ -335,24 +376,25 @@ function AppFibra() {
   .replace("{fin}", horaFin)
   .replace("{luces}", compLuces)
   .replace("{cables}", compCables)
+  .replace("{refresh}", refreshParams)
   .replace("{reset}", compReset)
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
-  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
 
   let notaEscaladoAdjuntoAsunto = datosFibra.notaEscaladoAdjunto.asunto.replace("{idExternal}", idExternal)
   let notaEscaladoAdjunto = datosFibra.notaEscaladoAdjunto.cuerpo.replace("{idExternal}", idExternal)
-  .replace("{adjuntoCliente}", 'adjuntoCliente')
-  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{adjuntoCliente}", adjuntoCliente)
+  .replace("{idAveriaApi}", idAveria)
   .replace("{horario}", mostrarDiaSegunHora)
 
   let notaReclamoOutlookAsunto = datosFibra.notaReclamoOutlook.asunto.replace("{idExternal}", idExternal)
   let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
-  .replace("{idAveriaApi}", 'idAveriaApi')
+  .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
   .replace("{horario}", mostrarDiaSegunHora)
@@ -382,31 +424,25 @@ function AppFibra() {
         <CopyToClipboardHTML targetId="markdownNotaEscalado" />
       </div>
 
-      <div className='contenedorNotaEscalado'>
-        <label>Nota Escalado Adjunto</label>
-        <div className='pre notaEscalado'>
-            <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
-        </div>
-        {/* <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" /> */}
-        {/* <button onClick = {(e) => {
-              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
-              // Usa una URL específica para Outlook
-              const outlookURL = `outlook://compose?subject=${notaEscaladoAdjuntoAsunto}&body=${notaEscaladoAdjunto}`;
-              window.location.href = outlookURL;
-        }}>Correo</button> */}
-          <button
-            id={`copiarBtn_NotaEscaladoAdjunto`}
-              onClick = {(e) => {
-              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
-              // Usa una URL específica para Outlook
-              const outlookURL = `outlook://compose?subject=${notaEscaladoAdjuntoAsunto}&body=${notaEscaladoAdjunto}`;
-              window.location.href = outlookURL;
-        }}
-            onMouseDown={(e) => e.preventDefault()} // Evita comportamiento inesperado en botones
-          >
-            <i className='bx bx-mail-send'></i>
-          </button>
-      </div>
+      {adjuntoCliente &&      
+            <div className='contenedorNotaEscalado'>
+              <label>Nota Escalado Adjunto</label>
+              <div className='pre notaEscalado'>
+                  <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
+              </div>
+              {/* <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" /> */}
+                <button
+                  id={`copiarBtn_NotaEscaladoAdjunto`}
+                    onClick = {(e) => {
+                    const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
+                    window.location.href = mailto;
+              }}
+                  onMouseDown={(e) => e.preventDefault()} // Evita comportamiento inesperado en botones
+                >
+                  <i className='bx bx-mail-send'></i>
+                </button>
+            </div>
+      }
 
       <div className='contenedorNotaEscalado'>
         <label>24h - Reclamo API</label>
@@ -422,24 +458,12 @@ function AppFibra() {
             <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook"/>
         </div>
         {/* <CopyToClipboardHTML targetId="markdownNotaReclamoOutlook" /> */}
-        {/* <button
-            id={`copiarBtn_NotaReclamoOutlook`}
-              onClick = {(e) => {
-              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
-              // Usa una URL específica para Outlook
-              const outlookURL = `outlook://compose?subject=${notaReclamoOutlookAsunto}&body=${notaReclamoOutlook}`;
-              window.location.href = outlookURL;
-        }}
-            onMouseDown={(e) => e.preventDefault()} // Evita comportamiento inesperado en botones
-          >
-            <i className='bx bx-mail-send'></i>
-          </button> */}
            <button onClick = {(e) => {
-              // const mailto = `mailto:?subject=${encodeURIComponent(notaEscaladoAdjuntoAsunto)}&body=${encodeURIComponent(notaEscaladoAdjunto)}`;
               // Usa una URL específica para Outlook
               const mailto = `mailto:?subject=${encodeURIComponent(notaReclamoOutlookAsunto)}&body=${encodeURIComponent(notaReclamoOutlook)}`;
               window.location.href = mailto;
-            }}><i className='bx bx-mail-send'></i></button>
+            }}><i className='bx bx-mail-send'></i>
+           </button>
       </div>
 
       <div className='contenedorNotaEscalado'>
@@ -462,7 +486,17 @@ function AppFibra() {
         <option key='Seleccionar lugar' value='Seleccionar lugar'>  
             Seleccionar lugar
         </option>
-        {lugarAveria.map((lugarAver) => (
+          {motivoAveriaFibra === 'Error contraseña' && lugarAveria.errorContraseña.map((lugarAver) => (
+            <option key={lugarAver} value={lugarAver}>
+              {lugarAver}
+            </option>
+          ))}
+        {(motivoAveriaFibra === 'Sin servicio' ||
+          motivoAveriaFibra === 'Velocidad' ||
+          motivoAveriaFibra === 'Cortes'
+        ) 
+          
+          && lugarAveria.general.map((lugarAver) => (
           <option key={lugarAver} value={lugarAver}>
             {lugarAver}
           </option>
@@ -480,29 +514,63 @@ function AppFibra() {
     const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
   
     // Comprobar que 'motivoAveriaFibra' y 'lugarAveriaInternet' están definidos
-    const motivoAveria = motivoAveriaFibra || "valor predeterminado";
+    const motivoAveria = motivoAveriaFibra || "Seleccionar motivo";
     const lugarAveria = lugarAveriaInternet || "valor predeterminado";
   
     // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
     let procedimiento = { general: "Información no disponible", Observaciones: "" };
-
+    console.log(medioAveria, lugarAveria)
     if (medioAveria) {
       procedimiento = 
         Procedimientos[motivoAveria] && Procedimientos[motivoAveria][lugarAveria]
           ? Procedimientos[motivoAveria][lugarAveria]
           : procedimiento;
+      console.log(procedimiento)
     } else {
       procedimiento = 
         Procedimientos[motivoAveria]
           ? Procedimientos[motivoAveria]
           : procedimiento;
     }
+
+    const limpiarCampos = () => {
+      // setIdAveria('');
+      // setExternalId('');
+      // setVelocidad('');
+      // setTecnologiaRouter('');
+      // setContacto('');
+      // setMostrarContenedor(true);
+      // setRouterFiltrado('')
+      // setMotivoAveria('');
+      // setLoaderCargando(true);
+      document.querySelector('a[href="/appIncidenciasFi/build"]').click();
+      setTimeout(() => {
+        document.querySelector('a[href="/appIncidenciasFi/build/pruebasFi"]').click();
+        // setLoaderCargando(false);
+      }, 1);
+    };
+
+
+    const getMarkdownText = () => {
+      if (motivoAveria === 'Error contraseña' && lugarAveria !== 'Seleccionar lugar') {
+        return procedimiento;
+      }
+      if (lugarAveria !== 'Seleccionar lugar' || lugarAveria === 'Seleccionar lugar') {
+        return tecnologiaRouter === 'NEBA'
+          ? procedimiento.NEBA || "Información no disponible"
+          : procedimiento.general || "Información no disponible";
+      }
+      return "Información no disponible";
+    };
     
   
     return (
       <div className="contenedor-botones">
         {/* <button className="boton">Botón 1</button>
         <button className="boton">Botón 2</button> */}
+        <button className="boton" onClick={limpiarCampos}>
+            Limpiar
+        </button>
         <button className="boton" onClick={toggleSidebar}>
           Ver Procedimiento
         </button>
@@ -512,29 +580,11 @@ function AppFibra() {
           {(lugarAveria !== 'Seleccionar lugar' &&  medioAveria === true) && <h2>{motivoAveria} {lugarAveria}</h2>}
           {(lugarAveria === 'Seleccionar lugar' || medioAveria === false) && <h2>{motivoAveria}</h2>}
           
-          {lugarAveria !== 'Seleccionar lugar' && 
-            <MiMarkDown 
-              markdownText={
-                tecnologiaRouter === 'NEBA' 
-                  ? procedimiento.NEBA || "Información no disponible" 
-                  : procedimiento.general || "Información no disponible"
-              }
-              id="markdownProcedimiento"
-              markdownText2={procedimiento.Observaciones || ""}
-            />
-          }
-
-          {lugarAveria === 'Seleccionar lugar' && 
-            <MiMarkDown 
-              markdownText={
-                tecnologiaRouter === 'NEBA' 
-                  ? procedimiento.NEBA || "Información no disponible" 
-                  : procedimiento.general || "Información no disponible"
-              }
-              id="markdownProcedimiento"
-              markdownText2={procedimiento.Observaciones || ""}
-            />
-          }
+          <MiMarkDown
+            markdownText={getMarkdownText()}
+            id="markdownProcedimiento"
+            markdownText2={procedimiento.Observaciones || ""}
+          />
         </div>
   
         {/* Overlay que se muestra cuando el sidebar está abierto */}
@@ -561,13 +611,45 @@ function AppFibra() {
   };
 
 
+
+
+    // Código necesario para el input de las luces
+      // Actualiza dinámicamente el valor seleccionado
+      const actualizarEstado = (nombreLuz, nuevoEstado) => {
+        const estadosPrevios = valor ? valor.split(", ") : [];
+        const index = estadosPrevios.findIndex((item) => item.startsWith(`${nombreLuz} -`));
+
+        if (index !== -1) {
+          // Reemplaza el estado existente
+          nuevoEstado === '' ? 
+          estadosPrevios[index] = '' :
+          estadosPrevios[index] = `${nombreLuz} - ${nuevoEstado}`;
+        } else {
+          // Agrega un nuevo estado
+          estadosPrevios.push(`${nombreLuz} - ${nuevoEstado}`);
+        }
+
+        // Actualiza el estado dinámico
+        const cadenaLimpia = estadosPrevios.filter(estado => estado).join(", ");
+        setValor(cadenaLimpia);
+      };
+
+      // Maneja cambios manuales en el input
+      const manejarCambioInput = (texto) => {
+        setValor(texto); // Actualiza el texto visible en el input
+      };
+
+
   return (
     <>
     <div id='datosNotasFibra'>
+
+      {loaderCargando && <Loader text={"Cargando..."}/>} 
       
       <div className='contenedorNotasFibra'>
 
         <div className='contenedorTarifaFibra'>
+        <input type="text" value={idAveria} onChange={handleIdAveriaChange} placeholder="idAvería / externalServiceProblemId" />
             <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
 
             <select className='tecnologia-router' value={velocidad} onChange={handleSelectVelocidadChange}>
@@ -599,7 +681,7 @@ function AppFibra() {
               <option key='Seleccionar router' value='Seleccionar router'>  
                   Seleccionar router
               </option>
-              {console.log("routersLista:", routersLista)}
+              {/* {console.log("routersLista:", routersLista)} */}
               {routersLista.map((aver, index) => (
                 <option key={index} value={aver.router}>
                   {aver.router}
@@ -639,7 +721,7 @@ function AppFibra() {
             {medioAveria === true && <LugarAveriaInternet />}
 
 
-            {console.log(objetoRouterSeleccionado)}
+            {/* {console.log(objetoRouterSeleccionado)} */}
             
         </div>
 
@@ -668,15 +750,53 @@ function AppFibra() {
                       } placeholder="Número de contacto" />
 
             <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
-            {<BotonesProcedimiento />}
         </div>
 
+            {<BotonesProcedimiento />}
 
 
 
         <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}>
 
-              {objetoRouterSeleccionado?.estadoLuces &&
+             
+             
+             
+        <div className='contenedor-luces-cable-reset'>
+              {/* <input type="text" id='resultadoEstado'
+                      value={compLuces}
+                      onChange={(e) => {
+                          setCompLuces(e.target.value);
+                        }
+              } placeholder="Resultado de estado" /> */}
+              {/* VOLVER AQUI PARA ESTADO INICAL */}
+              <input
+                type="text"
+                id="resultadoEstado"
+                // value={valor}
+                value={valor}
+                // onChange={(e) => setValor(e.target.value)}
+                onChange={(e) => manejarCambioInput(e.target.value)}
+                placeholder={`Resultado de estado (${estadoLucesCablesResetFiltrado})`}
+              />
+
+              {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
+
+              <select className='tecnologia-router' value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
+                <option key='Comprobar' value='Comprobar'>  
+                    Comprobar
+                </option>
+                {/* {console.log("routersLista:", estadoLucesCablesReset)} */}
+                {Object.keys(estadoLucesCablesReset).map((estado, index) => (
+                  <option key={index} value={estado}>
+                    {estado}
+                  </option>
+                ))}
+              </select>
+          </div>
+
+
+
+             {objetoRouterSeleccionado?.estadoLuces &&
                 Object.keys(objetoRouterSeleccionado.estadoLuces).map((categoria) => {
                   // Filtrar las luces permitidas de la categoría actual
                   const lucesFiltradas = Object.keys(objetoRouterSeleccionado.estadoLuces[categoria]).filter((luz) =>
@@ -716,36 +836,7 @@ function AppFibra() {
                   );
                 })}
 
-                        <div className='contenedor-luces-cable-reset'>
-                          {/* <input type="text" id='resultadoEstado'
-                                  value={compLuces}
-                                  onChange={(e) => {
-                                      setCompLuces(e.target.value);
-                                    }
-                          } placeholder="Resultado de estado" /> */}
 
-                          <input
-                            type="text"
-                            id="resultadoEstado"
-                            value={valor}
-                            onChange={(e) => setValor(e.target.value)}
-                            placeholder={`Resultado de estado (${estadoLucesCablesResetFiltrado})`}
-                          />
-
-                          {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
-
-                          <select className='tecnologia-router' value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
-                            <option key='Comprobar' value='Comprobar'>  
-                                Comprobar
-                            </option>
-                            {console.log("routersLista:", estadoLucesCablesReset)}
-                            {Object.keys(estadoLucesCablesReset).map((estado, index) => (
-                              <option key={index} value={estado}>
-                                {estado}
-                              </option>
-                            ))}
-                          </select>
-                      </div>
               </div>
 
         {notasFibra}
@@ -753,6 +844,8 @@ function AppFibra() {
       </div>
 
     </div>
+
+    
 
     
     </>

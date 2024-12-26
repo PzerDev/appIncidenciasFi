@@ -30,6 +30,7 @@ Tipo de router: {router}
 **Comprobaciones realizadas en llamada:**  
 - Luces: {luces}  
 - Cables: {cables}  
+{refresh}
 - Reinicio/reset: {reset}
 
 **Acciones llevadas a cabo:**  
@@ -43,6 +44,7 @@ Tipo de router: {router}
 - Comprobaciones realizadas:  
   - Luces: {luces}  
   - Cables: {cables}  
+  {refresh}
   - Reinicio/reset: {reset}  
 - Teléfono de contacto: {contacto}  
 - Disponibilidad horaria: {inicio} - {fin} horas  
@@ -62,7 +64,7 @@ DISPONIBILIDAD: {inicio} - {fin} horas
                 cuerpo: `
 {horario},  
 
-Se adjunta {adjuntoCliente} realizado por el cliente.   
+Se adjunta {adjuntoCliente} por el cliente.   
 
 ID CLIENTE: {idExternal}  
 N° TICKET AVERÍA: {idAveriaApi}

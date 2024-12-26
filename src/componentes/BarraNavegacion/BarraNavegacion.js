@@ -6,6 +6,7 @@ import Calculadora from '../Calculadora/Calculadora';
 import Roaming from '../Roaming/Roaming';
 import AppFibra from '../AppFibra/AppFibra';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../Login/Loader';
 
 const BarraNavegacion = ({ onLogout }) => {
   const [items, setItems] = useState([
@@ -16,6 +17,7 @@ const BarraNavegacion = ({ onLogout }) => {
     // ... Agrega más elementos aquí si quieres un valor inicial
   ]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -35,7 +37,17 @@ const BarraNavegacion = ({ onLogout }) => {
     navigate('/', { replace: true });
   };
 
+  const handleClick = () => {
+    setIsLoading(true);
+    // Simular una carga (reemplaza esto con tu lógica real)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  };
+
   return (
+    <>
+    {isLoading && <Loader text={`Cargando...`}/>}
     <div className="container">
       <nav className={`nav ${isOpen ? 'open' : ''}`}>
         <div className="logo">
@@ -51,13 +63,16 @@ const BarraNavegacion = ({ onLogout }) => {
             <ul className="lists">
               {items.map((item, index) => (
                 <li className="list" key={index}>
-                  <Link to={item.pagina} className="nav-link">
+                  <Link to={item.pagina} 
+                        className="nav-link"
+                        onClick={handleClick}>
                     <i className={item.icon} />
                     <span className="link">{item.text}</span>
                   </Link>
                 </li>
               ))}
             </ul>
+            
             <div className="bottom-cotent">
               {/* <li className="list">
                 <a href="#" className="nav-link">
@@ -85,6 +100,7 @@ const BarraNavegacion = ({ onLogout }) => {
       </Routes>
       <section className="overlay" onClick={toggleSidebar}></section>
     </div>
+    </>
   );
 };
 
