@@ -4,6 +4,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .contenedorNotasFibra {
@@ -49,6 +50,17 @@
 }
 
 /* Estilos de contenedor de estado luces router */
+.ocultar-luces-router {
+  display: none;
+}
+.mostrar-luces-router {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cambiar-radio-contenedor, #resultadoEstado.cambiar-radio-contenedor {
+  border-radius: 20px;
+}
+
 .contenedor-estado-luces-router {
     background: #e9e9e9;
     padding: 30px;

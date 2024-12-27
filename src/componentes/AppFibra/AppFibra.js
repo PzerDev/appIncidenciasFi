@@ -105,6 +105,8 @@ function AppFibra() {
   // descripcionesLuces para luces
   const [descripcionesLuces, setDescripcionesLuces] = useState({});
   const [mostrarContenedor, setMostrarContenedor] = useState(true);
+  const [ocultarLucesRouter, setOcultarLucesRouter] = useState(false);
+  const [mostrarTodasLuces, setMostrarTodasLuces] = useState(true);
 
 
     //Estados y eventos para Horas
@@ -302,6 +304,7 @@ function AppFibra() {
       ) && event.target.value !== 'Seleccionar lugar'
     ) {
       setMostrarContenedor(false);
+      motivoAveriaFibra === 'Sin servicio' ? setOcultarLucesRouter(false): setOcultarLucesRouter(true);
     } else {
       setMostrarContenedor(true);
     }
@@ -571,6 +574,9 @@ function AppFibra() {
         <button className="boton" onClick={limpiarCampos}>
             Limpiar
         </button>
+        <button className="boton" onClick={() => setMostrarTodasLuces(!mostrarTodasLuces)}>
+            {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"}
+        </button>
         <button className="boton" onClick={toggleSidebar}>
           Ver Procedimiento
         </button>
@@ -756,6 +762,11 @@ function AppFibra() {
 
 
 
+
+
+        
+
+        
         <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}>
 
              
@@ -776,12 +787,13 @@ function AppFibra() {
                 value={valor}
                 // onChange={(e) => setValor(e.target.value)}
                 onChange={(e) => manejarCambioInput(e.target.value)}
+                className={ocultarLucesRouter === true ? `cambiar-radio-contenedor` : ''}
                 placeholder={`Resultado de estado (${estadoLucesCablesResetFiltrado})`}
               />
 
               {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
 
-              <select className='tecnologia-router' value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
+              <select className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
                 <option key='Comprobar' value='Comprobar'>  
                     Comprobar
                 </option>
@@ -795,15 +807,18 @@ function AppFibra() {
           </div>
 
 
-
+            <div className={ocultarLucesRouter ? `ocultar-luces-router` : 'mostrar-luces-router'}>
              {objetoRouterSeleccionado?.estadoLuces &&
                 Object.keys(objetoRouterSeleccionado.estadoLuces).map((categoria) => {
-                  // Filtrar las luces permitidas de la categoría actual
-                  const lucesFiltradas = Object.keys(objetoRouterSeleccionado.estadoLuces[categoria]).filter((luz) =>
-                    lucesPermitidas.includes(luz)
-                  );
+                  // Obtener todas las luces de la categoría actual
+                  const todasLasLuces = Object.keys(objetoRouterSeleccionado.estadoLuces[categoria]);
 
-                  // Solo continuar si hay luces permitidas en la categoría
+                  // Aplicar filtrado según el estado de `mostrarTodasLuces`
+                  const lucesFiltradas = mostrarTodasLuces
+                    ? todasLasLuces
+                    : todasLasLuces.filter((luz) => lucesPermitidas.includes(luz));
+
+                  // Solo continuar si hay luces (filtradas o no)
                   if (lucesFiltradas.length === 0) return null;
 
                   return (
@@ -836,11 +851,10 @@ function AppFibra() {
                   );
                 })}
 
-
               </div>
+          </div>
 
-        {notasFibra}
-
+          {notasFibra}
       </div>
 
     </div>
