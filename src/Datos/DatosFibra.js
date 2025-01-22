@@ -92,10 +92,10 @@ Saludos.
 
         notaReclamoCoord: `
 **ESCALADO A COORDINACIÓN:**  
-ID:  
-Motivo avería:  
-Comprobaciones realizadas y acciones llevadas a cabo:  
-Motivo escalado:  
+- ID:  
+- Motivo avería:  
+- Comprobaciones realizadas y acciones llevadas a cabo:  
+- Motivo escalado:  
 `,
         src: "",
         observaciones: {

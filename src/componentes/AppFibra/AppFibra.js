@@ -85,6 +85,7 @@ function AppFibra() {
   const [medioAveria, setMedioAveria] = useState(false);
   const [luces, setLuces] = useState('');
   const [lucesPermitidas, setLucesPermitidas] = useState([]);
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
 
   const [isDisabledRouter, setIsDisabledRouter] = useState(true);
   const [isDisabledMotivo, setIsDisabledMotivo] = useState(true);
@@ -104,8 +105,8 @@ function AppFibra() {
 
   // descripcionesLuces para luces
   const [descripcionesLuces, setDescripcionesLuces] = useState({});
-  const [mostrarContenedor, setMostrarContenedor] = useState(true);
-  const [ocultarLucesRouter, setOcultarLucesRouter] = useState(false);
+  // const [mostrarContenedor, setMostrarContenedor] = useState(true);
+  const [ocultarLucesRouter, setOcultarLucesRouter] = useState(true);
   const [mostrarTodasLuces, setMostrarTodasLuces] = useState(true);
 
 
@@ -139,23 +140,6 @@ function AppFibra() {
       if (estado === '') {
         
       } else {
-        // Actualiza el estado correspondiente
-        // switch (estadoLucesCablesResetFiltrado) {
-        //   case 'Luces':
-        //     const nuevoEstadoLuces = compLuces ? `${compLuces}, ${luz} - ${estado}` : `${luz} - ${estado}`;
-        //     setCompLuces(nuevoEstadoLuces);
-        //     break;
-        //   case 'Cables':
-        //     const nuevoEstadoCables = compCables;
-        //     setCompCables(nuevoEstadoCables);
-        //     break;
-        //   case 'Reset':
-        //     const nuevoEstadoReset = compReset ? `${compReset}, ${luz} - ${estado}` : `Tras reset ${luz} - ${estado}`;
-        //     setCompReset(nuevoEstadoReset);
-        //     break;
-        //   default:
-        //     console.warn('Estado no reconocido:', estadoLucesCablesResetFiltrado);
-        // }
 
       }
       
@@ -175,27 +159,28 @@ function AppFibra() {
     event.target.value === 'Error contraseña' ?
       setAdjuntoCliente('fotografía de etiqueta del router realizada') :
       setAdjuntoCliente('')
+      
 
     if (event.target.value === 'Sin servicio' || event.target.value === 'Cortes' ||
         event.target.value === 'Velocidad' || event.target.value === 'Seleccionar motivo' ||
         event.target.value === 'Cobertura' || event.target.value === 'Error contraseña') {
       setMedioAveria(true);
       setLugarAveriaInternet('Seleccionar lugar');
-      setMostrarContenedor(true);
-      if (event.target.value === 'Seleccionar motivo' || 
-          event.target.value === 'Cobertura'
+      // setMostrarContenedor(true);
+      if (event.target.value === 'Seleccionar motivo' 
+        // || event.target.value === 'Cobertura'
       ) {
         setMedioAveria(false);
-        setMostrarContenedor(true);
-        if (event.target.value === 'Cobertura') {
-          setMostrarContenedor(false);
-        }
+        // setMostrarContenedor(true);
+        // if (event.target.value === 'Cobertura') {
+        //   setMostrarContenedor(false);
+        // }
       }
 
-      if (event.target.value === 'Cortes' ||
-          event.target.value === 'Velocidad') {
-            setMostrarContenedor(true);
-          }
+      // if (event.target.value === 'Cortes' ||
+      //     event.target.value === 'Velocidad') {
+      //       setMostrarContenedor(true);
+      //     }
 
     } else {
       setMedioAveria(false);
@@ -214,7 +199,7 @@ function AppFibra() {
       const lugarAve = event.target.value;
       const lucesPer = obtenerLucesPermitidas(lugarAve);
       setLucesPermitidas(lucesPer);
-      setMostrarContenedor(false);
+      // setMostrarContenedor(false);
     }
 
   };
@@ -289,25 +274,14 @@ function AppFibra() {
   const handleSelectLugarAveriaChange = (event) => {
     setLugarAveriaInternet(event.target.value);
 
-    (motivoAveriaFibra === 'Velocidad' && event.target.value === 'cable') 
-      ? setAdjuntoCliente('test de velocidad realizado') 
-      : setAdjuntoCliente('');
-    
-    (motivoAveriaFibra === 'Error contraseña' && event.target.value === 'router')  ?
-    setAdjuntoCliente('fotografía de etiqueta del router realizada') :
-    setAdjuntoCliente('')
-
-    if (
-      (motivoAveriaFibra === 'Sin servicio' || 
-       motivoAveriaFibra === 'Velocidad' ||
-       motivoAveriaFibra === 'Cortes'
-      ) && event.target.value !== 'Seleccionar lugar'
-    ) {
-      setMostrarContenedor(false);
-      motivoAveriaFibra === 'Sin servicio' ? setOcultarLucesRouter(false): setOcultarLucesRouter(true);
+    if (motivoAveriaFibra === 'Velocidad' && event.target.value === 'cable') {
+        setAdjuntoCliente('test de velocidad realizado');
+    } else if (motivoAveriaFibra === 'Error contraseña' && event.target.value === 'router') {
+        setAdjuntoCliente('fotografía de etiqueta del router realizada');
     } else {
-      setMostrarContenedor(true);
+        setAdjuntoCliente('');
     }
+
 
     let lucesSinServicio = {
       'Sin servicio WIFI': ['WIFI', '2G', '5G', 'WiFi'],
@@ -360,17 +334,11 @@ function AppFibra() {
        .replace("{velocidadContratada}", velocidad)
        .replace("{tecnologiaRouter}", tecnologiaRouter)
        .replace("{medioAveria}", lugarAveriaInternet+' ')
-    // .replace("{fin}", horaFin)
        .replace("{router}", routerFiltrado)
        .replace("{luces}", compLuces)
        .replace("{cables}", compCables)
        .replace("{refresh}", refreshParams)
        .replace("{reset}", compReset)
-    // .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
-    // .replace("{afectado}", afectado)
-    // .replace("{incidencia}", incidencia)
-    // .replace("{horario}", horario)
-    // .replace("{nuevaDireccion}", nuevaDireccion)
     
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
@@ -402,11 +370,6 @@ function AppFibra() {
   .replace("{fin}", horaFin)
   .replace("{horario}", mostrarDiaSegunHora)
 
-  // let notaReclamoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", idExternal)
-  // .replace("{motivoAveriaFibra}", motivoAveriaFibra)
-  // .replace("{idAveriaApi}", 'idAveriaApi')
-  // .replace("{inicio}", horaInicio)
-  // .replace("{fin}", horaFin)
 
   const notasFibra = (
 
@@ -433,7 +396,6 @@ function AppFibra() {
               <div className='pre notaEscalado'>
                   <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
               </div>
-              {/* <CopyToClipboardHTML targetId="markdownNotaEscaladoAdjunto" /> */}
                 <button
                   id={`copiarBtn_NotaEscaladoAdjunto`}
                     onClick = {(e) => {
@@ -460,7 +422,6 @@ function AppFibra() {
         <div className='pre notaReclamoOutlook'>
             <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook"/>
         </div>
-        {/* <CopyToClipboardHTML targetId="markdownNotaReclamoOutlook" /> */}
            <button onClick = {(e) => {
               // Usa una URL específica para Outlook
               const mailto = `mailto:?subject=${encodeURIComponent(notaReclamoOutlookAsunto)}&body=${encodeURIComponent(notaReclamoOutlook)}`;
@@ -508,95 +469,65 @@ function AppFibra() {
     );
   }
 
-  
-
-  const BotonesProcedimiento = () => {
-    const [isSidebarVisible, setSidebarVisible] = useState(false);
-  
-    // Función para abrir o cerrar el sidebar
-    const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
-  
-    // Comprobar que 'motivoAveriaFibra' y 'lugarAveriaInternet' están definidos
-    const motivoAveria = motivoAveriaFibra || "Seleccionar motivo";
-    const lugarAveria = lugarAveriaInternet || "valor predeterminado";
-  
-    // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
-    let procedimiento = { general: "Información no disponible", Observaciones: "" };
-    console.log(medioAveria, lugarAveria)
-    if (medioAveria) {
-      procedimiento = 
-        Procedimientos[motivoAveria] && Procedimientos[motivoAveria][lugarAveria]
-          ? Procedimientos[motivoAveria][lugarAveria]
-          : procedimiento;
-      console.log(procedimiento)
-    } else {
-      procedimiento = 
-        Procedimientos[motivoAveria]
-          ? Procedimientos[motivoAveria]
-          : procedimiento;
+  // Comprobar que 'motivoAveriaFibra' y 'lugarAveriaInternet' están definidos
+  const motivoAveriaS = motivoAveriaFibra || "Seleccionar motivo";
+  const lugarAveriaS = lugarAveriaInternet || "valor predeterminado";
+  // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
+  let procedimiento = { general: "Información no disponible", Observaciones: "" };  
+  if (medioAveria) {
+    procedimiento = 
+      Procedimientos[motivoAveriaS] && Procedimientos[motivoAveriaS][lugarAveriaS]
+        ? Procedimientos[motivoAveriaS][lugarAveriaS]
+        : procedimiento;
+    console.log(procedimiento)
+  } else {
+    procedimiento = 
+      Procedimientos[motivoAveriaS]
+        ? Procedimientos[motivoAveriaS]
+        : procedimiento;
+  }
+  const getMarkdownText = () => {
+    if (motivoAveriaS === 'Error contraseña' && lugarAveriaS !== 'Seleccionar lugar') {
+      return procedimiento;
     }
+    if (lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') {
+      return tecnologiaRouter === 'NEBA'
+        ? procedimiento.NEBA || "Información no disponible"
+        : procedimiento.general || "Información no disponible";
+    }
+    return "Información no disponible";
+  };
+
+
+  const BotonesProcedimientos = () => {
+
 
     const limpiarCampos = () => {
-      // setIdAveria('');
-      // setExternalId('');
-      // setVelocidad('');
-      // setTecnologiaRouter('');
-      // setContacto('');
-      // setMostrarContenedor(true);
-      // setRouterFiltrado('')
-      // setMotivoAveria('');
-      // setLoaderCargando(true);
       document.querySelector('a[href="/appIncidenciasFi/build"]').click();
       setTimeout(() => {
         document.querySelector('a[href="/appIncidenciasFi/build/pruebasFi"]').click();
         // setLoaderCargando(false);
       }, 1);
     };
-
-
-    const getMarkdownText = () => {
-      if (motivoAveria === 'Error contraseña' && lugarAveria !== 'Seleccionar lugar') {
-        return procedimiento;
-      }
-      if (lugarAveria !== 'Seleccionar lugar' || lugarAveria === 'Seleccionar lugar') {
-        return tecnologiaRouter === 'NEBA'
-          ? procedimiento.NEBA || "Información no disponible"
-          : procedimiento.general || "Información no disponible";
-      }
-      return "Información no disponible";
-    };
     
   
     return (
-      <div className="contenedor-botones">
-        {/* <button className="boton">Botón 1</button>
-        <button className="boton">Botón 2</button> */}
+      <div className="contenedor-botones-procedimientos">
         <button className="boton" onClick={limpiarCampos}>
-            Limpiar
+          <i class='bx bx-trash' ></i>
         </button>
-        <button className="boton" onClick={() => setMostrarTodasLuces(!mostrarTodasLuces)}>
-            {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"}
+        <button className="boton" onClick={() => setOcultarLucesRouter(!ocultarLucesRouter)}>
+            {/* {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"} */}
+            <i class='bx bx-sun'></i>
         </button>
-        <button className="boton" onClick={toggleSidebar}>
-          Ver Procedimiento
+        <button className="boton" onClick={() => setSidebarVisible(!isSidebarVisible)}>
+          <i class='bx bx-detail'></i>
         </button>
   
-        {/* Sidebar */}
-        <div className={`sidebar-derecho ${isSidebarVisible ? "visible" : ""}`}>
-          {(lugarAveria !== 'Seleccionar lugar' &&  medioAveria === true) && <h2>{motivoAveria} {lugarAveria}</h2>}
-          {(lugarAveria === 'Seleccionar lugar' || medioAveria === false) && <h2>{motivoAveria}</h2>}
-          
-          <MiMarkDown
-            markdownText={getMarkdownText()}
-            id="markdownProcedimiento"
-            markdownText2={procedimiento.Observaciones || ""}
-          />
-        </div>
+
   
-        {/* Overlay que se muestra cuando el sidebar está abierto */}
-        {isSidebarVisible && (
-          <div className="overlay-derecho" onClick={toggleSidebar}></div>
-        )}
+    {/* HASTA AQUI */}
+
       </div>
     );
   };
@@ -648,6 +579,31 @@ function AppFibra() {
 
   return (
     <>
+
+    <div className={`app-container ${isSidebarVisible ? "sidebar-visible" : ""}`}>
+      {/* Sidebar */}
+      <div className="sidebar-derecho">
+        <div className='sidebar-titulo'>
+            <button className="close-button" onClick={() => setSidebarVisible(false)}>
+              <i class='bx bx-x'></i>
+            </button>
+            {(lugarAveriaS !== 'Seleccionar lugar' && medioAveria === true) && (
+              <h2>{motivoAveriaS} {lugarAveriaS}</h2>
+            )}
+            {(lugarAveriaS === 'Seleccionar lugar' || medioAveria === false) && (
+              <h2>{motivoAveriaS}</h2>
+            )}
+        </div>
+        <MiMarkDown
+          markdownText={getMarkdownText()}
+          id="markdownProcedimiento"
+          markdownText2={procedimiento.Observaciones || ""}
+        />
+      </div>
+
+      {/* Contenido principal */}
+      <div className="main-content">
+        {/* Todo el contenido principal aquí */}
     <div id='datosNotasFibra'>
 
       {loaderCargando && <Loader text={"Cargando..."}/>} 
@@ -704,30 +660,16 @@ function AppFibra() {
                 <option key="Seleccionar motivo" value="Seleccionar motivo">
                   Seleccionar motivo
                 </option>
-                {motivoAveria
-                  .filter((aver) => {
-                    // Condición para saltar el elemento
-                    const routersFiltrados = ["Sagemcom F@st3686", "Technicolor TC7230"];
-                    if (
-                      routersFiltrados.includes(routerFiltrado) &&
-                      tecnologiaRouter === "HFC"
-                    ) {
-                      return aver !== "ONT Alarmada"; // Reemplaza con el valor que deseas omitir
-                    }
-                    return true; // Mostrar todos los demás
-                  })
-                  .map((aver) => (
-                    <option key={aver} value={aver}>
-                      {aver}
-                    </option>
-                  ))}
+                {motivoAveria.map((aver) => (
+                  <option key={aver} value={aver}>
+                    {aver}
+                  </option>
+                ))}
+
             </select>
 
 
             {medioAveria === true && <LugarAveriaInternet />}
-
-
-            {/* {console.log(objetoRouterSeleccionado)} */}
             
         </div>
 
@@ -758,7 +700,7 @@ function AppFibra() {
             <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
-            {<BotonesProcedimiento />}
+            {/* {<BotonesProcedimiento />} */}
 
 
 
@@ -767,19 +709,12 @@ function AppFibra() {
         
 
         
-        <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}>
-
+        {/* <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}> */}
+        <div className={`contenedor-estado-luces-router mostrar-contenedor`}>
              
              
              
         <div className='contenedor-luces-cable-reset'>
-              {/* <input type="text" id='resultadoEstado'
-                      value={compLuces}
-                      onChange={(e) => {
-                          setCompLuces(e.target.value);
-                        }
-              } placeholder="Resultado de estado" /> */}
-              {/* VOLVER AQUI PARA ESTADO INICAL */}
               <input
                 type="text"
                 id="resultadoEstado"
@@ -807,57 +742,78 @@ function AppFibra() {
           </div>
 
 
-            <div className={ocultarLucesRouter ? `ocultar-luces-router` : 'mostrar-luces-router'}>
-             {objetoRouterSeleccionado?.estadoLuces &&
-                Object.keys(objetoRouterSeleccionado.estadoLuces).map((categoria) => {
-                  // Obtener todas las luces de la categoría actual
-                  const todasLasLuces = Object.keys(objetoRouterSeleccionado.estadoLuces[categoria]);
+              <div className={ocultarLucesRouter ? `ocultar-luces-router` : 'mostrar-luces-router'}>
+                {objetoRouterSeleccionado?.estadoLuces &&
+                  Object.keys(objetoRouterSeleccionado.estadoLuces).map((categoria) => {
+                    // Obtener todas las luces de la categoría actual
+                    const todasLasLuces = Object.keys(objetoRouterSeleccionado.estadoLuces[categoria]);
 
-                  // Aplicar filtrado según el estado de `mostrarTodasLuces`
-                  const lucesFiltradas = mostrarTodasLuces
-                    ? todasLasLuces
-                    : todasLasLuces.filter((luz) => lucesPermitidas.includes(luz));
+                    // Solo continuar si hay luces
+                    if (todasLasLuces.length === 0) return null;
 
-                  // Solo continuar si hay luces (filtradas o no)
-                  if (lucesFiltradas.length === 0) return null;
-
-                  return (
-                    <div key={categoria} className="categoria">
-                      <h2>{categoria.toUpperCase()}</h2>
-                      <div className="contenedor-estado-luces">
-                        {lucesFiltradas.map((luz) => (
-                          <div key={luz} className="luz">
-                            <h3>{luz}</h3>
-                            <select
-                              className="estado-select"
-                              onChange={(e) => handleEstadoChange(categoria, luz, e.target.value)}
-                            >
-                              <option value="">Seleccionar estado</option>
-                              {Object.entries(objetoRouterSeleccionado.estadoLuces[categoria][luz]).map(([estado]) => (
-                                <option key={estado} value={estado}>
-                                  {estado}
-                                </option>
-                              ))}
-                            </select>
-                            <p className="descripcion">
-                              {descripcionesLuces[`${categoria}-${luz}`] || "Seleccione un estado para ver la descripción."}
-                            </p>
-                          </div>
-                        ))}
+                    return (
+                      <div key={categoria} className="categoria">
+                        <h2>{categoria.toUpperCase()}</h2>
+                        <div className="contenedor-estado-luces">
+                          {todasLasLuces.map((luz) => (
+                            <div key={luz} className="luz">
+                              <h3>{luz}</h3>
+                              <select
+                                className="estado-select"
+                                onChange={(e) => handleEstadoChange(categoria, luz, e.target.value)}
+                              >
+                                <option value="">Seleccionar estado</option>
+                                {Object.entries(objetoRouterSeleccionado.estadoLuces[categoria][luz]).map(([estado]) => (
+                                  <option key={estado} value={estado}>
+                                    {estado}
+                                  </option>
+                                ))}
+                              </select>
+                              <p className="descripcion">
+                                {descripcionesLuces[`${categoria}-${luz}`] || "Seleccione un estado para ver la descripción."}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-
-
-                    </div>
-                  );
-                })}
-
+                    );
+                  })}
               </div>
+
+
+              {<BotonesProcedimientos />}
           </div>
 
           {notasFibra}
+
+
+
+        {/* Sidebar
+        <div className={`sidebar-derecho ${isSidebarVisible ? "visible" : ""}`}>
+          <button className="close-button" onClick={() => setSidebarVisible(false)}>X</button>
+          {(lugarAveriaS !== 'Seleccionar lugar' &&  medioAveria === true) && <h2>{motivoAveriaS} {lugarAveriaS}</h2>}
+          {(lugarAveriaS === 'Seleccionar lugar' || medioAveria === false) && <h2>{motivoAveriaS}</h2>}
+          
+          <MiMarkDown
+            markdownText={getMarkdownText()}
+            id="markdownProcedimiento"
+            markdownText2={procedimiento.Observaciones || ""}
+          />
+        </div> */}
+        
+        {/* Overlay que se muestra cuando el sidebar está abierto */}
+        {/* {isSidebarVisible && (
+          <div className="overlay-derecho" onClick={() => setSidebarVisible(!isSidebarVisible)}></div>
+        )} */}
+        {/* {isSidebarVisible && <div className="overlay-derecho"></div>} */}
+
       </div>
 
     </div>
+      </div>
+    </div>
+
+
 
     
 

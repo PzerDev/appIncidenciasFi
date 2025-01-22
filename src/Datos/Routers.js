@@ -222,7 +222,7 @@ ONT Nokia
     {
         acometida: "Vodafone / Tesa",
         tecnologia: "Router HFC",
-        router: "Technicolor CGA6444",
+        router: "Technicolor CGA4233",
         luces: `&nbsp;- PHONE - INTERNET - WPS - WIFI - POWER`,
         src: ""
     },

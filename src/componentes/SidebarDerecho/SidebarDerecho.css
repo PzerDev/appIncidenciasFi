@@ -1,45 +1,83 @@
- 
-  .app-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  
-  .toggle-button-sidebar-derecho {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #f9f9f9;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  /* Sidebar derecho */
-  .sidebar-derecho {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Oculto inicialmente */
-    width: 500px;
-    height: 100vh;
-    background-color: #2f2f2f;
-    color: #d7d7d7;
-    padding: 36px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    transition: all 0.3s ease;
-    z-index: 2;
-  }
-  
-  .sidebar-derecho.visible {
-    right: 0; /* Se desplaza desde la derecha */
-  }
-  
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar derecho */
+.sidebar-derecho {
+  position: fixed;
+  top: 0;
+  right: -500px; /* Oculto inicialmente (ancho del sidebar) */
+  width: 500px;
+  height: 100vh;
+  background-color: #2f2f2f;
+  color: #d7d7d7;
+  padding: 36px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+}
+
+.app-container.sidebar-visible .sidebar-derecho {
+  right: 0; /* Muestra el sidebar */
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+  transition: margin-right 0.3s ease-in-out;
+}
+
+.app-container.sidebar-visible .main-content {
+  margin-right: 500px; /* Ancho del sidebar */
+}
+
+/* Botón de cierre */
+.sidebar-derecho .close-button {
+  /* position: absolute; */
+  /* top: 10px;
+  right: 10px; */
+  background-color: transparent;
+  /* color: #d7d7d7; */
+  border: none;
+  /* font-size: 24px; */
+  cursor: pointer;
+  /* padding: 5px; */
+  border-radius: 10px;
+}
+.sidebar-derecho .close-button:hover {
+  background-color: #454545;
+}
+
+.sidebar-derecho .close-button i {
+  /* position: absolute; */
+  /* top: 10px;
+  right: 10px; */
+  background-color: transparent;
+  color: #d7d7d7;
+  border: none;
+  font-size: 30px;
+  padding: 5px;
+  /* cursor: pointer; */
+}
+
+.sidebar-derecho .close-button:hover {
+  color: #ff6b6b;
+}
+
+.sidebar-derecho .sidebar-titulo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
   .sidebar-derecho h2 {
     margin: 0;
     font-size: 20px;
-    margin-bottom: 20px;
+    /* margin-left: 10px; */
   }
   
   .sidebar-derecho ol {
@@ -48,16 +86,5 @@
   
   .sidebar-derecho ol li {
     margin-bottom: 15px;
-  }
-  
-  /* Fondo oscuro (overlay) */
-  .overlay-derecho {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
   }
   
