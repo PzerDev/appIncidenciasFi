@@ -168,7 +168,7 @@ function AppFibra() {
       setLugarAveriaInternet('Seleccionar lugar');
       // setMostrarContenedor(true);
       if (event.target.value === 'Seleccionar motivo' 
-        // || event.target.value === 'Cobertura'
+        || event.target.value === 'Cobertura'
       ) {
         setMedioAveria(false);
         // setMostrarContenedor(true);
