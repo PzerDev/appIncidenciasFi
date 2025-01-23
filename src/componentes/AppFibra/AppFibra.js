@@ -609,7 +609,8 @@ function AppFibra() {
       {loaderCargando && <Loader text={"Cargando..."}/>} 
       
       <div className='contenedorNotasFibra'>
-
+        
+        <div>
         <div className='contenedorTarifaFibra'>
         <input type="text" value={idAveria} onChange={handleIdAveriaChange} placeholder="idAvería / externalServiceProblemId" />
             <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
@@ -700,6 +701,8 @@ function AppFibra() {
             <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
+        </div>
+
             {/* {<BotonesProcedimiento />} */}
 
 
@@ -740,6 +743,7 @@ function AppFibra() {
                 ))}
               </select>
           </div>
+          
 
 
               <div className={ocultarLucesRouter ? `ocultar-luces-router` : 'mostrar-luces-router'}>
@@ -783,6 +787,8 @@ function AppFibra() {
 
               {<BotonesProcedimientos />}
           </div>
+
+          
 
           {notasFibra}
 

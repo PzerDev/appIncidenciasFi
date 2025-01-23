@@ -34,14 +34,16 @@ ONT Nokia
                     Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente.'
                 },
                 INTERNET: {
-                    "Encendida (Verde)": '',
+                    "Encendida (Verde)": 'Conectado a internet',
                     "Encendida (Roja)": 'No hay conexión a internet',
+                    "Intermitente (Verde)": 'Estableciendo conexión',
                     Apagada: 'No hay conexión a internet'
                 },
                 WIFI: {
                     Encendida: 'WIFI activado',
-                    Intermitente: 'Sincronización WPS',
-                    Apagada: 'No hay WIFI'
+                    "Intermitente (lento)": 'WiFi desactivado por programación',
+                    "Intermitente (rápido)": 'Sincronización WPS',
+                    Apagada: 'No hay conexión WIFI'
                 }
             }
         },
@@ -98,7 +100,7 @@ ONT Nokia
                     Intermitente: '+2 minutos, significa que no configura o error en la autentificación.',
                     Apagada: 'No hay enlace con GPON. Abrir avería.'
                 },
-                Alarma: {
+                "!": {
                     "Encendida (roja)": 'Fibra desconectada o transceptor desactivado.',
                     Apagada: 'Conectado, transceptor activado.'
                 },
@@ -108,7 +110,7 @@ ONT Nokia
                 },
                 Ethernet: {
                     Encendida: 'Enlace por ethernet activo. La transferencia de datos se puede visualizar en el puerto ETH si está intermitente.',
-                    Apagada: 'Sin conexión.'
+                    Apagada: 'Sin enlace de Ethernet.'
                 },
                 "2G": {
                     Encendida: 'Red WIFI en la banda de 2.4Ghz encendida.',
@@ -159,11 +161,12 @@ ONT Nokia
             configuracion: {
                 Power: {
                     Encendida: 'Equipo encendido.',
+                    Intermitente: 'Puesta en marcha',
                     Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
                 },
                 Online: {
                     Encendida: 'Sincronización completada, navegación correcta.',
-                    Intermitente: '1:30 min durante el tiempo de sincrotización. Pasado el tiempo debería cambiar a fija.',
+                    Intermitente: '1:30 min durante el tiempo de sincrotización. Pasado el tiempo tiene que cambiar a fija.',
                     Apagada: 'Problemas para sincronizar.'
                 },
                 WiFi: {
@@ -193,12 +196,12 @@ ONT Nokia
                 },
                 S: {
                     Encendida: 'Sincronización correcta.',
-                    Intermitente: '1:30 min durante el tiempo de sincrotización. Pasado el tiempo debería cambiar a fija.',
+                    Intermitente: '1:30 min durante el tiempo de Ssincrotización. Pasado el tiempo tiene que cambiar a fija.',
                     Apagada: 'Problemas para establecer conexión con central.'
                 },
                 "@": {
                     Encendida: 'Acceso a internet correcto.',
-                    Intermitente: 'Si hay transferencia de datos.',
+                    Intermitente: 'Se está configurando o conectando a la red.',
                     Apagada: 'Problemas de acceso a internet.'
                 },
                 ETH: {
@@ -224,6 +227,32 @@ ONT Nokia
         tecnologia: "Router HFC",
         router: "Technicolor CGA4233",
         luces: `&nbsp;- PHONE - INTERNET - WPS - WIFI - POWER`,
+        estadoLuces: {
+            configuracion: {
+                POWER: {
+                    Encendida: 'Equipo encendido.',
+                    Intermitente: 'El equipo se está iniciando.',
+                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
+                },
+                WiFi: {
+                    Encendida: 'WIFI activo sin tráfico.',
+                    "Intermitente (rápido)": 'WIFI activo con tráfico.',
+                    "Intermitente (lento)": 'WIFI deshabilitado por la función de programa.',
+                    Apagada: 'Red WIFI deshabilitada. Mantener presionado el botón de WIFI hasta que el LED WIFI encienda'
+                },
+                WPS: {
+                    Encendida: 'Estás conectado correctamente mediante WPS',
+                    Intermitente: 'WPS en uso',
+                    Apagada: 'WPS no iniciada. Para inicar WPS hay que presionar el botón por 4 segundos'
+                },
+                INTERNET: {
+                    Encendida: 'Conectado a Internet',
+                    Intermitente: 'Estableciendo conexión a internet',
+                    "Encendida (Roja)": 'No se ha podido conectar a Internet',
+                    "Intermitente (Roja)": 'Sincronizando la señal de cable'
+                }
+            }
+        },
         src: ""
     },
 
