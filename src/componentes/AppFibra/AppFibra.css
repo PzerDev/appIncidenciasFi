@@ -141,7 +141,9 @@
 }
 .contenedorNotaEscalado .pre #markdownNotaHistorica ul,
 .contenedorNotaEscalado .pre #markdownNotaEscalado ul,
-.contenedorNotaEscalado .pre #markdownNotaReclamoCoord ul {
+.contenedorNotaEscalado .pre #markdownNotaReclamoCoord ul,
+.contenedorNotaEscalado .pre #markdownNotaReclamoApi ul,
+.contenedorNotaEscalado .pre #markdownNotaBoFact ul  {
     white-space: normal;
     padding-left: 20px;
 }
@@ -167,7 +169,8 @@
 .contenedorNotaEscalado .pre.contenedorNotaEscaladoAdjunto,
 .contenedorNotaEscalado .pre.notaReclamoApi,
 .contenedorNotaEscalado .pre.notaReclamoOutlook,
-.contenedorNotaEscalado .pre.notaReclamoCoord  {
+.contenedorNotaEscalado .pre.notaReclamoCoord,
+.contenedorNotaEscalado .pre.notaBoFact  {
     /* margin-left: 20px; */
     overflow-y: auto;
     white-space: pre-wrap;

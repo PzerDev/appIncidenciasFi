@@ -39,7 +39,7 @@ Tipo de router: {router}
 
 `, 
         notaEscaladoApi: `**${dia}/${mes} - Escalado por API**
-- Motivo de la incidencia: {motivoAveriaFibra}  
+- Motivo de la incidencia: {motivoAveriaFibra} {medioAveria}  
 - ID: {idExternal}  
 - Comprobaciones realizadas:  
   - Luces: {luces}  
@@ -52,11 +52,14 @@ Tipo de router: {router}
 **Contestaciones de central:**  
 **${dia}/${mes}**  `,
 
-        notaReclamoApi: `
-RECLAMACIÓN TICKET: {idAveriaApi}  
-MOTIVO: {motivoAveriaFibra}  
-ID AMDOCS: {idExternal}  
-DISPONIBILIDAD: {inicio} - {fin} horas   
+        notaReclamoApi: `**${dia}/${mes} - Reclamado por API**
+- RECLAMACIÓN TICKET: {idAveriaApi}  
+- MOTIVO: {motivoAveriaFibra} {medioAveria}  
+- ID AMDOCS: {idExternal}  
+- DISPONIBILIDAD: {inicio} - {fin} horas  
+
+**Contestaciones de central:**  
+**${dia}/${mes}**  
 `,
 
         notaEscaladoAdjunto: {
@@ -81,7 +84,7 @@ Saludos.
 Estamos escalando este caso por esta vía debido a que han transcurrido más de 48 horas sin recibir actualizaciones desde central.  
 
 RECLAMACIÓN TICKET: {idAveriaApi}  
-MOTIVO: {motivoAveriaFibra}  
+MOTIVO: {motivoAveriaFibra} {medioAveria}  
 ID AMDOCS: {idExternal}  
 DISPONIBILIDAD: {inicio} - {fin} horas  
 
@@ -96,6 +99,15 @@ Saludos.
 - Motivo avería:  
 - Comprobaciones realizadas y acciones llevadas a cabo:  
 - Motivo escalado:  
+`,
+
+        notaBoFacturacion: `
+**Escalado a BO Facturación:**  
+- El cliente reclama: Compensación económica  
+- Motivo de avería: {motivoAveriaFibra} {medioAveria}  
+- Apertura de la incidencia:  
+- Resolución de la incidencia:  
+- Acción que la ha solucionado:  
 `,
         src: "",
         observaciones: {

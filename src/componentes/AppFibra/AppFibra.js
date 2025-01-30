@@ -342,6 +342,7 @@ function AppFibra() {
     
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{contacto}", contacto)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
@@ -352,6 +353,7 @@ function AppFibra() {
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
@@ -365,6 +367,7 @@ function AppFibra() {
   let notaReclamoOutlookAsunto = datosFibra.notaReclamoOutlook.asunto.replace("{idExternal}", idExternal)
   let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
@@ -436,6 +439,14 @@ function AppFibra() {
             <MiMarkDown markdownText={datosFibra.notaReclamoCoord} id="markdownNotaReclamoCoord"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoCoord" />
+      </div>
+
+      <div className='contenedorNotaEscalado'>
+        <label>BO Facturación</label>
+        <div className='pre notaBoFact'>
+            <MiMarkDown markdownText={datosFibra.notaBoFacturacion} id="markdownNotaBoFact"/>
+        </div>
+        <CopyToClipboardHTML targetId="markdownNotaBoFact" />
       </div>
       
     </div>
