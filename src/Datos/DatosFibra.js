@@ -95,8 +95,8 @@ Saludos.
 
         notaReclamoCoord: `
 **ESCALADO A COORDINACIÓN:**  
-- ID:  
-- Motivo avería:  
+- ID: {idExternal}  
+- Motivo avería: {motivoAveriaFibra} {medioAveria}  
 - Comprobaciones realizadas y acciones llevadas a cabo:  
 - Motivo escalado:  
 `,

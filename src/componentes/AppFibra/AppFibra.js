@@ -373,6 +373,13 @@ function AppFibra() {
   .replace("{fin}", horaFin)
   .replace("{horario}", mostrarDiaSegunHora)
 
+  let notaEscaladoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", idExternal)
+  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
+
+  let notaBoFact = datosFibra.notaBoFacturacion.replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
+
 
   const notasFibra = (
 
@@ -436,7 +443,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>72h - Reclamo Coordinación</label>
         <div className='pre notaReclamoCoord'>
-            <MiMarkDown markdownText={datosFibra.notaReclamoCoord} id="markdownNotaReclamoCoord"/>
+            <MiMarkDown markdownText={notaEscaladoCoord} id="markdownNotaReclamoCoord"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoCoord" />
       </div>
@@ -444,7 +451,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>BO Facturación</label>
         <div className='pre notaBoFact'>
-            <MiMarkDown markdownText={datosFibra.notaBoFacturacion} id="markdownNotaBoFact"/>
+            <MiMarkDown markdownText={notaBoFact} id="markdownNotaBoFact"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaBoFact" />
       </div>
