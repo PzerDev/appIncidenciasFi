@@ -229,16 +229,57 @@ let Procedimientos = {
 3. **Procedimiento de reseteo:** Localiza el botón de reinicio (Reset) en el router (generalmente un pequeño orificio). Con el router encendido, introduce un objeto puntiagudo (como un clip) en el orificio y mantenlo presionado durante 10-15 segundos. Las luces del router parpadearán, indicando que se está reiniciando.
 4. **Obtención de la contraseña predeterminada:** Si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
 5. **Usuario en routers Sercomm Vox:** En los routers de la marca Sercomm Vox, el usuario para acceder a la configuración es "sercomm", no "admin".
-6. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia a través de los canales correspondientes (API), adjuntando la fotografía de la etiqueta del router.
+6. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia por API, adjuntando la fotografía de la etiqueta del router.
 `,
         WIFI: `
 1. **Verificación de la contraseña:** Asegúrate de estar utilizando la contraseña correcta de la red Wi-Fi. Esta es diferente a la contraseña de acceso a la configuración del router.
 2. **Prueba en otros dispositivos:** Intenta conectar otros dispositivos a la red Wi-Fi. Si el problema solo ocurre en un dispositivo, es probable que el problema esté en ese dispositivo y no en el router.
 3. **Restablecimiento a valores de fábrica del router (como último recurso):** Si has cambiado la contraseña de la red Wi-Fi y la has olvidado, o si sospechas que hay un problema con la configuración del router, puedes restablecerlo a su configuración de fábrica). Recuerda que esto borrará todas las configuraciones, incluyendo el nombre y la contraseña de la red Wi-Fi, que volverán a ser los valores predeterminados de fábrica que se encuentran en la etiqueta.
 4. **Obtención de la contraseña predeterminada (Wi-Fi):** Al igual que con la contraseña del router, si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
-5. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia a través de los canales correspondientes (API), adjuntando la fotografía de la etiqueta del router.
+5. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia por API, adjuntando la fotografía de la etiqueta del router.
 `
-    }
+    },
+    "Cambiar contraseña": {
+        "acceso router": `
+1.  **Conexión:** Conéctate a la red del router, ya sea por cable Ethernet o de forma inalámbrica (Wi-Fi).  
+2.  **Acceso:** Abre un navegador web (como Chrome, Firefox, Edge, Safari, etc.) en tu dispositivo (ordenador, móvil, tableta) y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones.  
+3.  **Identificación:** Introduce los datos de acceso al router: el nombre de usuario y la contraseña.  
+4.  **Cambio de contraseña:** Una vez dentro de la configuración del router, busca la sección llamada "Configuración de tu router", y luego la opción "Contraseña". Sigue las instrucciones para cambiar la contraseña de acceso al router.  
+5.  **Guardar cambios:** Haz clic en el botón "Aplicar" o "Guardar" para que los cambios se hagan efectivos.  
+6.  **Modo experto (si es necesario):** Algunos routers pueden requerir que accedas al "modo experto" (generalmente un botón o enlace en la esquina superior derecha).  
+7.  **Escalar por API:** Si tienes problemas para cambiar la contraseña, solicita una foto de la etiqueta del router al cliente y escala el problema a través de API, adjuntando la imagen de la etiqueta.  
+`,
+        "redes WiFi": `
+1.  **Conexión:** Conéctate a la red del router, ya sea por cable Ethernet o de forma inalámbrica (Wi-Fi).  
+2.  **Acceso:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones.  
+3.  **Identificación:** Introduce los datos de acceso al router (usuario y contraseña).  
+4.  **Cambio de contraseña Wi-Fi:** Una vez dentro de la configuración del router, busca la sección llamada "General" y luego la opción "Wi-Fi".   
+5.  **Guardar cambios:** Haz clic en el botón "Aplicar" o "Guardar" para que los cambios se hagan efectivos.  
+6.  **Escalar por API:** Si tienes problemas tras estas comprobaciones, solicita una foto de la etiqueta del router al cliente y escala el problema a través de API, adjuntando la imagen de la etiqueta.  
+`
+    },
+    "Habilitar/Deshabilitar redes WiFi": {
+        general: `
+1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
+2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
+3.  **Móviles de importación:** Si utilizas un móvil de importación, es posible que no detecte los canales 11 y 12 en la red de 2.4 GHz. Esto se debe a que estos canales pueden no estar homologados en algunos países.  
+4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
+5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
+6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
+7.  **Habilitar/deshabilitar redes:** Una vez dentro de la configuración, busca la sección "General" y luego "Wi-Fi". Aquí podrás habilitar o deshabilitar las redes Wi-Fi según tus necesidades.  
+8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
+`,
+        bandSteering: `
+1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
+2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
+3.  **Móviles de importación:** Si utilizas un móvil de importación, es posible que no detecte los canales 11 y 12 en la red de 2.4 GHz. Esto se debe a que estos canales pueden no estar homologados en algunos países.  
+4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
+5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
+6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
+7.  **Disponibilidad:** La función Band Steering, que permite gestionar de forma inteligente las bandas de frecuencia (2.4 GHz y 5 GHz), solo está disponible en los routers Sercomm Vox 3.0 y L3. En otros modelos, puedes habilitar o deshabilitar las redes de forma individual.  
+8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
+`
+}
 }
 
 

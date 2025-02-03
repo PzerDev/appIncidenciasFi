@@ -18,12 +18,15 @@ let motivoAveria = [
   'Cobertura',
   'Unir / Separar redes',
   'Router / Cable roto',
-  'Error contraseña'
+  'Error contraseña',
+  'Cambiar contraseña',
+  'Habilitar/Deshabilitar redes WiFi'
 ]
 
 let lugarAveria = {
   general: ['WIFI', 'cable', 'ambos'],
-  errorContraseña: ['router', 'WIFI']
+  errorContrasena: ['router', 'WIFI'],
+  cambiarContrasena: ['acceso router', 'redes WiFi']
 }
 
 let velocidadContratada = [
@@ -156,14 +159,15 @@ function AppFibra() {
     setMotivoAveria(event.target.value);
     // setMostrarContenedor(event.target.value === 'Seleccionar motivo');
 
-    event.target.value === 'Error contraseña' ?
-      setAdjuntoCliente('fotografía de etiqueta del router realizada') :
-      setAdjuntoCliente('')
+    (event.target.value === 'Error contraseña' || event.target.value === 'Cambiar contraseña') ?
+    setAdjuntoCliente('fotografía de etiqueta del router realizada') :
+    setAdjuntoCliente('')
       
 
     if (event.target.value === 'Sin servicio' || event.target.value === 'Cortes' ||
         event.target.value === 'Velocidad' || event.target.value === 'Seleccionar motivo' ||
-        event.target.value === 'Cobertura' || event.target.value === 'Error contraseña') {
+        event.target.value === 'Cobertura' || event.target.value === 'Error contraseña' ||
+        event.target.value === 'Cambiar contraseña' ) {
       setMedioAveria(true);
       setLugarAveriaInternet('Seleccionar lugar');
       // setMostrarContenedor(true);
@@ -222,7 +226,7 @@ function AppFibra() {
     let nuevaTecnologia = event.target.value;
     setTecnologiaRouter(nuevaTecnologia);
 
-    setRouterFiltrado('Seleccionar router');
+    setRouterFiltrado('Especificar router');
 
       if (event.target.value !== 'Tecnología router') {
         setIsDisabledRouter(false);
@@ -247,7 +251,7 @@ function AppFibra() {
     const routerSeleccionado = routersLista.find(objeto => objeto.router === event.target.value);
     setObjetoRouterSeleccionado(routerSeleccionado);
     
-    if (event.target.value !== 'Seleccionar router') {
+    if (event.target.value !== 'Especificar router') {
       setIsDisabledMotivo(false);
     } else {
 
@@ -274,13 +278,18 @@ function AppFibra() {
   const handleSelectLugarAveriaChange = (event) => {
     setLugarAveriaInternet(event.target.value);
 
-    if (motivoAveriaFibra === 'Velocidad' && event.target.value === 'cable') {
-        setAdjuntoCliente('test de velocidad realizado');
-    } else if (motivoAveriaFibra === 'Error contraseña' && event.target.value === 'router') {
-        setAdjuntoCliente('fotografía de etiqueta del router realizada');
-    } else {
-        setAdjuntoCliente('');
-    }
+    if (motivoAveriaFibra === 'Velocidad') {
+
+        event.target.value === 'cable' ?
+          setAdjuntoCliente('test de velocidad realizado') :
+          setAdjuntoCliente(''); 
+    } 
+    // else if (motivoAveriaFibra === 'Error contraseña' && event.target.value === 'router') {
+    //     setAdjuntoCliente('fotografía de etiqueta del router realizada');
+    // } 
+    // else {
+    //     setAdjuntoCliente('');
+    // }
 
 
     let lucesSinServicio = {
@@ -468,7 +477,12 @@ function AppFibra() {
         <option key='Seleccionar lugar' value='Seleccionar lugar'>  
             Seleccionar lugar
         </option>
-          {motivoAveriaFibra === 'Error contraseña' && lugarAveria.errorContraseña.map((lugarAver) => (
+          {motivoAveriaFibra === 'Error contraseña' && lugarAveria.errorContrasena.map((lugarAver) => (
+            <option key={lugarAver} value={lugarAver}>
+              {lugarAver}
+            </option>
+          ))}
+          {motivoAveriaFibra === 'Cambiar contraseña' && lugarAveria.cambiarContrasena.map((lugarAver) => (
             <option key={lugarAver} value={lugarAver}>
               {lugarAver}
             </option>
@@ -505,7 +519,7 @@ function AppFibra() {
         : procedimiento;
   }
   const getMarkdownText = () => {
-    if (motivoAveriaS === 'Error contraseña' && lugarAveriaS !== 'Seleccionar lugar') {
+    if ((motivoAveriaS === 'Error contraseña' || motivoAveriaS === 'Cambiar contraseña') && lugarAveriaS !== 'Seleccionar lugar') {
       return procedimiento;
     }
     if (lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') {
@@ -659,8 +673,8 @@ function AppFibra() {
         <div className='contenedorRouterMotivo'>
             <select className='tecnologia-router' value={routerFiltrado} onChange={handleSelectRouterChange}
             disabled={isDisabledRouter}>
-              <option key='Seleccionar router' value='Seleccionar router'>  
-                  Seleccionar router
+              <option key='Especificar router' value='Especificar router'>  
+                  Especificar router
               </option>
               {/* {console.log("routersLista:", routersLista)} */}
               {routersLista.map((aver, index) => (
