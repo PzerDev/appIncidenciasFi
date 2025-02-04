@@ -74,6 +74,7 @@ function AppFibra() {
   const [resultado, setResultado] = useState(""); // Resultado concatenado
   // const marcas = ['Xiaomi', 'Samsung', 'iPhone']
   const [idAveria, setIdAveria] = useState('');
+  const [idFibra, setIdFibra] = useState('');
   const [idExternal, setExternalId] = useState('');
   const [velocidad, setVelocidad] = useState('');
   const [adjuntoCliente, setAdjuntoCliente] = useState('');
@@ -150,6 +151,9 @@ function AppFibra() {
 
   const handleIdAveriaChange = (event) => {
     setIdAveria(event.target.value);
+  };
+  const handleIdFibraChange = (event) => {
+    setIdFibra(event.target.value);
   };
   const handleExternalIdChange = (event) => {
     setExternalId(event.target.value);
@@ -336,9 +340,11 @@ function AppFibra() {
       }
   }
 
+  const idEnlaceFibra = idFibra
+  ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
+  : idExternal;
 
-
-  let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idExternal)
+  let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idEnlaceFibra)
        .replace("{motivoAveriaFibra}", motivoAveriaFibra)
        .replace("{velocidadContratada}", velocidad)
        .replace("{tecnologiaRouter}", tecnologiaRouter)
@@ -552,6 +558,9 @@ function AppFibra() {
             {/* {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"} */}
             <i class='bx bx-sun'></i>
         </button>
+        <a href="https://dashboard.finetwork.com/tickets/add" class="boton" target="_blank">
+          <i class='bx bx-edit'></i>
+        </a>
         <button className="boton" onClick={() => setSidebarVisible(!isSidebarVisible)}>
           <i class='bx bx-detail'></i>
         </button>
@@ -609,6 +618,7 @@ function AppFibra() {
       };
 
 
+
   return (
     <>
 
@@ -645,6 +655,7 @@ function AppFibra() {
         <div>
         <div className='contenedorTarifaFibra'>
         <input type="text" value={idAveria} onChange={handleIdAveriaChange} placeholder="idAvería / externalServiceProblemId" />
+        <input type="text" value={idFibra} onChange={handleIdFibraChange} placeholder="ID Fibra" />
             <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
 
             <select className='tecnologia-router' value={velocidad} onChange={handleSelectVelocidadChange}>
