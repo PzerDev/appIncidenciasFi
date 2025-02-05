@@ -153,10 +153,44 @@ function AppFibra() {
     setIdAveria(event.target.value);
   };
   const handleIdFibraChange = (event) => {
-    setIdFibra(event.target.value);
+    let valor = event.target.value;
+  
+    // Eliminar espacios
+    valor = valor.replace(/\s/g, '');
+  
+    // Permitir solo números
+    valor = valor.replace(/\D/g, '');
+
+    // Limitar a 9 caracteres
+    if (valor.length > 8) {
+      valor = valor.slice(0, 8);
+    }
+
+    setIdFibra(valor);
   };
   const handleExternalIdChange = (event) => {
-    setExternalId(event.target.value);
+    let valor = event.target.value;
+  
+    // Eliminar espacios
+    valor = valor.replace(/\s/g, '');
+  
+    // Permitir solo números
+    valor = valor.replace(/\D/g, '');
+  
+    // Si el valor no está vacío y no comienza con '1', no permitir ingresarlo
+    if (valor && !valor.startsWith('1')) {
+      return;
+    }
+  
+    // Limitar a 9 caracteres
+    if (valor.length > 9) {
+      valor = valor.slice(0, 9);
+    }
+    
+      setExternalId(valor); // Actualizar el estado
+    
+    
+    // setExternalId(event.target.value);
   };
 
   const handleSelectAveriaChange = (event) => {

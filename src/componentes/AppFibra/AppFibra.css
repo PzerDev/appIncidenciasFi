@@ -277,6 +277,10 @@
 .contenedor-botones-procedimientos {
   width: 100%;
 }
+.contenedor-botones-procedimientos a {
+  display: inline-block;
+
+}
 .contenedor-botones-procedimientos button, 
 .contenedor-botones-procedimientos a {
   border-radius: 10px;
@@ -284,6 +288,7 @@
   border: none;
   background: none;
   color: #313131;
+  line-height: 0;
 }
 .contenedor-botones-procedimientos button:hover,
 .contenedor-botones-procedimientos a:hover {
