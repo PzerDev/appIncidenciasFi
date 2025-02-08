@@ -276,7 +276,7 @@ let Procedimientos = {
 4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
 5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
 6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
-7.  **Disponibilidad:** Para lograr habilitar y deshabilitar las redes WiFi por separado en este modelo de router la función de Band Steering debe desactivarse.  
+7.  **Band Steering:** Para lograr habilitar y deshabilitar las redes WiFi por separado en este modelo de router la función de Band Steering debe desactivarse.  
 8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
 `
 },
@@ -307,17 +307,17 @@ let Procedimientos = {
 
 ## Seguimiento y resolución
 3.  **Seguimiento de la etiqueta:** Revisa la etiqueta de "masiva" una o dos veces al día. Cuando aparezca como solucionada, sigue estos pasos:
-   * Registra la solución en la nota histórica del ticket.
-   * Contacta con el cliente para verificar que el servicio se haya restablecido.
+    * Registra la solución en la nota histórica del ticket.
+    * Contacta con el cliente para verificar que el servicio se haya restablecido.
 4.  **Llamada de verificación:**  
-   * **Si el cliente está ilocalizable:** Se envía la plantilla predefinida "Avería masiva resuelta" y se resuelve el ticket.
-   * **Si el cliente confirma que la avería se ha solucionado:** Se envía la plantilla "Avería solucionada en llamada" y se resuelve el ticket.
-   * Registrar la llamada de verificación como "PRUEBAS FI" y asociarla al ticket.
+    * **Si el cliente está ilocalizable:** Se envía la plantilla predefinida "Avería masiva resuelta" y se resuelve el ticket.
+    * **Si el cliente confirma que la avería se ha solucionado:** Se envía la plantilla "Avería solucionada en llamada" y se resuelve el ticket.
+    * Registrar la llamada de verificación como "PRUEBAS FI" y asociarla al ticket.
 
 ## Avería persistente
 5.  Si el cliente indica que la avería continúa, gestiona la incidencia como una avería individual:
-   * Utiliza la llamada para realizar pruebas adicionales con el cliente.
-   * No abras un nuevo ticket: Continúa gestionando la avería en el mismo ticket de HubSpot, pero cambia el motivo de la avería.
+    * Utiliza la llamada para realizar pruebas adicionales con el cliente.
+    * No abras un nuevo ticket: Continúa gestionando la avería en el mismo ticket de HubSpot, pero cambia el motivo de la avería.
 
 ## Averías masivas con antigüedad de 7 días
 6.  **Seguimiento y comunicación (72 horas):** Contacta con el cliente a las 72 horas (3 días) de haber abierto el ticket para confirmar si persiste la falta de servicio. Si la avería continúa, informar que se sigue trabajando en ello.
@@ -356,8 +356,8 @@ Si el desperfecto afecta a un **no cliente**, se procederá de la siguiente mane
         TESA: `
 Si se identifica un desperfecto de TESA, se escalará a Coordinación para que puedan gestionarlo con la central. No se abrirá un ticket API.
 
-Se deberá registrar en el Excel "Averías Fibra" > pestaña "Desperfectos TESA", con la siguiente información:
-* ID
+Se deberá registrar en el Excel "Averías Fibra" > pestaña "Desperfectos TESA", con la siguiente información:  
+* ID  
 * Número de ticket
 * Breve descripción
 * Fecha de apertura
