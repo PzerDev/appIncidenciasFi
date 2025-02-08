@@ -14,7 +14,7 @@ let Procedimientos = {
             Observaciones: ``
     },
     "Sin servicio": {
-        WIFI: {
+        WiFi: {
             general: `
 1. **Verificar el estado de las luces:** Asegurarse de que las luces del router que indican la conexión Wi-Fi estén encendidas.  
 2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados, tanto al router como al dispositivo del cliente. Una conexión suelta o dañada puede afectar la velocidad.  
@@ -87,7 +87,7 @@ let Procedimientos = {
         }
     },
     Velocidad: {
-        WIFI: {
+        WiFi: {
             general: `
 1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces estén encendidas y con el color correcto, lo cual indica que el router está funcionando correctamente.  
 2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados, tanto al router como al dispositivo del cliente. Una conexión suelta o dañada puede afectar la velocidad.  
@@ -141,7 +141,7 @@ let Procedimientos = {
         ambos: ``
     },
     Cortes: {
-        WIFI: {
+        WiFi: {
             general: `
 1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces indicadoras del router estén encendidas y con el color correcto.  
 2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados tanto al router como al dispositivo del cliente.  
@@ -231,7 +231,7 @@ let Procedimientos = {
 5. **Usuario en routers Sercomm Vox:** En los routers de la marca Sercomm Vox, el usuario para acceder a la configuración es "sercomm", no "admin".
 6. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia por API, adjuntando la fotografía de la etiqueta del router.
 `,
-        WIFI: `
+        WiFi: `
 1. **Verificación de la contraseña:** Asegúrate de estar utilizando la contraseña correcta de la red Wi-Fi. Esta es diferente a la contraseña de acceso a la configuración del router.
 2. **Prueba en otros dispositivos:** Intenta conectar otros dispositivos a la red Wi-Fi. Si el problema solo ocurre en un dispositivo, es probable que el problema esté en ese dispositivo y no en el router.
 3. **Restablecimiento a valores de fábrica del router (como último recurso):** Si has cambiado la contraseña de la red Wi-Fi y la has olvidado, o si sospechas que hay un problema con la configuración del router, puedes restablecerlo a su configuración de fábrica). Recuerda que esto borrará todas las configuraciones, incluyendo el nombre y la contraseña de la red Wi-Fi, que volverán a ser los valores predeterminados de fábrica que se encuentran en la etiqueta.
@@ -276,10 +276,123 @@ let Procedimientos = {
 4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
 5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
 6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
-7.  **Disponibilidad:** La función Band Steering, que permite gestionar de forma inteligente las bandas de frecuencia (2.4 GHz y 5 GHz), solo está disponible en los routers Sercomm Vox 3.0 y L3. En otros modelos, puedes habilitar o deshabilitar las redes de forma individual.  
+7.  **Disponibilidad:** Para lograr habilitar y deshabilitar las redes WiFi por separado en este modelo de router la función de Band Steering debe desactivarse.  
 8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
 `
-}
+},
+    "Cable roto": {
+        general: `
+1.  **Estado de las luces del router:** Observa el estado de las luces del router para identificar si hay alguna indicación de un cable roto.  
+2.  **Revisión del cableado:** Inspecciona visualmente el cableado para detectar posibles daños o conexiones sueltas.  
+3.  **Identificación del cable roto:** Intenta determinar cuál cable específico está roto o dañado.  
+4.  **Prueba en otros dispositivos:** Conecta otros dispositivos (ordenadores, móviles, etc.) al mismo cable para verificar si el problema persiste. Esto ayuda a descartar si el problema está en el dispositivo o en el cable.  
+5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+`
+},
+    "Router roto": {
+        general: `
+1.  **Estado de las luces del router:** Observa el estado de las luces del router. Es posible que estén todas apagadas, solo la luz de "Power" encendida o que el router se reinicie continuamente.  
+2.  **Revisión del cableado:** Inspecciona visualmente el cableado para detectar posibles daños o conexiones sueltas.  
+3.  **Reinicio del router:** Intenta reiniciar el router desconectándolo de la corriente eléctrica durante unos segundos y volviéndolo a conectar.  
+4.  **Prueba en distintos enchufes:** Prueba conectar el router a diferentes enchufes para descartar problemas con la fuente de alimentación.  
+5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+`
+},
+
+    "Masiva": {
+        general: `
+## Procedimiento inicial
+1.  **Registro:** Asigna el ticket a "Pendientes pruebas FI".  
+2.  **Comunicación inicial:** Envía la plantilla predefinida "Avería masiva" al cliente para informarle que existe una avería masiva en su zona y que se está trabajando para solucionarla.  
+
+## Seguimiento y resolución
+3.  **Seguimiento de la etiqueta:** Revisa la etiqueta de "masiva" una o dos veces al día. Cuando aparezca como solucionada, sigue estos pasos:
+   * Registra la solución en la nota histórica del ticket.
+   * Contacta con el cliente para verificar que el servicio se haya restablecido.
+4.  **Llamada de verificación:**  
+   * **Si el cliente está ilocalizable:** Se envía la plantilla predefinida "Avería masiva resuelta" y se resuelve el ticket.
+   * **Si el cliente confirma que la avería se ha solucionado:** Se envía la plantilla "Avería solucionada en llamada" y se resuelve el ticket.
+   * Registrar la llamada de verificación como "PRUEBAS FI" y asociarla al ticket.
+
+## Avería persistente
+5.  Si el cliente indica que la avería continúa, gestiona la incidencia como una avería individual:
+   * Utiliza la llamada para realizar pruebas adicionales con el cliente.
+   * No abras un nuevo ticket: Continúa gestionando la avería en el mismo ticket de HubSpot, pero cambia el motivo de la avería.
+
+## Averías masivas con antigüedad de 7 días
+6.  **Seguimiento y comunicación (72 horas):** Contacta con el cliente a las 72 horas (3 días) de haber abierto el ticket para confirmar si persiste la falta de servicio. Si la avería continúa, informar que se sigue trabajando en ello.
+7.  **Seguimiento y pruebas (96 horas):** Si a las 96 horas (4 días después de la llamada anterior) la avería masiva persiste, contacta nuevamente con el cliente y realiza pruebas de "sin servicio" y "ONT alarmada". Si no se recupera el servicio, se abre una avería por API.
+8.  **Escalado a coordinación:** Si tras abrir la avería, el servicio central informa que el cliente está afectado por una avería masiva, escala el ticket a coordinación para que se realice el reclamo correspondiente. Pregunta el motivo de la avería masiva y la fecha de resolución aproximada.
+9.  **Cliente ilocalizable:** Si el cliente no responde a las llamadas, aplica la política de reintentos y resuelve el ticket si no se logra contactarlo.
+`
+},
+    "Desperfecto": {
+        general: `
+## 1. Requisitos para Reportar un Desperfecto
+* Para gestionar un desperfecto, es imprescindible que el incidente haya ocurrido y se comunique en un plazo máximo de 30 días tras la visita del técnico, ya sea después de una instalación o de la resolución de una avería.
+* Si se cumplen estos requisitos:
+    * Se solicitará al cliente una fotografía del desperfecto.
+    * Se abrirá un ticket API.
+    * Se asegurará que la información correcta quede registrada en las notas internas.
+    * Si desde Majorel solicitan la imagen del desperfecto proporcionada por el cliente, esta se adjuntará mediante Outlook y se dejará constancia en la nota interna.
+
+## 2. Excepciones
+* Si han transcurrido más de 30 días desde el desperfecto, solo se gestionará si este fue ocasionado por una causa externa y en el exterior del domicilio. Ejemplos incluyen daños provocados por un camión, actos vandálicos o factores medioambientales que, a pesar del desperfecto, no afectan el funcionamiento del servicio.
+    * **Ejemplo:** Si un camión ha soltado cables al pasar, pero el cliente sigue contando con servicio, se procederá a la apertura del caso mediante Excel.
+* Si el desperfecto no cumple estos requisitos, no procederá su gestión. En este caso, se enviará la respuesta predefinida Fibra – Desperfecto no procede y se cerrará el ticket.
+`,
+        "no cliente" : `
+Al igual que en los casos de desperfectos de clientes, es fundamental que el incidente haya ocurrido y se comunique dentro de los 30 días posteriores a la visita del técnico.
+
+Si el desperfecto afecta a un **no cliente**, se procederá de la siguiente manera, según quién realice el contacto:
+
+* **Cliente:** Si el técnico ha causado un desperfecto a un **no cliente**, se abrirá un ticket API, ya que se disponen de los datos del cliente para su gestión.
+* **No cliente:** Si no se cuenta con los datos necesarios para abrir un ticket API, el desperfecto deberá ser escalado a Coordinación Fibra, recopilando la siguiente información:
+    * Causa de la reclamación.
+    * Fotografías de apoyo.
+    * Dirección de la incidencia.
+    * Contacto de la persona afectada.
+`,
+        TESA: `
+Si se identifica un desperfecto de TESA, se escalará a Coordinación para que puedan gestionarlo con la central. No se abrirá un ticket API.
+
+Se deberá registrar en el Excel "Averías Fibra" > pestaña "Desperfectos TESA", con la siguiente información:
+* ID
+* Número de ticket
+* Breve descripción
+* Fecha de apertura
+* Fecha de solución (cuando se resuelva, se debe registrar para seguimiento adecuado)        
+`
+},
+    "Reubicación": {
+        general: `
+Para solicitar una reubicación, el incidente debe haberse comunicado en un plazo máximo de 30 días tras la visita del técnico para la instalación.
+
+**Casos en los que procede gestionar la reubicación:**
+
+* **Errores en la instalación:** Si el técnico no respetó la solicitud del cliente y este requiere la reubicación dentro de los 30 días siguientes a la instalación.
+    * Ejemplo: El cliente solicitó instalar el router en un lugar específico y el técnico lo ubicó en otro.
+* **Instalación realizada en un sitio inadecuado:** como el patio, balcón, cocina o baño.
+* **Ausencia del cliente:** Si el cliente no estuvo presente el día de la instalación y solicita una reubicación dentro del plazo de 30 días.
+
+En estos casos, la gestión se realizará a través de Excel, sin abrir un ticket API.
+
+**Excepción:**
+
+* **Reformas:** Si el cliente ha realizado una reforma en su domicilio, la reubicación podrá gestionarse sin límite de tiempo.
+
+**Casos en los que no procede la reubicación:**
+
+* **Más de 30 días:** Si han pasado más de 30 días (excepto en caso de reformas), se enviará la respuesta predefinida Fibra – Reubicación no procede.
+* **Problemas de señal:** Si el cliente solicita la reubicación debido a problemas de señal del router, se enviará la respuesta predefinida Fibra – Reubicación - Cobertura WiFi y se realizarán pruebas de cobertura si es necesario.
+`,
+        TESA: `
+Si cumple con los requisitos, se escalará a Coordinación Fibra para que se reporte a VDF con la siguiente información:
+* Fotografía de la ubicación actual del router y PTRo.
+* Breve descripción del motivo de la nueva ubicación.
+`
+
+        }
 }
 
 

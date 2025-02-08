@@ -39,9 +39,9 @@
 #datosNotasFibra .contenedorNotasFibra .contenedorTarifaFibra select {
     width: 80%;
 }
-#datosNotasFibra .contenedorNotasFibra .contenedorRouterMotivo select {
+/* #datosNotasFibra .contenedorNotasFibra .contenedorRouterMotivo select {
     width: 50%;
-}
+} */
 
 
 
@@ -125,6 +125,9 @@
   width: 25%;
 }
 
+select.tecnologia-router.menor-ancho {
+  width: 38%;
+}
 
 
 
@@ -143,11 +146,16 @@
 .contenedorNotaEscalado .pre #markdownNotaEscalado ul,
 .contenedorNotaEscalado .pre #markdownNotaReclamoCoord ul,
 .contenedorNotaEscalado .pre #markdownNotaReclamoApi ul,
+.contenedorNotaEscalado .pre #markdownNotaReclamoApiNuevo ul,
 .contenedorNotaEscalado .pre #markdownNotaBoFact ul  {
     white-space: normal;
     padding-left: 20px;
 }
-.contenedorNotaEscalado .pre #markdownNotaHistorica a {
+.contenedorNotaEscalado .pre #markdownNotaHistorica a,
+.contenedorNotaEscalado .pre #markdownNotaEscalado a,
+.contenedorNotaEscalado .pre #markdownNotaReclamoApiNuevo a,
+.contenedorNotaEscalado .pre #markdownNotaReclamoApi a, 
+.contenedorNotaEscalado .pre #markdownNotaReclamoCoord a {
   text-decoration: none;
   color: inherit;
   background: none;
@@ -353,9 +361,18 @@
   padding: 20px;
 }
 
-#markdownProcedimiento li {
+#markdownProcedimiento li,
+#markdownProcedimiento p {
   margin-bottom: 10px;
   font-size: 16px;
+  line-height: 1.6;
+}
+#markdownProcedimiento li ul {
+  margin-top: 10px;
+}
+#markdownProcedimiento h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
   line-height: 1.6;
 }
 #markdownProcedimiento strong {

@@ -10,23 +10,28 @@ import Loader from '../Login/Loader.js';
 
 let motivoAveria = [
   // 'Seleccionar motivo',
-  'Sin servicio',
   'ONT Alarmada',
-  'Masiva',
+  'Sin servicio',
   'Cortes',
   'Velocidad',
   'Cobertura',
-  'Unir / Separar redes',
-  'Router / Cable roto',
+  'Router roto',
+  'Cable roto',
   'Error contraseña',
   'Cambiar contraseña',
-  'Habilitar/Deshabilitar redes WiFi'
+  'Masiva',
+  // 'Unir / Separar redes',
+  'Habilitar/Deshabilitar redes WiFi',
+  'Desperfecto',
+  'Reubicación'
 ]
 
 let lugarAveria = {
-  general: ['WIFI', 'cable', 'ambos'],
-  errorContrasena: ['router', 'WIFI'],
-  cambiarContrasena: ['acceso router', 'redes WiFi']
+  general: ['WiFi', 'cable', 'ambos'],
+  errorContrasena: ['router', 'WiFi'],
+  cambiarContrasena: ['acceso router', 'redes WiFi'],
+  desperfecto: ['general', 'TESA', 'no cliente'],
+  reubicacion: ['general', 'TESA']
 }
 
 let velocidadContratada = [
@@ -73,6 +78,7 @@ function AppFibra() {
   const [estadoLuces, setEstadoLuces] = useState([]); // Lista de estados
   const [resultado, setResultado] = useState(""); // Resultado concatenado
   // const marcas = ['Xiaomi', 'Samsung', 'iPhone']
+  const [enlaceAveriaApi, setEnlaceAveriaApi] = useState('');
   const [idAveria, setIdAveria] = useState('');
   const [idFibra, setIdFibra] = useState('');
   const [idExternal, setExternalId] = useState('');
@@ -152,6 +158,9 @@ function AppFibra() {
   const handleIdAveriaChange = (event) => {
     setIdAveria(event.target.value);
   };
+  const handleEnlaceAveriaApiChange = (event) => {
+    setEnlaceAveriaApi(event.target.value);
+  };
   const handleIdFibraChange = (event) => {
     let valor = event.target.value;
   
@@ -205,7 +214,8 @@ function AppFibra() {
     if (event.target.value === 'Sin servicio' || event.target.value === 'Cortes' ||
         event.target.value === 'Velocidad' || event.target.value === 'Seleccionar motivo' ||
         event.target.value === 'Cobertura' || event.target.value === 'Error contraseña' ||
-        event.target.value === 'Cambiar contraseña' ) {
+        event.target.value === 'Cambiar contraseña' || event.target.value === 'Desperfecto' || 
+        event.target.value === 'Reubicación') {
       setMedioAveria(true);
       setLugarAveriaInternet('Seleccionar lugar');
       // setMostrarContenedor(true);
@@ -213,6 +223,7 @@ function AppFibra() {
         || event.target.value === 'Cobertura'
       ) {
         setMedioAveria(false);
+        setLugarAveriaInternet('WiFi');
         // setMostrarContenedor(true);
         // if (event.target.value === 'Cobertura') {
         //   setMostrarContenedor(false);
@@ -266,7 +277,7 @@ function AppFibra() {
 
     setRouterFiltrado('Especificar router');
 
-      if (event.target.value !== 'Tecnología router') {
+      if (event.target.value !== 'Tecnología') {
         setIsDisabledRouter(false);
         setIsDisabledMotivo(false);
       } else {
@@ -293,7 +304,7 @@ function AppFibra() {
       setIsDisabledMotivo(false);
     } else {
 
-      if (tecnologiaRouter === 'Tecnología Router') {
+      if (tecnologiaRouter === 'Tecnología') {
         setIsDisabledRouter(true);
 
       }
@@ -318,7 +329,7 @@ function AppFibra() {
 
     if (motivoAveriaFibra === 'Velocidad') {
 
-        event.target.value === 'cable' ?
+        event.target.value === 'cable' || event.target.value === 'ambos' ?
           setAdjuntoCliente('test de velocidad realizado') :
           setAdjuntoCliente(''); 
     } 
@@ -331,7 +342,7 @@ function AppFibra() {
 
 
     let lucesSinServicio = {
-      'Sin servicio WIFI': ['WIFI', '2G', '5G', 'WiFi'],
+      'Sin servicio WiFi': ['WIFI', '2G', '5G', 'WiFi'],
       'Sin servicio cable': ['Ethernet', 'ETH', 'Eth', 'LAN'],
       'Sin servicio ambos': ['INTERNET', 'Alarm', 'PON', 'Online', 'Sincronizar', 'S', 'Alarma', '@', 'S']
     };
@@ -378,6 +389,10 @@ function AppFibra() {
   ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
   : idExternal;
 
+  const enlaceApi = enlaceAveriaApi
+  ? `[${idExternal}](${enlaceAveriaApi})`
+  : idExternal;
+
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idEnlaceFibra)
        .replace("{motivoAveriaFibra}", motivoAveriaFibra)
        .replace("{velocidadContratada}", velocidad)
@@ -389,7 +404,7 @@ function AppFibra() {
        .replace("{refresh}", refreshParams)
        .replace("{reset}", compReset)
     
-  let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", idExternal)
+  let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{contacto}", contacto)
@@ -400,7 +415,15 @@ function AppFibra() {
   .replace("{refresh}", refreshParams)
   .replace("{reset}", compReset)
 
-  let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", idExternal)
+  let notaReclamoApiNuevo = datosFibra.notaReclamoApiNuevo.replace("{idExternal}", enlaceApi)
+  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{medioAveria}", lugarAveriaInternet)
+  .replace("{idAveriaApi}", idAveria)
+  .replace("{inicio}", horaInicio)
+  .replace("{fin}", horaFin)
+  .replace("{contacto}", contacto)
+
+  let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{idAveriaApi}", idAveria)
@@ -422,7 +445,7 @@ function AppFibra() {
   .replace("{fin}", horaFin)
   .replace("{horario}", mostrarDiaSegunHora)
 
-  let notaEscaladoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", idExternal)
+  let notaEscaladoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
   .replace("{medioAveria}", lugarAveriaInternet)
 
@@ -467,6 +490,14 @@ function AppFibra() {
                 </button>
             </div>
       }
+
+      <div className='contenedorNotaEscalado'>
+        <label>Reclamo API</label>
+        <div className='pre notaReclamoApi'>
+            <MiMarkDown markdownText={notaReclamoApiNuevo} id="markdownNotaReclamoApiNuevo"/>
+        </div>
+        <CopyToClipboardHTML targetId="markdownNotaReclamoApiNuevo" />
+      </div>
 
       <div className='contenedorNotaEscalado'>
         <label>24h - Reclamo API</label>
@@ -522,7 +553,20 @@ function AppFibra() {
               {lugarAver}
             </option>
           ))}
+          
           {motivoAveriaFibra === 'Cambiar contraseña' && lugarAveria.cambiarContrasena.map((lugarAver) => (
+            <option key={lugarAver} value={lugarAver}>
+              {lugarAver}
+            </option>
+          ))}
+
+          {motivoAveriaFibra === 'Desperfecto' && lugarAveria.desperfecto.map((lugarAver) => (
+            <option key={lugarAver} value={lugarAver}>
+              {lugarAver}
+            </option>
+          ))}
+          
+          {motivoAveriaFibra === 'Reubicación' && lugarAveria.reubicacion.map((lugarAver) => (
             <option key={lugarAver} value={lugarAver}>
               {lugarAver}
             </option>
@@ -558,15 +602,32 @@ function AppFibra() {
         ? Procedimientos[motivoAveriaS]
         : procedimiento;
   }
+
+  // if (motivoAveriaFibra === 'Habilitar/Deshabilitar redes WiFi') {
+  //   procedimiento = 
+  //   (routerFiltrado === 'Sercomm Vox 3.0 fiber' || 'Sercomm ONT L3 FG824CD')
+  //     ? Procedimientos['Habilitar/Deshabilitar redes WiFi'].bandSteering
+  //     : Procedimientos['Habilitar/Deshabilitar redes WiFi'].general;
+  // }
+
   const getMarkdownText = () => {
-    if ((motivoAveriaS === 'Error contraseña' || motivoAveriaS === 'Cambiar contraseña') && lugarAveriaS !== 'Seleccionar lugar') {
+    if ((motivoAveriaS === 'Error contraseña' || motivoAveriaS === 'Cambiar contraseña' || motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') && lugarAveriaS !== 'Seleccionar lugar') {
       return procedimiento;
     }
-    if (lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') {
+    if ((lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') && (motivoAveriaS !== 'Habilitar/Deshabilitar redes WiFi')) {
       return tecnologiaRouter === 'NEBA'
         ? procedimiento.NEBA || "Información no disponible"
         : procedimiento.general || "Información no disponible";
     }
+    if (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi') {
+      return (routerFiltrado === 'Sercomm Vox 3.0 fiber' || routerFiltrado === 'Sercomm ONT L3 FG824CD')
+        ? procedimiento.bandSteering || "Información no disponible"
+        : procedimiento.general || "Información no disponible";
+    }
+    // if (motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') {
+    //   console.log(procedimiento)
+    //   return procedimiento
+    // }
     return "Información no disponible";
   };
 
@@ -688,13 +749,17 @@ function AppFibra() {
         
         <div>
         <div className='contenedorTarifaFibra'>
-        <input type="text" value={idAveria} onChange={handleIdAveriaChange} placeholder="idAvería / externalServiceProblemId" />
-        <input type="text" value={idFibra} onChange={handleIdFibraChange} placeholder="ID Fibra" />
-            <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
+          <input type="text" value={enlaceAveriaApi} onChange={handleEnlaceAveriaApiChange} placeholder="Enlace avería API" />
+          <input type="text" value={idAveria} onChange={handleIdAveriaChange} placeholder="idAvería / externalServiceProblemId" />
+          <input type="text" value={idFibra} onChange={handleIdFibraChange} placeholder="ID Fibra" />
+          <input type="text" value={idExternal} onChange={handleExternalIdChange} placeholder="External ID" />
 
-            <select className='tecnologia-router' value={velocidad} onChange={handleSelectVelocidadChange}>
-              <option key='Velocidad contratada' value='Velocidad contratada'>  
-                  Velocidad contratada
+        </div>
+
+        <div className='contenedorRouterMotivo'>
+            <select className='tecnologia-router menor-ancho' value={velocidad} onChange={handleSelectVelocidadChange}>
+              <option key='Velocidad' value='Velocidad'>  
+                  Velocidad
               </option>
               {velocidadContratada.map((aver) => (
                 <option key={aver} value={aver}>
@@ -703,9 +768,9 @@ function AppFibra() {
               ))}
             </select>
 
-            <select className='tecnologia-router' value={tecnologiaRouter} onChange={handleSelectTecnologiaChange}>
-              <option key='Tecnología router' value='Tecnología router'>  
-                  Tecnología router
+            <select className='tecnologia-router menor-ancho' value={tecnologiaRouter} onChange={handleSelectTecnologiaChange}>
+              <option key='Tecnología' value='Tecnología'>  
+                  Tecnología
               </option>
               {routerTec.map((aver) => (
                 <option key={aver} value={aver}>
@@ -713,9 +778,7 @@ function AppFibra() {
                 </option>
               ))}
             </select>
-        </div>
 
-        <div className='contenedorRouterMotivo'>
             <select className='tecnologia-router' value={routerFiltrado} onChange={handleSelectRouterChange}
             disabled={isDisabledRouter}>
               <option key='Especificar router' value='Especificar router'>  

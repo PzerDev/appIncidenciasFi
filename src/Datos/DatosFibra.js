@@ -52,6 +52,18 @@ Tipo de router: {router}
 **Contestaciones de central:**  
 **${dia}/${mes}**  `,
 
+        notaReclamoApiNuevo: `**${dia}/${mes} - Reclamado por API**
+- Motivo de la incidencia: {motivoAveriaFibra} {medioAveria}  
+- ID: {idExternal}  
+- Reclamo de avería: {idAveriaApi}  
+- Breve descripción:  
+- Horario de disponibilidad: {inicio} - {fin} horas  
+- Teléfono de contacto: {contacto}  
+
+**Contestaciones de central:**  
+**${dia}/${mes}**  
+`,
+
         notaReclamoApi: `**${dia}/${mes} - Reclamado por API**
 - RECLAMACIÓN TICKET: {idAveriaApi}  
 - MOTIVO: {motivoAveriaFibra} {medioAveria}  
