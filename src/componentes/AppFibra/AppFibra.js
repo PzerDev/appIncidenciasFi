@@ -415,13 +415,13 @@ function AppFibra() {
   .replace("{refresh}", refreshParams)
   .replace("{reset}", compReset)
 
-  let notaReclamoApiNuevo = datosFibra.notaReclamoApiNuevo.replace("{idExternal}", enlaceApi)
-  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
-  .replace("{medioAveria}", lugarAveriaInternet)
-  .replace("{idAveriaApi}", idAveria)
-  .replace("{inicio}", horaInicio)
-  .replace("{fin}", horaFin)
-  .replace("{contacto}", contacto)
+  // let notaReclamoApiNuevo = datosFibra.notaReclamoApiNuevo.replace("{idExternal}", enlaceApi)
+  // .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  // .replace("{medioAveria}", lugarAveriaInternet)
+  // .replace("{idAveriaApi}", idAveria)
+  // .replace("{inicio}", horaInicio)
+  // .replace("{fin}", horaFin)
+  // .replace("{contacto}", contacto)
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaFibra)
@@ -491,13 +491,13 @@ function AppFibra() {
             </div>
       }
 
-      <div className='contenedorNotaEscalado'>
+      {/* <div className='contenedorNotaEscalado'>
         <label>Reclamo API</label>
         <div className='pre notaReclamoApi'>
             <MiMarkDown markdownText={notaReclamoApiNuevo} id="markdownNotaReclamoApiNuevo"/>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoApiNuevo" />
-      </div>
+      </div> */}
 
       <div className='contenedorNotaEscalado'>
         <label>24h - Reclamo API</label>
@@ -624,6 +624,30 @@ function AppFibra() {
         ? procedimiento.bandSteering || "Información no disponible"
         : procedimiento.general || "Información no disponible";
     }
+
+
+    // if (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi') {
+    //   if (routerFiltrado === 'Sercomm Vox 3.0 fiber' || routerFiltrado === 'Sercomm ONT L3 FG824CD') {
+    //     motivoAveriaS = 'Deshabilitar band steering'
+    //     let indice = motivoAveria.indexOf('Habilitar/Deshabilitar redes WiFi');
+    //     motivoAveria[indice] = 'Deshabilitar band steering'
+    //   }
+    //   return (motivoAveriaS === 'Deshabilitar band steering')
+    //     ? procedimiento.bandSteering || "Información no disponible"
+    //     : procedimiento.general || "Información no disponible";
+    // } else if (motivoAveriaS === 'Deshabilitar band steering') {
+    //   if (routerFiltrado !== 'Sercomm Vox 3.0 fiber' && routerFiltrado !== 'Sercomm ONT L3 FG824CD') {
+    //     motivoAveriaS = 'Habilitar/Deshabilitar redes WiFi'
+    //     let indice = motivoAveria.indexOf('Deshabilitar band steering');
+    //     motivoAveria[indice] = 'Habilitar/Deshabilitar redes WiFi'
+    //   }
+    //   return (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi')
+    //     ? procedimiento.general || "Información no disponible"
+    //     : procedimiento.bandSteering || "Información no disponible";
+    // }
+
+
+
     // if (motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') {
     //   console.log(procedimiento)
     //   return procedimiento
@@ -709,7 +733,13 @@ function AppFibra() {
 
       // Maneja cambios manuales en el input
       const manejarCambioInput = (texto) => {
-        setValor(texto); // Actualiza el texto visible en el input
+        // 1. Reemplazar múltiples espacios con un solo espacio
+        const textoSinMultiplesEspacios = texto.replace(/\s+/g, ' ');
+      
+        // 2. Poner la primera letra en mayúscula
+        const textoEnMayuscula = textoSinMultiplesEspacios.charAt(0).toUpperCase() + textoSinMultiplesEspacios.slice(1);
+      
+        setValor(textoEnMayuscula);
       };
 
 
