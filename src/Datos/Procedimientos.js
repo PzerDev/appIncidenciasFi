@@ -3,13 +3,19 @@ let Procedimientos = {
             general: `
 1. **Verificar el estado de las luces de la ONT:** Identificar si la luz de alarma o la luz de internet está encendida en rojo. Si en el ticket se especifica claramente que la ONT está en alarma, escalar el problema por API sin realizar contacto telefónico con el cliente. Esto agiliza el proceso de resolución.  
 2. **Verificar el cableado (si es necesario):** En caso de que sea necesario contactar al cliente, solicitarle que verifique que todos los cables estén correctamente conectados a la ONT y a los dispositivos. Una conexión suelta o dañada puede causar la alarma.  
-3. **Escalar por API:** Si el problema persiste después de verificar el cableado o si no fue necesario verificar el cableado, escalar el problema por API para que un técnico especializado realice una revisión más profunda.          
+3. **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+4. **Escalar por API:** Si el problema persiste después de verificar el cableado o si no fue necesario verificar el cableado, escalar el problema por API para que un técnico especializado realice una revisión más profunda.          
 `,
             NEBA: `
-* **Verificar el estado de las luces de la ONT:** Identificar si la luz de alarma o la luz de internet está encendida en rojo.  
-* **Verificar el cableado:** Comprobar que todos los cables estén correctamente conectados a la ONT (en caso que tenga) y a los dispositivos.  
-* **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos. Este paso técnico actualiza la configuración del equipo NEBA y puede mejorar el rendimiento de la red.  
-* **Escalar por API:** Si el problema persiste después de realizar los pasos anteriores, escalar el problema por API.          
+1. **Verificar el estado de las luces de la ONT:** Identificar si la luz de alarma o la luz de internet está encendida en rojo.  
+2. **Verificar el cableado:** Comprobar que todos los cables estén correctamente conectados a la ONT (en caso que tenga) y a los dispositivos.  
+3. **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos. Este paso técnico actualiza la configuración del equipo NEBA y puede mejorar el rendimiento de la red.  
+4. **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+5. **Escalar por API:** Si el problema persiste después de realizar los pasos anteriores, escalar el problema por API.          
 `,
             Observaciones: ``
     },
@@ -71,13 +77,19 @@ let Procedimientos = {
 1. **Verificar el estado de las luces:** Comprobar si la luz de Internet/@/S/Online está apagada. Si es así, el cliente no tendrá servicio ni por Wi-Fi ni por cable.  
 2. **Revisar las conexiones:** Asegurarse de que todos los cables estén correctamente conectados al router y al módem.  
 3. **Resetear el router:** Reiniciar el router puede solucionar problemas temporales causados por configuraciones incorrectas.  
-4. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  `,
+4. **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+5. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  `,
             NEBA: `
 1. **Verificar el estado de las luces:** Comprobar si la luz de Internet/@/S/Online está apagada. Si es así, el cliente no tendrá servicio ni por Wi-Fi ni por cable.  
 2. **Revisar las conexiones:** Asegurarse de que todos los cables estén correctamente conectados al router y al módem.  
 3. **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos. Esto puede resolver problemas de configuración.  
 4. **Resetear el router:** Si el problema persiste, reiniciar el router.  
-5. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  
+5. **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+6. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  
 `,
             Observaciones: `
 - **Verificar el resto de las luces:** Si la luz de Internet/@/S/Online está encendida, pero no hay conexión, verificar el estado de las demás luces del router para identificar posibles problemas.  
