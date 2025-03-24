@@ -106,6 +106,7 @@ let Procedimientos = {
 3. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido. Esto puede resolver problemas temporales causados por configuraciones incorrectas o sobrecargas.  
 4. **Priorizar la conexión por cable:** Si el cliente dispone de conexión por cable, realizar las pruebas de velocidad a través de este medio, ya que ofrece mayor estabilidad y velocidad que la conexión Wi-Fi.  
 5. **Verificar la disponibilidad de la red 5 GHz:** Si el cliente no dispone de conexión por cable, realizar el test de velocidad utilizando la red Wi-Fi de 5 GHz desde un ordenador, ya que esta banda suele ofrecer mayores velocidades.  
+    - Si los valores son incorrectos, solicitar captura de pantalla donde se pueda apreciar que está conectado en dicha red y abrir ticket en API especificando los resultados. Adjuntar la captura solo si desde Majorel la requieren.
 6. **Deshabilitar Band Steering:** Si el cliente no ve la red 5 GHz y su dispositivo la detecta, deshabilitar Band Steering en la llamada. Realizar test de velocidad en la banda de 5 GHz.  
 `,
             NEBA: `
@@ -115,6 +116,7 @@ let Procedimientos = {
 4. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido. Esto puede resolver problemas temporales causados por configuraciones incorrectas o sobrecargas.  
 5. **Priorizar la conexión por cable:** Si el cliente dispone de conexión por cable, realizar las pruebas de velocidad a través de este medio, ya que ofrece mayor estabilidad y velocidad que la conexión Wi-Fi.  
 6. **Verificar la disponibilidad de la red 5 GHz:** Si el cliente no dispone de conexión por cable, realizar el test de velocidad utilizando la red Wi-Fi de 5 GHz desde un ordenador, ya que esta banda suele ofrecer mayores velocidades.  
+    - Si los valores son incorrectos, solicitar captura de pantalla donde se pueda apreciar que está conectado en dicha red y abrir ticket en API especificando los resultados. Adjuntar la captura solo si desde Majorel la requieren.
 7. **Deshabilitar Band Steering:** Si el cliente no ve la red 5 GHz y su dispositivo la detecta, deshabilitar Band Steering en la llamada. Realizar test de velocidad en la banda de 5 GHz.  
 `,
             Observaciones: `
@@ -129,7 +131,8 @@ let Procedimientos = {
 * Abrir un ticket en API: Utilizar el mismo ticket de la incidencia de velocidad para solicitar que deshabiliten el Band Steering.
 * Respuesta de central: Tras respuesta de central enviar plantilla Fibra - Band Steering.
 * Contactar al cliente: Para verificar la configuración y realizar el test de velocidad en la banda de 5 GHz.
-* Abrir un nuevo ticket si es necesario: Si el problema persiste, abrir un nuevo ticket independiente para seguir investigando.
+* Abrir un nuevo ticket si es necesario: Si el problema persiste, abrir un nuevo ticket independiente para seguir investigando.  
+#### **Si la prueba de velocidad es correcta, enviar la plantilla "Solucionado en llamada" y resolver el caso.**
 `
         },
         cable: {

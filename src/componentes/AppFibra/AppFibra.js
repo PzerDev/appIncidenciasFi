@@ -329,7 +329,7 @@ function AppFibra() {
 
     if (motivoAveriaFibra === 'Velocidad') {
 
-        event.target.value === 'cable' || event.target.value === 'ambos' ?
+      event.target.value === 'WiFi' || event.target.value === 'cable' || event.target.value === 'ambos' ?
           setAdjuntoCliente('test de velocidad realizado') :
           setAdjuntoCliente(''); 
     } 
