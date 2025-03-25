@@ -21,7 +21,7 @@ let motivoAveria = [
   'Cambiar contraseña',
   'Masiva',
   // 'Unir / Separar redes',
-  'Habilitar/Deshabilitar redes WiFi',
+  'Desactivar band steering',
   'Desperfecto',
   'Reubicación'
 ]
@@ -275,6 +275,27 @@ function AppFibra() {
     let nuevaTecnologia = event.target.value;
     setTecnologiaRouter(nuevaTecnologia);
 
+
+    const indiceBandSteering = motivoAveria.indexOf('Desactivar band steering');
+    const indiceRenombrarRedes = motivoAveria.indexOf('Renombrar redes WiFi');
+    if (indiceBandSteering !== -1 && indiceRenombrarRedes === -1 ) {
+      motivoAveria[indiceRenombrarRedes] = 'Desactivar band steering'; 
+    } else {
+      motivoAveria[indiceBandSteering] = 'Renombrar redes WiFi'; 
+    }
+    // nuevaTecnologia === 'HFC'
+    //   ? motivoAveria.map((aver) => (
+    //       <option key={aver} value={aver}>
+    //         {aver === 'Desactivar band steering' ? 'Renombrar redes WiFi' : aver}
+    //       </option>
+    //     )).slice(1) // Aplica slice después de modificar los elementos
+    //   : motivoAveria.map((aver) => (
+    //       <option key={aver} value={aver}>
+    //         {aver}
+    //       </option>
+    //     ))
+    
+
     setRouterFiltrado('Especificar router');
 
       if (event.target.value !== 'Tecnología') {
@@ -290,6 +311,8 @@ function AppFibra() {
     // Actualizar la lista filtrada
     const listaFiltrada = routersFiltradosFunc('Vodafone / Tesa', nuevaTecnologia === 'NEBA' ? nuevaTecnologia = 'FTTH' : nuevaTecnologia);
     setRoutersLista(listaFiltrada);
+
+    // nuevaTecnologia === 'HFC' ? motivoAveria.shift() : motivoAveria;
   };
   
   //Codigo para filtrar router por acometida y tecnologia
@@ -614,12 +637,12 @@ function AppFibra() {
     if ((motivoAveriaS === 'Error contraseña' || motivoAveriaS === 'Cambiar contraseña' || motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') && lugarAveriaS !== 'Seleccionar lugar') {
       return procedimiento;
     }
-    if ((lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') && (motivoAveriaS !== 'Habilitar/Deshabilitar redes WiFi')) {
+    if ((lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') && (motivoAveriaS !== 'Desactivar band steering')) {
       return tecnologiaRouter === 'NEBA'
         ? procedimiento.NEBA || "Información no disponible"
         : procedimiento.general || "Información no disponible";
     }
-    if (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi') {
+    if (motivoAveriaS === 'Desactivar band steering') {
       return (routerFiltrado === 'Sercomm Vox 3.0 fiber' || routerFiltrado === 'Sercomm ONT L3 FG824CD')
         ? procedimiento.bandSteering || "Información no disponible"
         : procedimiento.general || "Información no disponible";
@@ -831,11 +854,20 @@ function AppFibra() {
                 <option key="Seleccionar motivo" value="Seleccionar motivo">
                   Seleccionar motivo
                 </option>
-                {motivoAveria.map((aver) => (
-                  <option key={aver} value={aver}>
-                    {aver}
-                  </option>
-                ))}
+                {
+                  (tecnologiaRouter === 'HFC'
+                    ? motivoAveria.map((aver) => (
+                        <option key={aver} value={aver}>
+                          {aver === 'Desactivar band steering' ? 'Renombrar redes WiFi' : aver}
+                        </option>
+                      )).slice(1) // Aplica slice después de modificar los elementos
+                    : motivoAveria.map((aver) => (
+                        <option key={aver} value={aver}>
+                          {aver}
+                        </option>
+                      ))
+                  )
+                }
 
             </select>
 

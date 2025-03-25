@@ -273,7 +273,7 @@ let Procedimientos = {
 6.  **Escalar por API:** Si tienes problemas tras estas comprobaciones, solicita una foto de la etiqueta del router al cliente y escala el problema a través de API, adjuntando la imagen de la etiqueta.  
 `
     },
-    "Habilitar/Deshabilitar redes WiFi": {
+    "Desactivar band steering": {
         general: `
 1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
 2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
