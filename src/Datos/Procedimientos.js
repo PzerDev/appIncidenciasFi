@@ -127,6 +127,7 @@ let Procedimientos = {
 * Respuesta de central: Tras respuesta enviar plantilla Fibra - Band Steering. 
 * Contactar al cliente: Una vez que se haya deshabilitado el Band Steering, contactar al cliente para verificar que puede acceder al router y que además aparecen ambas redes (2.4 GHz y 5 GHz), realizar el test de velocidad en la banda de 5 GHz.
 * Resolver el ticket de error de contraseña: Si el cliente ya puede acceder al router, resolver el ticket correspondiente en HubSpot.
+---
 #### **Si el cliente no sabe o no es posible deshabilitar el Band Steering tras acceder al router:**
 * Abrir un ticket en API: Utilizar el mismo ticket de la incidencia de velocidad para solicitar que deshabiliten el Band Steering.
 * Respuesta de central: Tras respuesta de central enviar plantilla Fibra - Band Steering.
@@ -153,7 +154,52 @@ let Procedimientos = {
 * **Escalar la avería:** Si después de realizar las comprobaciones anteriores la velocidad sigue siendo baja, escalar la avería adjuntando los resultados del test de velocidad.  
 `
         },
-        ambos: ``
+        ambos: {
+            general: `
+1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces estén encendidas y con el color correcto, lo cual indica que el router está funcionando correctamente.  
+2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados, tanto al router como al dispositivo del cliente. Una conexión suelta o dañada puede afectar la velocidad.  
+3. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido. Esto puede resolver problemas temporales causados por configuraciones incorrectas o sobrecargas.  
+4. **Priorizar la conexión por cable:** Si el cliente dispone de conexión por cable, realizar las pruebas de velocidad a través de este medio, ya que ofrece mayor estabilidad y velocidad que la conexión Wi-Fi.  
+5. **Verificar la disponibilidad de la red 5 GHz:** Si el cliente no dispone de conexión por cable, realizar el test de velocidad utilizando la red Wi-Fi de 5 GHz desde un ordenador, ya que esta banda suele ofrecer mayores velocidades.  
+    - Si los valores son incorrectos, solicitar captura de pantalla donde se pueda apreciar que está conectado en dicha red y abrir ticket en API especificando los resultados. Adjuntar la captura solo si desde Majorel la requieren.
+6. **Deshabilitar Band Steering:** Si el cliente no ve la red 5 GHz y su dispositivo la detecta, deshabilitar Band Steering en la llamada. Realizar test de velocidad en la banda de 5 GHz.  
+`,
+            NEBA: `
+1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces estén encendidas y con el color correcto, lo cual indica que el router está funcionando correctamente.  
+2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados, tanto al router como al dispositivo del cliente. Una conexión suelta o dañada puede afectar la velocidad  
+3. **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos. Este paso técnico actualiza la configuración del equipo NEBA y puede mejorar el rendimiento de la red.  
+4. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido. Esto puede resolver problemas temporales causados por configuraciones incorrectas o sobrecargas.  
+5. **Priorizar la conexión por cable:** Si el cliente dispone de conexión por cable, realizar las pruebas de velocidad a través de este medio, ya que ofrece mayor estabilidad y velocidad que la conexión Wi-Fi.  
+6. **Verificar la disponibilidad de la red 5 GHz:** Si el cliente no dispone de conexión por cable, realizar el test de velocidad utilizando la red Wi-Fi de 5 GHz desde un ordenador, ya que esta banda suele ofrecer mayores velocidades.  
+    - Si los valores son incorrectos, solicitar captura de pantalla donde se pueda apreciar que está conectado en dicha red y abrir ticket en API especificando los resultados. Adjuntar la captura solo si desde Majorel la requieren.
+7. **Deshabilitar Band Steering:** Si el cliente no ve la red 5 GHz y su dispositivo la detecta, deshabilitar Band Steering en la llamada. Realizar test de velocidad en la banda de 5 GHz.  
+`,
+            Observaciones: `
+#### **Si el cliente no puede acceder al router por error de contraseña:**
+* Abrir un ticket en HubSpot: Registrar un nuevo ticket indicando el error de contraseña y seguir el procedimiento correspondiente.
+* Abrir un ticket en API: Solicitar adicionalmente que deshabiliten el Band Steering para agilizar la resolución.
+* Seguimiento del ticket de velocidad: El ticket de velocidad permanecerá en seguimiento hasta que se resuelva el problema con el Band Steering.
+* Respuesta de central: Tras respuesta enviar plantilla Fibra - Band Steering. 
+* Contactar al cliente: Una vez que se haya deshabilitado el Band Steering, contactar al cliente para verificar que puede acceder al router y que además aparecen ambas redes (2.4 GHz y 5 GHz), realizar el test de velocidad en la banda de 5 GHz.
+* Resolver el ticket de error de contraseña: Si el cliente ya puede acceder al router, resolver el ticket correspondiente en HubSpot.
+---
+#### **Si el cliente no sabe o no es posible deshabilitar el Band Steering tras acceder al router:**
+* Abrir un ticket en API: Utilizar el mismo ticket de la incidencia de velocidad para solicitar que deshabiliten el Band Steering.
+* Respuesta de central: Tras respuesta de central enviar plantilla Fibra - Band Steering.
+* Contactar al cliente: Para verificar la configuración y realizar el test de velocidad en la banda de 5 GHz.
+* Abrir un nuevo ticket si es necesario: Si el problema persiste, abrir un nuevo ticket independiente para seguir investigando.  
+#### **Si la prueba de velocidad es correcta, enviar la plantilla "Solucionado en llamada" y resolver el caso.**
+
+---
+
+**Consideraciones adicionales por cable:**  
+* **Realizar test de velocidad:** Conectar un ordenador directamente al router mediante un cable Ethernet y realizar un test de velocidad. Solicitar al cliente una captura de pantalla donde se vea el icono de conexión por cable y los resultados del test.  
+* **Verificar la categoría del cable:** Asegurarse de que el cable Ethernet sea de categoría 5e o superior. Los cables de categoría 5 están limitados a 100 Mbps.  
+* **Comprobar la tarjeta de red:** Verificar si la tarjeta de red del ordenador está configuraa para una velocidad de 100 Mbps o inferior.  
+* **Escalar la avería:** Si después de realizar las comprobaciones anteriores la velocidad sigue siendo baja, escalar la avería adjuntando los resultados del test de velocidad.  
+`
+        
+        }
     },
     Cortes: {
         WiFi: {
@@ -212,7 +258,54 @@ let Procedimientos = {
 - **Verificar todos los puertos:** Probar el cable en diferentes puertos del router.  
 - **Esperar y escalar:** Si el problema persiste después de 48 horas, es necesario escalar la incidencia a un nivel superior para una mayor investigación.  `            
 },
-        ambos: ``
+
+        ambos: {
+            general: `
+1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces indicadoras del router estén encendidas y con el color correcto.  
+2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados tanto al router como al dispositivo del cliente.  
+3. **Comprobar si el problema ocurre en un dispositivo o en varios:** Determinar si el corte afecta a todos los dispositivos conectados a la red o solo a uno.  
+4. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido.  
+5. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
+6. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
+7. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+`,
+            NEBA: `
+1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces indicadoras del router estén encendidas y con el color correcto.  
+2. **Comprobar las conexiones de los cables:** Revisar que todos los cables estén firmemente conectados tanto al router como al dispositivo del cliente.  
+3. **Comprobar si el problema ocurre en un dispositivo o en varios:** Determinar si el corte afecta a todos los dispositivos conectados a la red o solo a uno.  
+4. **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos.  
+5. **Restablecer el router de fábrica:** Esperar unos minutos y verificar si el servicio se ha restablecido.  
+6. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
+7. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
+8. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+`,
+            Observaciones: `
+#### **Si el cliente no puede acceder al router por error de contraseña:**  
+
+- **Abrir un ticket en HubSpot:** Registrar un nuevo ticket indicando el error de contraseña y seguir el procedimiento correspondiente.  
+- **Abrir un ticket en API:** Con el motivo de error de contraseña y solicitar adicionalmente que deshabiliten el Band Steering para agilizar la resolución.  
+- **Seguimiento:** El ticket de cortes permanecerá en seguimiento hasta que se reciba una respuesta del ticket en API.  
+- **Respuesta de central:** Tras respuesta, enviar plantilla **Fibra - Band Steering**.  
+- **Contactar al cliente:** Una vez que se haya deshabilitado el Band Steering, contactar al cliente para verificar que puede acceder al router y aparecen ambas redes. Dejar el caso de cortes en seguimiento durante 48 horas.  
+- **Resolver el ticket de error de contraseña:** Si el cliente ya puede acceder al router, resolver el ticket correspondiente en HubSpot.  
+
+---  
+
+#### **Si el cliente no sabe o no es posible deshabilitar el Band Steering tras acceder al router:**  
+
+- **Abrir un ticket en API:** Utilizar el mismo ticket (cortes) de HubSpot para solicitar que deshabiliten el Band Steering.  
+- **Respuesta de central:** Tras respuesta de central, enviar plantilla **Fibra - Band Steering** (no contactar al cliente) y dejar el caso en seguimiento durante 48 horas.  
+- **Abrir otro ticket en API:** Si el problema persiste, abrir un nuevo ticket en API usando el mismo ticket (cortes) de HubSpot.  
+
+---
+
+**Consideraciones adicionales por cable:**  
+- **Probar con otro cable de Ethernet:** Si el problema persiste, intentar conectar el dispositivo a una red utilizando un cable Ethernet diferente.  
+- **Probar en otro dispositivo:** Conectar el mismo cable a otro dispositivo para descartar que el problema esté en el dispositivo del cliente.  
+- **Verificar todos los puertos:** Probar el cable en diferentes puertos del router.  
+- **Esperar y escalar:** Si el problema persiste después de 48 horas, es necesario escalar la incidencia a un nivel superior para una mayor investigación.  
+`
+        }
     },
     Cobertura: {
         general: `
@@ -274,16 +367,6 @@ let Procedimientos = {
 `
     },
     "Desactivar band steering": {
-        general: `
-1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
-2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
-3.  **Móviles de importación:** Si utilizas un móvil de importación, es posible que no detecte los canales 11 y 12 en la red de 2.4 GHz. Esto se debe a que estos canales pueden no estar homologados en algunos países.  
-4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
-5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
-6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
-7.  **Habilitar/deshabilitar redes:** Una vez dentro de la configuración, busca la sección "General" y luego "Wi-Fi". Aquí podrás habilitar o deshabilitar las redes Wi-Fi según tus necesidades.  
-8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
-`,
         bandSteering: `
 1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
 2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
@@ -292,6 +375,18 @@ let Procedimientos = {
 5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
 6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
 7.  **Band Steering:** Para lograr habilitar y deshabilitar las redes WiFi por separado en este modelo de router la función de Band Steering debe desactivarse.  
+8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
+`
+},
+    "Renombrar redes WiFi": {
+        general: `
+1.  **Compatibilidad de dispositivos:** Antes de habilitar la red 5G, asegúrate de que tus dispositivos (móviles, ordenadores, etc.) sean compatibles con esta tecnología, ya que no todos lo son.  
+2.  **Detección de redes 5G:** Si tu dispositivo no reconoce las redes Wi-Fi, revisa si le aparecen redes vecinas que utilicen la frecuencia 5G. Esto puede indicar un problema de compatibilidad o configuración en tu dispositivo.  
+3.  **Móviles de importación:** Si utilizas un móvil de importación, es posible que no detecte los canales 11 y 12 en la red de 2.4 GHz. Esto se debe a que estos canales pueden no estar homologados en algunos países.  
+4.  **Conexión al router:** Conéctate a la red del router, ya sea utilizando un cable Ethernet o mediante Wi-Fi.  
+5.  **Seguridad WPA/WPA2:** Asegúrate de que el nivel de seguridad configurado en el router sea WPA/WPA2. Este es el protocolo de seguridad recomendado para redes Wi-Fi.  
+6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
+7.  **Habilitar/deshabilitar redes:** Una vez dentro de la configuración, busca la sección "General" y luego "Wi-Fi". Aquí podrás habilitar o deshabilitar las redes Wi-Fi según tus necesidades.  
 8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
 `
 },
@@ -405,6 +500,46 @@ En estos casos, la gestión se realizará a través de Excel, sin abrir un ticke
 Si cumple con los requisitos, se escalará a Coordinación Fibra para que se reporte a VDF con la siguiente información:
 * Fotografía de la ubicación actual del router y PTRo.
 * Breve descripción del motivo de la nueva ubicación.
+`,
+
+        seguimiento: `
+Se revisará el Excel compartido de "Reubicaciones" para verificar el estado de las órdenes, identificando si están cerradas, la resolución aplicada y si han entrado en algún Estado de Excepción (EE).  
+
+Al día siguiente de la fecha acordada para la reubicación, el agente contactará con el cliente para confirmar la correcta ejecución y el cierre del caso.  
+
+- **Cliente no localizado:** Si no se logra contactar al cliente, se enviará un correo electrónico utilizando la plantilla predefinida "Fibra - lloc seguimiento reubicación" y se cambiará el estado del ticket a "Seguimiento Fibra". Si no hay respuesta del cliente en 24 horas, se procederá a resolver el ticket.  
+
+- **Reubicación exitosa:** Si el cliente confirma que la reubicación se realizó correctamente en la fecha acordada, el agente enviará un correo electrónico utilizando la plantilla predefinida "Fibra - Avería - Solucionado en llamada" y registrará en la nota interna del ticket la confirmación del cliente.  
+
+- **Reubicación fallida:** Si la reubicación no se completó, estando en comunicación con el cliente, se consultará el Excel de Reubicaciones para determinar el estado de la orden:
+    - **En EE gestionado por Fi:** Se explicará al cliente el motivo del fallo (por ejemplo, cliente ilocalizable). Se acordará una nueva fecha de reubicación y se coordinará con el equipo correspondiente para la asignación de la nueva cita, utilizando la plantilla predefinida. En caso de duda sobre el estado en el EE, consultar el artículo "Fibra - Tabla Estados de Excepción".  
+    - **En EE no gestionado por Fi:**
+        - Si el estado es U9, se contactará al cliente para programar una nueva cita y se coordinará con el equipo correspondiente para su asignación, utilizando la plantilla predefinida.  
+        - Para otros estados, se consultará con el equipo de coordinación para determinar los pasos a seguir. En caso de duda sobre el estado en el EE, consultar el artículo "Fibra - Tabla Estados de Excepción".  
+    - **Programado con fecha pasada:** Se acordará una nueva fecha de reubicación y se coordinará con el equipo correspondiente para la asignación de la nueva cita, utilizando la plantilla predefinida.  
+
+- **No aparece en el listado:** Se escalará el caso al filtro de Coordinación Fibra, incluyendo la información necesaria en la nota interna para su correcta gestión.
+`,
+
+        "escalado a coordinación": `
+Los tickets de reubicación podrán ser escalados a Coordinación bajo las siguientes circunstancias:  
+
+- **Incidencia persistente tras contacto:** Una vez finalizada la fecha de instalación, se contacta con el cliente y este informa que la incidencia no ha sido resuelta. Adicionalmente, la orden ya no figura en el listado del Excel de reubicaciones.  
+- **Reprogramaciones múltiples sin asistencia:** La visita del técnico ha sido reprogramada en tres ocasiones distintas y, a pesar de ello, el técnico no se ha presentado en el domicilio del cliente.  
+---
+**Proceso de escalado:**  
+
+Para escalar un ticket a Coordinación, se deben seguir los siguientes pasos:  
+
+1. Registrar en la nota interna del ticket una descripción detallada de la situación, incluyendo los motivos del escalado.  
+2. Escalar el ticket al filtro correspondiente de Coordinación Fibra.  
+3. Retirar la asignación del ticket de la propia gestión.  
+---
+**Verificaciones previas al escalado:**  
+
+Antes de proceder con el escalado a Coordinación, es imprescindible verificar lo siguiente:  
+- **Confirmación de no asistencia técnica:** Asegurarse de que el cliente confirma que el técnico no se ha presentado en su domicilio. No se escalará ningún ticket sin esta confirmación por parte del cliente sobre la persistencia de la incidencia.  
+- **Imposibilidad técnica informada por el técnico:** Verificar si el técnico ha acudido al domicilio del cliente y ha comunicado la imposibilidad de realizar la reubicación debido a alguna razón específica. Por ejemplo, si el cliente solicita una reubicación que requiere la instalación de canaletas y el técnico informa que su equipo no está autorizado para realizar dicha instalación. En estos casos, la gestión del ticket no continuará por esta vía.  
 `
 
         }

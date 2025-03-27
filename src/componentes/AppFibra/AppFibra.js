@@ -31,7 +31,7 @@ let lugarAveria = {
   errorContrasena: ['router', 'WiFi'],
   cambiarContrasena: ['acceso router', 'redes WiFi'],
   desperfecto: ['general', 'TESA', 'no cliente'],
-  reubicacion: ['general', 'TESA']
+  reubicacion: ['general', 'TESA', 'seguimiento', 'escalado a coordinación']
 }
 
 let velocidadContratada = [
@@ -416,8 +416,10 @@ function AppFibra() {
   ? `[${idExternal}](${enlaceAveriaApi})`
   : idExternal;
 
+  const motivoAveriaRegistrado = ((motivoAveriaFibra === 'Desactivar band steering' && (tecnologiaRouter === 'HFC' || routerFiltrado === 'ONT Nokia G010G-P y Router Sercomm W1-H500s')) ? 'Renombrar redes WiFi' : motivoAveriaFibra) || "Seleccionar motivo";
+
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idEnlaceFibra)
-       .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+       .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
        .replace("{velocidadContratada}", velocidad)
        .replace("{tecnologiaRouter}", tecnologiaRouter)
        .replace("{medioAveria}", lugarAveriaInternet+' ')
@@ -428,7 +430,7 @@ function AppFibra() {
        .replace("{reset}", compReset)
     
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", enlaceApi)
-  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{contacto}", contacto)
   .replace("{inicio}", horaInicio)
@@ -447,7 +449,7 @@ function AppFibra() {
   // .replace("{contacto}", contacto)
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
-  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
@@ -461,7 +463,7 @@ function AppFibra() {
 
   let notaReclamoOutlookAsunto = datosFibra.notaReclamoOutlook.asunto.replace("{idExternal}", idExternal)
   let notaReclamoOutlook = datosFibra.notaReclamoOutlook.cuerpo.replace("{idExternal}", idExternal)
-  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
   .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
@@ -469,10 +471,10 @@ function AppFibra() {
   .replace("{horario}", mostrarDiaSegunHora)
 
   let notaEscaladoCoord = datosFibra.notaReclamoCoord.replace("{idExternal}", enlaceApi)
-  .replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
 
-  let notaBoFact = datosFibra.notaBoFacturacion.replace("{motivoAveriaFibra}", motivoAveriaFibra)
+  let notaBoFact = datosFibra.notaBoFacturacion.replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
 
 
@@ -609,7 +611,7 @@ function AppFibra() {
   }
 
   // Comprobar que 'motivoAveriaFibra' y 'lugarAveriaInternet' están definidos
-  const motivoAveriaS = motivoAveriaFibra || "Seleccionar motivo";
+  const motivoAveriaS = motivoAveriaRegistrado
   const lugarAveriaS = lugarAveriaInternet || "valor predeterminado";
   // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
   let procedimiento = { general: "Información no disponible", Observaciones: "" };  
@@ -634,48 +636,40 @@ function AppFibra() {
   // }
 
   const getMarkdownText = () => {
-    if ((motivoAveriaS === 'Error contraseña' || motivoAveriaS === 'Cambiar contraseña' || motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') && lugarAveriaS !== 'Seleccionar lugar') {
-      return procedimiento;
+    if (
+      motivoAveriaS === 'Error contraseña' ||
+      motivoAveriaS === 'Cambiar contraseña' ||
+      motivoAveriaS === 'Desperfecto' ||
+      motivoAveriaS === 'Reubicación'
+    ) {
+      if (lugarAveriaS !== 'Seleccionar lugar') {
+        return procedimiento || 'Información no disponible';
+      } else {
+        return 'Información no disponible';
+      }
+    } else if (motivoAveriaS === 'Desactivar band steering') {
+      if (
+        tecnologiaRouter !== 'HFC' &&
+        (routerFiltrado === 'Sercomm Vox 3.0 fiber' ||
+         routerFiltrado === 'Sercomm ONT L3 FG824CD')
+      ) {
+        return procedimiento.bandSteering || 'Información no disponible';
+      } else {
+        return procedimiento.general || 'Información no disponible';
+      }
+    } else if (tecnologiaRouter === 'NEBA') {
+      if (motivoAveriaS === 'Renombrar redes WiFi' || 
+          motivoAveriaS === 'Cable roto' ||
+          motivoAveriaS === 'Router roto' || 
+          motivoAveriaS === 'Masiva'
+      ) {
+        return procedimiento.general || 'Información no disponible';
+      } else {
+        return procedimiento.NEBA || 'Información no disponible';
+      }
+    } else {
+      return procedimiento.general || 'Información no disponible';
     }
-    if ((lugarAveriaS !== 'Seleccionar lugar' || lugarAveriaS === 'Seleccionar lugar') && (motivoAveriaS !== 'Desactivar band steering')) {
-      return tecnologiaRouter === 'NEBA'
-        ? procedimiento.NEBA || "Información no disponible"
-        : procedimiento.general || "Información no disponible";
-    }
-    if (motivoAveriaS === 'Desactivar band steering') {
-      return (routerFiltrado === 'Sercomm Vox 3.0 fiber' || routerFiltrado === 'Sercomm ONT L3 FG824CD')
-        ? procedimiento.bandSteering || "Información no disponible"
-        : procedimiento.general || "Información no disponible";
-    }
-
-
-    // if (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi') {
-    //   if (routerFiltrado === 'Sercomm Vox 3.0 fiber' || routerFiltrado === 'Sercomm ONT L3 FG824CD') {
-    //     motivoAveriaS = 'Deshabilitar band steering'
-    //     let indice = motivoAveria.indexOf('Habilitar/Deshabilitar redes WiFi');
-    //     motivoAveria[indice] = 'Deshabilitar band steering'
-    //   }
-    //   return (motivoAveriaS === 'Deshabilitar band steering')
-    //     ? procedimiento.bandSteering || "Información no disponible"
-    //     : procedimiento.general || "Información no disponible";
-    // } else if (motivoAveriaS === 'Deshabilitar band steering') {
-    //   if (routerFiltrado !== 'Sercomm Vox 3.0 fiber' && routerFiltrado !== 'Sercomm ONT L3 FG824CD') {
-    //     motivoAveriaS = 'Habilitar/Deshabilitar redes WiFi'
-    //     let indice = motivoAveria.indexOf('Deshabilitar band steering');
-    //     motivoAveria[indice] = 'Habilitar/Deshabilitar redes WiFi'
-    //   }
-    //   return (motivoAveriaS === 'Habilitar/Deshabilitar redes WiFi')
-    //     ? procedimiento.general || "Información no disponible"
-    //     : procedimiento.bandSteering || "Información no disponible";
-    // }
-
-
-
-    // if (motivoAveriaS === 'Desperfecto' || motivoAveriaS === 'Reubicación') {
-    //   console.log(procedimiento)
-    //   return procedimiento
-    // }
-    return "Información no disponible";
   };
 
 
@@ -855,7 +849,7 @@ function AppFibra() {
                   Seleccionar motivo
                 </option>
                 {
-                  (tecnologiaRouter === 'HFC'
+                  (tecnologiaRouter === 'HFC' || (routerFiltrado === 'ONT Nokia G010G-P y Router Sercomm W1-H500s')
                     ? motivoAveria.map((aver) => (
                         <option key={aver} value={aver}>
                           {aver === 'Desactivar band steering' ? 'Renombrar redes WiFi' : aver}
