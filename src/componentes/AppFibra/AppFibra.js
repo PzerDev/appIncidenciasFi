@@ -783,6 +783,9 @@ function AppFibra() {
           id="markdownProcedimiento"
           markdownText2={procedimiento.Observaciones || ""}
         />
+        {/* <div>
+          Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono
+        </div> */}
       </div>
 
       {/* Contenido principal */}
@@ -849,18 +852,30 @@ function AppFibra() {
                   Seleccionar motivo
                 </option>
                 {
-                  (tecnologiaRouter === 'HFC' || (routerFiltrado === 'ONT Nokia G010G-P y Router Sercomm W1-H500s')
+                  tecnologiaRouter === 'HFC'
+                    ? motivoAveria
+                        .map((aver) => (
+                          <option key={aver} value={aver}>
+                            {aver === 'Desactivar band steering'
+                              ? 'Renombrar redes WiFi'
+                              : aver}
+                          </option>
+                        ))
+                        .slice(1)
+                    : tecnologiaRouter !== 'HFC' &&
+                      routerFiltrado === 'ONT Nokia G010G-P y Router Sercomm W1-H500s'
                     ? motivoAveria.map((aver) => (
                         <option key={aver} value={aver}>
-                          {aver === 'Desactivar band steering' ? 'Renombrar redes WiFi' : aver}
+                          {aver === 'Desactivar band steering'
+                            ? 'Renombrar redes WiFi'
+                            : aver}
                         </option>
-                      )).slice(1) // Aplica slice después de modificar los elementos
+                      ))
                     : motivoAveria.map((aver) => (
                         <option key={aver} value={aver}>
                           {aver}
                         </option>
                       ))
-                  )
                 }
 
             </select>

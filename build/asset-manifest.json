@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/appIncidenciasFi/build/static/css/main.7a496aca.css",
-    "main.js": "/appIncidenciasFi/build/static/js/main.bd8d40fb.js",
+    "main.js": "/appIncidenciasFi/build/static/js/main.83a96428.js",
     "static/js/453.d7dd342a.chunk.js": "/appIncidenciasFi/build/static/js/453.d7dd342a.chunk.js",
     "static/media/logo.svg": "/appIncidenciasFi/build/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/appIncidenciasFi/build/index.html",
     "main.7a496aca.css.map": "/appIncidenciasFi/build/static/css/main.7a496aca.css.map",
-    "main.bd8d40fb.js.map": "/appIncidenciasFi/build/static/js/main.bd8d40fb.js.map",
+    "main.83a96428.js.map": "/appIncidenciasFi/build/static/js/main.83a96428.js.map",
     "453.d7dd342a.chunk.js.map": "/appIncidenciasFi/build/static/js/453.d7dd342a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7a496aca.css",
-    "static/js/main.bd8d40fb.js"
+    "static/js/main.83a96428.js"
   ]
 }

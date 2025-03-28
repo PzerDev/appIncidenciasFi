@@ -7,6 +7,7 @@ let Procedimientos = {
     - No es compatible con líneas de datos ilimitados.
     - Solo se puede aplicar un bono cada 30 días.
 4. **Escalar por API:** Si el problema persiste después de verificar el cableado o si no fue necesario verificar el cableado, escalar el problema por API para que un técnico especializado realice una revisión más profunda.          
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             NEBA: `
 1. **Verificar el estado de las luces de la ONT:** Identificar si la luz de alarma o la luz de internet está encendida en rojo.  
@@ -16,6 +17,7 @@ let Procedimientos = {
     - No es compatible con líneas de datos ilimitados.
     - Solo se puede aplicar un bono cada 30 días.
 5. **Escalar por API:** Si el problema persiste después de realizar los pasos anteriores, escalar el problema por API.          
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: ``
     },
@@ -33,6 +35,7 @@ let Procedimientos = {
 9. **Acceder al router (si es necesario):** En algunos casos, puede ser necesario acceder a la configuración del router para habilitar las redes Wi-Fi o deshabilitar el Band Steering.  
 10. **Utilizar el botón WPS:** Si el router y el dispositivo son compatibles con WPS, se puede utilizar este botón para conectar el dispositivo de forma rápida y segura.  
 11. **Escalar la avería:** Si después de realizar todos los pasos anteriores el problema persiste, escalar la avería para que un técnico especializado realice una revisión más profunda.              
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             NEBA: `
 1. **Verificar el estado de las luces:** Asegurarse de que las luces del router que indican la conexión Wi-Fi estén encendidas.  
@@ -47,6 +50,7 @@ let Procedimientos = {
 10. **Acceder al router (si es necesario):** Al igual que en FTTH/HFC, puede ser necesario acceder al router para habilitar las redes Wi-Fi o ajustar la configuración del Band Steering.  
 11. **Utilizar el botón WPS:** Si el router y el dispositivo son compatibles con WPS, se puede utilizar este botón para conectar el dispositivo de forma rápida y segura.  
 12. **Escalar la avería:** Si después de realizar todos los pasos anteriores el problema persiste, escalar la avería.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: ``
         },
@@ -59,6 +63,7 @@ let Procedimientos = {
 5. **Probar en diferentes puertos:** Conectar el cable a diferentes puertos del router para descartar que el problema se deba a un puerto defectuoso.
 6. **Resetear el router:** Reiniciar el router puede solucionar problemas temporales causados por configuraciones incorrectas.
 7. **Escalar la avería:** Si después de realizar todos los pasos anteriores el problema persiste, escalar la avería para que un técnico especializado realice una revisión más profunda.            
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             NEBA: `
 1. **Verificar el estado de las luces:** Comprobar que la luz de ETH en el router esté encendida (en caso que disponga). Esto indica que el router detecta el cable de red.
@@ -69,6 +74,7 @@ let Procedimientos = {
 6. **Actualizar la configuración NEBA:** Realizar un "Refresh NEBA Params" y reiniciar los dispositivos. Esto puede resolver problemas de configuración.
 7. **Resetear el router:** Si el problema persiste, reiniciar el router.
 8. **Escalar la avería:** Si después de realizar todos los pasos anteriores el problema persiste, escalar la avería.            
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: ``
         },
@@ -80,7 +86,9 @@ let Procedimientos = {
 4. **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
     - No es compatible con líneas de datos ilimitados.
     - Solo se puede aplicar un bono cada 30 días.
-5. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  `,
+5. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
+`,
             NEBA: `
 1. **Verificar el estado de las luces:** Comprobar si la luz de Internet/@/S/Online está apagada. Si es así, el cliente no tendrá servicio ni por Wi-Fi ni por cable.  
 2. **Revisar las conexiones:** Asegurarse de que todos los cables estén correctamente conectados al router y al módem.  
@@ -90,6 +98,7 @@ let Procedimientos = {
     - No es compatible con líneas de datos ilimitados.
     - Solo se puede aplicar un bono cada 30 días.
 6. **Escalar la avería:** Si después del reinicio la luz de Internet/@/S/Online continúa apagada, escalar la avería.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: `
 - **Verificar el resto de las luces:** Si la luz de Internet/@/S/Online está encendida, pero no hay conexión, verificar el estado de las demás luces del router para identificar posibles problemas.  
@@ -152,6 +161,7 @@ let Procedimientos = {
 * **Verificar la categoría del cable:** Asegurarse de que el cable Ethernet sea de categoría 5e o superior. Los cables de categoría 5 están limitados a 100 Mbps.  
 * **Comprobar la tarjeta de red:** Verificar si la tarjeta de red del ordenador está configuraa para una velocidad de 100 Mbps o inferior.  
 * **Escalar la avería:** Si después de realizar las comprobaciones anteriores la velocidad sigue siendo baja, escalar la avería adjuntando los resultados del test de velocidad.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
         },
         ambos: {
@@ -197,6 +207,7 @@ let Procedimientos = {
 * **Verificar la categoría del cable:** Asegurarse de que el cable Ethernet sea de categoría 5e o superior. Los cables de categoría 5 están limitados a 100 Mbps.  
 * **Comprobar la tarjeta de red:** Verificar si la tarjeta de red del ordenador está configuraa para una velocidad de 100 Mbps o inferior.  
 * **Escalar la avería:** Si después de realizar las comprobaciones anteriores la velocidad sigue siendo baja, escalar la avería adjuntando los resultados del test de velocidad.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
         
         }
@@ -211,6 +222,7 @@ let Procedimientos = {
 5. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
 6. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
 7. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             NEBA: `
 1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces indicadoras del router estén encendidas y con el color correcto.  
@@ -221,6 +233,7 @@ let Procedimientos = {
 6. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
 7. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
 8. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: `
 #### **Si el cliente no puede acceder al router por error de contraseña:**  
@@ -268,6 +281,7 @@ let Procedimientos = {
 5. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
 6. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
 7. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             NEBA: `
 1. **Verificar el estado de las luces del router:** Asegurarse de que todas las luces indicadoras del router estén encendidas y con el color correcto.  
@@ -278,6 +292,7 @@ let Procedimientos = {
 6. **Explicar la diferencia entre la banda de 2.4 GHz y 5 GHz:** Informar al cliente sobre las características de cada banda y cómo pueden afectar la velocidad y alcance de la conexión.  
 7. **Deshabilitar el Band Steering (solo FTTH):** Si el problema persiste, solicitar al cliente que deshabilite la función Band Steering en el router. Dejar el caso en seguimiento durante 48 horas para verificar si se ha solucionado. Si el cliente no puede realizar este paso, seguir los procedimientos indicados en la tabla.  
 8. **Escalar la avería:** Si la incidencia persiste después de realizar los pasos anteriores, es necesario escalar la incidencia a un nivel superior.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
             Observaciones: `
 #### **Si el cliente no puede acceder al router por error de contraseña:**  
@@ -325,6 +340,7 @@ let Procedimientos = {
 - **Comprobar la red Wi-Fi:** Verificar a qué red Wi-Fi se conecta y explicar las diferencias entre las bandas de 2.4 GHz y 5 GHz. Deshabilitar Band Steering según el modelo del router para optimizar la distribución de los dispositivos entre las bandas.  
 - **Seguimiento:** Dejar en seguimiento durante 48 horas para verificar si se ha solucionado.  
 - **Escalar la avería:** Si después de 48 horas el problema persiste, escalar la avería por API, proporcionando ejemplos específicos como pérdida de cobertura en una habitación determinada (antes no pasaba) o disminución del rendimiento en comparación con situaciones anteriores.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 - **Explicar los motivos de la pérdida de cobertura:** Si no se procede a escalar la avería, explicar al cliente los factores que pueden afectar la cobertura Wi-Fi, como obstáculos físicos, interferencias de otros dispositivos o la distancia al router.  
 - **Recomendar un amplificador de señal:** Sugerir al cliente la instalación de un amplificador de señal si los problemas persisten. Enviar plantilla **Consejos ubicación router**.  
 `
@@ -338,6 +354,7 @@ let Procedimientos = {
 4. **Obtención de la contraseña predeterminada:** Si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
 5. **Usuario en routers Sercomm Vox:** En los routers de la marca Sercomm Vox, el usuario para acceder a la configuración es "sercomm", no "admin".
 6. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia por API, adjuntando la fotografía de la etiqueta del router.
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
         WiFi: `
 1. **Verificación de la contraseña:** Asegúrate de estar utilizando la contraseña correcta de la red Wi-Fi. Esta es diferente a la contraseña de acceso a la configuración del router.
@@ -345,6 +362,7 @@ let Procedimientos = {
 3. **Restablecimiento a valores de fábrica del router (como último recurso):** Si has cambiado la contraseña de la red Wi-Fi y la has olvidado, o si sospechas que hay un problema con la configuración del router, puedes restablecerlo a su configuración de fábrica). Recuerda que esto borrará todas las configuraciones, incluyendo el nombre y la contraseña de la red Wi-Fi, que volverán a ser los valores predeterminados de fábrica que se encuentran en la etiqueta.
 4. **Obtención de la contraseña predeterminada (Wi-Fi):** Al igual que con la contraseña del router, si no encuentras la etiqueta o está ilegible, solicita una fotografía de la misma. Solo en casos excepcionales, o con autorización de la Coordinación, se podrá prescindir de la foto. Si es necesario, la contraseña se puede deletrear por teléfono.
 5. **Escalado de la incidencia:** Si después de seguir estos pasos el problema persiste, se debe escalar la incidencia por API, adjuntando la fotografía de la etiqueta del router.
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
     },
     "Cambiar contraseña": {
@@ -356,6 +374,7 @@ let Procedimientos = {
 5.  **Guardar cambios:** Haz clic en el botón "Aplicar" o "Guardar" para que los cambios se hagan efectivos.  
 6.  **Modo experto (si es necesario):** Algunos routers pueden requerir que accedas al "modo experto" (generalmente un botón o enlace en la esquina superior derecha).  
 7.  **Escalar por API:** Si tienes problemas para cambiar la contraseña, solicita una foto de la etiqueta del router al cliente y escala el problema a través de API, adjuntando la imagen de la etiqueta.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `,
         "redes WiFi": `
 1.  **Conexión:** Conéctate a la red del router, ya sea por cable Ethernet o de forma inalámbrica (Wi-Fi).  
@@ -364,6 +383,7 @@ let Procedimientos = {
 4.  **Cambio de contraseña Wi-Fi:** Una vez dentro de la configuración del router, busca la sección llamada "General" y luego la opción "Wi-Fi".   
 5.  **Guardar cambios:** Haz clic en el botón "Aplicar" o "Guardar" para que los cambios se hagan efectivos.  
 6.  **Escalar por API:** Si tienes problemas tras estas comprobaciones, solicita una foto de la etiqueta del router al cliente y escala el problema a través de API, adjuntando la imagen de la etiqueta.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
     },
     "Desactivar band steering": {
@@ -376,6 +396,7 @@ let Procedimientos = {
 6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
 7.  **Band Steering:** Para lograr habilitar y deshabilitar las redes WiFi por separado en este modelo de router la función de Band Steering debe desactivarse.  
 8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
     "Renombrar redes WiFi": {
@@ -388,6 +409,7 @@ let Procedimientos = {
 6.  **Acceso a la configuración:** Abre un navegador web y escribe la URL de acceso al router 192.168.0.1 en la barra de direcciones. Introduce el nombre de usuario y la contraseña para acceder a la configuración. Estos datos están en la etiqueta del router.  
 7.  **Habilitar/deshabilitar redes:** Una vez dentro de la configuración, busca la sección "General" y luego "Wi-Fi". Aquí podrás habilitar o deshabilitar las redes Wi-Fi según tus necesidades.  
 8.  **Escalado de incidencias:** Si no es posible habilitar o deshabilitar las redes, o si tienes problemas con la función Band Steering, escalar a través de API.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
     "Cable roto": {
@@ -397,6 +419,7 @@ let Procedimientos = {
 3.  **Identificación del cable roto:** Intenta determinar cuál cable específico está roto o dañado.  
 4.  **Prueba en otros dispositivos:** Conecta otros dispositivos (ordenadores, móviles, etc.) al mismo cable para verificar si el problema persiste. Esto ayuda a descartar si el problema está en el dispositivo o en el cable.  
 5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
     "Router roto": {
@@ -406,6 +429,7 @@ let Procedimientos = {
 3.  **Reinicio del router:** Intenta reiniciar el router desconectándolo de la corriente eléctrica durante unos segundos y volviéndolo a conectar.  
 4.  **Prueba en distintos enchufes:** Prueba conectar el router a diferentes enchufes para descartar problemas con la fuente de alimentación.  
 5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+    - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
 
