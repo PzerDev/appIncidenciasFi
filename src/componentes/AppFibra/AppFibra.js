@@ -7,6 +7,7 @@ import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
 import '../SidebarDerecho/SidebarDerecho.css';
 import Loader from '../Login/Loader.js';
+import NotasProcedimientos from '../../Datos/NotasProcedimientos.js'; 
 
 let motivoAveria = [
   // 'Seleccionar motivo',
@@ -90,7 +91,7 @@ function AppFibra() {
   const [routerFiltrado, setRouterFiltrado] = useState('Especificar router');
   const [routersLista, setRoutersLista] = useState([]);
   const [objetoRouterSeleccionado, setObjetoRouterSeleccionado] = useState({}); 
-  const [motivoAveriaFibra, setMotivoAveria] = useState('');
+  const [motivoAveriaFibra, setMotivoAveria] = useState('Seleccionar motivo');
   const [lugarAveriaInternet, setLugarAveriaInternet] = useState('');
   const [medioAveria, setMedioAveria] = useState(false);
   const [luces, setLuces] = useState('');
@@ -428,10 +429,29 @@ function AppFibra() {
        .replace("{cables}", compCables)
        .replace("{refresh}", refreshParams)
        .replace("{reset}", compReset)
+
+
+  const motivoAveriaEscalado = motivoAveriaRegistrado
+  const lugarAveriaE = lugarAveriaInternet || "valor predeterminado";
+  // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
+  let observacionEscalado = "";  
+  if (medioAveria) {
+    observacionEscalado = 
+      NotasProcedimientos[motivoAveriaEscalado] && NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
+        ? NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
+        : observacionEscalado;
+    console.log(observacionEscalado)
+  } else {
+    observacionEscalado = 
+      NotasProcedimientos[motivoAveriaEscalado]
+        ? NotasProcedimientos[motivoAveriaEscalado]
+        : observacionEscalado;
+  }
     
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
+  .replace("{observacionEscalado}", observacionEscalado)
   .replace("{contacto}", contacto)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
@@ -451,6 +471,7 @@ function AppFibra() {
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
   .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
   .replace("{medioAveria}", lugarAveriaInternet)
+  .replace("{observacionEscalado}", observacionEscalado)
   .replace("{idAveriaApi}", idAveria)
   .replace("{inicio}", horaInicio)
   .replace("{fin}", horaFin)
@@ -687,19 +708,22 @@ function AppFibra() {
   
     return (
       <div className="contenedor-botones-procedimientos">
-        <button className="boton" onClick={limpiarCampos}>
+        <button className="boton sin-fondo" onClick={limpiarCampos}>
           <i class='bx bx-trash' ></i>
         </button>
-        <button className="boton" onClick={() => setOcultarLucesRouter(!ocultarLucesRouter)}>
+        {routerFiltrado !== 'Especificar router' && <button className={`boton ${ocultarLucesRouter ? 'sin-fondo' : 'fondo-boton'}`} onClick={() => setOcultarLucesRouter(!ocultarLucesRouter)}>
             {/* {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"} */}
             <i class='bx bx-sun'></i>
-        </button>
-        <a href="https://dashboard.finetwork.com/tickets/add" class="boton" target="_blank">
+            <p>Luces</p>
+        </button>}
+        <a href="https://dashboard.finetwork.com/tickets/add" class="boton sin-fondo" target="_blank">
           <i class='bx bx-edit'></i>
+          <p>Escalar</p>
         </a>
-        <button className="boton" onClick={() => setSidebarVisible(!isSidebarVisible)}>
+        {motivoAveriaFibra !== 'Seleccionar motivo' && <button className={`boton ${isSidebarVisible ? 'fondo-boton' : 'sin-fondo'}`} onClick={() => setSidebarVisible(!isSidebarVisible)}>
           <i class='bx bx-detail'></i>
-        </button>
+          <p>Procedimiento</p>
+        </button>}
   
 
   

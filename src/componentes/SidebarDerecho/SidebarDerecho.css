@@ -20,7 +20,6 @@
   transition: all 0.3s ease-in-out;
   z-index: 2;
 }
-
 .app-container.sidebar-visible .sidebar-derecho {
   right: 0; /* Muestra el sidebar */
 }

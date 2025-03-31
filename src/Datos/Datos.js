@@ -1180,16 +1180,16 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
 
 
-    {
-        motivo: "Avería / Incidencia Fibra - Departamento Fibra",
-        categoria: "Fibra",
-        subcategoria: "Avería / Incidencia",
-        pipeline: "Fibra",
-        estadoTicket: "Abierto",
-        correoPlantilla: `Seleccionar`,
-        nota: `No aplica para este caso`,
-        src: ""
-    }
+    // {
+    //     motivo: "Avería / Incidencia Fibra - Departamento Fibra",
+    //     categoria: "Fibra",
+    //     subcategoria: "Avería / Incidencia",
+    //     pipeline: "Fibra",
+    //     estadoTicket: "Abierto",
+    //     correoPlantilla: `Seleccionar`,
+    //     nota: `No aplica para este caso`,
+    //     src: ""
+    // }
 
 ]
 

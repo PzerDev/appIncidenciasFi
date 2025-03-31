@@ -46,6 +46,7 @@ Tipo de router: {router}
   - Cables: {cables}  
   {refresh}
   - Reinicio/reset: {reset}  
+  {observacionEscalado}
 - Teléfono de contacto: {contacto}  
 - Disponibilidad horaria: {inicio} - {fin} horas  
 
@@ -67,6 +68,7 @@ Tipo de router: {router}
         notaReclamoApi: `**${dia}/${mes} - Reclamado por API**
 - RECLAMACIÓN TICKET: {idAveriaApi}  
 - MOTIVO: {motivoAveriaFibra} {medioAveria}  
+{observacionEscalado}
 - ID AMDOCS: {idExternal}  
 - DISPONIBILIDAD: {inicio} - {fin} horas  
 
