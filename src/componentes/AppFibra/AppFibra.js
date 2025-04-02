@@ -24,7 +24,8 @@ let motivoAveria = [
   // 'Unir / Separar redes',
   'Desactivar band steering',
   'Desperfecto',
-  'Reubicación'
+  'Reubicación',
+  'Prueba'
 ]
 
 let lugarAveria = {
