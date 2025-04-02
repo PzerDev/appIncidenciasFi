@@ -25,7 +25,6 @@ let motivoAveria = [
   'Desactivar band steering',
   'Desperfecto',
   'Reubicación',
-  'Prueba'
 ]
 
 let lugarAveria = {
