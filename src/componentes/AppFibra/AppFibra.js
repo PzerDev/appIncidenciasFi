@@ -708,27 +708,43 @@ function AppFibra() {
   
     return (
       <div className="contenedor-botones-procedimientos">
-        <button className="boton sin-fondo" onClick={limpiarCampos}>
-          <i class='bx bx-trash' ></i>
-        </button>
-        {routerFiltrado !== 'Especificar router' && <button className={`boton ${ocultarLucesRouter ? 'sin-fondo' : 'fondo-boton'}`} onClick={() => setOcultarLucesRouter(!ocultarLucesRouter)}>
-            {/* {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"} */}
-            <i class='bx bx-sun'></i>
-            <p>Luces</p>
-        </button>}
-        <a href="https://dashboard.finetwork.com/tickets/add" class="boton sin-fondo" target="_blank">
-          <i class='bx bx-edit'></i>
-          <p>Escalar</p>
-        </a>
-        {motivoAveriaFibra !== 'Seleccionar motivo' && <button className={`boton ${isSidebarVisible ? 'fondo-boton' : 'sin-fondo'}`} onClick={() => setSidebarVisible(!isSidebarVisible)}>
-          <i class='bx bx-detail'></i>
-          <p>Procedimiento</p>
-        </button>}
+
+        <div className='botones-izquierda'>  
+            <button className="boton sin-fondo" onClick={limpiarCampos}>
+              <i class='bx bx-trash' ></i>
+            </button>
+            {routerFiltrado !== 'Especificar router' && <button className={`boton ${ocultarLucesRouter ? 'sin-fondo' : 'fondo-boton'}`} onClick={() => setOcultarLucesRouter(!ocultarLucesRouter)}>
+                {/* {mostrarTodasLuces ? "Aplicar filtro" : "Mostrar todas las Luces"} */}
+                <i class='bx bx-sun'></i>
+                <p>Luces</p>
+            </button>}
+            <a href="https://dashboard.finetwork.com/tickets/add" class="boton sin-fondo" target="_blank">
+              <i class='bx bx-edit'></i>
+              <p>Escalar</p>
+            </a>
+            {motivoAveriaFibra !== 'Seleccionar motivo' && <button className={`boton ${isSidebarVisible ? 'fondo-boton' : 'sin-fondo'}`} onClick={() => setSidebarVisible(!isSidebarVisible)}>
+              <i class='bx bx-detail'></i>
+              <p>Procedimiento</p>
+            </button>}
+        </div>
   
 
   
     {/* HASTA AQUI */}
-
+        <div className='botones-derecha'>  
+          <select id='estadoComprobaciones'
+              className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
+              <option key='Comprobar' value='Comprobar'>  
+                  Comprobar
+              </option>
+              {/* {console.log("routersLista:", estadoLucesCablesReset)} */}
+              {Object.keys(estadoLucesCablesReset).map((estado, index) => (
+                <option key={index} value={estado}>
+                  {estado}
+                </option>
+              ))}
+          </select>
+        </div>
       </div>
     );
   };
@@ -945,7 +961,7 @@ function AppFibra() {
 
 
         
-
+        {notasFibra}
         
         {/* <div className={`contenedor-estado-luces-router ${mostrarContenedor ? '' : 'mostrar-contenedor'}`}> */}
         <div className={`contenedor-estado-luces-router mostrar-contenedor`}>
@@ -966,17 +982,7 @@ function AppFibra() {
 
               {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
 
-              <select className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
-                <option key='Comprobar' value='Comprobar'>  
-                    Comprobar
-                </option>
-                {/* {console.log("routersLista:", estadoLucesCablesReset)} */}
-                {Object.keys(estadoLucesCablesReset).map((estado, index) => (
-                  <option key={index} value={estado}>
-                    {estado}
-                  </option>
-                ))}
-              </select>
+
           </div>
           
 
@@ -1025,7 +1031,7 @@ function AppFibra() {
 
           
 
-          {notasFibra}
+          
 
 
 

@@ -11,27 +11,27 @@ ONT Nokia
             ont: {
                 Power: {
                     Encendida: '',
-                    Apagada: 'No llega corriente. Apretar cables, probar en otra toma de corriente.'
+                    Apagada: 'Encender equipo. Apretar cables, probar en otra toma de corriente'
                 },
                 Alarm: {
                     Apagada: '',
-                    Encendida: 'ONT Alarmada. No llega suficiente señal óptica.'
+                    Encendida: 'ONT Alarmada. No llega suficiente señal óptica'
                 },
                 PON: {
-                    Encendida: 'Conexión óptica correcta.',
-                    Intermitente: 'Conexión correcta, se encuentra enviando datos.',
-                    "Apagada o roja": 'ONT Apagada y no recibe corriente.'
+                    Encendida: 'Conexión óptica correcta',
+                    Intermitente: 'Conexión correcta, se encuentra enviando datos',
+                    "Apagada o roja": 'ONT Apagada y no recibe corriente'
                 },
                 LAN: {
-                    Encendida: 'Cable de red conectado sin tráfico de datos.',
-                    Intermitente: 'Cable de red conectado con tráfico de datos.',
-                    Apagada: 'En caso de que tenga algún cable conectado, verificar la conexión de este y probar en otro puerto.'
+                    Encendida: 'Cable de red conectado sin tráfico de datos',
+                    Intermitente: 'Cable de red conectado con tráfico de datos',
+                    Apagada: 'En caso de cables conectados, verificar conexión y probar en otro puerto'
                 }
             },
             router: {
                 POWER: {
                     Encendida: '',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente.'
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 INTERNET: {
                     "Encendida (Verde)": 'Conectado a internet',
@@ -57,27 +57,27 @@ ONT Nokia
         estadoLuces: {
             configuracion: {
                 POWER: {
-                    "Encendida (blanca)": 'Equipo encendido.',
-                    Intermitente: 'Durante el reinicio del equipo.',
-                    "Encendida (roja)": 'Fallo en dispositivo. Abrir avería.',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente.'
+                    "Encendida (blanca)": 'Equipo encendido',
+                    Intermitente: 'Durante el reinicio del equipo',
+                    "Encendida (roja)": 'Fallo en dispositivo',
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 INTERNET: {
-                    "Intermitente (roja)": 'ONT Alarmada o error de sincronización. Abrir avería.   ',
-                    "Encendida (blanca)": 'Conectado a la red.',
-                    "Intermitente (blanca)": 'Dura 1 minuto cuando se está estableciendo conexión.',
-                    Apagada: 'No hay enlace con GPON. Abrir avería.'
+                    "Intermitente (roja)": 'ONT Alarmada o error de sincronización',
+                    "Encendida (blanca)": 'Conectado a la red',
+                    "Intermitente (blanca)": 'Dura 1 minuto cuando se está estableciendo conexión',
+                    Apagada: 'No hay enlace con GPON'
                 },
                 WIFI: {
-                    "Encendida (blanca)": 'Una o más redes WIFI activas.',
-                    "Intermitente rápido": 'Sincronización WPS.',
-                    "Intermitente (roja)": 'Una de las redes WIFI está abierta o con cifrado WEP.',
-                    Apagada: 'Redes WIFI apagadas.'
+                    "Encendida (blanca)": 'Una o más redes WIFI activas',
+                    "Intermitente rápido": 'Sincronización WPS',
+                    "Intermitente (roja)": 'Una de las redes WIFI está abierta o con cifrado WEP',
+                    Apagada: 'Redes WIFI apagadas'
                 },
                 WPS: {
-                    "Intermitente (blanca)": 'WPS activo y buscando dispositivos (2min aprox). Al activar esta opción WIFI estará intermitente.',
-                    "Intermitente (roja)": 'Error en el emparejamiento de dispositivos.',
-                    Apagada: 'WPS apagado.'
+                    "Intermitente (blanca)": 'Buscando dispositivos (2min aprox). Al activar esta opción WIFI estará intermitente',
+                    "Intermitente (roja)": 'Error en el emparejamiento de dispositivos',
+                    Apagada: 'WPS apagado'
                 }
             }
         },
@@ -91,34 +91,34 @@ ONT Nokia
         estadoLuces: {
             configuracion: {
                 Power: {
-                    Encendida: 'Equipo encendido.',
-                    Intermitente: 'Arranque del dispositivo/ estableciendo conéxion.',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
+                    Encendida: 'Equipo encendido',
+                    Intermitente: 'Arranque del dispositivo/ estableciendo conéxion',
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 Sincronizar: {
                     Encendida: 'Configuración finalizada',
-                    Intermitente: '+2 minutos, significa que no configura o error en la autentificación.',
-                    Apagada: 'No hay enlace con GPON. Abrir avería.'
+                    Intermitente: '+2 minutos, significa que no configura o error en la autentificación',
+                    Apagada: 'No hay enlace con GPON'
                 },
                 "!": {
-                    "Encendida (roja)": 'Fibra desconectada o transceptor desactivado.',
-                    Apagada: 'Conectado, transceptor activado.'
+                    "Encendida (roja)": 'Fibra desconectada o transceptor desactivado',
+                    Apagada: 'Conectado, transceptor activado'
                 },
                 "@": {
-                    Encendida: 'Dirección IP recibida, conexión establecida.',
-                    Apagada: 'Sin conexión.'
+                    Encendida: 'Dirección IP recibida, conexión establecida',
+                    Apagada: 'Sin conexión'
                 },
                 Ethernet: {
-                    Encendida: 'Enlace por ethernet activo. La transferencia de datos se puede visualizar en el puerto ETH si está intermitente.',
-                    Apagada: 'Sin enlace de Ethernet.'
+                    Encendida: 'Conexión ETH. En caso de transferencia de datos, el puerto ethernet estará intermitente',
+                    Apagada: 'Sin enlace de Ethernet'
                 },
                 "2G": {
-                    Encendida: 'Red WIFI en la banda de 2.4Ghz encendida.',
-                    Apagada: 'Red WIFI 2.4Ghz apagada.'
+                    Encendida: 'Red WIFI en la banda de 2.4GHz encendida',
+                    Apagada: 'Red WIFI 2.4GHz apagada'
                 },
                 "5G": {
-                    Encendida: 'Red WIFI en la banda de 5Ghz encendida.',
-                    Apagada: 'Red WIFI 5Ghz apagada.'
+                    Encendida: 'Red WIFI en la banda de 5GHz encendida',
+                    Apagada: 'Red WIFI 5GHz apagada'
                 }
             }
         },
@@ -160,24 +160,24 @@ ONT Nokia
         estadoLuces: {
             configuracion: {
                 Power: {
-                    Encendida: 'Equipo encendido.',
+                    Encendida: 'Equipo encendido',
                     Intermitente: 'Puesta en marcha',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 Online: {
-                    Encendida: 'Sincronización completada, navegación correcta.',
-                    Intermitente: '1:30 min durante el tiempo de sincrotización. Pasado el tiempo tiene que cambiar a fija.',
-                    Apagada: 'Problemas para sincronizar.'
+                    Encendida: 'Sincronización completada, navegación correcta',
+                    Intermitente: '1:30 min durante la sincrotización. Pasado el tiempo tiene que cambiar a fija',
+                    Apagada: 'Problemas para sincronizar'
                 },
                 WiFi: {
-                    Encendida: 'WIFI activo.',
-                    Intermitente: 'Hay tráfico de datos por WIFI.',
-                    Apagada: 'Red WIFI apagada.'
+                    Encendida: 'WIFI activo',
+                    Intermitente: 'Hay tráfico de datos por WIFI',
+                    Apagada: 'Red WIFI apagada'
                 },
                 Eth: {
-                    Encendida: 'Dispositivos conectados por cable.',
-                    Intermitente: 'Tráfico ethernet detectado.',
-                    Apagada: 'No detecta dispositivos conectados por cable.'
+                    Encendida: 'Dispositivos conectados por cable',
+                    Intermitente: 'Tráfico ethernet detectado',
+                    Apagada: 'No detecta dispositivos conectados por cable'
                 }
             }
         },
@@ -191,32 +191,32 @@ ONT Nokia
         estadoLuces: {
             configuracion: {
                 Power: {
-                    Encendida: 'Equipo encendido.',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
+                    Encendida: 'Equipo encendido',
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 S: {
-                    Encendida: 'Sincronización correcta.',
-                    Intermitente: '1:30 min durante el tiempo de Ssincrotización. Pasado el tiempo tiene que cambiar a fija.',
-                    Apagada: 'Problemas para establecer conexión con central.'
+                    Encendida: 'Sincronización correcta',
+                    Intermitente: '1:30 min durante la sincrotización. Pasado el tiempo tiene que cambiar a fija',
+                    Apagada: 'Problemas para establecer conexión con central'
                 },
                 "@": {
-                    Encendida: 'Acceso a internet correcto.',
-                    Intermitente: 'Se está configurando o conectando a la red.',
-                    Apagada: 'Problemas de acceso a internet.'
+                    Encendida: 'Acceso a internet correcto',
+                    Intermitente: 'Se está configurando o conectando a la red',
+                    Apagada: 'Problemas de acceso a internet'
                 },
                 ETH: {
-                    Encendida: 'Enlace por ethernet activo. La transferencia de datos se puede visualizar en el puerto ETH si está intermitente.',
-                    Apagada: 'No detecta dispositivos conectados por cable.'
+                    Encendida: 'Conexión ETH. En caso de transferencia de datos, el puerto ethernet estará intermitente',
+                    Apagada: 'No detecta dispositivos conectados por cable'
                 },
                 WiFi: {
-                    Encendida: 'WIFI activo.',
-                    Intermitente: 'Hay tráfico de datos por WIFI.',
-                    Apagada: 'Red WIFI apagada.'
+                    Encendida: 'WIFI activo',
+                    Intermitente: 'Hay tráfico de datos por WIFI',
+                    Apagada: 'Red WIFI apagada'
                 },
                 WPS: {
-                    Encendida: 'Por 5 segundos y luego se apaga: no se ha emparejado el router con el dispositivo.',
-                    Intermitente: 'Hay tráfico de datos por WIFI.',
-                    Apagada: 'Cuando se ha emparejado correctamente y luego se apaga / WPS apagado.'
+                    Encendida: 'Por 5 segundos y se apaga: no se ha emparejado con el dispositivo',
+                    Intermitente: 'Hay tráfico de datos por WIFI',
+                    Apagada: 'Cuando empareja correctamente y se apaga / WPS apagado'
                 }
             }
         },
@@ -230,15 +230,15 @@ ONT Nokia
         estadoLuces: {
             configuracion: {
                 POWER: {
-                    Encendida: 'Equipo encendido.',
-                    Intermitente: 'El equipo se está iniciando.',
-                    Apagada: 'No llega corriente. Encender equipo, apretar cables, probar en otra toma de corriente. Abrir avería.'
+                    Encendida: 'Equipo encendido',
+                    Intermitente: 'El equipo se está iniciando',
+                    Apagada: 'Encender equipo, apretar cables, probar en otra toma de corriente'
                 },
                 WiFi: {
-                    Encendida: 'WIFI activo sin tráfico.',
-                    "Intermitente (rápido)": 'WIFI activo con tráfico.',
-                    "Intermitente (lento)": 'WIFI deshabilitado por la función de programa.',
-                    Apagada: 'Red WIFI deshabilitada. Mantener presionado el botón de WIFI hasta que el LED WIFI encienda'
+                    Encendida: 'WIFI activo sin tráfico',
+                    "Intermitente (rápido)": 'WIFI activo con tráfico',
+                    "Intermitente (lento)": 'WIFI deshabilitado por la función de programa',
+                    Apagada: 'WiFi inactivo. Pulsar el botón de WiFi hasta que el LED se encienda'
                 },
                 WPS: {
                     Encendida: 'Estás conectado correctamente mediante WPS',
