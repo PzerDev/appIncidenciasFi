@@ -63,6 +63,7 @@
 }
 .cambiar-radio-contenedor, #resultadoEstado.cambiar-radio-contenedor {
   border-radius: 20px;
+  border: none;
   /* background: #ccc; */
   /* padding: 10px 15px; */
 }
@@ -126,10 +127,11 @@
     padding: 10px;
 }
 .contenedor-luces-cable-reset {
-  /* margin-top: 20px; */
+  margin-top: 8px;
   display: flex;
   gap: 10px;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .contenedor-luces-cable-reset select.tecnologia-router {
@@ -284,15 +286,43 @@ select.tecnologia-router.menor-ancho {
 /* AQUI */
 /* Contenedor de botones */
 #resultadoEstado {
-  height: auto;
+  max-height: 100px;
   border: none;
   background: none;
-  padding: 10px 15px;
+  padding: 0px;
+  padding-left: 15px;
+  padding-right: 10px;
+  /* padding-bottom: 10px; */
   color: #d7d7d7;
+  outline: none;
 }
-/* #resultadoEstado:focus {
-  border: none;
-} */
+#resultadoEstado::placeholder {
+  color: #bbb;
+}
+
+#resultadoEstado::-webkit-scrollbar {
+  width: 0; /* Oculta la barra de desplazamiento por defecto */
+  transition: width 0.3s ease-in-out; /* Opcional: animación suave */
+}
+
+#resultadoEstado:hover::-webkit-scrollbar {
+  width: 8px; /* Muestra la barra de desplazamiento al pasar el ratón */
+  border-radius: 5px;
+}
+
+#resultadoEstado::-webkit-scrollbar-track {
+  background-color: transparent; /* Fondo de la pista transparente por defecto */
+}
+
+#resultadoEstado:hover::-webkit-scrollbar-thumb {
+  background-color: #474747; /* Pulgar visible al pasar el ratón */
+  border-radius: 5px;
+}
+
+#resultadoEstado::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Pulgar más oscuro al pasar el ratón */
+}
+
 .contenedor-botones {
   display: flex;
   gap: 10px;
@@ -315,8 +345,8 @@ select.tecnologia-router.menor-ancho {
   gap: 8px
 }
 #estadoComprobaciones {
-  width: 100%;
-  padding: 5px;
+  width: 100px;
+  padding: 10px 15px;
   background-color: #474747;
   color: #d7d7d7;
   height: auto;

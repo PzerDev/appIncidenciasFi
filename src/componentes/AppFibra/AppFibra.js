@@ -7,7 +7,8 @@ import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
 import '../SidebarDerecho/SidebarDerecho.css';
 import Loader from '../Login/Loader.js';
-import NotasProcedimientos from '../../Datos/NotasProcedimientos.js'; 
+import NotasProcedimientos from '../../Datos/NotasProcedimientos.js';
+import TextareaAutosize from 'react-textarea-autosize';
 
 let motivoAveria = [
   // 'Seleccionar motivo',
@@ -102,7 +103,7 @@ function AppFibra() {
   const [isDisabledMotivo, setIsDisabledMotivo] = useState(true);
 
   // Estado de cambio del select luces cables reset
-  const [estadoLucesCablesResetFiltrado, setEstadoLucesCablesResetFiltrado] = useState('Comprobar');
+  const [estadoLucesCablesResetFiltrado, setEstadoLucesCablesResetFiltrado] = useState('Estado');
 
   // Estado de compLuces, compCables, compReset
   const [compLuces, setCompLuces] = useState('');
@@ -131,6 +132,9 @@ function AppFibra() {
     const handleSelectHoraFinChange = (event) => {
       setHoraFin(event.target.value);
     };
+
+    //Estado del router
+    const estadoRouter = useRef('Estado');
 
 
      // Manejar el cambio de selección en el dropdown
@@ -387,7 +391,7 @@ function AppFibra() {
       setEstadoLucesCablesResetFiltrado(event.target.value);
       // console.log(estadoLucesCablesResetFiltrado)
 
-      // Si comprobar está en comprobar o está en N/C
+      // Si Estado está en estado o está en N/C
       if (event.target.value === 'N/C') {
         setCompCables('N/C');
         setCompLuces('N/C');
@@ -396,7 +400,7 @@ function AppFibra() {
         if (tecnologiaRouter === 'NEBA') {
           setRefreshParams(`- Refresh Params: N/C  `)
         };
-      } else if (event.target.value === 'Comprobar') {
+      } else if (event.target.value === 'Estado') {
         setCompCables('');
         setCompLuces('');
         setCompReset('');
@@ -407,6 +411,16 @@ function AppFibra() {
       } else if (event.target.value === 'Reset' && tecnologiaRouter === 'NEBA') {
         setRefreshParams(`- Refresh Params: Ok  `)
       }
+
+      
+
+      // setOpcionSeleccionada(nuevoValor);
+      if (event.target.value !== 'Estado' && event.target.value !== 'N/C') {
+        // setRefreshParams(`- Refresh Params:  `);
+        // Fuerza el focus incluso si el valor no ha cambiado
+        estadoRouter.current.focus();
+      }
+
   }
 
   const idEnlaceFibra = idFibra
@@ -733,9 +747,10 @@ function AppFibra() {
     {/* HASTA AQUI */}
         <div className='botones-derecha'>  
           <select id='estadoComprobaciones'
-              className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado} onChange={handleEstadoLucesCablesResetChange}>
-              <option key='Comprobar' value='Comprobar'>  
-                  Comprobar
+              className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado} 
+              onChange={handleEstadoLucesCablesResetChange}>
+              <option key='Estado' value='Estado'>  
+                  Estado
               </option>
               {/* {console.log("routersLista:", estadoLucesCablesReset)} */}
               {Object.keys(estadoLucesCablesReset).map((estado, index) => (
@@ -969,15 +984,17 @@ function AppFibra() {
              
              
         <div className='contenedor-luces-cable-reset'>
-              <input
+              <TextareaAutosize
                 type="text"
                 id="resultadoEstado"
+                ref={estadoRouter}
+                maxRows={5}
                 // value={valor}
                 value={valor}
                 // onChange={(e) => setValor(e.target.value)}
                 onChange={(e) => manejarCambioInput(e.target.value)}
                 className={ocultarLucesRouter === true ? `cambiar-radio-contenedor` : ''}
-                placeholder={`Resultado de estado (${estadoLucesCablesResetFiltrado})`}
+                placeholder={`Especificar estado de ${estadoLucesCablesResetFiltrado === 'Estado' ? '...' : estadoLucesCablesResetFiltrado}`}
               />
 
               {/* <ResultadoEstado tipo={estadoLucesCablesResetFiltrado} valor={valor} setValor={setValor} /> */}
