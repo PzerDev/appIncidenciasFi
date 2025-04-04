@@ -423,6 +423,16 @@ function AppFibra() {
 
   }
 
+  // Desplaza la página hasta el final cuando se abre el contenedor de luces
+    useEffect(() => {
+    if (!ocultarLucesRouter) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [ocultarLucesRouter]);
+
   const idEnlaceFibra = idFibra
   ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
   : idExternal;

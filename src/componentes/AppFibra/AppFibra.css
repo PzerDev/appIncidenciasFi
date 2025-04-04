@@ -295,6 +295,7 @@ select.tecnologia-router.menor-ancho {
   /* padding-bottom: 10px; */
   color: #d7d7d7;
   outline: none;
+  font-weight: 500;
 }
 #resultadoEstado::placeholder {
   color: #bbb;
