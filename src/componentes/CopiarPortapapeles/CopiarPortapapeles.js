@@ -26,35 +26,43 @@
 
 import React from "react";
 
-const CopyToClipboardHTML = ({ targetId }) => {
+const CopyToClipboardHTML = ({ targetId, tipoEscalado }) => {
+
   const handleCopy = (event) => {
-    // Buscar el elemento por el ID proporcionado
     const targetElement = document.getElementById(targetId);
-
+  
     if (targetElement) {
-      // Verificar si la tecla Shift está presionada
       const isShiftPressed = event.shiftKey;
-
+  
       if (isShiftPressed) {
-        // Copiar solo texto sin formato
-        const textContent = targetElement.innerText; // Obtén el texto interno del elemento
-        navigator.clipboard.writeText(textContent).then(
+        let lines = targetElement.innerText.split("\n").filter(line => line.trim() !== "");
+        let trimmedText = "";
+  
+        if (targetId === "markdownNotaEscalado" || targetId === "markdownNotaReclamoApi") {
+          if (lines.length > 6) {
+            lines = lines.slice(1, - 2);
+          } else {
+            lines = [];
+          }
+          trimmedText = lines.join("\n");
+        } else {
+          trimmedText = lines.join("\n");
+        }
+  
+        navigator.clipboard.writeText(trimmedText).then(
           () => {
-            console.log("¡Texto copiado sin formato!");
+            console.log("¡Texto copiado sin formato (condicional)!");
           },
           (err) => {
             console.error("Error al copiar texto:", err);
           }
         );
       } else {
-        // Copiar con formato HTML
-        const htmlContent = targetElement.innerHTML; // Obtén el HTML interno del elemento
-
-        // Crear un Blob con el contenido HTML
+        const htmlContent = targetElement.innerHTML;
+  
         const blob = new Blob([htmlContent], { type: "text/html" });
         const data = [new ClipboardItem({ "text/html": blob })];
-
-        // Escribir en el portapapeles
+  
         navigator.clipboard.write(data).then(
           () => {
             console.log("¡Contenido copiado con formato HTML!");
@@ -68,6 +76,8 @@ const CopyToClipboardHTML = ({ targetId }) => {
       console.error(`Elemento con ID "${targetId}" no encontrado.`);
     }
   };
+  
+  
 
   return (
     <button

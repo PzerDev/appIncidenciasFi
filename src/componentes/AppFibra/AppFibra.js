@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './AppFibra.css'; // Importamos el archivo CSS}
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
 import { HoraInicioFin, horario, MiMarkDown } from '../DatosContacto/DatosContacto.js';
+import MiMarkDownEfecto from '../MiMarkDown/MiMarkDown.js';
 import datosFibra from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
@@ -55,6 +56,22 @@ let estadoLucesCablesReset = {
   "N/C": ``
 }
 
+let valorSubcategoria = {
+  "Sin servicio": ["Avería banda ancha", "Net incomunicado - No conecta"],
+  "ONT Alarmada": ["Avería banda ancha", "Net incomunicado - No conecta"],
+  "Masiva": ["Avería banda ancha", "Net incomunicado - No conecta"],
+  "Router roto": ["Avería banda ancha", "Net incomunicado - Equipo"],
+  "Cable roto": ["Avería banda ancha", "Net incomunicado - Equipo"],
+  "Cortes": ["Avería banda ancha", "Net mala calidad"],
+  "Velocidad": ["Avería banda ancha", "Net mala calidad"],
+  "Cobertura": ["Avería banda ancha", "Net mala calidad"],
+  "Error contraseña": ["Avería banda ancha", "Net preventivo"],
+  "Renombrar redes WiFi": ["Avería banda ancha", "Net preventivo"],
+  "Desactivar band steering": ["Avería banda ancha", "Net preventivo"],
+  "Cambiar contraeña": ["Avería banda ancha", "Net preventivo"],
+  "Desperfecto": ["Reclamación banda ancha", "Interior / Exterior / TESA / Avería"]
+}
+
 
 function mostrarDiaSegunHora() {
   let horario;
@@ -98,6 +115,7 @@ function AppFibra() {
   const [luces, setLuces] = useState('');
   const [lucesPermitidas, setLucesPermitidas] = useState([]);
   const [isSidebarVisible, setSidebarVisible] = useState(false);
+  const [subcategoria, setSubcategoria] = useState('');
 
   const [isDisabledRouter, setIsDisabledRouter] = useState(true);
   const [isDisabledMotivo, setIsDisabledMotivo] = useState(true);
@@ -203,13 +221,10 @@ function AppFibra() {
     
       setExternalId(valor); // Actualizar el estado
     
-    
-    // setExternalId(event.target.value);
-  };
+ };
 
   const handleSelectAveriaChange = (event) => {
     setMotivoAveria(event.target.value);
-    // setMostrarContenedor(event.target.value === 'Seleccionar motivo');
 
     (event.target.value === 'Error contraseña' || event.target.value === 'Cambiar contraseña') ?
     setAdjuntoCliente('fotografía de etiqueta del router realizada') :
@@ -223,22 +238,14 @@ function AppFibra() {
         event.target.value === 'Reubicación') {
       setMedioAveria(true);
       setLugarAveriaInternet('Seleccionar lugar');
-      // setMostrarContenedor(true);
+
       if (event.target.value === 'Seleccionar motivo' 
         || event.target.value === 'Cobertura'
       ) {
         setMedioAveria(false);
         setLugarAveriaInternet('WiFi');
-        // setMostrarContenedor(true);
-        // if (event.target.value === 'Cobertura') {
-        //   setMostrarContenedor(false);
-        // }
-      }
 
-      // if (event.target.value === 'Cortes' ||
-      //     event.target.value === 'Velocidad') {
-      //       setMostrarContenedor(true);
-      //     }
+      }
 
     } else {
       setMedioAveria(false);
@@ -257,7 +264,6 @@ function AppFibra() {
       const lugarAve = event.target.value;
       const lucesPer = obtenerLucesPermitidas(lugarAve);
       setLucesPermitidas(lucesPer);
-      // setMostrarContenedor(false);
     }
 
   };
@@ -275,7 +281,6 @@ function AppFibra() {
     return resultado || []; // Asegura que nunca sea undefined o null
   }
   
-  // let routersLista = "";
   const handleSelectTecnologiaChange = (event) => {
     let nuevaTecnologia = event.target.value;
     setTecnologiaRouter(nuevaTecnologia);
@@ -288,18 +293,7 @@ function AppFibra() {
     } else {
       motivoAveria[indiceBandSteering] = 'Renombrar redes WiFi'; 
     }
-    // nuevaTecnologia === 'HFC'
-    //   ? motivoAveria.map((aver) => (
-    //       <option key={aver} value={aver}>
-    //         {aver === 'Desactivar band steering' ? 'Renombrar redes WiFi' : aver}
-    //       </option>
-    //     )).slice(1) // Aplica slice después de modificar los elementos
-    //   : motivoAveria.map((aver) => (
-    //       <option key={aver} value={aver}>
-    //         {aver}
-    //       </option>
-    //     ))
-    
+  
 
     setRouterFiltrado('Especificar router');
 
@@ -529,24 +523,35 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>Nota Histórica</label>
         <div className='pre notaHistorica'>
-          <MiMarkDown markdownText={notaHistorica} id="markdownNotaHistorica"/>
+          <MiMarkDown markdownText={notaHistorica} id="markdownNotaHistorica" />
         </div>
         <CopyToClipboardHTML targetId="markdownNotaHistorica" />
       </div>
 
       <div className='contenedorNotaEscalado'>
-        <label>Nota Escalado API</label>
+        
+          <label>Nota Escalado API</label>
+          <label style={{fontWeight: "600", paddingLeft: "0"}}>{valorSubcategoria[motivoAveriaRegistrado]?.[0]}</label>
+        
+        {/* {console.log(subcategoria[motivoAveriaEscalado])} */}
         <div className='pre notaEscalado'>
-            <MiMarkDown markdownText={notaEscaladoApi} id="markdownNotaEscalado"/>
+            <MiMarkDown markdownText={notaEscaladoApi} id="markdownNotaEscalado" />
+            
+            <div className='contenedor-sub-tipo'>
+              <div className='sub-tipo'>{valorSubcategoria[motivoAveriaRegistrado]?.[1] === undefined ? 'Subtipo' : valorSubcategoria[motivoAveriaRegistrado]?.[1]}</div>
+              <CopyToClipboardHTML 
+                  targetId="markdownNotaEscalado" 
+              />
+            </div>
         </div>
-        <CopyToClipboardHTML targetId="markdownNotaEscalado" />
+
       </div>
 
       {adjuntoCliente &&      
             <div className='contenedorNotaEscalado'>
               <label>Nota Escalado Adjunto</label>
               <div className='pre notaEscalado'>
-                  <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto"/>
+                  <MiMarkDown markdownText={notaEscaladoAdjunto} id="markdownNotaEscaladoAdjunto" />
               </div>
                 <button
                   id={`copiarBtn_NotaEscaladoAdjunto`}
@@ -572,7 +577,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>24h - Reclamo API</label>
         <div className='pre notaReclamoApi'>
-            <MiMarkDown markdownText={notaReclamoApi} id="markdownNotaReclamoApi"/>
+            <MiMarkDown markdownText={notaReclamoApi} id="markdownNotaReclamoApi" />
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoApi" />
       </div>
@@ -580,7 +585,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>48h - Reclamo Outlook</label>
         <div className='pre notaReclamoOutlook'>
-            <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook"/>
+            <MiMarkDown markdownText={notaReclamoOutlook} id="markdownNotaReclamoOutlook" />
         </div>
            <button onClick = {(e) => {
               // Usa una URL específica para Outlook
@@ -593,7 +598,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>72h - Reclamo Coordinación</label>
         <div className='pre notaReclamoCoord'>
-            <MiMarkDown markdownText={notaEscaladoCoord} id="markdownNotaReclamoCoord"/>
+            <MiMarkDown markdownText={notaEscaladoCoord} id="markdownNotaReclamoCoord" />
         </div>
         <CopyToClipboardHTML targetId="markdownNotaReclamoCoord" />
       </div>
@@ -601,7 +606,7 @@ function AppFibra() {
       <div className='contenedorNotaEscalado'>
         <label>BO Facturación</label>
         <div className='pre notaBoFact'>
-            <MiMarkDown markdownText={notaBoFact} id="markdownNotaBoFact"/>
+            <MiMarkDown markdownText={notaBoFact} id="markdownNotaBoFact" />
         </div>
         <CopyToClipboardHTML targetId="markdownNotaBoFact" />
       </div>
@@ -843,7 +848,7 @@ function AppFibra() {
               <h2>{motivoAveriaS}</h2>
             )}
         </div>
-        <MiMarkDown
+        <MiMarkDownEfecto
           markdownText={getMarkdownText()}
           id="markdownProcedimiento"
           markdownText2={procedimiento.Observaciones || ""}
