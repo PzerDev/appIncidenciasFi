@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 
-const MiMarkDownEfecto = ({ markdownText, id, markdownText2, typingSpeed = 1 }) => {
+const MiMarkDownEfecto = ({ markdownText, id, markdownText2, typingSpeed }) => {
   const [displayedMarkdown, setDisplayedMarkdown] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const combinedMarkdownRef = useRef(''); // Usamos una ref para el texto combinado
