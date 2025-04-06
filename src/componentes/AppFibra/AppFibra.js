@@ -848,11 +848,10 @@ function AppFibra() {
               <h2>{motivoAveriaS}</h2>
             )}
         </div>
-        <MiMarkDownEfecto
+        <MiMarkDown
           markdownText={getMarkdownText()}
           id="markdownProcedimiento"
           markdownText2={procedimiento.Observaciones || ""}
-          typingSpeed={50}
         />
         {/* <div>
           Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono
