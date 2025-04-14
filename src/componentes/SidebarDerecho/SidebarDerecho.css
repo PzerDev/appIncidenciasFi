@@ -35,20 +35,27 @@
 }
 
 /* Botón de cierre */
-.sidebar-derecho .close-button {
-  /* position: absolute; */
-  /* top: 10px;
-  right: 10px; */
+.sidebar-derecho .close-button,
+.contenedor-estado-luces-router .close-button {
   background-color: transparent;
-  /* color: #d7d7d7; */
   border: none;
-  /* font-size: 24px; */
   cursor: pointer;
-  /* padding: 5px; */
   border-radius: 10px;
 }
 .sidebar-derecho .close-button:hover {
   background-color: #454545;
+}
+.contenedor-estado-luces-router .close-button:hover {
+  color: #d7d7d7;
+}
+
+.contenedor-estado-luces-router .close-button {
+  position: fixed;
+  right: 15px;
+  color: #999;
+  background: #272727;
+  line-height: 0;
+  top: 15px;
 }
 
 .sidebar-derecho .close-button i {
@@ -63,9 +70,13 @@
   /* cursor: pointer; */
 }
 
-.sidebar-derecho .close-button:hover {
-  color: #ff6b6b;
+.contenedor-estado-luces-router .close-button i {
+  font-size: 24px;
 }
+
+/* .sidebar-derecho .close-button:hover {
+  color: #ff6b6b;
+} */
 
 .sidebar-derecho .sidebar-titulo {
   display: flex;

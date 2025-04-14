@@ -9,7 +9,7 @@ let NotasProcedimientos = {
 `
     },
     Velocidad: {
-        WiFi: `Se realiza prueba de velocdiad en la banda de 5GHz y los valores oscilan entre los XX/XX Mbps
+        WiFi: `Se realiza prueba de velocidad en la banda de 5GHz y los valores oscilan entre los XX/XX Mbps
 `,
         cable: `Se realiza prueba de velocidad por cable y los valores oscilan entre los XX/XX Mbps
 `,

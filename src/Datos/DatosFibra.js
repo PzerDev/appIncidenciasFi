@@ -46,7 +46,6 @@ Tipo de router: {router}
   - Cables: {cables}  
   {refresh}
   - Reinicio/reset: {reset}  
-  {observacionEscalado}
 - Teléfono de contacto: {contacto}  
 - Disponibilidad horaria: {inicio} - {fin} horas  
 
