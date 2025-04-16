@@ -340,7 +340,7 @@ function AppFibra() {
   }
 
   const idEnlaceFibra = idFibra
-    ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
+    ? `[${idExternal}](https://new-groups-permissions.finetwork.com/services/fiber/${idFibra})`
     : idExternal;
 
   const enlaceApi = enlaceAveriaApi
