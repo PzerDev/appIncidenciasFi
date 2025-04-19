@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './AppFibra.css';
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
 import { HoraInicioFin, MiMarkDown } from '../DatosContacto/DatosContacto.js';
@@ -325,6 +325,22 @@ function AppFibra() {
   //   }    
   // }, [ocultarLucesRouter]);
 
+  const valorObservacionEscalado = useCallback(() => {
+    let observacionEscalado = '';
+    if (medioAveria) {
+      observacionEscalado =
+        NotasProcedimientos[motivoAveriaEscalado] && NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
+          ? NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
+          : observacionEscalado;
+    } else {
+      observacionEscalado =
+        NotasProcedimientos[motivoAveriaEscalado]
+          ? NotasProcedimientos[motivoAveriaEscalado]
+          : observacionEscalado;
+    }
+    return observacionEscalado;
+  }, [medioAveria, motivoAveriaEscalado, lugarAveriaE]);
+
   useEffect(() => {
     const observacionEscalado = valorObservacionEscalado(); 
     setVoEscalado(observacionEscalado);  // Actualizamos el voEscalado cada vez que cambian las dependencias
@@ -352,22 +368,6 @@ function AppFibra() {
   lugarAveriaE = lugarAveriaInternet || "valor predeterminado";
   let observacionEscalado = valorObservacionEscalado();
 
-
-  function valorObservacionEscalado() {
-    let observacionEscalado = ''
-    if (medioAveria) {
-      observacionEscalado =
-        NotasProcedimientos[motivoAveriaEscalado] && NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
-          ? NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
-          : observacionEscalado;
-    } else {
-      observacionEscalado =
-        NotasProcedimientos[motivoAveriaEscalado]
-          ? NotasProcedimientos[motivoAveriaEscalado]
-          : observacionEscalado;
-    }
-    return observacionEscalado;
-  };
   // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
 
   function verificaCambioAveriaParaReset(event, obEscalado) {
