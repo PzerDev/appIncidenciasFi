@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './DatosTickets.css'; // Importamos el archivo CSS
 import datosTickets from '../../Datos/Datos.js';
 import DatosContacto from '../DatosContacto/DatosContacto.js';

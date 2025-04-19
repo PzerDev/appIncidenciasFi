@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './BarraNavegacion.css'; // Assuming you have a CSS file named Sidebar.css
-import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
+import { BrowserRouter as Routes, Route, Link }  from 'react-router-dom';
 import Inicio from '../Inicio/Inicio';
 import Calculadora from '../Calculadora/Calculadora';
 import Roaming from '../Roaming/Roaming';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../Login/Loader';
 
 const BarraNavegacion = ({ onLogout }) => {
-  const [items, setItems] = useState([
+  const [items] = useState([
     { icon: 'bx bx-home-alt icon', text: 'Inicio', pagina: '' },
     { icon: 'bx bx-calculator icon', text: 'Calculadora', pagina: '/calculadora' },
     { icon: 'bx bx-signal-5 icon', text: 'Roaming', pagina: '/roaming' },

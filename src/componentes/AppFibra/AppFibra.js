@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './AppFibra.css';
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
-import { HoraInicioFin, horario, MiMarkDown } from '../DatosContacto/DatosContacto.js';
+import { HoraInicioFin, MiMarkDown } from '../DatosContacto/DatosContacto.js';
 import datosFibra from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
@@ -78,7 +78,7 @@ function mostrarDiaSegunHora() {
 
 
 function AppFibra() {
-  const [loaderCargando, setLoaderCargando] = useState(false);
+  const [loaderCargando] = useState(false);
   const [enlaceAveriaApi, setEnlaceAveriaApi] = useState('');
   const [idAveria, setIdAveria] = useState('');
   const [idFibra, setIdFibra] = useState('');
@@ -650,7 +650,7 @@ function AppFibra() {
             <i class='bx bx-sun'></i>
             <p>Luces</p>
           </button>}
-          <a href="https://dashboard.finetwork.com/tickets/add" class="boton sin-fondo" target="_blank">
+          <a href="https://dashboard.finetwork.com/tickets/add" class="boton sin-fondo" target="_blank" rel="noopener noreferrer">
             <i class='bx bx-edit'></i>
             <p>Escalar</p>
           </a>

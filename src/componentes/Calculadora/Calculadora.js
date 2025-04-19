@@ -15,7 +15,7 @@ function MontoInput({ monto, setMonto }) {
   const [descuento, setDescuento] = useState(); 
   const [montoTarifa, setMontoTarifa] = useState();
   const [diasProporcional, setDiasProporcional] = useState();
-  const [ano, setAno] = useState(new Date().getFullYear());
+  const [ano] = useState(new Date().getFullYear());
 
   const handleMontoChange = (event) => {
     const nuevoValor = event.target.value;

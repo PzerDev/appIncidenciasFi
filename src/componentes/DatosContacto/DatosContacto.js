@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './DatosContacto.css'; // Importamos el archivo CSS
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
-import CopyToClipboard from 'react-copy-to-clipboard';
+// import CopyToClipboard from 'react-copy-to-clipboard';
 import Routers from '../../Datos/Routers.js';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 

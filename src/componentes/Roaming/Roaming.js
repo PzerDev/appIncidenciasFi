@@ -119,7 +119,7 @@ function Roaming() {
 
   } else if (tipoConsumo === 'Mensajes' && zonaPais.nZona && RoamingDatos["Llamadas, SMS"]?.[zonaPais.nZona]) {
     const smsOut = RoamingDatos["Llamadas, SMS"][zonaPais.nZona].smsOut;
-    const { paisGlobal, paisGlobalDestino } = searchState;
+    const { paisGlobal } = searchState;
     
     // Si alguno de los países está vacío, establecer valores predeterminados
     if (!paisGlobal) {
@@ -383,11 +383,11 @@ function RoamingCapa({paisSeleccionado, paisSeleccionadoDestino, setInputPaisDes
   setTipoConsumo, montoConsumo, tipoConsumo, setUnidadConsumo, establecimientoConsumo,
   unidadConsumo, setEstablecimientoConsumo, setMontoConsumo,
   observaciones, setObservaciones, inputPaisDestino}) {
-  const [llamadasEntrantes, setLlamadasEntrantes] = useState([]);
-  const [smsEnviados, setSmsEnviados] = useState();
-  const [videoEntrantes, setVideoEntrantes] = useState([]);
-  const [videoSalientes, setVideoSalientes] = useState([]);
-  const [datos, setDatos] = useState();
+  // const [llamadasEntrantes, setLlamadasEntrantes] = useState([]);
+  // const [smsEnviados, setSmsEnviados] = useState();
+  // const [videoEntrantes, setVideoEntrantes] = useState([]);
+  // const [videoSalientes, setVideoSalientes] = useState([]);
+  // const [datos, setDatos] = useState();
 
 
   function observacionesContenedor(observaciones) {

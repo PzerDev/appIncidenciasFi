@@ -449,9 +449,11 @@ let Procedimientos = {
     * Registrar la llamada de verificación como "PRUEBAS FI" y asociarla al ticket.
 
 ## Avería persistente
-5.  Si el cliente indica que la avería continúa, gestiona la incidencia como una avería individual:
-    * Utiliza la llamada para realizar pruebas adicionales con el cliente.
-    * No abras un nuevo ticket: Continúa gestionando la avería en el mismo ticket de HubSpot, pero cambia el motivo de la avería.
+5.  Si el cliente indica que la avería continúa
+    * Reiniciar el equipo/equipos y comprobar el servicio. Si el problema persiste, continuar al siguiente paso.
+    * Gestiona la incidencia como una avería individual:
+        * Utiliza la llamada para realizar pruebas adicionales con el cliente.
+        * No abras un nuevo ticket: Continúa gestionando la avería en el mismo ticket de HubSpot, pero cambia el motivo de la avería.
 
 ## Averías masivas con antigüedad de 7 días
 6.  **Seguimiento y comunicación (72 horas):** Contacta con el cliente a las 72 horas (3 días) de haber abierto el ticket para confirmar si persiste la falta de servicio. Si la avería continúa, informar que se sigue trabajando en ello.
