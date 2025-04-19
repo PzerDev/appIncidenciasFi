@@ -6,7 +6,6 @@ import datosFibra from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
 import '../SidebarDerecho/SidebarDerecho.css';
-import MiMarkDownEfecto from '../MiMarkDown/MiMarkDown.js';
 import Loader from '../Login/Loader.js';
 import NotasProcedimientos from '../../Datos/NotasProcedimientos.js';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -738,11 +737,10 @@ function AppFibra() {
               <h2>{motivoAveriaS}</h2>
             )}
           </div>
-          <MiMarkDownEfecto 
+          <MiMarkDown
             markdownText={getMarkdownText()}
             id="markdownProcedimiento"
             markdownText2={procedimiento.Observaciones || ""}
-            typingSpeed={0.1}
           />
         </div>
 
