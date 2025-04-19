@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/appIncidenciasFi/build/static/css/main.5d2e73a6.css",
-    "main.js": "/appIncidenciasFi/build/static/js/main.3909dd8e.js",
-    "static/js/453.d7dd342a.chunk.js": "/appIncidenciasFi/build/static/js/453.d7dd342a.chunk.js",
-    "index.html": "/appIncidenciasFi/build/index.html",
-    "main.5d2e73a6.css.map": "/appIncidenciasFi/build/static/css/main.5d2e73a6.css.map",
-    "main.3909dd8e.js.map": "/appIncidenciasFi/build/static/js/main.3909dd8e.js.map",
-    "453.d7dd342a.chunk.js.map": "/appIncidenciasFi/build/static/js/453.d7dd342a.chunk.js.map"
+    "main.css": "/static/css/main.5d2e73a6.css",
+    "main.js": "/static/js/main.2993450c.js",
+    "static/js/453.d7dd342a.chunk.js": "/static/js/453.d7dd342a.chunk.js",
+    "index.html": "/index.html",
+    "main.5d2e73a6.css.map": "/static/css/main.5d2e73a6.css.map",
+    "main.2993450c.js.map": "/static/js/main.2993450c.js.map",
+    "453.d7dd342a.chunk.js.map": "/static/js/453.d7dd342a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5d2e73a6.css",
-    "static/js/main.3909dd8e.js"
+    "static/js/main.2993450c.js"
   ]
 }
