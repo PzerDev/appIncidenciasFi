@@ -8,7 +8,7 @@ function App({ onLogout }) {
 
   return (
     <>  
-      <Router basename="/appIncidenciasFi/build">
+      <Router basename="/">
         <BarraNavegacion onLogout={onLogout} />
 
       </Router>
