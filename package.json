@@ -50,5 +50,8 @@
   },
   "devDependencies": {
     "gh-pages": "^6.2.0"
+  },
+  "rules": {
+    "no-unused-vars": "off"
   }
 }

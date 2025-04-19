@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './BarraNavegacion.css'; // Assuming you have a CSS file named Sidebar.css
-import { BrowserRouter as Routes, Route, Link }  from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
 import Inicio from '../Inicio/Inicio';
 import Calculadora from '../Calculadora/Calculadora';
 import Roaming from '../Roaming/Roaming';
