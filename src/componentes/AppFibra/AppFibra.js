@@ -329,7 +329,7 @@ function AppFibra() {
     const observacionEscalado = valorObservacionEscalado(); 
     setVoEscalado(observacionEscalado);  // Actualizamos el voEscalado cada vez que cambian las dependencias
     
-  }, [medioAveria, motivoAveriaEscalado, lugarAveriaE]);
+  }, [medioAveria, motivoAveriaEscalado, lugarAveriaE, valorObservacionEscalado]);
 
 
   const focusTextAreaResultadoEstado = () => {

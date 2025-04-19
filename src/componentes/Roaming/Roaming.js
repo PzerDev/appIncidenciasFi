@@ -138,7 +138,7 @@ function Roaming() {
     
   }
     
-  }, [zonaPais.nZona, tipoConsumo, searchState.paisGlobalDestino, zonaPaisDestino]);
+  }, [zonaPais.nZona, tipoConsumo, searchState, searchState.paisGlobalDestino, zonaPaisDestino]);
 
   const handleInputChange = (event, type) => {
     const query = event.target.value.toLowerCase();
