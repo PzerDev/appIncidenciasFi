@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './BarraNavegacion.css'; // Assuming you have a CSS file named Sidebar.css
-import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
-import Inicio from '../Inicio/Inicio';
-import Calculadora from '../Calculadora/Calculadora';
-import Roaming from '../Roaming/Roaming';
-import AppFibra from '../AppFibra/AppFibra';
-import { useNavigate } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route, Link }  from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// import Inicio from '../Inicio/Inicio';
+// import Calculadora from '../Calculadora/Calculadora';
+// import Roaming from '../Roaming/Roaming';
+// import AppFibra from '../AppFibra/AppFibra';
+// import { useNavigate } from 'react-router-dom';
 import Loader from '../Login/Loader';
 
 const BarraNavegacion = ({ onLogout }) => {
@@ -18,6 +19,7 @@ const BarraNavegacion = ({ onLogout }) => {
   ]);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [cerrarSesion, setCerrarSesion] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -35,6 +37,10 @@ const BarraNavegacion = ({ onLogout }) => {
     }
     // 3. Redirigir a la página de login o inicio
     navigate('/', { replace: true });
+    setCerrarSesion(true);
+    setTimeout(() => {
+      setCerrarSesion(false);
+    }, 1000);
   };
 
   const handleClick = () => {
@@ -42,12 +48,14 @@ const BarraNavegacion = ({ onLogout }) => {
     // Simular una carga (reemplaza esto con tu lógica real)
     setTimeout(() => {
       setIsLoading(false);
+      setCerrarSesion(false);
     }, 500);
   };
 
   return (
     <>
     {isLoading && <Loader text={`Cargando...`}/>}
+    {cerrarSesion && <Loader text={`Cerrando sesión...`}/>}
     <div className="container">
       <nav className={`nav ${isOpen ? 'open' : ''}`}>
         <div className="logo">
@@ -90,14 +98,7 @@ const BarraNavegacion = ({ onLogout }) => {
           </div>
         </div>
       </nav>
-      <Routes>
-        <Route path="" element={<Inicio />} />
-        <Route path="/calculadora" element={<Calculadora />} />
-        <Route path="/roaming" element={<Roaming />} />
-        <Route path="/pruebasFi" element={<AppFibra />} />
-        <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
-        {/* ... otras rutas ... */}
-      </Routes>
+
       <section className="overlay" onClick={toggleSidebar}></section>
     </div>
     </>

@@ -306,8 +306,8 @@ function AppFibra() {
       setRefreshParams(`- Refresh Params: Ok  `)
     }
 
-    console.log(observacionEscalado)
-    verificaCambioAveriaParaReset(event.target.value, observacionEscalado)
+    console.log(voEscalado)
+    verificaCambioAveriaParaReset(event.target.value, voEscalado)
 
     if (event.target.value !== 'Estado' && event.target.value !== 'N/C') {
       // Fuerza el focus incluso si el valor no ha cambiado
@@ -329,23 +329,23 @@ function AppFibra() {
     let observacionEscalado = '';
     if (medioAveria) {
       observacionEscalado =
-        NotasProcedimientos[motivoAveriaEscalado] && NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
-          ? NotasProcedimientos[motivoAveriaEscalado][lugarAveriaE]
+        NotasProcedimientos[motivoAveriaFibra] && NotasProcedimientos[motivoAveriaFibra][lugarAveriaInternet]
+          ? NotasProcedimientos[motivoAveriaFibra][lugarAveriaInternet]
           : observacionEscalado;
     } else {
       observacionEscalado =
-        NotasProcedimientos[motivoAveriaEscalado]
-          ? NotasProcedimientos[motivoAveriaEscalado]
+        NotasProcedimientos[motivoAveriaFibra]
+          ? NotasProcedimientos[motivoAveriaFibra]
           : observacionEscalado;
     }
     return observacionEscalado;
-  }, [medioAveria, motivoAveriaEscalado, lugarAveriaE]);
+  }, [medioAveria, motivoAveriaFibra, lugarAveriaInternet]);
 
   useEffect(() => {
     const observacionEscalado = valorObservacionEscalado(); 
     setVoEscalado(observacionEscalado);  // Actualizamos el voEscalado cada vez que cambian las dependencias
     
-  }, [medioAveria, motivoAveriaEscalado, lugarAveriaE, valorObservacionEscalado]);
+  }, [medioAveria, motivoAveriaFibra, lugarAveriaInternet, valorObservacionEscalado]);
 
 
   const focusTextAreaResultadoEstado = () => {
@@ -366,7 +366,7 @@ function AppFibra() {
   const motivoAveriaRegistrado = ((motivoAveriaFibra === 'Desactivar band steering' && (tecnologiaRouter === 'HFC' || routerFiltrado === 'ONT Nokia G010G-P y Router Sercomm W1-H500s')) ? 'Renombrar redes WiFi' : motivoAveriaFibra) || "Seleccionar motivo";
   motivoAveriaEscalado = motivoAveriaRegistrado
   lugarAveriaE = lugarAveriaInternet || "valor predeterminado";
-  let observacionEscalado = valorObservacionEscalado();
+  // let observacionEscalado = valorObservacionEscalado();
 
   // Asegúrate de que 'Procedimientos' tiene las propiedades necesarias
 
@@ -414,7 +414,7 @@ function AppFibra() {
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
     .replace("{medioAveria}", lugarAveriaInternet)
-    .replace("{observacionEscalado}", observacionEscalado)
+    .replace("{observacionEscalado}", voEscalado)
     .replace("{idAveriaApi}", idAveria)
     .replace("{inicio}", horaInicio)
     .replace("{fin}", horaFin)
@@ -534,7 +534,7 @@ function AppFibra() {
 
   const LugarAveriaInternet = () => {
     return (
-      <select className='tecnologia-router' value={lugarAveriaInternet} onChange={(event) => {handleSelectLugarAveriaChange(event, observacionEscalado)}}>
+      <select className='tecnologia-router' value={lugarAveriaInternet} onChange={(event) => {handleSelectLugarAveriaChange(event, voEscalado)}}>
         <option key='Seleccionar lugar' value='Seleccionar lugar'>
           Seleccionar lugar
         </option>
@@ -632,9 +632,9 @@ function AppFibra() {
 
   const BotonesProcedimientos = () => {
     const limpiarCampos = () => {
-      document.querySelector('a[href="/appIncidenciasFi/build"]').click();
+      document.querySelector('a[href="/"]').click();
       setTimeout(() => {
-        document.querySelector('a[href="/appIncidenciasFi/build/pruebasFi"]').click();
+        document.querySelector('a[href="/pruebasFi"]').click();
       }, 1);
     };
 
