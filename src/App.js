@@ -7,30 +7,36 @@ import Roaming from './componentes/Roaming/Roaming.js';
 import AppFibra from './componentes/AppFibra/AppFibra.js';
 import BarraNavegacion from './componentes/BarraNavegacion/BarraNavegacion.js';
 
-function LayoutConBarra({ onLogout }) {
-  return (
-    <>
-      <BarraNavegacion onLogout={onLogout} />
-      <Outlet /> {/* Aquí se renderizarán los componentes de las rutas */}
-    </>
-  );
-}
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LayoutConBarra />,
-    children: [
-      { index: true, element: <Inicio /> }, // Para la ruta principal /
-      { path: "calculadora", element: <Calculadora /> },
-      { path: "roaming", element: <Roaming /> },
-      { path: "pruebasFi", element: <AppFibra /> },
-    ],
-  },
-  { path: "*", element: <h1>404 - Página no encontrada</h1> },
-]);
 
-function App() { // Ya no necesitamos pasar onLogout directamente aquí
+
+
+function App({onLogout}) { // Ya no necesitamos pasar onLogout directamente aquí
+  
+  function LayoutConBarra() {
+    return (
+      <>
+        <BarraNavegacion onLogout={onLogout} />
+        <Outlet /> {/* Aquí se renderizarán los componentes de las rutas */}
+      </>
+    );
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <LayoutConBarra />,
+      children: [
+        { index: true, element: <Inicio /> }, // Para la ruta principal /
+        { path: "calculadora", element: <Calculadora /> },
+        { path: "roaming", element: <Roaming /> },
+        { path: "pruebasFi", element: <AppFibra /> },
+      ],
+    },
+    { path: "*", element: <h1>404 - Página no encontrada</h1> },
+  ]);
+
+
   return (
     <RouterProvider router={router} />
   );

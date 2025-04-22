@@ -33,14 +33,14 @@ const BarraNavegacion = ({ onLogout }) => {
     localStorage.removeItem('authToken'); // Si usas localStorage
     // 2. Ejecutar el callback onLogout si es necesario
     if (onLogout) {
-      onLogout();
+      setCerrarSesion(true);
+      setTimeout(() => {
+        onLogout();
+        setCerrarSesion(false);
+      }, 1000);
     }
     // 3. Redirigir a la página de login o inicio
     navigate('/', { replace: true });
-    setCerrarSesion(true);
-    setTimeout(() => {
-      setCerrarSesion(false);
-    }, 1000);
   };
 
   const handleClick = () => {
