@@ -418,7 +418,10 @@ let Procedimientos = {
 2.  **Revisión del cableado:** Inspecciona visualmente el cableado para detectar posibles daños o conexiones sueltas.  
 3.  **Identificación del cable roto:** Intenta determinar cuál cable específico está roto o dañado.  
 4.  **Prueba en otros dispositivos:** Conecta otros dispositivos (ordenadores, móviles, etc.) al mismo cable para verificar si el problema persiste. Esto ayuda a descartar si el problema está en el dispositivo o en el cable.  
-5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+5.  **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+6. **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
     - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
@@ -428,7 +431,10 @@ let Procedimientos = {
 2.  **Revisión del cableado:** Inspecciona visualmente el cableado para detectar posibles daños o conexiones sueltas.  
 3.  **Reinicio del router:** Intenta reiniciar el router desconectándolo de la corriente eléctrica durante unos segundos y volviéndolo a conectar.  
 4.  **Prueba en distintos enchufes:** Prueba conectar el router a diferentes enchufes para descartar problemas con la fuente de alimentación.  
-5.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
+5.  **Bono 10 GB:** Si la avería persiste, verifica si el cliente tiene líneas móviles activas para ofrecerle el bono correspondiente.
+    - No es compatible con líneas de datos ilimitados.
+    - Solo se puede aplicar un bono cada 30 días.
+6.  **Escalado de la incidencia:** Si después de estas pruebas el problema continúa, escala la incidencia a través de API.  
     - Vamos a proceder a escalar el caso. Recuerda mantener el router encendido y estar pendiente del correo electrónico y el teléfono  
 `
 },
