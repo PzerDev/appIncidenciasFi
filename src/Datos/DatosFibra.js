@@ -34,11 +34,10 @@ Tipo de router: {router}
 - Reinicio/reset: {reset}
 
 **Acciones llevadas a cabo:**  
-- **${dia}/${mes}** - Creación de ticket
-- **${dia}/${mes}** -   
+{acciones}
 
 `, 
-        notaEscaladoApi: `**${dia}/${mes} - Escalado por API**
+        notaEscaladoApi: `{escalado}
 - Motivo de la incidencia: {motivoAveriaFibra} {medioAveria}  
 - ID: {idExternal}  
 - Comprobaciones realizadas:  
@@ -215,3 +214,4 @@ DESCRIPCIÓN PRUEBAS: .`
 
 
 export default datosFibra;
+export { dia, mes }

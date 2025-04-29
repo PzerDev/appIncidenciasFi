@@ -233,6 +233,26 @@ select.tecnologia-router.menor-ancho {
     -webkit-user-select: text;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
+.comprobaciones-sac {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px 10px 0;
+}
+.comprobaciones-sac label {
+  padding: 0;
+}
+
+#diaAveria {
+  position: sticky;
+  /* top: -16px; */
+  bottom: 230px;
+  left: 214px;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 0;
+}
+
 .contenedorNotaEscalado .pre .sub-tipo {
   line-height: 0;
   align-content: center;

@@ -2,13 +2,16 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './AppFibra.css';
 import CopyToClipboardHTML from '../CopiarPortapapeles/CopiarPortapapeles.js';
 import { HoraInicioFin, MiMarkDown } from '../DatosContacto/DatosContacto.js';
-import datosFibra from '../../Datos/DatosFibra';
+import datosFibra, { dia, mes } from '../../Datos/DatosFibra';
 import Routers from '../../Datos/Routers.js';
 import Procedimientos from '../../Datos/Procedimientos.js';
 import '../SidebarDerecho/SidebarDerecho.css';
 import Loader from '../Login/Loader.js';
 import NotasProcedimientos from '../../Datos/NotasProcedimientos.js';
 import TextareaAutosize from 'react-textarea-autosize';
+
+
+
 
 let motivoAveria = [
   'ONT Alarmada',
@@ -78,6 +81,7 @@ function mostrarDiaSegunHora() {
 
 
 function AppFibra() {
+
   const [loaderCargando] = useState(false);
   const [enlaceAveriaApi, setEnlaceAveriaApi] = useState('');
   const [idAveria, setIdAveria] = useState('');
@@ -117,6 +121,20 @@ function AppFibra() {
   //Estados y eventos para Horas
   const [horaInicio, setHoraInicio] = useState('');
   const [horaFin, setHoraFin] = useState('');
+
+  const [comprobacionesSac, setComprobacionesSac] = useState(false); 
+  const [diaSelect, setDiaSelect] = useState(dia);
+
+  let acciones = {
+    acciones: `- **${diaSelect}/${mes}** - Creación de ticket
+- **${diaSelect}/${mes}** -   `,
+    accionesAdicionalesSac: `- **${diaSelect}/${mes}** - Creación de ticket
+- **${diaSelect}/${mes}** - Aplicación de bono
+- **${diaSelect}/${mes}** - Escalado API por SAC
+- **${diaSelect}/${mes}** - Envío de técnico`,
+    escalado: `**${diaSelect}/${mes} - Escalado por API**`,
+    escaladoSac: `**${diaSelect}/${mes} - Escalado API por SAC**`
+  }
 
   const handleSelectHoraInicioChange = (event) => {
     setHoraInicio(event.target.value);
@@ -188,6 +206,10 @@ function AppFibra() {
 
   const handleSelectAveriaChange = (event) => {
     setMotivoAveria(event.target.value);
+
+    if (comprobacionesSac === true) {
+
+    }
     (event.target.value === 'Error contraseña' || event.target.value === 'Cambiar contraseña') ?
       setAdjuntoCliente('fotografía de etiqueta del router realizada') :
       setAdjuntoCliente('')
@@ -315,6 +337,27 @@ function AppFibra() {
     }
   }
 
+
+  const handleCheckBoxSacChange = (event) => {
+    const isChecked = event.target.checked;
+    setComprobacionesSac(isChecked);
+    // console.log('El checkbox ahora está marcado:', isChecked);
+  }
+
+  const handleDiaAveriaChange = (event) => {
+    const isSelect = event.target.value;
+    if (isSelect === 'Ayer') {
+      setDiaSelect(dia - 1)
+    } else if (isSelect === 'Antes de ayer') {
+      setDiaSelect(dia - 2)
+    } else {
+      setDiaSelect(dia)
+    }
+
+    console.log(diaSelect)
+    // setComprobacionesSac(isChecked);
+    // console.log('El checkbox ahora está marcado:', isChecked);
+  }
   // Desplaza la página hasta el final cuando se abre el contenedor de luces
   // useEffect(() => {
   //   if (!ocultarLucesRouter) {
@@ -389,6 +432,28 @@ function AppFibra() {
     }
   }
 
+  let accionesAdicionales = '';
+  let escalado = '';
+  
+  if (comprobacionesSac === true) {
+    if ((motivoAveriaRegistrado === 'Sin servicio' && lugarAveriaInternet === 'ambos')||
+        motivoAveriaRegistrado === 'Masiva' ||
+        motivoAveriaRegistrado === 'ONT Alarmada' ||
+        motivoAveriaRegistrado === 'Router roto' ||
+        motivoAveriaRegistrado === 'Cable roto'
+    ) {
+      accionesAdicionales = acciones.accionesAdicionalesSac
+    } else {
+      const lineas = acciones.accionesAdicionalesSac.split(/\r?\n/);
+      const lineasRestantes = lineas.slice(1);
+      accionesAdicionales = lineasRestantes.join('\n');
+    }
+    escalado = acciones.escaladoSac
+  } else {
+    accionesAdicionales = acciones.acciones
+    escalado = acciones.escalado
+  }
+
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idEnlaceFibra)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
     .replace("{velocidadContratada}", velocidad)
@@ -399,6 +464,7 @@ function AppFibra() {
     .replace("{cables}", compCables)
     .replace("{refresh}", refreshParams)
     .replace("{reset}", compReset)
+    .replace("{acciones}", accionesAdicionales)
 
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", enlaceApi)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
@@ -410,6 +476,7 @@ function AppFibra() {
     .replace("{cables}", compCables)
     .replace("{refresh}", refreshParams)
     .replace("{reset}", compReset)
+    .replace("{escalado}", escalado)
 
   let notaReclamoApi = datosFibra.notaReclamoApi.replace("{idExternal}", enlaceApi)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
@@ -447,8 +514,30 @@ function AppFibra() {
     <div id='notasContenedor'>
       <div className='contenedorNotaEscalado'>
         <label>Nota Histórica</label>
+        <div className='comprobaciones-sac'>
+          <input
+            type="checkbox"
+            id="miCheckboxEspecifico" // Añadimos un ID único al checkbox
+            onChange={handleCheckBoxSacChange}
+          />
+          <label htmlFor="miCheckboxEspecifico">Comprobaciones SAC</label>
+        </div>
         <div className='pre notaHistorica'>
           <MiMarkDown markdownText={notaHistorica} id="markdownNotaHistorica" />
+          <select id='diaAveria'
+            // className={ocultarLucesRouter === true ? `cambiar-radio-contenedor tecnologia-router` : 'tecnologia-router'} value={estadoLucesCablesResetFiltrado}
+            onChange={handleDiaAveriaChange}
+            >
+            <option key='Hoy' value='Hoy'>
+              Hoy
+            </option>
+            <option key='Ayer' value='Ayer'>
+              Ayer
+            </option>
+            <option key='Antes de ayer' value='Antes de ayer'>
+              Antes de ayer
+            </option>
+          </select>
         </div>
         <CopyToClipboardHTML targetId="markdownNotaHistorica" />
       </div>
