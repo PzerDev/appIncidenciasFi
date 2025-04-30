@@ -246,11 +246,13 @@ select.tecnologia-router.menor-ancho {
   position: sticky;
   /* top: -16px; */
   bottom: 230px;
-  left: 214px;
+  left: 240px;
   padding: 5px;
   border-radius: 20px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   border: 0;
+  width: 90px;
+  background: 0;
 }
 
 .contenedorNotaEscalado .pre .sub-tipo {

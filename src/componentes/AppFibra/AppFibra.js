@@ -124,16 +124,17 @@ function AppFibra() {
 
   const [comprobacionesSac, setComprobacionesSac] = useState(false); 
   const [diaSelect, setDiaSelect] = useState(dia);
+  const [mesSelect, setMesSelect] = useState(mes);
 
   let acciones = {
-    acciones: `- **${diaSelect}/${mes}** - Creación de ticket
-- **${diaSelect}/${mes}** -   `,
-    accionesAdicionalesSac: `- **${diaSelect}/${mes}** - Creación de ticket
-- **${diaSelect}/${mes}** - Aplicación de bono
-- **${diaSelect}/${mes}** - Escalado API por SAC
-- **${diaSelect}/${mes}** - Envío de técnico`,
-    escalado: `**${diaSelect}/${mes} - Escalado por API**`,
-    escaladoSac: `**${diaSelect}/${mes} - Escalado API por SAC**`
+    acciones: `- **${diaSelect}/${mesSelect}** - Creación de ticket
+- **${diaSelect}/${mesSelect}** -   `,
+    accionesAdicionalesSac: `- **${diaSelect}/${mesSelect}** - Creación de ticket
+- **${diaSelect}/${mesSelect}** - Aplicación de bono
+- **${diaSelect}/${mesSelect}** - Escalado API por SAC
+- **${diaSelect}/${mesSelect}** - Envío de técnico`,
+    escalado: `**${diaSelect}/${mesSelect} - Escalado por API**`,
+    escaladoSac: `**${diaSelect}/${mesSelect} - Escalado API por SAC**`
   }
 
   const handleSelectHoraInicioChange = (event) => {
@@ -346,15 +347,26 @@ function AppFibra() {
 
   const handleDiaAveriaChange = (event) => {
     const isSelect = event.target.value;
+    const today = new Date();
     if (isSelect === 'Ayer') {
-      setDiaSelect(dia - 1)
+      const yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      setDiaSelect(yesterday.getDate());
+      setMesSelect(yesterday.getMonth()+1)
+      // setDiaSelect(dia - 1)
     } else if (isSelect === 'Antes de ayer') {
-      setDiaSelect(dia - 2)
+      const dayBeforeYesterday = new Date(today);
+      // Restamos dos días usando setDate().
+      dayBeforeYesterday.setDate(today.getDate() - 2);
+      setDiaSelect(dayBeforeYesterday.getDate());
+      setMesSelect(dayBeforeYesterday.getMonth()+1)
     } else {
-      setDiaSelect(dia)
+      setDiaSelect(today.getDate())
+      setMesSelect(today.getMonth()+1)
     }
 
     console.log(diaSelect)
+
     // setComprobacionesSac(isChecked);
     // console.log('El checkbox ahora está marcado:', isChecked);
   }
