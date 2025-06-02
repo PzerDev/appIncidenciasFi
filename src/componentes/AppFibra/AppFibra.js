@@ -110,6 +110,7 @@ function AppFibra() {
   const [compReset, setCompReset] = useState('');
 
   const [contacto, setContacto] = useState('');
+  const [contactoAlternativo, setContactoAlternativo] = useState('');
 
   const [voEscalado, setVoEscalado] = useState('');
   let motivoAveriaEscalado = ''
@@ -132,9 +133,18 @@ function AppFibra() {
     accionesAdicionalesSac: `- **${diaSelect}/${mesSelect}** - Creación de ticket
 - **${diaSelect}/${mesSelect}** - Aplicación de bono
 - **${diaSelect}/${mesSelect}** - Escalado API por SAC
-- **${diaSelect}/${mesSelect}** - Envío de técnico`,
+- **${diaSelect}/${mesSelect}** - Envío de técnico  
+Envío correo, se deja en seguimiento`,
+    accionesAdicionales: `- **${diaSelect}/${mesSelect}** - Creación de ticket
+- **${diaSelect}/${mesSelect}** - Aplicación de bono
+- **${diaSelect}/${mesSelect}** - Escalado por API
+- **${diaSelect}/${mesSelect}** - Envío de técnico  
+Envío correo, se deja en seguimiento
+- **${diaSelect}/${mesSelect}** - **Actualización Rodolfo Montilla:**
+- **${diaSelect}/${mesSelect}** - `,
     escalado: `**${diaSelect}/${mesSelect} - Escalado por API**`,
-    escaladoSac: `**${diaSelect}/${mesSelect} - Escalado API por SAC**`
+    escaladoSac: `**${diaSelect}/${mesSelect} - Escalado API por SAC**`,
+    agenteSac: `- Agente de Front`
   }
 
   const handleSelectHoraInicioChange = (event) => {
@@ -411,7 +421,7 @@ function AppFibra() {
   }
 
   const idEnlaceFibra = idFibra
-    ? `[${idExternal}](https://new-groups-permissions.finetwork.com/services/fiber/${idFibra})`
+    ? `[${idExternal}](https://dashboard.finetwork.com/services/fiber/${idFibra})`
     : idExternal;
 
   const enlaceApi = enlaceAveriaApi
@@ -446,25 +456,46 @@ function AppFibra() {
 
   let accionesAdicionales = '';
   let escalado = '';
+  let agente = '';
   
-  if (comprobacionesSac === true) {
+  // if (comprobacionesSac === true) {
     if ((motivoAveriaRegistrado === 'Sin servicio' && lugarAveriaInternet === 'ambos')||
         motivoAveriaRegistrado === 'Masiva' ||
         motivoAveriaRegistrado === 'ONT Alarmada' ||
         motivoAveriaRegistrado === 'Router roto' ||
         motivoAveriaRegistrado === 'Cable roto'
     ) {
-      accionesAdicionales = acciones.accionesAdicionalesSac
+       if (comprobacionesSac === true) {
+         accionesAdicionales = acciones.accionesAdicionalesSac
+
+         escalado = acciones.escaladoSac
+         agente = acciones.agenteSac
+       } else {
+         accionesAdicionales = acciones.accionesAdicionales
+         escalado = acciones.escalado
+       }
     } else {
-      const lineas = acciones.accionesAdicionalesSac.split(/\r?\n/);
-      const lineasRestantes = lineas.slice(1);
-      accionesAdicionales = lineasRestantes.join('\n');
+        let lineas = ''
+        if (comprobacionesSac === true) {
+           lineas = acciones.accionesAdicionalesSac.split(/\r?\n/);
+           agente = acciones.agenteSac
+        } else {
+           lineas = acciones.accionesAdicionales.split(/\r?\n/);
+        }
+
+        // Eliminar la segunda línea (índice 1)
+        if (lineas.length > 1) { // Asegurarse de que exista una segunda línea
+            lineas.splice(1, 1); // Elimina 1 elemento empezando desde el índice 1
+        }
+        
+        accionesAdicionales = lineas.join('\n');
     }
-    escalado = acciones.escaladoSac
-  } else {
-    accionesAdicionales = acciones.acciones
-    escalado = acciones.escalado
-  }
+
+
+  // } else {
+  //   accionesAdicionales = acciones.acciones
+  //   escalado = acciones.escalado
+  // }
 
   let notaHistorica = datosFibra.notaHistorica.replace("{idExternal}", idEnlaceFibra)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
@@ -477,11 +508,13 @@ function AppFibra() {
     .replace("{refresh}", refreshParams)
     .replace("{reset}", compReset)
     .replace("{acciones}", accionesAdicionales)
+    .replace("{agente}", agente)
 
   let notaEscaladoApi = datosFibra.notaEscaladoApi.replace("{idExternal}", enlaceApi)
     .replace("{motivoAveriaFibra}", motivoAveriaRegistrado)
     .replace("{medioAveria}", lugarAveriaInternet)
     .replace("{contacto}", contacto)
+    .replace("{contactoAlternativo}", `${contactoAlternativo && contacto ? ", " + contactoAlternativo : contactoAlternativo}`)
     .replace("{inicio}", horaInicio)
     .replace("{fin}", horaFin)
     .replace("{luces}", compLuces)
@@ -955,6 +988,24 @@ function AppFibra() {
                       }
                     }
                     } placeholder="Número de contacto" />
+
+                    <input type="text" value={contactoAlternativo}
+                    onChange={(e) => {
+                      let valor = e.target.value;
+                      // Eliminar espacios
+                      valor = valor.replace(/\s/g, '');
+                      // Si el número comienza con +34 o 34, eliminarlo
+                      if (valor.startsWith('+34')) {
+                        valor = valor.slice(3); // Eliminar los primeros 3 caracteres
+                      } else if (valor.startsWith('34')) {
+                        valor = valor.slice(2); // Eliminar los primeros 2 caracteres
+                      }
+                      // Permitir solo números y limitar a 9 caracteres
+                      if (/^\d*$/.test(valor) && valor.length <= 9) {
+                        setContactoAlternativo(valor); // Actualizar el estado solo con el número nacional
+                      }
+                    }
+                    } placeholder="Número alternativo" />
                   <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
                 </div>
               </div>

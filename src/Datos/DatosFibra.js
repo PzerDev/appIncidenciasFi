@@ -28,6 +28,7 @@ ID: {idExternal}
 Motivo: {motivoAveriaFibra} {medioAveria}- {velocidadContratada} {tecnologiaRouter}  
 Tipo de router: {router}  
 **Comprobaciones realizadas en llamada:**  
+{agente}
 - Luces: {luces}  
 - Cables: {cables}  
 {refresh}
@@ -45,7 +46,7 @@ Tipo de router: {router}
   - Cables: {cables}  
   {refresh}
   - Reinicio/reset: {reset}  
-- Teléfono de contacto: {contacto}  
+- Teléfono de contacto: {contacto} {contactoAlternativo}  
 - Disponibilidad horaria: {inicio} - {fin} horas  
 
 **Contestaciones de central:**  
