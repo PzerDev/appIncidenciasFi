@@ -479,13 +479,15 @@ Envío correo, se deja en seguimiento
         if (comprobacionesSac === true) {
            lineas = acciones.accionesAdicionalesSac.split(/\r?\n/);
            agente = acciones.agenteSac
+           escalado = acciones.escaladoSac
         } else {
            lineas = acciones.accionesAdicionales.split(/\r?\n/);
+           escalado = acciones.escalado
         }
 
         // Eliminar la segunda línea (índice 1)
         if (lineas.length > 1) { // Asegurarse de que exista una segunda línea
-            lineas.splice(1, 1); // Elimina 1 elemento empezando desde el índice 1
+            lineas.slice(1, 1); // Elimina 1 elemento empezando desde el índice 1
         }
         
         accionesAdicionales = lineas.join('\n');
