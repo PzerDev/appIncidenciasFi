@@ -27,6 +27,8 @@ let datosFibra = {
 ID: {idExternal}  
 Motivo: {motivoAveriaFibra} {medioAveria}- {velocidadContratada} {tecnologiaRouter}  
 Tipo de router: {router}  
+Teléfono de contacto: {contacto}{contactoAlternativo}    
+Disponibilidad horaria: {inicio} - {fin} horas  
 **Comprobaciones realizadas en llamada:**  
 {agente}
 - Luces: {luces}  
