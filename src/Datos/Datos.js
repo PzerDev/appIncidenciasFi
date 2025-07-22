@@ -687,13 +687,18 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 <br><u>**COMPROBACIONES:**</u> 
 - Línea activa desde  
 - Dispone de GB  
-- Velocidad de últimas conéxiones  
-    {velocidadConexionesCDR}  
 - Itinerancia activa  
+- Le ocurre siempre  
+- Reporta la incidencia desde  
+- [Cobertura](https://www.vodafone.es/c/conocenos/es/vodafone-espana/mapa-cobertura-movil/ "Solo verificar en caso que el cliente reporte el inconveniente en una ubicación en especifico")  
+    5G:  
+    4G:  
+    3g:  
+- [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-- Configiración APN (A las - horas)  
-- Búsqueda manual de redes (A las - horas)  
-- Tipo de red preferida (A las - horas)  
+- Configiración APN (- horas)  
+- Búsqueda manual de redes (- horas)  
+- Tipo de red preferida (- horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
 `,
@@ -720,17 +725,57 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - Línea activa desde  
 - Datos activos en sistema y en dispositivo móvil  
 - Itinerancia activa  
-- Se comprueban incidencias en https://app.hubspot.com/contacts/7545391/record/0-1/30366051  
-- Cobertura  
+- Le ocurre siempre  
+- Reporta la incidencia desde  
+- [Cobertura](https://www.vodafone.es/c/conocenos/es/vodafone-espana/mapa-cobertura-movil/ "Solo verificar en caso que el cliente reporte el inconveniente en una ubicación en especifico")  
     5G:  
     4G:  
     3g:  
+- [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-- Configiración APN (A las - horas)  
-- Búsqueda manual de redes (A las - horas)  
-- Tipo de red preferida (A las - horas)  
+- Configiración APN (- horas)  
+- Búsqueda manual de redes (- horas)  
+- Tipo de red preferida (- horas)  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***
+`,
+        src: ""
+    },
+    {
+        motivo: "Móvil - Incidencia datos (Incidencias relacionadas con 5G)",
+        categoria: "Servicios",
+        subcategoria: "Móvil - Incidencia datos",
+        pipeline: "Soporte",
+        estadoTicket: "Abierto",
+        correoPlantilla: `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo compatible con 5G.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+        nota: `**CLIENTE:** {cliente} - {dni}  
+**SOLICITUD:** Incidencia datos (Cobertura 5G)  
+**SERVICIO AFECTADO:** {afectado}  
+**TELÉFONO DE CONTACTO:** {contacto}  
+<br><u>**COMPROBACIONES:**</u>  
+- Línea activa desde  
+- Datos activos en sistema y en dispositivo móvil  
+- Dispositivo compatible con 5G  
+- Itinerancia activa  
+- Le ocurre siempre  
+- Reporta la incidencia desde  
+- [Cobertura](https://www.vodafone.es/c/conocenos/es/vodafone-espana/mapa-cobertura-movil/ "Solo verificar en caso que el cliente reporte el inconveniente en una ubicación en especifico")  
+    5G:  
+    4G:  
+    3g:  
+- [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
+<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+- Configiración APN (- horas)  
+- Búsqueda manual de redes priorizando red 5G (- horas)  
+- Tipo de red preferida (- horas)  
+
+<br>***Se solicita prueba cruzada de la tarjeta SIM al cliente en otro dispositivo compatible con 5G.***
 `,
         src: ""
     },
