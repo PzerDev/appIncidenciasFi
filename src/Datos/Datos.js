@@ -809,9 +809,11 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - El número al que intenta llamar existe  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
 Se reportan 3 pruebas de llamada fallida a los siguientes números:  
-  &nbsp;&nbsp;&nbsp;- {numero1}  
-  &nbsp;&nbsp;&nbsp;- {numero2}  
-  &nbsp;&nbsp;&nbsp;- {numero3}  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero3} {fecha/hora}  
+
+Se ha verificado en oculto desde otro número que la llamada se establece
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
 
@@ -825,7 +827,8 @@ Se reportan 3 pruebas de llamada fallida a los siguientes números:
 Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
 
 
-`Observaciones:
+`Observaciones:  
+- Locución en número premium: El número al que usted llama no tiene disponible este servicio  
 - En caso de que salga "ocupado" al intentar llamar es posible que el receptor haya bloqueado las llamadas entrantes de la línea del cliente. Se puede verificar haciendo una llamada en oculto marcando #31# + número.`],
 
 
@@ -838,13 +841,18 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - Consumos no pertenecientes al buzón  
   &nbsp;&nbsp;&nbsp;- {llamada1}  
   &nbsp;&nbsp;&nbsp;- {llamada2}  
-- Se comprueba que no hay incidencias  
+- [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 - Cobertura  
   &nbsp;&nbsp;&nbsp;5G:  
   &nbsp;&nbsp;&nbsp;4G:  
   &nbsp;&nbsp;&nbsp;3g:  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-&nbsp;- Búsqueda manual de redes (A las - horas)  
+&nbsp;- Búsqueda manual de redes (- horas)  
+
+Se reportan 3 pruebas de llamada fallida a los siguientes números:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero3} {fecha/hora}  
 
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
 
@@ -859,22 +867,28 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 
 
 `Observaciones:
+- En caso de que no pueda emitir a determinados números, seguir el procedimiento de enrutamiento o de no emite a determinados números
 - Si al revisar los consumos la numeración es 698902242 hace referencia al buzón
-- Comprobar las incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)`],
+`],
 
 
             "No recibe de ningún número": [
 `<br><u>**COMPROBACIONES:**</u> 
 - Línea activa desde  
-- Problema presentado desde, {especificarFecha}  
+- Problema presentado desde   
 - Zona reportada: {especificarZona}  
 - Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos  
 - Se comprueba que no arroja locución "el número no se encuentra disponible"  
 - Cobertura presente en dispositivo  
 - Puede realizar llamadas  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-&nbsp;- Búsqueda manual de redes (A las - horas)  
+&nbsp;- Búsqueda manual de redes (- horas)  
 
+Se reportan 3 pruebas de llamada fallida a los siguientes números:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero3} {fecha/hora}  
+  
 <br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
 
 
@@ -890,7 +904,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 `Observaciones:
 - Si la locución es "el número no se encuentra disponible" se debería solucionar con busqueda manual de red
 - Si el dispositivo no tiene cobertura comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
-- Si puede realizar llamadas se procede con las pruebas`]
+- Si puede realizar llamadas se procede con las pruebas, en caso contrario seguir incidencia de sin servicio`]
         }
     },
     {
