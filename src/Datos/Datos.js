@@ -696,7 +696,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
     3g:  
 - [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-- Configiración APN (- horas)  
+- Configuración APN (- horas)  
 - Búsqueda manual de redes (- horas)  
 - Tipo de red preferida (- horas)  
 
@@ -733,7 +733,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
     3g:  
 - [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-- Configiración APN (- horas)  
+- Configuración APN (- horas)  
 - Búsqueda manual de redes (- horas)  
 - Tipo de red preferida (- horas)  
 
@@ -771,7 +771,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
     3g:  
 - [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
 <br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
-- Configiración APN (- horas)  
+- Configuración APN (- horas)  
 - Búsqueda manual de redes priorizando red 5G (- horas)  
 - Tipo de red preferida (- horas)  
 
@@ -795,6 +795,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
         src: "",
         voz: {
             "Seleccionar incidencia": ['', ''],
+
             "No emite a determinados números": [
 `<br><u>**COMPROBACIONES:**</u> 
 - Línea activa desde  
@@ -807,7 +808,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - No ha superado los minutos de su tarifa  
 - Al itentar llamar no muestra al receptor ocupado  
 - El número al que intenta llamar existe  
-<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
 Se reportan 3 pruebas de llamada fallida a los siguientes números:  
   &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
   &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
@@ -832,6 +833,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - En caso de que salga "ocupado" al intentar llamar es posible que el receptor haya bloqueado las llamadas entrantes de la línea del cliente. Se puede verificar haciendo una llamada en oculto marcando #31# + número.`],
 
 
+
             "No emite a ningún número en España": [
 
 `<br><u>**COMPROBACIONES:**</u> 
@@ -846,7 +848,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
   &nbsp;&nbsp;&nbsp;5G:  
   &nbsp;&nbsp;&nbsp;4G:  
   &nbsp;&nbsp;&nbsp;3g:  
-<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
 &nbsp;- Búsqueda manual de redes (- horas)  
 
 Se reportan 3 pruebas de llamada fallida a los siguientes números:  
@@ -872,6 +874,110 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 `],
 
 
+
+            "No emite estando en Roaming": [
+
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Problema presentado desde, {especificarFecha}  
+- Consumos no pertenecientes al buzón  
+  &nbsp;&nbsp;&nbsp;- {llamada1} {duración de llamada}
+  &nbsp;&nbsp;&nbsp;- {llamada2} {duración de llamada}
+- [Se ha verificado que no existe incidencia reportada](https://app.hubspot.com/contacts/7545391/record/0-1/30366051)  
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
+&nbsp;- Búsqueda manual de redes en red compatible de acuerdo al pais (- horas)  
+
+Se reportan 3 pruebas de llamada fallida a los siguientes números:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero3} {fecha/hora}  
+
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+
+`Observaciones:
+- En caso de dificultades para llamar a números de España o del pais destino: Desactivar y activar el roaming durante la llamada
+- Si no puede emitir a números extranjeros, revisar activación de llamadas internacionales
+- No es posible usar el servicio de llamadas premium estando en Roaming
+- No es posible llamar a líneas 900 y 800 estando en Roaming
+- No es posible llamar a números de tarificación especial estando en Roaming
+- En caso de realizar busqueda manual de redes y se tenga dificultades para conectar a la red, forzar conexión hasta en 5 intentos
+- La prueba cruzada no es obligatoria en Roaming, en caso de que el cliente no pueda efectuarla dejar el caso abierto
+`],
+
+
+
+            "No recibe de determinados números": [
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Problema presentado desde  
+- Se ha verificado que no tiene algún tipo de bloqueo de llamadas entrantes ni desvíos activados
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
+&nbsp;- Se desactivan desvíos a través de código USSD: ##002# y ##21# || Error al intentar desactivar los desvíos  
+&nbsp;- Búsqueda manual de redes (- horas)  
+
+Se reportan 3 pruebas de llamada fallida:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero3} {fecha/hora}  
+  
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`,
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+
+`Observaciones:
+- Confirma si el cliente no puede recibir llamadas de operadores específicos. Si es así, procede a gestionarlo como un problema de enrutamiento.
+- Si el problema afecta a un número específico, verifica que el cliente no tenga ese número bloqueado. Cuando el emisor intenta contactar, el número aparecerá ocupado. El emisor puede realizar una prueba de llamada en modo oculto utilizando #31# para verificar la posibilidad de establecer conexión.
+- En caso de que persista la dificultad desde una numeración en concreto, se debe verificar "la lista negra" de ambos dispositivos. Se solicitará que eliminen los contactos y puedan añadirlos nuevamente.
+`
+],
+
+
+
+            "Enrutamiento - No recibe de operadores determinados": [
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa desde  
+- Problema presentado desde  
+- Se ha verificado que los números que se intentan contactar pertenecen a la misma compañía. La locución recibida es 'el número no existe' o 'el número al que llama ha restringido las llamadas entrantes'. 
+- Se ha realizado una llamada en modo oculto desde un operador externo a la compañía reportada, y se ha establecido conexión
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
+
+Llamadas fallidas desde el operador reportado:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora} {operador/se puede comprobar en CNMC}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora} {operador/se puede comprobar en CNMC}   
+
+Llamada establecida desde otro operador:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora} {operador/se puede comprobar en CNMC}    
+`,
+
+
+`con respecto a la incidencia que reporta con su línea móvil`,
+
+
+`Observaciones:
+- Si la línea establece comunicación, pero la llamada se corta inmediatamente, o la locución es 'apagado, no disponible o fuera de cobertura', es probable que no sea un problema de enrutamiento.
+`
+],
+
+
+
             "No recibe de ningún número": [
 `<br><u>**COMPROBACIONES:**</u> 
 - Línea activa desde  
@@ -881,7 +987,7 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 - Se comprueba que no arroja locución "el número no se encuentra disponible"  
 - Cobertura presente en dispositivo  
 - Puede realizar llamadas  
-<br>**<u>PRUEBAS REALIZADAS (SIN ÉXITO):</u>**  
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
 &nbsp;- Búsqueda manual de redes (- horas)  
 
 Se reportan 3 pruebas de llamada fallida a los siguientes números:  
@@ -904,7 +1010,8 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 `Observaciones:
 - Si la locución es "el número no se encuentra disponible" se debería solucionar con busqueda manual de red
 - Si el dispositivo no tiene cobertura comprobar incidencias en (https://app.hubspot.com/contacts/7545391/record/0-1/30366051)
-- Si puede realizar llamadas se procede con las pruebas, en caso contrario seguir incidencia de sin servicio`]
+- Si puede realizar llamadas se procede con las pruebas, en caso contrario seguir incidencia de sin servicio`
+]
         }
     },
     {
