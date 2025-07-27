@@ -32,6 +32,11 @@ function DataList() {
       setShowList(true);
     }
 
+    let selectIncidencia = document.querySelector('select.tecnologia-router.incidencia-voz');
+    if (selectIncidencia) {
+      selectIncidencia.value = 'Seleccionar incidencia';  
+    }
+
     // document.querySelector('#observaciones').style.display = 'none';
   };
 

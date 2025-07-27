@@ -86,6 +86,7 @@ function DatosContacto({ ticket }) {
   const [nombre, setNombre] = useState('');
   const [documento, setDocumento] = useState('');
   const [contacto, setContacto] = useState('');
+  let horaContacto = '';
   const [correo, setCorreo] = useState('');
 
   const [idFibra, setIdFibra] = useState('');
@@ -157,19 +158,33 @@ function DatosContacto({ ticket }) {
     setIncidencia(event.target.value);
     setIncidenciaSeleccionada(ticket.averia[event.target.value][0]);
     setCorreo(ticket.averia[event.target.value][1]);
-    correoEdit = ticket.averia[event.target.value][1];
+    // correoEdit = ticket.averia[event.target.value][1];
 
   };
 
   const handleSelectVozChange = (event) => {
-    setIncidencia(event.target.value);
-    setIncidenciaSeleccionada(ticket.voz[event.target.value][0]);
-    setCorreo(ticket.voz[event.target.value][1]);
-    correoEdit = ticket.voz[event.target.value][1];
+
+    let valorIncidencia = event.target.value
+
+    function estadoTicketChange (valorCambio) {
+      let estadoTicketContenedor = document.querySelector('#estadoTicket');
+      estadoTicketContenedor.value = valorCambio;
+    }
+    setIncidencia(valorIncidencia);
+    setIncidenciaSeleccionada(ticket.cambioDatos[valorIncidencia][0]);
+    setCorreo(ticket.cambioDatos[valorIncidencia][1]);
+    // correoEdit = ticket.cambioDatos[event.target.value][1];
 
     // Texto para observaciones
-    observacionesContenedor(ticket.voz[event.target.value][2]);
-    setObservaciones(ticket.voz[event.target.value][2]);
+    observacionesContenedor(ticket.cambioDatos[valorIncidencia][2]);
+    setObservaciones(ticket.cambioDatos[valorIncidencia][2]);
+
+    //Casos que requieren el cambio del estado del Ticket
+    valorIncidencia === "Cliente tiene fibra activa en ubicación del impuesto" ? 
+      estadoTicketChange('Abierto') : estadoTicketChange('Pendiente de cliente')
+
+    valorIncidencia === "AREC RECH_NORES / Demás rechazos" ? 
+      estadoTicketChange('Abierto') : estadoTicketChange('Pendiente de cliente')
 
   };
 
@@ -177,7 +192,7 @@ function DatosContacto({ ticket }) {
     setIncidencia(event.target.value);
     setIncidenciaSeleccionada(ticket.amazon[event.target.value][0]);
     setCorreo(ticket.amazon[event.target.value][1]);
-    correoEdit = ticket.amazon[event.target.value][1];
+    // correoEdit = ticket.amazon[event.target.value][1];
   };
 
   const handleSelectSIMChange = (event) => {
@@ -193,6 +208,7 @@ function DatosContacto({ ticket }) {
   let datosAdicionales = "";
   let acometidaSelecionada = "";
   let listaRouters = "";
+  let nuevoRegistro = "";
 
 
   //Codigo para filtrar router por acometida y tecnologia
@@ -257,12 +273,16 @@ function DatosContacto({ ticket }) {
       .replace("{luces}", luces)
       .replace("{incidenciaSeleccionada}", incidenciaSeleccionada)
       .replace("{afectado}", afectado)
-      .replace("{incidencia}", incidencia)
+      .replace(/{incidencia}/g, incidencia)
       .replace("{horario}", horario)
       .replace("{nuevaDireccion}", nuevaDireccion)
+      .replace("{cambioDatos}", nuevaDireccion)
 
     if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
-      ticket.motivo === 'Móvil - Incidencia voz' ||
+      ticket.motivo === 'Móvil - Incidencia voz' || ticket.motivo === 'Móvil - Incidencia datos' ||
+      ticket.motivo === 'Móvil - Incidencia sin servicio' || ticket.motivo === 'Móvil - Problemas de cobertura' ||
+      ticket.motivo === 'Incidencia portabilidad' || ticket.motivo === 'Impuesto incorrecto en factura' ||
+      ticket.motivo === 'Solicitud de certificados' || 
       ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
 
       if (incidencia === 'ONT Alarmada') {
@@ -272,6 +292,10 @@ function DatosContacto({ ticket }) {
           .replace("{idorden}", idExternal)
           .replace("{inicio}", horaInicio)
           .replace("{fin}", horaFin)
+      } else if (incidencia === 'AREC RECH_NORES / Demás rechazos') {
+        correoEdit = correo.replace("{afectado}", afectado)
+      } else if (ticket.motivo === 'Solicitud de certificados') {
+        correoEdit = correo.replace("{incidencia}", incidencia)
       } else {
         correoEdit = correo;
       }
@@ -336,6 +360,21 @@ function DatosContacto({ ticket }) {
     </div>
 
   )
+
+  function valorDeCambio (nuevoRegistro) {
+      datosAdicionales = (
+        <>
+          <div className='contenedor-input-datos-cliente'>
+            <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder={`${nuevoRegistro}`} />
+            <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
+          </div>
+
+          {notaCorreoContenedores}
+
+        </>
+      )
+      
+    }
 
   if (ticket.motivo === 'Avería / Incidencia Fibra - General') {
 
@@ -422,9 +461,15 @@ function DatosContacto({ ticket }) {
       </>
 
     )
-  } else if (ticket.motivo === 'Móvil - Incidencia voz') {
+
+    horaContacto = 0; // quita hora de la información de contacto
+    
+  } else if (ticket.motivo === 'Móvil - Incidencia datos' || ticket.motivo === 'Móvil - Incidencia voz' ||
+             ticket.motivo === 'Móvil - Incidencia sin servicio' || ticket.motivo === 'Móvil - Problemas de cobertura' ||
+             ticket.motivo === 'Incidencia portabilidad'
+     ) {
     // acometidaFuncion();
-    let listaIncidenciaVoz = Object.keys(ticket.voz);
+    let listaIncidenciaCambioDatos = Object.keys(ticket.cambioDatos);
     // document.querySelector('#observaciones').style.display = 'block';
 
     datosAdicionales = (
@@ -434,20 +479,52 @@ function DatosContacto({ ticket }) {
             {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
                 Seleccionar incidencia
             </option> */}
-            {listaIncidenciaVoz.map((incid) => (
+            {listaIncidenciaCambioDatos.map((incid) => (
               <option key={incid} value={incid}>
                 {incid}
               </option>
             ))}
           </select>
           <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
+          <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
         {notaCorreoContenedores}
 
-        {observacionesContenedor(observaciones)}
+        {observaciones && observacionesContenedor(observaciones)}
       </>
     )
+
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Impuesto incorrecto en factura' || ticket.motivo === 'Solicitud de certificados') {
+
+    let listaIncidenciaCambioDatos = Object.keys(ticket.cambioDatos);
+
+    datosAdicionales = (
+      <>
+        <div className='contenedor-input-datos-cliente'>
+          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectVozChange}>
+            {/* <option key='Seleccionar incidencia' value='Seleccionar incidencia'>  
+                Seleccionar incidencia
+            </option> */}
+            {listaIncidenciaCambioDatos.map((incid) => (
+              <option key={incid} value={incid}>
+                {incid}
+              </option>
+            ))}
+          </select>
+          <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
+        </div>
+
+        {notaCorreoContenedores}
+
+        {observaciones && observacionesContenedor(observaciones)}
+      </>
+    )
+
+    horaContacto = 0; // quita hora de la información de contacto
+
   } else if (ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
     // acometidaFuncion();
     let listaIncidenciaAmazon = Object.keys(ticket.amazon);
@@ -465,28 +542,44 @@ function DatosContacto({ ticket }) {
               </option>
             ))}
           </select>
-          <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
+          {/* <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" /> */}
+          <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
         {notaCorreoContenedores}
 
       </>
     )
+
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Cambio de IBAN con distinto titular al del servicio') {
+    valorDeCambio('Nuevo IBAN');
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'SIM swapping (duplicados fraudulentos)') {
+    valorDeCambio('Teléfono afectado');
+    horaContacto = 0; // quita hora de la información de contacto
+
   } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
     ticket.motivo === 'Cambiar dirección de envío del regalo/terminal' ||
     ticket.motivo === 'Error dirección - Referencia Catastral'
   ) {
-    // acometidaFuncion();
-    datosAdicionales = (
-      <>
-        <div className='contenedor-input-datos-cliente'>
-          <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Nueva dirección" />
-        </div>
+    valorDeCambio('Nueva dirección');
+    horaContacto = 0; // quita hora de la información de contacto
 
-        {notaCorreoContenedores}
+  } else if (ticket.motivo === 'Certificado de defunción del titular del servicio') {
+    valorDeCambio('Nombre de titular y documento');
+    horaContacto = 0; // quita hora de la información de contacto
 
-      </>
-    )
+  } else if (ticket.motivo === 'Cambio de documento de identidad') {
+    valorDeCambio('Nuevo documento');
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Contratación de menores - Se detecta que un servicio está contratado a nombre de un menor de edad') {
+    valorDeCambio('Motivo de la llamada e información adicional');
+    horaContacto = 0; // quita hora de la información de contacto
+
   } else if (ticket.subcategoria === 'Duplicado SIM') {
     let listaReemplazoSIM = Object.keys(ticket.sim);
     const regexRoboPerdida = /pérdida|robo/i;
@@ -514,6 +607,9 @@ function DatosContacto({ ticket }) {
 
       </>
     )
+
+    horaContacto = 0; // quita hora de la información de contacto
+
   } else if (ticket.motivo === 'Técnico falta a cita') {
 
     let observa = `Consideraciones:
@@ -529,11 +625,14 @@ function DatosContacto({ ticket }) {
       </>
     )
 
+    horaContacto = 0; // quita hora de la información de contacto
+
   }
 
   else {
 
     datosAdicionales = notaCorreoContenedores;
+    horaContacto = 1; // muestra hora en la información de contacto
 
   }
 
@@ -561,7 +660,7 @@ function DatosContacto({ ticket }) {
                     return;
                   }
               
-                  setNombre(textoLimpio); // Actualizar el estado con el texto limpio
+                  setNombre(textoLimpio.toUpperCase()); // Actualizar el estado con el texto limpio
                 }}
                 onBlur={() => {
                   // Eliminar espacios al inicio y al final al perder el foco
@@ -574,7 +673,7 @@ function DatosContacto({ ticket }) {
                     .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '') // Permitir solo letras y espacios
                     .replace(/\s+/g, ' '); // Reemplazar múltiples espacios por uno solo
               
-                  setNombre((prevNombre) => `${prevNombre} ${textoFiltrado}`.trim().replace(/\s+/g, ' ')); // Limpiar y actualizar
+                  setNombre((prevNombre) => `${prevNombre} ${textoFiltrado}`.trim().replace(/\s+/g, ' ').toUpperCase()) ; // Limpiar y actualizar
                 }}
                 placeholder="Nombre" />
 
@@ -584,7 +683,7 @@ function DatosContacto({ ticket }) {
                   // Eliminar espacios al inicio, al final y entre caracteres
                   const valorLimpio = e.target.value.replace(/\s+/g, '').trim();
               
-                  setDocumento(valorLimpio); // Actualizar el estado con el valor limpio
+                  setDocumento(valorLimpio.toUpperCase()); // Actualizar el estado con el valor limpio
                 }}
                 onBlur={() => {
                   // Asegurar eliminación de espacios residuales al perder el foco
@@ -594,7 +693,7 @@ function DatosContacto({ ticket }) {
                   e.preventDefault(); // Prevenir el pegado directo
                   const textoPegado = e.clipboardData.getData('text').trim(); // Limpiar espacios al inicio y al final
                   const textoFiltrado = textoPegado.replace(/\s+/g, ''); // Quitar espacios entre caracteres
-                  setDocumento((prevDocumento) => `${prevDocumento}${textoFiltrado}`); // Actualizar con el texto limpio
+                  setDocumento((prevDocumento) => `${prevDocumento}${textoFiltrado}`.toUpperCase()); // Actualizar con el texto limpio
                 }}
           placeholder="Documento de Identidad" />
           
@@ -618,6 +717,10 @@ function DatosContacto({ ticket }) {
                     setContacto(valor); // Actualizar el estado solo con el número nacional
                   }}
                  } placeholder="Número de contacto" />
+
+
+          {horaContacto === 1 && <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />}
+                 
         </div>
       </div>
 
