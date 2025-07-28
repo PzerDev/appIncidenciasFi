@@ -179,12 +179,11 @@ function DatosContacto({ ticket }) {
     observacionesContenedor(ticket.cambioDatos[valorIncidencia][2]);
     setObservaciones(ticket.cambioDatos[valorIncidencia][2]);
 
-    //Casos que requieren el cambio del estado del Ticket
-    valorIncidencia === "Cliente tiene fibra activa en ubicación del impuesto" ? 
-      estadoTicketChange('Abierto') : estadoTicketChange('Pendiente de cliente')
-
-    valorIncidencia === "AREC RECH_NORES / Demás rechazos" ? 
-      estadoTicketChange('Abierto') : estadoTicketChange('Pendiente de cliente')
+    // Casos que requieren el cambio del estado del Ticket
+    if (valorIncidencia === "Cliente tiene fibra activa en ubicación del impuesto" ||
+        valorIncidencia === "AREC RECH_NORES / Demás rechazos") {
+      estadoTicketChange('Abierto');
+    }
 
   };
 
@@ -282,7 +281,7 @@ function DatosContacto({ ticket }) {
       ticket.motivo === 'Móvil - Incidencia voz' || ticket.motivo === 'Móvil - Incidencia datos' ||
       ticket.motivo === 'Móvil - Incidencia sin servicio' || ticket.motivo === 'Móvil - Problemas de cobertura' ||
       ticket.motivo === 'Incidencia portabilidad' || ticket.motivo === 'Impuesto incorrecto en factura' ||
-      ticket.motivo === 'Solicitud de certificados' || 
+      ticket.motivo === 'Solicitud de certificados' || ticket.motivo === 'Devolución router' || 
       ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
 
       if (incidencia === 'ONT Alarmada') {
@@ -497,7 +496,7 @@ function DatosContacto({ ticket }) {
 
     horaContacto = 0; // quita hora de la información de contacto
 
-  } else if (ticket.motivo === 'Impuesto incorrecto en factura' || ticket.motivo === 'Solicitud de certificados') {
+  } else if (ticket.motivo === 'Impuesto incorrecto en factura' || ticket.motivo === 'Solicitud de certificados' || ticket.motivo === 'Devolución router') {
 
     let listaIncidenciaCambioDatos = Object.keys(ticket.cambioDatos);
 

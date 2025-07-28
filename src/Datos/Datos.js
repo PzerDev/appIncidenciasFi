@@ -612,96 +612,74 @@ DISPONIBILIDAD HORARIA: {inicio} - {fin} horas
         src: ""
     },
     {
-        motivo: "Ha enviado algo que no sea el router",
+        motivo: "Devolución router",
         categoria: "Fibra",
         subcategoria: "Error código Devolución Router",
         pipeline: "Fibra",
         estadoTicket: "Abierto",
-        correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
+        correoPlantilla: "",
         nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Devolución router  
-BREVE DESCRIPCIÓN: {horario}, cliente ha enviado un equipo distinto al router. Se requiere verificar el equipo recibido y coordinar la devolución o el cambio correspondiente.  
-TELÉFONO DE CONTACTO: {contacto}  
+{incidenciaSeleccionada}TELÉFONO DE CONTACTO: {contacto}  
 DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
 `,
-        src: ""
-    },
-    {
-        motivo: "'Información dispositivos fibra' está vacío el código de devolución del router y no aparece como entregado",
-        categoria: "Fibra",
-        subcategoria: "Error código Devolución Router",
-        pipeline: "Fibra",
-        estadoTicket: "Abierto",
-        correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Devolución router  
-BREVE DESCRIPCIÓN: {horario}, en la información de dispositivos de fibra del cliente, el campo del código de devolución del router está vacío y el estado de entrega no aparece registrado. Se requiere investigar y actualizar la información.  
-TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
-`,
-        src: ""
-    },
-    {
-        motivo: "Correos le indica que el código de devolución del router da error o ya está utilizado",
-        categoria: "Fibra",
-        subcategoria: "Error código Devolución Router",
-        pipeline: "Fibra",
-        estadoTicket: "Abierto",
-        correoPlantilla: "Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.",
-        nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Código de devolución router  
-BREVE DESCRIPCIÓN: {horario}, cliente presenta inconvenientes con el código de devolución. Se solicita verificar y corregir la información.  
-TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
-`,
-        src: ""
-    },
-    {
-        motivo: "No puede entregar el router por fuerza mayor (casa quemada, derrumbada, orden de alejamiento…)",
-        categoria: "Fibra",
-        subcategoria: "Error código Devolución Router",
-        pipeline: "Fibra",
-        estadoTicket: "Abierto/ Pendiente de cliente",
-        correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del certificado que acredite la imposibilidad de entrega debido a fuerza mayor.  
-<br>En caso contrario, responda este correo indicando que no le es posible facilitar dicho documento.`,
-        nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Devolución router  
-BREVE DESCRIPCIÓN: {horario}, cliente informa que no puede entregar el router debido a un incidente de fuerza mayor. Se solicita evaluar esta situación y determinar los pasos a seguir, considerando la imposibilidad del cliente de cumplir con la devolución.  
-TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
-`,
-        src: ""
-    },
-    {
-        motivo: "Quiere devolver router desde el extranjero",
-        categoria: "Fibra",
-        subcategoria: "Error código Devolución Router",
-        pipeline: "Fibra",
-        estadoTicket: "Abierto",
-        correoPlantilla: `Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`,
-        nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Devolución router desde el extranjero  
-BREVE DESCRIPCIÓN: {horario}, cliente actualmente ubicado en {país} solicita la devolución del router. Se abre caso para evaluar opciones de devolución internacional.  
-TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
-`,
-        src: ""
-    },
-    {
-        motivo: "Le siguen llegando SMS, pero ya ha entregado el router en Correos",
-        categoria: "Fibra",
-        subcategoria: "Error código Devolución Router",
-        pipeline: "Fibra",
-        estadoTicket: "Pendiente de cliente",
-        correoPlantilla: `A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del justificante de entrega emitido por Correos.`,
-        nota: `**CLIENTE:** **{cliente}** - **{dni}**  
-SOLICITUD: Devolución router  
+        src: "",
+        cambioDatos: {
+            "Seleccionar incidencia": ['', ''],
+            
+            "Entregó el router en correos y siguen llegando SMS de devolución": [
+`SOLICITUD: Devolución router  
 BREVE DESCRIPCIÓN: {horario}, cliente reporta seguir recibiendo SMS, a pesar de haber entregado el router en Correos. Se ha solicitado justificante de entrega emitido por Correos.  
-TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} - {fin} horas  
-`,
-        src: ""
+`, 
+            
+`A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del justificante de entrega emitido por Correos.`
+],
+
+
+            "Código de devolución del router da error o ya está utilizado": [
+`SOLICITUD: Código de devolución router  
+BREVE DESCRIPCIÓN: {horario}, cliente presenta inconvenientes con el código de devolución. Se solicita verificar y corregir la información.  
+`, 
+
+`Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`
+],
+
+            "Envió algo que no es el router": [
+`SOLICITUD: Devolución router  
+BREVE DESCRIPCIÓN: {horario}, cliente ha enviado un equipo distinto al router. Se requiere verificar el equipo recibido y coordinar la devolución o el cambio correspondiente.  
+`, 
+                
+`Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`
+],
+            "Código de devolución del router vacío y no aparece entregado": [
+`SOLICITUD: Devolución router  
+BREVE DESCRIPCIÓN: {horario}, en la información de dispositivos de fibra del cliente, el campo del código de devolución del router está vacío y el estado de entrega no aparece registrado. Se requiere investigar y actualizar la información.  
+`, 
+
+`Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`
+],
+
+            "No puede entregar el router por fuerza mayor": [
+`SOLICITUD: Devolución router  
+BREVE DESCRIPCIÓN: {horario}, cliente informa que no puede entregar el router debido a un incidente de fuerza mayor. Se solicita evaluar esta situación y determinar los pasos a seguir, considerando la imposibilidad del cliente de cumplir con la devolución.  
+`, 
+
+`A fin de dar trámite a su solicitud, es necesario que responda este correo adjuntando una copia del certificado que acredite la imposibilidad de entrega debido a fuerza mayor.  
+<br>En caso contrario, responda este correo indicando que no le es posible facilitar dicho documento.`,
+
+`Observaciones:
+- Fuerza mayor: Incluye incidencias graves como incendio, derrumbe o una orden de alejamiento, entre otras.  `
+],
+            "Devolver router desde el extranjero": [
+`SOLICITUD: Devolución router desde el extranjero  
+BREVE DESCRIPCIÓN: {horario}, cliente actualmente ubicado en {país} solicita la devolución del router. Se abre caso para evaluar opciones de devolución internacional.  
+`, 
+
+`Le informamos que su solicitud de devolución del router por baja del servicio se encuentra en proceso.`
+],
+
+        }
     },
+
     {
         motivo: "Técnico falta a cita",
         categoria: "Fibra",
