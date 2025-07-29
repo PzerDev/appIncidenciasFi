@@ -552,6 +552,18 @@ function DatosContacto({ ticket }) {
 
     horaContacto = 0; // quita hora de la información de contacto
 
+  } else if (ticket.motivo === 'Activar los servicios premium (solo si no puede hacerlo a través de la APP/WEB)') {
+    valorDeCambio('Teléfono para activación de servicio PREMIUM');
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Recuperación de línea móvil tras baja') {
+    valorDeCambio('Número a recuperar');
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Aumento de límite de riesgo (más de 50€)') {
+    valorDeCambio('Teléfono para aumento de riesgo');
+    horaContacto = 0; // quita hora de la información de contacto
+
   } else if (ticket.motivo === 'Cambio de IBAN con distinto titular al del servicio') {
     valorDeCambio('Nuevo IBAN');
     horaContacto = 0; // quita hora de la información de contacto
@@ -612,10 +624,10 @@ function DatosContacto({ ticket }) {
   } else if (ticket.motivo === 'Técnico falta a cita') {
 
     let observa = `Consideraciones:
-- Considerar que esté fuera de la franja horaria
-- Estado de excepción (EE)
-- Llamada en Hubspot del mismo día con tipificación Mobility y comentario de nuestros compañeros
-- Asegurar con el cliente que el técnico NO le ha llamado`
+- Considerar que esté fuera de la franja horaria acordada para la instalación  
+- Verificar si ha entrado en estado de excepción (EE)  
+- Revisar que no exista una llamada en Hubspot del mismo día con tipificación "DEPT Fibra - Encolado Técnico" con comentario de nuestros compañeros
+- Asegurar con el cliente que el técnico NO le ha llamado  `
 
     datosAdicionales = (
       <>
