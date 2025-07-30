@@ -465,7 +465,7 @@ function DatosContacto({ ticket }) {
     
   } else if (ticket.motivo === 'Móvil - Incidencia datos' || ticket.motivo === 'Móvil - Incidencia voz' ||
              ticket.motivo === 'Móvil - Incidencia sin servicio' || ticket.motivo === 'Móvil - Problemas de cobertura' ||
-             ticket.motivo === 'Incidencia portabilidad'
+             ticket.motivo === 'Incidencia portabilidad' || ticket.motivo === 'Devolución router'
      ) {
     // acometidaFuncion();
     let listaIncidenciaCambioDatos = Object.keys(ticket.cambioDatos);
@@ -484,7 +484,7 @@ function DatosContacto({ ticket }) {
               </option>
             ))}
           </select>
-          <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Número afectado" />
+          <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder={ticket.motivo === 'Devolución router' ? "External ID de la fibra" : "Número afectado"} />
           <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
         </div>
 
@@ -496,7 +496,7 @@ function DatosContacto({ ticket }) {
 
     horaContacto = 0; // quita hora de la información de contacto
 
-  } else if (ticket.motivo === 'Impuesto incorrecto en factura' || ticket.motivo === 'Solicitud de certificados' || ticket.motivo === 'Devolución router') {
+  } else if (ticket.motivo === 'Impuesto incorrecto en factura' || ticket.motivo === 'Solicitud de certificados') {
 
     let listaIncidenciaCambioDatos = Object.keys(ticket.cambioDatos);
 
@@ -552,24 +552,41 @@ function DatosContacto({ ticket }) {
 
     horaContacto = 0; // quita hora de la información de contacto
 
-  } else if (ticket.motivo === 'Activar los servicios premium (solo si no puede hacerlo a través de la APP/WEB)') {
-    valorDeCambio('Teléfono para activación de servicio PREMIUM');
+  } else if (ticket.motivo === 'Activar los servicios premium (solo si no puede hacerlo a través de la APP/WEB)'
+          || ticket.motivo === 'SIM swapping (duplicados fraudulentos)'
+          || ticket.motivo === 'Aumento de límite de riesgo (más de 50€)'
+          || ticket.motivo === 'Incidencias relacionadas con Roaming'
+          || ticket.motivo === 'Incidencia Promociones - Problema con alguna de las promociones activas (no se han aplicado los GB pertenecientes a la promoción...)'
+          || ticket.motivo === 'Cancelación de algún servicio (móvil o fijo) que no se pueda cancelar en llamada. Ej.: Líneas nuevas en procesando activación, errores al cancelar, líneas nuevas fijas, etc'
+          || ticket.motivo === 'Recuperación de línea móvil tras baja'
+  ) {
+    valorDeCambio('Número de teléfono a reportar');
     horaContacto = 0; // quita hora de la información de contacto
 
-  } else if (ticket.motivo === 'Recuperación de línea móvil tras baja') {
-    valorDeCambio('Número a recuperar');
+  } else if (ticket.motivo === 'Cancelación de instalación del servicio de fibra y no figura en el sistema la opción para cancelarlo o da error'
+          || ticket.motivo === 'Reactivación INMEDIATA de fibra suspendida temporalmente.'
+          || ticket.motivo === 'Cuando el cliente quiera reprogramar y la fecha de instalación haya PASADO, porque en la anterior cita por cualquier motivo no se haya podido instalar.'
+          || ticket.motivo === 'Cuando no se pueda seleccionar la misma cita tras añadir el teléfono alternativo y no se pueda contactar con la Cola Enlaces'
+          || ticket.motivo === 'Error cita. Cuando se produzca algún error al asignar la cita en el sistema'
+          || ticket.motivo === 'Técnico falta a cita'
+          || ticket.motivo === 'Contratación TESA creada hace más de 15 días y no se han puesto en contacto para la instalación de la fibra'
+          || ticket.motivo === 'Devolución router (fibra Onivia y Propia) porque no ha recibido instrucciones'
+          || ticket.motivo === 'IP Fija (Solo para Onivia y Fibra propia)'
+          || ticket.motivo === 'Si en acometida Tesa aparece el reloj para dar cita de fibra.'
+  ) {
+    valorDeCambio('External ID de la fibra a reportar');
     horaContacto = 0; // quita hora de la información de contacto
 
-  } else if (ticket.motivo === 'Aumento de límite de riesgo (más de 50€)') {
-    valorDeCambio('Teléfono para aumento de riesgo');
+  } else if (ticket.motivo === 'Uso fraudulento de cuenta bancaria - Se están haciendo cargos no autorizados en la cuenta bancaria') {
+    valorDeCambio('Nombre completo - documento (de supuesta persona que está usando el IBAN)');
+    horaContacto = 0; // quita hora de la información de contacto
+
+  } else if (ticket.motivo === 'Incidencia Promociones - No recibió credenciales de acceso a Elige TV (posible error en correo)') {
+    valorDeCambio('Correo a reportar');
     horaContacto = 0; // quita hora de la información de contacto
 
   } else if (ticket.motivo === 'Cambio de IBAN con distinto titular al del servicio') {
     valorDeCambio('Nuevo IBAN');
-    horaContacto = 0; // quita hora de la información de contacto
-
-  } else if (ticket.motivo === 'SIM swapping (duplicados fraudulentos)') {
-    valorDeCambio('Teléfono afectado');
     horaContacto = 0; // quita hora de la información de contacto
 
   } else if (ticket.motivo === 'Modificar dirección de envío de SIM' ||
