@@ -1607,7 +1607,7 @@ DISPONIBILIDAD HORARIA: {inicio} a {fin} horas  `,
         correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)  
 <br>Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
         nota: `**CLIENTE:** **{cliente}** - **{dni}**   
-SERVICIO AFECTADO: {afectado}  
+SERVICIO: {afectado}  
 MOTIVO DE REEMPLAZO: {incidencia}  
 BREVE DESCRIPCIÓN: {incidenciaSeleccionada}  
 DIRECCIÓN DE ENVÍO: {nuevaDireccion}  
@@ -1626,30 +1626,46 @@ DISPONIBILIDAD HORARIA: {inicio} a {fin} horas
         }
     },
     {
-        motivo: "Duplicado, reemplazo SIM - ROBO, AVERÍA, PÉRDIDA (TPV)",
+        motivo: "Duplicado, reemplazo SIM",
         categoria: "Tarjeta",
         subcategoria: "Duplicado SIM",
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
-        correoPlantilla: `Plantilla: Reemplazo SIM - Dirección/E-mail plataforma (Datos coinciden con los de su ficha)  
-<br>Plantilla: Dirección/E-mail distinto (Datos no coinciden con los de su ficha)`,
+        correoPlantilla: `Plantillas: 
+
+En los casos que sean direccón/email distintos abrir a soporte pendiente de cliente
+Plantilla: Dirección/E-mail distinto
+
+En los otros casos abrir a envíos en abierto
+Plantilla: Reemplazo SIM - Dirección/E-mail plataforma 
+`,
         nota: `**CLIENTE:** **{cliente}** - **{dni}**   
-SERVICIO AFECTADO: {afectado}  
+MSISDN AFECTADO: {afectado} 
+SITUACIÓN: {situacion}  
 MOTIVO DE REEMPLAZO: {incidencia}  
-BREVE DESCRIPCIÓN: {incidenciaSeleccionada}  
+BREVE DESCRIPCIÓN: {horario}, cliente reporta reemplazo SIM. Se abre caso para que lo puedan gestionar.  
 DIRECCIÓN DE ENVÍO: {nuevaDireccion}  
 TELÉFONO DE CONTACTO: {contacto}  
-DISPONIBILIDAD HORARIA: {inicio} a {fin} horas  
 `,
         src: "",
         observaciones: `Observación:
 - En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
+        situacion: {
+            "Seleccionar situación": '',
+            "Sin cambios en los datos": '{horario}, cliente reporta que la tarjeta SIM está dañada o no funciona correctamente. Se abre caso para que lo puedan gestionar.',
+            "Sin cambios en los datos y se requiere denuncia": '{horario}, cliente solicita reemplazo de su tarjeta SIM por robo. Se abre caso para que puedan dar solución.',
+            "El correo electrónico es distinto": '{horario}, cliente solicita reemplazo de tarjeta SIM por rotura. Se abre caso para que puedan dar solución.',
+            "El correo electrónico es distinto y se requiere denuncia": '',
+            "La dirección es distinta": '{horario}, cliente reportó la pérdida de su tarjeta SIM, solicita reemplazo de la misma. Se abre caso para que puedan dar solución.',
+            "La dirección es distinta y se requiere denuncia": ''
+        },
         sim: {
             "Motivo de reemplazo": '',
-            "Avería": '{horario}, cliente reporta que la tarjeta SIM está dañada o no funciona correctamente. Se abre caso para que lo puedan gestionar.',
-            "Robo": '{horario}, cliente solicita reemplazo de su tarjeta SIM por robo. Se abre caso para que puedan dar solución.',
-            "Rotura": '{horario}, cliente solicita reemplazo de tarjeta SIM por rotura. Se abre caso para que puedan dar solución.',
-            "Pérdida": '{horario}, cliente reportó la pérdida de su tarjeta SIM, solicita reemplazo de la misma. Se abre caso para que puedan dar solución.'
+            "Robo": '',
+            "Avería": '',
+            "Pérdida": '',
+            "Rotura": '',
+            "No ha recibido la SIM": ''
         }
     },
     {

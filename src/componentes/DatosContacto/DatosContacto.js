@@ -117,6 +117,8 @@ function DatosContacto({ ticket }) {
 
   //Estados y eventos incidencias voz
   const [incidencia, setIncidencia] = useState('Seleccionar incidencia');
+  const [situacionSIM, setSituacionSIM] = useState('Seleccionar situación');
+  
   const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
   const [afectado, setAfectado] = useState('');
 
@@ -196,10 +198,15 @@ function DatosContacto({ ticket }) {
 
   const handleSelectSIMChange = (event) => {
     setIncidencia(event.target.value);
-    setIncidenciaSeleccionada(ticket.sim[event.target.value]);
     setObservaciones(ticket.observaciones);
     // setCorreo(ticket.amazon[event.target.value][1]);
     // correoEdit = ticket.amazon[event.target.value][1];
+  };
+
+  const handleSelectSituacionSIMChange = (event) => {
+    setSituacionSIM(event.target.value);
+    setIncidenciaSeleccionada(ticket.situacion[event.target.value]);
+
   };
 
 
@@ -276,6 +283,7 @@ function DatosContacto({ ticket }) {
       .replace("{horario}", horario)
       .replace("{nuevaDireccion}", nuevaDireccion)
       .replace("{cambioDatos}", nuevaDireccion)
+      .replace("{situacion}", situacionSIM)
 
     if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
       ticket.motivo === 'Móvil - Incidencia voz' || ticket.motivo === 'Móvil - Incidencia datos' ||
@@ -610,15 +618,21 @@ function DatosContacto({ ticket }) {
 
   } else if (ticket.subcategoria === 'Duplicado SIM') {
     let listaReemplazoSIM = Object.keys(ticket.sim);
-    const regexRoboPerdida = /pérdida|robo/i;
+    const regexRoboPerdida = /pérdida|robo/i; //Esto se usa para añadir un contenedor que muestre una observación
+
+    let listaSituacionReemplazoSIM = Object.keys(ticket.situacion);
 
     datosAdicionales = (
       <>
         <div className='contenedor-afectado-sim'>
-          <div className='contenedor-input-datos-cliente'>
-            <input type="text" value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Servicio afectado" />
-          </div>
-          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectSIMChange}>
+          <select className='tecnologia-router incidencia-voz' value={situacionSIM} onChange={handleSelectSituacionSIMChange}>
+            {listaSituacionReemplazoSIM.map((sitReempl) => (
+              <option key={sitReempl} value={sitReempl}>
+                {sitReempl}
+              </option>
+            ))}
+          </select>
+          <select className='tecnologia-router incidencia-voz reduccion' value={incidencia} onChange={handleSelectSIMChange}>
             {listaReemplazoSIM.map((reempl) => (
               <option key={reempl} value={reempl}>
                 {reempl}
@@ -627,6 +641,7 @@ function DatosContacto({ ticket }) {
           </select>
         </div>
         <div className='contenedor-input-datos-cliente'>
+          <input type="text" className='reduccion' value={afectado} onChange={(e) => setAfectado(e.target.value)} placeholder="Servicio afectado" />
           <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder="Dirección de envío" />
         </div>
 

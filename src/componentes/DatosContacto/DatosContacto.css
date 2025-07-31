@@ -119,7 +119,10 @@
 .contenedor-afectado-sim {
     display: flex;
 }
-
+.contenedor-afectado-sim .reduccion,
+.contenedor-input-datos-cliente .reduccion {
+    width: 40%;
+}
 .contenedor-afectado-sim div {
     width: 58%;
 }
