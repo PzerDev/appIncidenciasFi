@@ -112,12 +112,15 @@
 }
 
 .tecnologia-router.incidencia-voz {
-    width: 100%;
+    width: 100%;    
+}
+.tecnologia-router.incidencia-voz:first-child {
     margin-left: 20px;
 }
 
 .contenedor-afectado-sim {
     display: flex;
+    gap: 10px;
 }
 .contenedor-afectado-sim .reduccion,
 .contenedor-input-datos-cliente .reduccion {

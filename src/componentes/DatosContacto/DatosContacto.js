@@ -118,6 +118,8 @@ function DatosContacto({ ticket }) {
   //Estados y eventos incidencias voz
   const [incidencia, setIncidencia] = useState('Seleccionar incidencia');
   const [situacionSIM, setSituacionSIM] = useState('Seleccionar situación');
+  const [ultimoReemplazo, setUltimoReemplazo] = useState('Último reemplazo');
+  
   
   const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState('Pasos a seguir según incidencia')
   const [afectado, setAfectado] = useState('');
@@ -164,14 +166,18 @@ function DatosContacto({ ticket }) {
 
   };
 
+  function estadoTicketChange (valorCambio, pipelineCambio) {
+    let estadoTicketContenedor = document.querySelector('#estadoTicket');
+    estadoTicketContenedor.value = valorCambio;
+
+    let estadoPipelineContenedor = document.querySelector('#pipeline');
+    estadoPipelineContenedor.value = pipelineCambio;
+  }
+
   const handleSelectVozChange = (event) => {
 
     let valorIncidencia = event.target.value
 
-    function estadoTicketChange (valorCambio) {
-      let estadoTicketContenedor = document.querySelector('#estadoTicket');
-      estadoTicketContenedor.value = valorCambio;
-    }
     setIncidencia(valorIncidencia);
     setIncidenciaSeleccionada(ticket.cambioDatos[valorIncidencia][0]);
     setCorreo(ticket.cambioDatos[valorIncidencia][1]);
@@ -182,9 +188,16 @@ function DatosContacto({ ticket }) {
     setObservaciones(ticket.cambioDatos[valorIncidencia][2]);
 
     // Casos que requieren el cambio del estado del Ticket
-    if (valorIncidencia === "Cliente tiene fibra activa en ubicación del impuesto" ||
-        valorIncidencia === "AREC RECH_NORES / Demás rechazos") {
+    if (valorIncidencia === "Cliente tiene fibra activa en ubicación del impuesto") {
       estadoTicketChange('Abierto');
+    } else if (ticket.subcategoria === 'Cambio de impuesto') {
+      estadoTicketChange('Pendiente de cliente');
+    }
+
+    if (valorIncidencia === "AREC RECH_NORES / Demás rechazos") {
+      estadoTicketChange('Abierto');
+    } else if (ticket.subcategoria === 'Incidencia portabilidad') {
+      estadoTicketChange('Pendiente de cliente');
     }
 
   };
@@ -196,18 +209,7 @@ function DatosContacto({ ticket }) {
     // correoEdit = ticket.amazon[event.target.value][1];
   };
 
-  const handleSelectSIMChange = (event) => {
-    setIncidencia(event.target.value);
-    setObservaciones(ticket.observaciones);
-    // setCorreo(ticket.amazon[event.target.value][1]);
-    // correoEdit = ticket.amazon[event.target.value][1];
-  };
 
-  const handleSelectSituacionSIMChange = (event) => {
-    setSituacionSIM(event.target.value);
-    setIncidenciaSeleccionada(ticket.situacion[event.target.value]);
-
-  };
 
 
   //Lista de varibales a actualizar<
@@ -262,6 +264,39 @@ function DatosContacto({ ticket }) {
   let correoEdit = "";
 
 
+    const handleSelectSIMChange = (event) => {
+    setIncidencia(event.target.value);
+    setObservaciones(ticket.observaciones);
+    // setCorreo(ticket.amazon[event.target.value][1]);
+    // correoEdit = ticket.amazon[event.target.value][1];
+  };
+
+  const handleSelectSituacionSIMChange = (event) => {
+    let situacion = event.target.value;
+    setSituacionSIM(situacion);
+    setIncidenciaSeleccionada(ticket.situacion[situacion]);
+
+    if (situacion === "Sin cambios en los datos y se requiere denuncia" ||
+        situacion === "El correo electrónico es distinto y se requiere denuncia" ||
+        situacion === "La dirección es distinta" ||
+        situacion === "El correo electrónico es distinto" ||
+        situacion === "La dirección es distinta y se requiere denuncia"
+     ) {
+      estadoTicketChange('Pendiente de cliente', 'Soporte');
+    } else if (ticket.subcategoria === 'Duplicado SIM') {
+      estadoTicketChange('Abierto', 'Envios');
+    }
+
+    // correoEdit = correo.replace("{plantillaCorreoSIM}", ticket.situacion[situacion])
+
+  };
+
+  const handleUltimoReemplazoChange = (event) => {
+    let ultimoReemplazoSIM = event.target.value;
+    setUltimoReemplazo(ultimoReemplazoSIM);
+  }
+
+
 
   if (ticket.nota) {
 
@@ -284,13 +319,15 @@ function DatosContacto({ ticket }) {
       .replace("{nuevaDireccion}", nuevaDireccion)
       .replace("{cambioDatos}", nuevaDireccion)
       .replace("{situacion}", situacionSIM)
+      .replace("{reemplazo}", ultimoReemplazo)
+
 
     if (ticket.motivo === 'Avería / Incidencia Fibra - General' ||
       ticket.motivo === 'Móvil - Incidencia voz' || ticket.motivo === 'Móvil - Incidencia datos' ||
       ticket.motivo === 'Móvil - Incidencia sin servicio' || ticket.motivo === 'Móvil - Problemas de cobertura' ||
       ticket.motivo === 'Incidencia portabilidad' || ticket.motivo === 'Impuesto incorrecto en factura' ||
       ticket.motivo === 'Solicitud de certificados' || ticket.motivo === 'Devolución router' || 
-      ticket.motivo === 'Incidencia Promociones - Amazon Prime') {
+      ticket.motivo === 'Incidencia Promociones - Amazon Prime' || ticket.motivo === 'Duplicado, reemplazo SIM') {
 
       if (incidencia === 'ONT Alarmada') {
 
@@ -303,7 +340,9 @@ function DatosContacto({ ticket }) {
         correoEdit = correo.replace("{afectado}", afectado)
       } else if (ticket.motivo === 'Solicitud de certificados') {
         correoEdit = correo.replace("{incidencia}", incidencia)
-      } else {
+      } else if (ticket.motivo === 'Duplicado, reemplazo SIM') {
+        correoEdit = ticket.correoPlantilla.replace("{plantillaCorreoSIM}", incidenciaSeleccionada)
+      }else {
         correoEdit = correo;
       }
 
@@ -617,25 +656,43 @@ function DatosContacto({ ticket }) {
     horaContacto = 0; // quita hora de la información de contacto
 
   } else if (ticket.subcategoria === 'Duplicado SIM') {
-    let listaReemplazoSIM = Object.keys(ticket.sim);
+    let listaReemplazoSIM = Object.values(ticket.sim);
     const regexRoboPerdida = /pérdida|robo/i; //Esto se usa para añadir un contenedor que muestre una observación
 
     let listaSituacionReemplazoSIM = Object.keys(ticket.situacion);
+    let listaUltimoReemplazo = Object.values(ticket.reemplazo);
+
 
     datosAdicionales = (
       <>
         <div className='contenedor-afectado-sim'>
-          <select className='tecnologia-router incidencia-voz' value={situacionSIM} onChange={handleSelectSituacionSIMChange}>
-            {listaSituacionReemplazoSIM.map((sitReempl) => (
-              <option key={sitReempl} value={sitReempl}>
-                {sitReempl}
-              </option>
-            ))}
-          </select>
-          <select className='tecnologia-router incidencia-voz reduccion' value={incidencia} onChange={handleSelectSIMChange}>
+          <select className='tecnologia-router incidencia-voz' value={incidencia} onChange={handleSelectSIMChange}>
             {listaReemplazoSIM.map((reempl) => (
               <option key={reempl} value={reempl}>
                 {reempl}
+              </option>
+            ))}
+          </select>
+          <select className='tecnologia-router incidencia-voz' value={situacionSIM} onChange={handleSelectSituacionSIMChange}>
+                {listaSituacionReemplazoSIM.map((sitReempl) => {
+                  // Si la incidencia NO es 'Robo' Y el sitReempl CONTIENE la palabra 'denuncia',
+                  // entonces NO renderices esta opción (omítela).
+                  if (incidencia !== 'Robo' && sitReempl.includes('denuncia')) {
+                    return null; // No renderiza nada para esta opción
+                  }
+                  // En cualquier otro caso
+                  // renderiza la opción normalmente.
+                  return (
+                    <option key={sitReempl} value={sitReempl}>
+                      {sitReempl}
+                    </option>
+                  );
+                })}
+          </select>
+          <select className='tecnologia-router incidencia-voz' value={ultimoReemplazo} onChange={handleUltimoReemplazoChange}>
+            {listaUltimoReemplazo.map((ultReempl) => (
+              <option key={ultReempl} value={ultReempl}>
+                {ultReempl}
               </option>
             ))}
           </select>
