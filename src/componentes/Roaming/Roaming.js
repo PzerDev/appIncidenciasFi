@@ -110,11 +110,7 @@ function Roaming() {
         setUnidadConsumo(llamadasOutZona.unidad);
     
         // Asignar observaciones si las zonas coinciden con el criterio
-        setObservaciones(
-          zonaPaisDestino.nZona === 'zona1' && zonaPais.nZona === 'zona1'
-            ? llamadasOutZona.observaciones
-            : 'No'
-        );
+        setObservaciones(llamadasOutZona.observaciones);
        } 
 
   } else if (tipoConsumo === 'Mensajes' && zonaPais.nZona && RoamingDatos["Llamadas, SMS"]?.[zonaPais.nZona]) {

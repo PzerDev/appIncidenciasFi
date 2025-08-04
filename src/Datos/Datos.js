@@ -1323,6 +1323,93 @@ Tu colaboración nos permitirá identificar la causa del problema de manera más
 ]
         }
     },
+
+    {
+        motivo: "Fijo - Incidencia",
+        categoria: "Servicios",
+        subcategoria: "Fijo - Incidencia servicio",
+        pipeline: "Soporte",
+        estadoTicket: "Pendiente de cliente",
+        correoPlantilla: ``,
+        nota: `CLIENTE: **{cliente}** - **{dni}**   
+SERVICIO: **{afectado}**  
+SOLICITUD: Incidencia fijo  
+TELÉFONO DE CONTACTO: {contacto}  
+DISPONIBILIDAD HORARIA: {inicio} a {fin} horas  
+{incidenciaSeleccionada}  
+`,
+        src: "",
+        cambioDatos: {
+            "Seleccionar incidencia": ['', ''],
+            
+             "No emite, no recibe o ambos": [
+`<br><u>**COMPROBACIONES:**</u> 
+- Línea activa  
+- El número móvil asociado a la línea fija está operativo / {especificarQueOcurre}  
+- Problema presentado desde, {especificarFecha}  
+- [Se ha verificado que el operador actual es:](https://numeracionyoperadores.cnmc.es/portabilidad/fija)  
+    - VODAFONE ONO  
+    - XTRA TELECOM S.A  
+    - VODAFONE ESPAÑA S.A.U  
+    - COLT TECHNOLOGY SERVICES SA UNIPERSONAL  
+    - SINEASEN S.L  
+
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
+- Búsqueda manual de redes (- horas)  
+- Prueba cruzada  
+    - Fecha/Hora:  
+    - Modelo de terminal:  
+    - Resultado de la prueba:  
+
+Llamadas salientes:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora} (resultado)  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora} (resultado)    
+
+Llamadas entrantes:  
+  &nbsp;&nbsp;&nbsp;- {numero1} {fecha/hora}  
+  &nbsp;&nbsp;&nbsp;- {numero2} {fecha/hora}  
+
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`
+],
+
+             "Terminal (Telefunken/ADOC S4)": [
+`<br><u>**COMPROBACIONES:**</u> 
+- El cliente experimenta problemas de audio: no escucha a la otra parte de la llamada  
+- Modelo terminal: Telefunken / ADOC S4
+- Problema presentado desde, {especificarFecha}  
+
+<br>**<u>PRUEBAS REALIZADAS:</u>**  
+- Prueba cruzada  
+    - Fecha/Hora:  
+    - Modelo de terminal:  
+    - Resultado de la prueba:  
+
+<br>***Se solicita prueba cruzada de tarjeta SIM al cliente.***`, 
+
+
+`Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`,
+
+`El estado 'pendiente de cliente' aplica únicamente si se requiere una prueba cruzada. En caso de que dicha prueba se complete durante la misma llamada, el estado se debe cambiar a abierto`
+]
+        }
+    },
+
+
     {
         motivo: "Incidencias relacionadas con Roaming",
         categoria: "Servicios",
@@ -1631,22 +1718,20 @@ DISPONIBILIDAD HORARIA: {inicio} a {fin} horas  `,
         subcategoria: "Duplicado SIM",
         pipeline: "Soporte",
         estadoTicket: "Pendiente de cliente",
-        correoPlantilla: `Plantilla: 
-
-{plantillaCorreoSIM}
+        correoPlantilla: `{plantillaCorreoSIM}
 `,
         nota: `CLIENTE: **{cliente}** - **{dni}**   
 MSISDN AFECTADO: **{afectado}**  
 SITUACIÓN: {situacion}  
 MOTIVO DE REEMPLAZO: {incidencia}  
 ÚLTIMO REEMPLAZO: {reemplazo}  
-BREVE DESCRIPCIÓN: {horario}, cliente solicita reemplazo SIM. Se abre caso para que lo puedan gestionar.  
+BREVE DESCRIPCIÓN: {horario}, el cliente solicita un reemplazo de tarjeta SIM. Se ha abierto un caso para su gestión. 
 DIRECCIÓN DE ENVÍO: {nuevaDireccion}  
 TELÉFONO DE CONTACTO: {contacto}  
 `,
         src: "",
-        observaciones: `Observación:
-- En caso de solicitar duplicado por Robo o Pérdida podemos suspender la línea afectada por seguridad.`,
+        observaciones: `Observaciones:
+{observacionReemplazo}`,
         situacion: {
             "Seleccionar situación": '',
             "Sin cambios en los datos": 'Reemplazo SIM - Dirección/E-mail plataforma',
@@ -1654,10 +1739,57 @@ TELÉFONO DE CONTACTO: {contacto}
             "El correo electrónico es distinto": 'Reemplazo SIM - Dirección/E-mail distinto',
             "El correo electrónico es distinto y se requiere denuncia": 'Reemplazo SIM - Dirección/E-mail distinto + Solicitud denuncia',
             "La dirección es distinta": 'Reemplazo SIM - Dirección/E-mail distinto',
-            "La dirección es distinta y se requiere denuncia": 'Reemplazo SIM - Dirección/E-mail distinto + Solicitud denuncia'
+            "La dirección es distinta y se requiere denuncia": 'Reemplazo SIM - Dirección/E-mail distinto + Solicitud denuncia',
+            "Se ha solicitado prueba cruzada": `Con el fin de resolver tu solicitud, es necesario descartar cualquier posible falla en la tarjeta SIM, te solicitamos realizar una prueba cruzando la SIM en otro dispositivo.  
+<br>Tras la realización de la prueba, te agradeceremos puedas responder este correo informando lo siguiente:  
+- Fecha y hora en que se realizó la prueba
+- Marca y modelo del dispositivo utilizado
+- Resultado de la prueba (si el problema persiste o no)
+
+Tu colaboración nos permitirá identificar la causa del problema de manera más eficiente.`        
         },
-        sim: ["Motivo de reemplazo", "Robo", "Avería", "Pérdida", "Rotura", "No ha recibido la SIM"],
-        reemplazo: ['Último reemplazo', 'Hace más de un año', 'Hace menos de un año', 'No ha solicitado']
+        sim: {
+            "Motivo de reemplazo": '', 
+            "Robo": `- Podemos suspender la línea afectada por seguridad.
+- El reemplazo de la tarjeta SIM es gratuito`, 
+            "Avería": '- El reemplazo de la tarjeta SIM es gratuito',
+            "Pérdida": `- Podemos suspender la línea afectada por seguridad.
+- El reemplazo de la tarjeta SIM es gratuito`,
+            "Rotura": '- El reemplazo de la tarjeta SIM es gratuito', 
+            "Servicio activo sin recepción de SIM": `- El reemplazo de la tarjeta SIM es gratuito
+- Contactar con distribuidor para verificar lo ocurrido
+- Confirmar si el distribuidor puede proporcionar la SIM
+- En caso de que el distribuidor no pueda enviar la SIM, enviar al cliente a tienda fisica
+- En caso de que no puedan proporcionar la SIM, abrir caso a Envíos explicando lo ocurrido y añadiendo:
+    + NOMBRE DE TIENDA/DISTRIBUIDOR:`
+        },
+        reemplazo: {
+            'Último reemplazo': '', 
+            'Hace más de un año': '', 
+            'Hace menos de un año': {
+                    "Robo": `- Podemos suspender la línea afectada por seguridad.
+- El reemplazo de SIM será gratuito siempre que se aporte la denuncia. De lo contrario, se enviará un SMS y un correo electrónico (desde Soporte) con el enlace para realizar el pago`, 
+                    "Avería": `- El reemplazo de la SIM es gratuito siempre que se verifique que la tarjeta está defectuosa.
+
+- Realizar una prueba cruzada de la tarjeta SIM:
+    + Verificar si la tarjeta SIM no solicita PIN o no funciona en otro terminal.
+    + Alternativamente, probar otra tarjeta SIM en el terminal del cliente para confirmar su correcto funcionamiento.
+
+- Si el cliente tiene dificultades para realizar la prueba cruzada durante la llamada, agendar una llamada saliente y mantener el caso pendiente de la confirmación de la avería de la tarjeta SIM.
+`,
+                    "Pérdida": `- Podemos suspender la línea afectada por seguridad.  
+- El cliente debe abonar este reemplazo.  
+- Se le enviará un SMS y un correo electrónico (desde soporte) con el enlace de pago.`,
+                    "Rotura": `- El cliente debe abonar este reemplazo. Se le enviará un SMS y un correo electrónico (desde soporte) con el enlace de pago.`, 
+                    "Servicio activo sin recepción de SIM": `- El reemplazo de la tarjeta SIM es gratuito
+- Contactar con distribuidor para verificar lo ocurrido
+- Confirmar si el distribuidor puede proporcionar la SIM
+- En caso de que el distribuidor no pueda enviar la SIM, enviar al cliente a tienda fisica
+- En caso de que no puedan proporcionar la SIM, abrir caso a Envíos explicando lo ocurrido y añadiendo:
+    + NOMBRE DE TIENDA/DISTRIBUIDOR:`
+            }, 
+            'No ha solicitado': ''
+        }
     },
     {
         motivo: "Para problemas con pagos duplicados, recibos devueltos",
