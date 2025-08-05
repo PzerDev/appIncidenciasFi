@@ -131,7 +131,6 @@ function AppFibra() {
     acciones: `- **${diaSelect}/${mesSelect}** - Creación de ticket
 - **${diaSelect}/${mesSelect}** -   `,
     accionesAdicionalesSac: `- **${diaSelect}/${mesSelect}** - Creación de ticket
-- **${diaSelect}/${mesSelect}** - Aplicación de bono
 - **${diaSelect}/${mesSelect}** - Escalado API por SAC
 - **${diaSelect}/${mesSelect}** - Envío de técnico  
 Envío correo, se deja en seguimiento`,
@@ -141,7 +140,9 @@ Envío correo, se deja en seguimiento`,
 - **${diaSelect}/${mesSelect}** - Envío de técnico  
 Envío correo, se deja en seguimiento
 - **${diaSelect}/${mesSelect}** - **Actualización Rodolfo Montilla:**
-- **${diaSelect}/${mesSelect}** - `,
+- **${diaSelect}/${mesSelect}** - 
+- Aplicación de bono  
+- El cliente no ha solicitado compensación económica  `,
     escalado: `**${diaSelect}/${mesSelect} - Escalado por API**`,
     escaladoSac: `**${diaSelect}/${mesSelect} - Escalado API por SAC**`,
     agenteSac: `- Agente de Front`

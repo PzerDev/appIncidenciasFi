@@ -166,10 +166,10 @@ function DatosContacto({ ticket }) {
 
   };
 
-  function estadoTicketChange (valorCambio, pipelineCambio, subcategoriaCambio) {
+  function estadoTicketChange (valorCambio, pipelineCambio = ticket.pipeline, subcategoriaCambio = ticket.subcategoria) {
     let estadoTicketContenedor = document.querySelector('#estadoTicket');
     estadoTicketContenedor.value = valorCambio;
-
+    
     let estadoPipelineContenedor = document.querySelector('#pipeline');
     estadoPipelineContenedor.value = pipelineCambio;
 
@@ -304,9 +304,9 @@ function DatosContacto({ ticket }) {
         situacion === "La dirección es distinta y se requiere denuncia" ||
         situacion === 'Se ha solicitado prueba cruzada'
      ) {
-      estadoTicketChange('Pendiente de cliente', 'Soporte');
+      estadoTicketChange('Pendiente de cliente', 'Soporte', ticket.subcategoria);
     } else if (ticket.subcategoria === 'Duplicado SIM') {
-      estadoTicketChange('Abierto', 'Envios');
+      estadoTicketChange('Abierto', 'Envios', ticket.subcategoria);
     }
 
     // correoEdit = correo.replace("{plantillaCorreoSIM}", ticket.situacion[situacion])
