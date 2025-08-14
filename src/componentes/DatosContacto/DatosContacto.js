@@ -658,7 +658,6 @@ function DatosContacto({ ticket }) {
           || ticket.motivo === 'Cuando el cliente quiera reprogramar y la fecha de instalación haya PASADO, porque en la anterior cita por cualquier motivo no se haya podido instalar.'
           || ticket.motivo === 'Cuando no se pueda seleccionar la misma cita tras añadir el teléfono alternativo y no se pueda contactar con la Cola Enlaces'
           || ticket.motivo === 'Error cita. Cuando se produzca algún error al asignar la cita en el sistema'
-          || ticket.motivo === 'Técnico falta a cita'
           || ticket.motivo === 'Contratación TESA creada hace más de 15 días y no se han puesto en contacto para la instalación de la fibra'
           || ticket.motivo === 'Devolución router (fibra Onivia y Propia) porque no ha recibido instrucciones'
           || ticket.motivo === 'IP Fija (Solo para Onivia y Fibra propia)'
@@ -781,8 +780,12 @@ function DatosContacto({ ticket }) {
 
     datosAdicionales = (
       <>
+        <div className='contenedor-input-datos-cliente'>
+            <input type="text" value={nuevaDireccion} onChange={(e) => setNuevaDireccion(e.target.value)} placeholder={`External ID de la fibra a reportar`} />
+            <HoraInicioFin horaInicio={horaInicio} horaFin={horaFin} handleSelectHoraInicioChange={handleSelectHoraInicioChange} handleSelectHoraFinChange={handleSelectHoraFinChange} />
+        </div>
         {notaCorreoContenedores}
-        <prev id='observaciones'>{observa}</prev>
+        {observacionesContenedor(observa)}
       </>
     )
 

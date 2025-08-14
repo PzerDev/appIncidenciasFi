@@ -20,24 +20,61 @@ function MontoInput({ monto, setMonto }) {
   const handleMontoChange = (event) => {
     const nuevoValor = event.target.value;
 
-    // Eliminar todo lo que no sean números o puntos
-    const valorLimpio = nuevoValor.replace(/[^0-9.]/g, '');
-  
-    // Limitar a un solo punto decimal y convertir a número
-    const valorConUnPunto = parseFloat(valorLimpio.replace(/\./g, '.').slice(0, valorLimpio.indexOf('.') + 4));
-  
-    // Asegurar que el valor esté entre 0 y 999.99
-    const valorFinal = Math.min(Math.max(valorConUnPunto, 0), 999.99);
-    
-    if (document.querySelector('#diaInicio').value < 1) {
-      // setDiasProporcional(1);
-      setMonto(valorFinal * document.querySelector('#descuento').value)
-    } else {
-      // setMonto(valorFinal * document.querySelector('#descuento').value);
-      setMonto((((getDaysInMonth(ano, mes) + 1 - document.querySelector('#diaInicio').value) / getDaysInMonth(ano, mes)) * valorFinal) * descuento);
+    // Aceptamos la cadena vacía
+    if (nuevoValor === '') {
+      setMontoTarifa('');
+      setMonto(0); // O el valor que prefieras para la cadena vacía
+      return;
     }
-    setMontoTarifa(valorFinal);
-    setDescuento(document.querySelector('#descuento').value);
+
+    // Reemplaza la coma con un punto para que Math.min y Math.max funcionen
+    let valorProcesado = nuevoValor.replace(',', '.');
+
+    // Usamos una expresión regular para validar el formato.
+    // ^: Inicia la cadena.
+    // (\d{1,3}): Captura entre 1 y 3 dígitos.
+    // (\.\d{1,3})?: Un grupo opcional que captura un punto seguido de 1 a 3 dígitos.
+    // $: Finaliza la cadena.
+    const regex = /^(\d{1,3})(\.\d{1,2})?$/;
+
+    // Si el valor coincide con el formato, lo procesamos.
+    if (regex.test(valorProcesado)) {
+      const valorNumerico = parseFloat(valorProcesado);
+      const valorFinal = Math.min(Math.max(valorNumerico, 0), 999.99);
+
+      // El monto de la tarifa puede ser el valor procesado (con punto).
+      setMontoTarifa(valorProcesado);
+      // El monto final es el valor truncado por el Math.min y Math.max.
+      setMonto(valorFinal);
+      console.log(valorProcesado);
+      setDescuento(document.querySelector('#descuento').value);
+    } else {
+      // Maneja el caso de que el valor no cumpla con la validación.
+      // Podrías limpiar el campo o mostrar un mensaje de error.
+      console.log('El formato del valor no es válido.');
+    }
+
+
+    // const nuevoValor = event.target.value;
+
+    // // Eliminar todo lo que no sean números o puntos
+    // const valorLimpio = nuevoValor.replace(/[^0-9.]/g, '');
+  
+    // // Limitar a un solo punto decimal y convertir a número
+    // const valorConUnPunto = parseFloat(valorLimpio.replace(/\./g, '.').slice(0, valorLimpio.indexOf('.') + 4));
+  
+    // // Asegurar que el valor esté entre 0 y 999.99
+    // const valorFinal = Math.min(Math.max(valorConUnPunto, 0), 999.99);
+    
+    // if (document.querySelector('#diaInicio').value < 1) {
+    //   // setDiasProporcional(1);
+    //   setMonto(valorFinal * document.querySelector('#descuento').value)
+    // } else {
+    //   // setMonto(valorFinal * document.querySelector('#descuento').value);
+    //   setMonto((((getDaysInMonth(ano, mes) + 1 - document.querySelector('#diaInicio').value) / getDaysInMonth(ano, mes)) * valorFinal) * descuento);
+    // }
+    // setMontoTarifa(valorFinal);
+    // setDescuento(document.querySelector('#descuento').value);
   };
   
 
@@ -211,12 +248,12 @@ function Calculadora() {
         <div className='contenedor-base-imponible'>
           <div>Base Imponible: {baseImponible.toFixed(2)} €</div>
           <div>{tipoImpuesto}: {impuesto.toFixed(2)} €</div>
-          <div className='margin-top'>
+          {/* <div className='margin-top'>
             <a target="_blank"
             rel="noopener noreferrer"
-            href='https://pzerdev.github.io/appIncidenciasFi/build/'>
+            href='#'>
             Ver listado</a>
-          </div>  
+          </div>   */}
         </div>
       </div>
     </div>

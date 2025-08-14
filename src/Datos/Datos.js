@@ -1725,7 +1725,7 @@ MSISDN AFECTADO: **{afectado}**
 SITUACIÓN: {situacion}  
 MOTIVO DE REEMPLAZO: {incidencia}  
 ÚLTIMO REEMPLAZO: {reemplazo}  
-BREVE DESCRIPCIÓN: {horario}, el cliente solicita un reemplazo de tarjeta SIM. Se ha abierto un caso para su gestión. 
+BREVE DESCRIPCIÓN: {horario}, el cliente solicita un reemplazo de tarjeta SIM. Se ha abierto un caso para su gestión.  
 DIRECCIÓN DE ENVÍO: {nuevaDireccion}  
 TELÉFONO DE CONTACTO: {contacto}  
 `,

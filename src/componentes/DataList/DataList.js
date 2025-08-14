@@ -8,12 +8,17 @@ import AppFibra from '../AppFibra/AppFibra.js';
 function DataList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   const [showLabels, setShowLabels] = useState(false); // New state
   const [showList, setShowList] = useState(false);
   // const [datosContacto, setDatosContacto] = useState(false);
 
   const handleInputChange = (event) => {
-    const query = event.target.value.toLowerCase();
+    const inputTexto = event.target.value;
+
+    // a) Actualiza el estado del input con el texto original
+    setInputValue(inputTexto);
+    const query = inputTexto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     setSearchQuery(query);
 
     // Filter options
@@ -42,6 +47,7 @@ function DataList() {
 
   const handleOptionSelect = (event) => {
     // Detener la propagaciÃ³n del evento (opcional)
+    setInputValue(event.target.innerText)
     if (event && event.stopPropagation) {
       event.stopPropagation();
     }
@@ -70,7 +76,7 @@ function DataList() {
         <input
           type="text"
           placeholder="Buscar incidencia..."
-          value={searchQuery}
+          value={inputValue}
           onChange={handleInputChange}
         />
         {showList && ( // Show list based on separate state (optional)

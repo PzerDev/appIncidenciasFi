@@ -137,9 +137,10 @@ function Roaming() {
   }, [zonaPais.nZona, tipoConsumo, searchState, searchState.paisGlobalDestino, zonaPaisDestino]);
 
   const handleInputChange = (event, type) => {
-    const query = event.target.value.toLowerCase();
+    const inputTexto = event.target.value;
+    const query = inputTexto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     setSearchState(prevState => {
-      const newState = { ...prevState, [type]: query };
+      const newState = { ...prevState, [type]: inputTexto };
       const searchResultsKey = type === 'searchQuery' ? 'searchResults' : 'searchResults2';
       newState[searchResultsKey] = RoamingDatos.paises.filter(pais =>
         pais.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(query)
